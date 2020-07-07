@@ -1,6 +1,6 @@
 Vivado Simulator 2020.1
 Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: /home/gwrw/Xilinx/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 1f4367962a4b4441b8e64d3ba15e400e --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot register_tb_behav xil_defaultlib.register_tb -log elaborate.log 
+Running: /home/gwrw/Xilinx/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 1f4367962a4b4441b8e64d3ba15e400e --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot reg_mult_generic_tb_behav xil_defaultlib.reg_mult_generic_tb -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
 Completed static elaboration
@@ -10,6 +10,10 @@ Time Resolution for simulation is 1ps
 Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
 Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=4)\]
-Compiling architecture behavioral of entity xil_defaultlib.register_tb
-Built simulation snapshot register_tb_behav
+Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=8)\]
+Compiling architecture behavioral of entity xil_defaultlib.mult_generic [\mult_generic(in_len=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_mult_generic [\reg_mult_generic(width=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_mult_generic_tb
+Built simulation snapshot reg_mult_generic_tb_behav

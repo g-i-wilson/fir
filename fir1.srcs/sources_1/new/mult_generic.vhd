@@ -38,20 +38,19 @@ use ieee.numeric_std.all;
 
 entity mult_generic is
     generic (
-        a_len : integer;
-        b_len : integer
+        in_len : integer
     );
     port (
-        in_a : in STD_LOGIC_VECTOR (a_len-1 downto 0);
-        in_b : in STD_LOGIC_VECTOR (b_len-1 downto 0);
-        mult_out : out STD_LOGIC_VECTOR ((a_len-1)+(b_len-1) downto 0)
+        in_a : in STD_LOGIC_VECTOR (in_len-1 downto 0);
+        in_b : in STD_LOGIC_VECTOR (in_len-1 downto 0);
+        mult_out : out STD_LOGIC_VECTOR ((in_len*2)-1 downto 0)
     );
 end mult_generic;
 
 architecture Behavioral of mult_generic is
 
-signal a_signed : signed(a_len-1 downto 0);
-signal b_signed : signed(b_len-1 downto 0);
+signal a_signed : signed(in_len-1 downto 0);
+signal b_signed : signed(in_len-1 downto 0);
 
 begin
     
