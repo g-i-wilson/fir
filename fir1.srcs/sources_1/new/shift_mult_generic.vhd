@@ -38,12 +38,14 @@ entity shift_mult_generic is
     );
     port (
         shift_in : in STD_LOGIC_VECTOR (width-1 downto 0);
+        shift_out : out STD_LOGIC_VECTOR (width-1 downto 0);
         sum_out : out STD_LOGIC_VECTOR (width-1 downto 0);
         clk : in STD_LOGIC;
         en : in STD_LOGIC;
         rst : in STD_LOGIC;
+        par_out : out STD_LOGIC_VECTOR ((width*(length-1))-1 downto 0);
         mult_in : in STD_LOGIC_VECTOR (width*length-1 downto 0);
-        mult_out : in STD_LOGIC_VECTOR (width*2*length-1 downto 0)
+        mult_out : out STD_LOGIC_VECTOR (width*2*length-1 downto 0)
     );
 end shift_mult_generic;
 
@@ -87,6 +89,9 @@ begin
         middle_reg : reg_mult_generic
             generic map (width)
             port map (
+                clk      => clk,
+                en       => en,
+                rst      => rst,
                 reg_in   => all_reg_sig (  i    *width   +(width-1)   downto  i    *width   ),
                 reg_out  => all_reg_sig ( (i+1) *width   +(width-1)   downto (i+1) *width   ),
                 coef_in  => mult_in     ( (i+1) *width   +(width-1)   downto (i+1) *width   ),
@@ -100,11 +105,12 @@ begin
             clk      => clk,
             en       => en,
             rst      => rst,
-            reg_in   => shift_in,
-            reg_out  => all_reg_sig  ( all_reg_sig'high  downto all_reg_sig'high -(width-1)   ),
+            reg_in  => all_reg_sig  ( all_reg_sig'high  downto all_reg_sig'high -(width-1)   ),
+            reg_out => shift_out,
             coef_in  => mult_in      ( mult_in'high      downto mult_in'high     -(width-1)   ),
             mult_out => mult_out     ( mult_out'high     downto mult_out'high    -(width*2-1) )
         );
 
-
+    par_out <= all_reg_sig;
+    
 end Behavioral;
