@@ -41,7 +41,8 @@ architecture Behavioral of reg_mult_generic_tb is
 
 component reg_mult_generic
     generic (
-        width : integer
+        width : integer;
+        padding: integer
     );
     port (
         reg_in : in STD_LOGIC_VECTOR (width-1 downto 0);
@@ -50,19 +51,23 @@ component reg_mult_generic
         clk : in STD_LOGIC;
         en : in STD_LOGIC;
         rst : in STD_LOGIC;
-        mult_out : out STD_LOGIC_VECTOR (width*2-1 downto 0)
+        mult_out : out STD_LOGIC_VECTOR (width*2-1 downto 0);
+        sum_in : in STD_LOGIC_VECTOR (padding+width*2-1 downto 0);
+        sum_out : out STD_LOGIC_VECTOR (padding+width*2-1 downto 0)
     );
 end component;
 
 signal test_clk, test_rst, test_en : std_logic;
 signal test_in, test_out, test_coef : std_logic_vector(3 downto 0);
 signal test_mult : std_logic_vector(7 downto 0);
+signal test_sum_in, test_sum_out : std_logic_vector(11 downto 0);
 
 begin
 
     u1 : reg_mult_generic
         generic map (
-            width => 4
+            width => 4,
+            padding => 4
         )
         port map (
             reg_in => test_in,
@@ -71,7 +76,9 @@ begin
             clk => test_clk,
             en => test_en,
             rst => test_rst,
-            mult_out => test_mult
+            mult_out => test_mult,
+            sum_in => test_sum_in,
+            sum_out => test_sum_out
         );
 
     process
@@ -81,8 +88,9 @@ begin
         test_clk <= '0';
         test_rst <= '0';
         test_en <= '1';
-        test_coef <= "0010";
-        test_in <= "0001";
+        test_coef <= x"2";
+        test_in <= x"1";
+        test_sum_in <= x"aa0";
         
         -- clock edge
         wait for 100ns;
@@ -93,8 +101,9 @@ begin
         test_clk <= '0';
         test_rst <= '0';
         test_en <= '1';
-        test_coef <= "0010";
-        test_in <= "0010";
+        test_coef <= x"2";
+        test_in <= x"2";
+        test_sum_in <= x"aa0";
         
         -- clock edge
         wait for 100ns;
@@ -105,8 +114,9 @@ begin
         test_clk <= '0';
         test_rst <= '0';
         test_en <= '1';
-        test_coef <= "0010";
-        test_in <= "0011";
+        test_coef <= x"2";
+        test_in <= x"3";
+        test_sum_in <= x"aa0";
         
         -- clock edge
         wait for 100ns;
@@ -117,8 +127,9 @@ begin
         test_clk <= '0';
         test_rst <= '0';
         test_en <= '1';
-        test_coef <= "0010";
-        test_in <= "0100";
+        test_coef <= x"2";
+        test_in <= x"4";
+        test_sum_in <= x"aa0";
         
         -- done
         wait for 100us;

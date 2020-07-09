@@ -24,7 +24,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -33,7 +33,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity reg_mult_generic is
     generic (
-        width : integer
+        width : integer;
+        padding: integer
     );
     port (
         reg_in : in STD_LOGIC_VECTOR (width-1 downto 0);
@@ -42,7 +43,9 @@ entity reg_mult_generic is
         clk : in STD_LOGIC;
         en : in STD_LOGIC;
         rst : in STD_LOGIC;
-        mult_out : out STD_LOGIC_VECTOR (width*2-1 downto 0)
+        mult_out : out STD_LOGIC_VECTOR (width*2-1 downto 0);
+        sum_in : in STD_LOGIC_VECTOR (padding+width*2-1 downto 0);
+        sum_out : out STD_LOGIC_VECTOR (padding+width*2-1 downto 0)
     );
 end reg_mult_generic;
 
@@ -76,8 +79,19 @@ component reg_generic
 end component;
 
 signal mult_out_sig : std_logic_vector(width*2-1 downto 0);
+signal padding_sig : std_logic_vector(padding-1 downto 0);
+signal mult_out_padded_sig : std_logic_vector(padding+width*2-1 downto 0);
+signal sum_out_sig : std_logic_vector(padding+width*2-1 downto 0);
 
 begin
+    -- constant zeros for padding
+    padding_sig <= (others=>'0');
+    
+    -- preserve the sign bit (MSB)
+    mult_out_padded_sig <= mult_out_sig(mult_out_sig'high) & padding_sig & mult_out_sig(mult_out_sig'high-1 downto 0);
+    
+    -- add the padded product to the incoming sum
+    sum_out_sig <= std_logic_vector( signed(mult_out_padded_sig) + signed(sum_in) );
 
     -- pass-through register
     reg0 : reg_generic
@@ -103,6 +117,19 @@ begin
             rst => rst,
             reg_in => mult_out_sig,
             reg_out => mult_out
+        );
+        
+    -- sum register
+    reg2 : reg_generic
+        generic map (
+            reg_len => padding+width*2
+        )
+        port map (
+            clk => clk,
+            en => en,
+            rst => rst,
+            reg_in => sum_out_sig,
+            reg_out => sum_out
         );
 
     -- multiplier

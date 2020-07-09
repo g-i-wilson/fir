@@ -50,14 +50,14 @@ component shift_mult_generic
         en : in STD_LOGIC;
         rst : in STD_LOGIC;
         par_out : out STD_LOGIC_VECTOR ((width*(length-1))-1 downto 0);
-        mult_in : in STD_LOGIC_VECTOR (width*length-1 downto 0);
+        coef_in : in STD_LOGIC_VECTOR (width*length-1 downto 0);
         mult_out : out STD_LOGIC_VECTOR (width*2*length-1 downto 0)
     );
 end component;
 
 signal test_clk, test_rst, test_en : std_logic;
 signal test_in, test_out, test_sum : std_logic_vector(3 downto 0);
-signal test_mult_in : std_logic_vector (11 downto 0);
+signal test_coef_in : std_logic_vector (11 downto 0);
 signal test_mult_out : std_logic_vector (23 downto 0);
 
 begin
@@ -74,7 +74,7 @@ begin
             clk => test_clk,
             en => test_en,
             rst => test_rst,
-            mult_in => test_mult_in,
+            coef_in => test_coef_in,
             mult_out => test_mult_out
         );
 
@@ -85,7 +85,7 @@ begin
         test_clk <= '0';
         test_rst <= '1';
         test_en <= '1';
-        test_mult_in <= x"222";
+        test_coef_in <= x"222";
         test_in <= x"1";
         
         -- clock edge
@@ -97,7 +97,7 @@ begin
         test_clk <= '0';
         test_rst <= '0';
         test_en <= '1';
-        test_mult_in <= x"222";
+        test_coef_in <= x"222";
         test_in <= x"2";
         
         -- clock edge
@@ -109,7 +109,7 @@ begin
         test_clk <= '0';
         test_rst <= '0';
         test_en <= '1';
-        test_mult_in <= x"222";
+        test_coef_in <= x"222";
         test_in <= x"3";
         
         -- clock edge
@@ -121,7 +121,7 @@ begin
         test_clk <= '0';
         test_rst <= '0';
         test_en <= '1';
-        test_mult_in <= x"222";
+        test_coef_in <= x"222";
         test_in <= x"4";
         
         -- clock edge
@@ -133,7 +133,7 @@ begin
         test_clk <= '0';
         test_rst <= '0';
         test_en <= '1';
-        test_mult_in <= x"222";
+        test_coef_in <= x"222";
         test_in <= x"5";
         
         -- clock edge
@@ -145,7 +145,7 @@ begin
         test_clk <= '0';
         test_rst <= '0';
         test_en <= '0';
-        test_mult_in <= x"222";
+        test_coef_in <= x"222";
         test_in <= x"6";
         
         -- clock edge
@@ -157,7 +157,7 @@ begin
         test_clk <= '0';
         test_rst <= '1';
         test_en <= '0';
-        test_mult_in <= x"222";
+        test_coef_in <= x"222";
         test_in <= x"7";
         
         -- clock edge
