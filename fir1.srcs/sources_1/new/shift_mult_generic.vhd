@@ -35,13 +35,12 @@ entity shift_mult_generic is
     generic (
         length : integer;
         width : integer;
-        padding : integer;
-        down_shift : integer -- for up-shifted coeficient values (i.e. fixed point arith)
+        padding : integer
     );
     port (
         shift_in : in STD_LOGIC_VECTOR (width-1 downto 0);
         shift_out : out STD_LOGIC_VECTOR (width-1 downto 0);
-        sum_out : out STD_LOGIC_VECTOR (width-1 downto 0);
+        sum_out : out STD_LOGIC_VECTOR (width*2+padding-1 downto 0);
         clk : in STD_LOGIC;
         en : in STD_LOGIC;
         rst : in STD_LOGIC;
@@ -61,15 +60,22 @@ component reg_mult_generic
         padding: integer
     );
     port (
-        reg_in : in STD_LOGIC_VECTOR (width-1 downto 0);
-        coef_in : in STD_LOGIC_VECTOR (width-1 downto 0);
-        reg_out : out STD_LOGIC_VECTOR (width-1 downto 0);
-        clk : in STD_LOGIC;
-        en : in STD_LOGIC;
-        rst : in STD_LOGIC;
-        mult_out : out STD_LOGIC_VECTOR (width*2-1 downto 0);
-        sum_in : in STD_LOGIC_VECTOR (width*2+padding-1 downto 0);
-        sum_out : out STD_LOGIC_VECTOR (width*2+padding-1 downto 0)
+        -- data stream value from previous link in shift register
+        reg_in   : in STD_LOGIC_VECTOR    (width-1 downto 0);
+        -- data value will be multiplied by this coef (might be a constant)
+        coef_in  : in STD_LOGIC_VECTOR    (width-1 downto 0);
+        -- unchanged data value to send to next link
+        reg_out  : out STD_LOGIC_VECTOR   (width-1 downto 0);
+        -- clk, en, rst
+        clk      : in STD_LOGIC;
+        en       : in STD_LOGIC;
+        rst      : in STD_LOGIC;
+        -- data*coef output (mainly for debugging purposes)
+        mult_out : out STD_LOGIC_VECTOR   (width*2-1 downto 0);
+        -- sum from previous link (padding to prevent overflow)
+        sum_in   : in STD_LOGIC_VECTOR    (width*2+padding-1 downto 0);
+        -- sum + data*coef to send to next link
+        sum_out  : out STD_LOGIC_VECTOR   (width*2+padding-1 downto 0)
     );
 end component;
 

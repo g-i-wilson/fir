@@ -24,7 +24,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -43,28 +43,37 @@ begin
 
     process (level_in, en)
     begin
-        nibble_out <= (others=>'0');        -- default output value
-        if (en = '1') then  -- active high enable pin
-            case level_in is
-                when "0000000000000001" => nibble_out <= x"0";
-                when "0000000000000010" => nibble_out <= x"1";
-                when "0000000000000100" => nibble_out <= x"2";
-                when "0000000000001000" => nibble_out <= x"3";
-                when "0000000000010000" => nibble_out <= x"4";
-                when "0000000000100000" => nibble_out <= x"5";
-                when "0000000001000000" => nibble_out <= x"6";
-                when "0000000010000000" => nibble_out <= x"7";
-                when "0000000100000000" => nibble_out <= x"8";
-                when "0000001000000000" => nibble_out <= x"9";
-                when "0000010000000000" => nibble_out <= x"a";
-                when "0000100000000000" => nibble_out <= x"b";
-                when "0001000000000000" => nibble_out <= x"c";
-                when "0010000000000000" => nibble_out <= x"d";
-                when "0100000000000000" => nibble_out <= x"e";
-                when "1000000000000000" => nibble_out <= x"f";
-                when others => nibble_out <= x"0";
-            end case;
-        end if;
+        nibble_out <= (others=>'0');
+        -- higher inputs take precedence over lower inputs
+        for i in level_in'high to level_in'low loop
+            if (level_in(i) = '1') then
+                nibble_out <= std_logic_vector(to_unsigned(i, nibble_out'length));
+                exit;
+            end if;
+        end loop;
+        
+        
+--        if (en = '1') then  -- active high enable pin
+--            case level_in is
+--                when "0000000000000001" => nibble_out <= x"0";
+--                when "0000000000000010" => nibble_out <= x"1";
+--                when "0000000000000100" => nibble_out <= x"2";
+--                when "0000000000001000" => nibble_out <= x"3";
+--                when "0000000000010000" => nibble_out <= x"4";
+--                when "0000000000100000" => nibble_out <= x"5";
+--                when "0000000001000000" => nibble_out <= x"6";
+--                when "0000000010000000" => nibble_out <= x"7";
+--                when "0000000100000000" => nibble_out <= x"8";
+--                when "0000001000000000" => nibble_out <= x"9";
+--                when "0000010000000000" => nibble_out <= x"a";
+--                when "0000100000000000" => nibble_out <= x"b";
+--                when "0001000000000000" => nibble_out <= x"c";
+--                when "0010000000000000" => nibble_out <= x"d";
+--                when "0100000000000000" => nibble_out <= x"e";
+--                when "1000000000000000" => nibble_out <= x"f";
+--                when others => nibble_out <= x"0";
+--            end case;
+--        end if;
     end process;
 
 end Behavioral;

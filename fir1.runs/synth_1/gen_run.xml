@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1592972437">
-  <File Type="RDS-DCP" Name="test_synth.dcp"/>
   <File Type="PA-TCL" Name="test_synth.tcl"/>
   <File Type="REPORTS-TCL" Name="test_synth_reports.tcl"/>
   <File Type="RDS-RDS" Name="test_synth.vds"/>
+  <File Type="RDS-DCP" Name="test_synth.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/decoder.vhdl">

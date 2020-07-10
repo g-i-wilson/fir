@@ -40,12 +40,13 @@ architecture Behavioral of shift_mult_generic_tb is
 component shift_mult_generic
     generic (
         length : integer;
-        width : integer
+        width : integer;
+        padding : integer
     );
     port (
         shift_in : in STD_LOGIC_VECTOR (width-1 downto 0);
         shift_out : out STD_LOGIC_VECTOR (width-1 downto 0);
-        sum_out : out STD_LOGIC_VECTOR (width-1 downto 0);
+        sum_out : out STD_LOGIC_VECTOR (width*2+padding-1 downto 0);
         clk : in STD_LOGIC;
         en : in STD_LOGIC;
         rst : in STD_LOGIC;
@@ -56,7 +57,8 @@ component shift_mult_generic
 end component;
 
 signal test_clk, test_rst, test_en : std_logic;
-signal test_in, test_out, test_sum : std_logic_vector(3 downto 0);
+signal test_in, test_out : std_logic_vector(3 downto 0);
+signal test_sum_out : std_logic_vector(11 downto 0);
 signal test_coef_in : std_logic_vector (11 downto 0);
 signal test_mult_out : std_logic_vector (23 downto 0);
 
@@ -65,12 +67,13 @@ begin
     u1 : shift_mult_generic
         generic map (
             length => 3,
-            width => 4
+            width => 4,
+            padding => 4
         )
         port map (
             shift_in => test_in,
             shift_out => test_out,
-            sum_out => test_sum,
+            sum_out => test_sum_out,
             clk => test_clk,
             en => test_en,
             rst => test_rst,

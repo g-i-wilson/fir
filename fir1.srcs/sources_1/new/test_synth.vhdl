@@ -29,17 +29,53 @@ use ieee.numeric_std.all;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
+library UNISIM;
+use UNISIM.VComponents.all;
 
 entity test_synth is
-    Port ( sw : in STD_LOGIC_VECTOR (15 downto 0);
-           led : out STD_LOGIC_VECTOR (15 downto 0));
+    port (
+        clk : in std_logic;
+        sw : in STD_LOGIC_VECTOR (15 downto 0);
+        led : out STD_LOGIC_VECTOR (15 downto 0)
+    );
 end test_synth;
+
+
 
 architecture Behavioral of test_synth is
 
-signal nib_in, nib_out : std_logic_vector (3 downto 0);
+component clk_div_generic
+    generic (
+        half_div_width : integer
+    );
+    port (
+        half_div_value : std_logic_vector (half_div_width-1 downto 0);
+        half_div_out : out std_logic_vector (half_div_width-1 downto 0);
+        clk_in : in STD_LOGIC;
+        clk_out : out STD_LOGIC;
+        en : in STD_LOGIC;
+        rst : in STD_LOGIC
+    );
+end component;
+
+component shift_mult_generic is
+    generic (
+        length : integer;
+        width : integer;
+        padding : integer
+    );
+    port (
+        shift_in : in STD_LOGIC_VECTOR (width-1 downto 0);
+        shift_out : out STD_LOGIC_VECTOR (width-1 downto 0);
+        sum_out : out STD_LOGIC_VECTOR (width*2+padding-1 downto 0);
+        clk : in STD_LOGIC;
+        en : in STD_LOGIC;
+        rst : in STD_LOGIC;
+        par_out : out STD_LOGIC_VECTOR ((width*(length-1))-1 downto 0);
+        coef_in : in STD_LOGIC_VECTOR (width*length-1 downto 0);
+        mult_out : out STD_LOGIC_VECTOR (width*2*length-1 downto 0)
+    );
+end component;
 
 component encoder is
     Port ( level_in : in STD_LOGIC_VECTOR (15 downto 0);
@@ -52,20 +88,99 @@ component decoder is
            level_out : out STD_LOGIC_VECTOR (15 downto 0);
            en : in STD_LOGIC);
 end component;
-    
+
+signal div_clk0, div_clk1 : std_logic;
+signal lock_sig : std_logic;
+signal rst : std_logic;
+signal encoded : std_logic_vector (3 downto 0);
+signal filtered : std_logic_vector (11 downto 0);
+
 begin
 
-    nib_out <= std_logic_vector( unsigned(nib_in) + 1 );
+    rst <= not lock_sig;
 
-    encode : encoder port map (
-        level_in => sw,
-        nibble_out => nib_in,
-        en => '1'
-    );
+   MMCME2_BASE_inst : MMCME2_BASE
+   generic map (
+      BANDWIDTH => "OPTIMIZED",  -- Jitter programming (OPTIMIZED, HIGH, LOW)
+      CLKFBOUT_MULT_F => 2.0,    -- Multiply value for all CLKOUT (2.000-64.000).
+      CLKFBOUT_PHASE => 0.0,     -- Phase offset in degrees of CLKFB (-360.000-360.000).
+      CLKIN1_PERIOD => 0.0,      -- Input clock period in ns to ps resolution (i.e. 33.333 is 30 MHz).
+      -- CLKOUT0_DIVIDE - CLKOUT6_DIVIDE: Divide amount for each CLKOUT (1-128)
+      CLKOUT1_DIVIDE => 20,
+      CLKOUT2_DIVIDE => 1,
+      CLKOUT3_DIVIDE => 1,
+      CLKOUT4_DIVIDE => 1,
+      CLKOUT5_DIVIDE => 1,
+      CLKOUT6_DIVIDE => 1,
+      CLKOUT0_DIVIDE_F => 1.0,   -- Divide amount for CLKOUT0 (1.000-128.000).
+      -- CLKOUT0_DUTY_CYCLE - CLKOUT6_DUTY_CYCLE: Duty cycle for each CLKOUT (0.01-0.99).
+      CLKOUT0_DUTY_CYCLE => 0.5,
+      CLKOUT1_DUTY_CYCLE => 0.5,
+      CLKOUT2_DUTY_CYCLE => 0.5,
+      CLKOUT3_DUTY_CYCLE => 0.5,
+      CLKOUT4_DUTY_CYCLE => 0.5,
+      CLKOUT5_DUTY_CYCLE => 0.5,
+      CLKOUT6_DUTY_CYCLE => 0.5,
+      -- CLKOUT0_PHASE - CLKOUT6_PHASE: Phase offset for each CLKOUT (-360.000-360.000).
+      CLKOUT0_PHASE => 0.0,
+      CLKOUT1_PHASE => 0.0,
+      CLKOUT2_PHASE => 0.0,
+      CLKOUT3_PHASE => 0.0,
+      CLKOUT4_PHASE => 0.0,
+      CLKOUT5_PHASE => 0.0,
+      CLKOUT6_PHASE => 0.0,
+      CLKOUT4_CASCADE => FALSE,  -- Cascade CLKOUT4 counter with CLKOUT6 (FALSE, TRUE)
+      DIVCLK_DIVIDE => 1,        -- Master division value (1-106)
+      REF_JITTER1 => 0.0,        -- Reference input jitter in UI (0.000-0.999).
+      STARTUP_WAIT => FALSE      -- Delays DONE until MMCM is locked (FALSE, TRUE)
+   )
+   port map (
+      -- Clock Outputs: 1-bit (each) output: User configurable clock outputs
+      CLKOUT1 => div_clk0,     -- 1-bit output: CLKOUT1
+      -- Status Ports: 1-bit (each) output: MMCM status ports
+      LOCKED => lock_sig,       -- 1-bit output: LOCK
+      -- Clock Inputs: 1-bit (each) input: Clock input
+      CLKIN1 => clk,       -- 1-bit input: Clock
+      RST => '0'             -- 1-bit input: Reset
+   );
+
+   clk_div : clk_div_generic
+        generic map (
+            half_div_width => 24
+        )
+        port map (
+            half_div_value => x"1312D0", -- 10MHz/8Hz = 0x1312D0
+            clk_in => div_clk0,
+            clk_out => div_clk1,
+            en => '1',
+            rst => rst
+        );
+
+    encode : encoder
+        port map (
+            level_in => sw,
+            nibble_out => encoded,
+            en => '1'
+        );
+    
+    filter : shift_mult_generic
+        generic map (
+            length => 8,
+            width => 4,
+            padding => 4
+        )
+        port map (
+            shift_in => encoded,
+            sum_out => filtered,
+            clk => div_clk1,
+            en => '1',
+            rst => rst,
+            coef_in => x"11111111"
+        );
     
     decode : decoder port map (
         level_out => led,
-        nibble_in => nib_out,
+        nibble_in => filtered,
         en => '1'
     );
 

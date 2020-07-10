@@ -37,15 +37,22 @@ entity reg_mult_generic is
         padding: integer
     );
     port (
-        reg_in : in STD_LOGIC_VECTOR (width-1 downto 0);
-        coef_in : in STD_LOGIC_VECTOR (width-1 downto 0);
-        reg_out : out STD_LOGIC_VECTOR (width-1 downto 0);
-        clk : in STD_LOGIC;
-        en : in STD_LOGIC;
-        rst : in STD_LOGIC;
-        mult_out : out STD_LOGIC_VECTOR (width*2-1 downto 0);
-        sum_in : in STD_LOGIC_VECTOR (padding+width*2-1 downto 0);
-        sum_out : out STD_LOGIC_VECTOR (padding+width*2-1 downto 0)
+        -- data stream value from previous link in shift register
+        reg_in   : in STD_LOGIC_VECTOR    (width-1 downto 0);
+        -- data value will be multiplied by this coef (might be a constant)
+        coef_in  : in STD_LOGIC_VECTOR    (width-1 downto 0);
+        -- unchanged data value to send to next link
+        reg_out  : out STD_LOGIC_VECTOR   (width-1 downto 0);
+        -- clk, en, rst
+        clk      : in STD_LOGIC;
+        en       : in STD_LOGIC;
+        rst      : in STD_LOGIC;
+        -- data*coef output (mainly for debugging purposes)
+        mult_out : out STD_LOGIC_VECTOR   (width*2-1 downto 0);
+        -- sum from previous link (padding to prevent overflow)
+        sum_in   : in STD_LOGIC_VECTOR    (width*2+padding-1 downto 0);
+        -- sum + data*coef to send to next link
+        sum_out  : out STD_LOGIC_VECTOR   (width*2+padding-1 downto 0)
     );
 end reg_mult_generic;
 
@@ -79,19 +86,15 @@ component reg_generic
 end component;
 
 signal mult_out_sig : std_logic_vector(width*2-1 downto 0);
-signal padding_sig : std_logic_vector(padding-1 downto 0);
-signal mult_out_padded_sig : std_logic_vector(padding+width*2-1 downto 0);
-signal sum_out_sig : std_logic_vector(padding+width*2-1 downto 0);
+signal sum_out_sig : std_logic_vector(width*2+padding-1 downto 0);
 
 begin
-    -- constant zeros for padding
-    padding_sig <= (others=>'0');
     
-    -- preserve the sign bit (MSB)
-    mult_out_padded_sig <= mult_out_sig(mult_out_sig'high) & padding_sig & mult_out_sig(mult_out_sig'high-1 downto 0);
-    
-    -- add the padded product to the incoming sum
-    sum_out_sig <= std_logic_vector( signed(mult_out_padded_sig) + signed(sum_in) );
+    -- add the product (padded) to the previous incoming sum
+    sum_out_sig <= std_logic_vector(
+        resize( signed(mult_out_sig) , mult_out_sig'LENGTH  +padding ) +
+        signed(sum_in)
+    );
 
     -- pass-through register
     reg0 : reg_generic
@@ -122,7 +125,7 @@ begin
     -- sum register
     reg2 : reg_generic
         generic map (
-            reg_len => padding+width*2
+            reg_len => width*2+padding
         )
         port map (
             clk => clk,
