@@ -1,13 +1,13 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Wed Jun 24 08:34:20 2020
+| Date         : Fri Jul 10 16:13:54 2020
 | Host         : black-computer running 64-bit Ubuntu 18.04.4 LTS
 | Command      : report_drc -file test_synth_drc_opted.rpt -pb test_synth_drc_opted.pb -rpx test_synth_drc_opted.rpx
 | Design       : test_synth
 | Device       : xc7a35tcpg236-1
 | Speed File   : -1
-| Design State : Synthesized
+| Design State : Fully Routed
 ---------------------------------------------------------------------------------------------------------------------
 
 Report DRC
@@ -20,7 +20,7 @@ Table of Contents
 1. REPORT SUMMARY
 -----------------
             Netlist: netlist
-          Floorplan: checkpoint_test_synth
+          Floorplan: design_1
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>

@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Wed Jun 24 08:34:57 2020
+| Date         : Fri Jul 10 16:14:43 2020
 | Host         : black-computer running 64-bit Ubuntu 18.04.4 LTS
 | Command      : report_timing_summary -max_paths 10 -file test_synth_timing_summary_routed.rpt -pb test_synth_timing_summary_routed.pb -rpx test_synth_timing_summary_routed.rpx -warn_on_violation
 | Design       : test_synth
@@ -131,13 +131,17 @@ Table of Contents
          NA           NA                     NA                   NA           NA           NA                     NA                   NA           NA           NA                      NA                    NA  
 
 
-There are no user specified timing constraints.
+All user specified timing constraints are met.
 
 
 ------------------------------------------------------------------------------------------------
 | Clock Summary
 | -------------
 ------------------------------------------------------------------------------------------------
+
+Clock        Waveform(ns)       Period(ns)      Frequency(MHz)
+-----        ------------       ----------      --------------
+sys_clk_pin  {0.000 5.000}      10.000          100.000         
 
 
 ------------------------------------------------------------------------------------------------

@@ -90,14 +90,16 @@ component decoder is
 end component;
 
 signal div_clk0, div_clk1 : std_logic;
+signal clkfb_loopback : std_logic;
 signal lock_sig : std_logic;
 signal rst : std_logic;
-signal encoded : std_logic_vector (3 downto 0);
+signal encoded, for_decode : std_logic_vector (3 downto 0);
 signal filtered : std_logic_vector (11 downto 0);
 
 begin
 
-    rst <= not lock_sig;
+   rst <= not lock_sig;
+   for_decode <= filtered(filtered'high-4 downto filtered'high-7);
 
    MMCME2_BASE_inst : MMCME2_BASE
    generic map (
@@ -135,13 +137,19 @@ begin
       STARTUP_WAIT => FALSE      -- Delays DONE until MMCM is locked (FALSE, TRUE)
    )
    port map (
+      -- Feedback Clocks: 1-bit (each) output: Clock feedback ports
+      CLKFBOUT => clkfb_loopback,
       -- Clock Outputs: 1-bit (each) output: User configurable clock outputs
       CLKOUT1 => div_clk0,     -- 1-bit output: CLKOUT1
       -- Status Ports: 1-bit (each) output: MMCM status ports
       LOCKED => lock_sig,       -- 1-bit output: LOCK
       -- Clock Inputs: 1-bit (each) input: Clock input
       CLKIN1 => clk,       -- 1-bit input: Clock
-      RST => '0'             -- 1-bit input: Reset
+      -- Control Ports: 1-bit (each) input: MMCM control ports
+      PWRDWN => '0',       -- 1-bit input: Power-down
+      RST => '0',             -- 1-bit input: Reset
+      -- Feedback Clocks: 1-bit (each) input: Clock feedback ports
+      CLKFBIN => clkfb_loopback      -- 1-bit input: Feedback clock
    );
 
    clk_div : clk_div_generic
@@ -180,7 +188,7 @@ begin
     
     decode : decoder port map (
         level_out => led,
-        nibble_in => filtered,
+        nibble_in => for_decode,
         en => '1'
     );
 
