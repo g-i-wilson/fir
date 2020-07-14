@@ -11,6 +11,6 @@ Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
-Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(half_div_width=...]
+Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=4)...]
 Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic_tb
 Built simulation snapshot clk_div_generic_tb_behav

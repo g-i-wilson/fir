@@ -37,6 +37,10 @@ entity test_synth is
         clk : in std_logic;
         sw : in STD_LOGIC_VECTOR (15 downto 0);
         led : out STD_LOGIC_VECTOR (15 downto 0)
+--        shift_reg_debug : out std_logic_vector (27 downto 0);
+--        mult_reg_debug : out std_logic_vector (63 downto 0);
+--        encoded_debug : out std_logic_vector (3 downto 0);
+--        filtered_debug : out std_logic_vector (11 downto 0)
     );
 end test_synth;
 
@@ -46,15 +50,16 @@ architecture Behavioral of test_synth is
 
 component clk_div_generic
     generic (
-        half_div_width : integer
+        period_width : integer
     );
     port (
-        half_div_value : std_logic_vector (half_div_width-1 downto 0);
-        half_div_out : out std_logic_vector (half_div_width-1 downto 0);
-        clk_in : in STD_LOGIC;
-        clk_out : out STD_LOGIC;
-        en : in STD_LOGIC;
-        rst : in STD_LOGIC
+        period : std_logic_vector (period_width-1 downto 0);
+        clk : in std_logic;
+        en : in std_logic;
+        rst : in std_logic;
+        
+        en_out : out std_logic;
+        count_out : out std_logic_vector (period_width-1 downto 0)
     );
 end component;
 
@@ -89,7 +94,7 @@ component decoder is
            en : in STD_LOGIC);
 end component;
 
-signal div_clk0, div_clk1 : std_logic;
+signal mmcm_clk, en_sig : std_logic;
 signal clkfb_loopback : std_logic;
 signal lock_sig : std_logic;
 signal rst : std_logic;
@@ -98,17 +103,20 @@ signal filtered : std_logic_vector (11 downto 0);
 
 begin
 
-   rst <= not lock_sig;
-   for_decode <= filtered(filtered'high-4 downto filtered'high-7);
+--   filtered_debug <= filtered;
+--   encoded_debug <= encoded;
+
+   rst <= '0';
+   for_decode <= filtered(6 downto 3);
 
    MMCME2_BASE_inst : MMCME2_BASE
    generic map (
       BANDWIDTH => "OPTIMIZED",  -- Jitter programming (OPTIMIZED, HIGH, LOW)
-      CLKFBOUT_MULT_F => 2.0,    -- Multiply value for all CLKOUT (2.000-64.000).
+      CLKFBOUT_MULT_F => 10.0,    -- Multiply value for all CLKOUT (2.000-64.000).
       CLKFBOUT_PHASE => 0.0,     -- Phase offset in degrees of CLKFB (-360.000-360.000).
-      CLKIN1_PERIOD => 0.0,      -- Input clock period in ns to ps resolution (i.e. 33.333 is 30 MHz).
+      CLKIN1_PERIOD => 10.0,      -- Input clock period in ns to ps resolution (i.e. 33.333 is 30 MHz).
       -- CLKOUT0_DIVIDE - CLKOUT6_DIVIDE: Divide amount for each CLKOUT (1-128)
-      CLKOUT1_DIVIDE => 20,
+      CLKOUT1_DIVIDE => 10,
       CLKOUT2_DIVIDE => 1,
       CLKOUT3_DIVIDE => 1,
       CLKOUT4_DIVIDE => 1,
@@ -140,7 +148,7 @@ begin
       -- Feedback Clocks: 1-bit (each) output: Clock feedback ports
       CLKFBOUT => clkfb_loopback,
       -- Clock Outputs: 1-bit (each) output: User configurable clock outputs
-      CLKOUT1 => div_clk0,     -- 1-bit output: CLKOUT1
+      CLKOUT1 => mmcm_clk,     -- 1-bit output: CLKOUT1
       -- Status Ports: 1-bit (each) output: MMCM status ports
       LOCKED => lock_sig,       -- 1-bit output: LOCK
       -- Clock Inputs: 1-bit (each) input: Clock input
@@ -154,14 +162,14 @@ begin
 
    clk_div : clk_div_generic
         generic map (
-            half_div_width => 24
+            period_width => 24
         )
         port map (
-            half_div_value => x"1312D0", -- 10MHz/8Hz = 0x1312D0
-            clk_in => div_clk0,
-            clk_out => div_clk1,
+            period => x"989680", -- 100MHz/10Hz
+            clk => mmcm_clk,
             en => '1',
-            rst => rst
+            rst => rst,
+            en_out => en_sig
         );
 
     encode : encoder
@@ -180,10 +188,12 @@ begin
         port map (
             shift_in => encoded,
             sum_out => filtered,
-            clk => div_clk1,
-            en => '1',
+            clk => mmcm_clk,
+            en => en_sig,
             rst => rst,
             coef_in => x"11111111"
+--            par_out => shift_reg_debug,
+--            mult_out => mult_reg_debug
         );
     
     decode : decoder port map (

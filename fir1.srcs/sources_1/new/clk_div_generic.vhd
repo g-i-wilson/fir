@@ -33,15 +33,16 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity clk_div_generic is
     generic (
-        half_div_width : integer
+        period_width : integer
     );
     port (
-        half_div_value : std_logic_vector (half_div_width-1 downto 0);
-        half_div_out : out std_logic_vector (half_div_width-1 downto 0);
-        clk_in : in STD_LOGIC;
-        clk_out : out STD_LOGIC;
-        en : in STD_LOGIC;
-        rst : in STD_LOGIC
+        period : std_logic_vector (period_width-1 downto 0);
+        clk : in std_logic;
+        en : in std_logic;
+        rst : in std_logic;
+        
+        en_out : out std_logic;
+        count_out : out std_logic_vector (period_width-1 downto 0)
     );
 end clk_div_generic;
 
@@ -49,25 +50,38 @@ end clk_div_generic;
 
 architecture Behavioral of clk_div_generic is
 
-signal clk : std_logic;
-signal half_div : std_logic_vector (half_div_width-1 downto 0);
+signal en_sig : std_logic;
+signal count_sig : std_logic_vector (period_width-1 downto 0) := (others=>'0');
 
 begin
 
-    clk_out <= clk;
-    half_div_out <= half_div;
+    count_out <= count_sig;
 
-    process (clk_in) begin
-        if rising_edge(clk_in) then
+    -- counter register and output logic
+    process (clk) begin
+        if rising_edge(clk) then
             if (rst = '1') then
-                clk <= '0';
-                half_div <= (others=>'0'); -- reset to zeros
+                en_sig <= '0';
+                count_sig <= (others=>'0'); -- reset to zeros
             elsif (en = '1') then
-                half_div <= std_logic_vector( unsigned(half_div) + 1 );
-                if (half_div = half_div_value) then
-                    half_div <= (others=>'0'); -- reset to zeros
-                    clk <= not clk;
+                count_sig <= std_logic_vector( unsigned(count_sig) + 1 );
+                if (count_sig = period) then
+                    count_sig <= (others=>'0'); -- reset to zeros
+                    en_sig <= '1';
+                else
+                    en_sig <= '0';
                 end if;
+            end if;
+        end if;
+    end process;
+    
+    -- FF after output logic
+    process (clk) begin
+        if rising_edge(clk) then
+            if (rst = '1') then
+                en_out <= '0';
+            elsif (en = '1') then
+                en_out <= en_sig;
             end if;
         end if;
     end process;

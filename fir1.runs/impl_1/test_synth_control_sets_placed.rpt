@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Fri Jul 10 16:14:05 2020
+| Date         : Tue Jul 14 10:27:03 2020
 | Host         : black-computer running 64-bit Ubuntu 18.04.4 LTS
 | Command      : report_control_sets -verbose -file test_synth_control_sets_placed.rpt
 | Design       : test_synth
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     0 |
-|    Minimum number of control sets                        |     0 |
+| Total control sets                                       |     3 |
+|    Minimum number of control sets                        |     3 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |     0 |
+| Unused register locations in slices containing registers |     6 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     0 |
-| >= 0 to < 4        |     0 |
+| Total control sets |     3 |
+| >= 0 to < 4        |     1 |
 | >= 4 to < 6        |     0 |
 | >= 6 to < 8        |     0 |
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     0 |
+| >= 16              |     2 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,10 +58,10 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               0 |            0 |
+| No           | No                    | No                     |               2 |            1 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |               0 |            0 |
+| No           | Yes                   | No                     |              24 |            6 |
+| Yes          | No                    | No                     |              64 |           15 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
@@ -70,8 +70,12 @@ Table of Contents
 4. Detailed Control Set Information
 -----------------------------------
 
-+--------------+---------------+------------------+------------------+----------------+--------------+
-| Clock Signal | Enable Signal | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
-+--------------+---------------+------------------+------------------+----------------+--------------+
++----------------+---------------+------------------------------+------------------+----------------+--------------+
+|  Clock Signal  | Enable Signal |       Set/Reset Signal       | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+---------------+------------------------------+------------------+----------------+--------------+
+|  mmcm_clk_BUFG |               |                              |                1 |              2 |         2.00 |
+|  mmcm_clk_BUFG |               | clk_div/count_sig[0]_i_1_n_0 |                6 |             24 |         4.00 |
+|  mmcm_clk_BUFG | clk_div/en    |                              |               15 |             64 |         4.27 |
++----------------+---------------+------------------------------+------------------+----------------+--------------+
 
 

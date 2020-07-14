@@ -40,57 +40,58 @@ architecture Behavioral of clk_div_generic_tb is
 
 component clk_div_generic
     generic (
-        half_div_width : integer
+        period_width : integer
     );
     port (
-        half_div_value : std_logic_vector (half_div_width-1 downto 0);
-        half_div_out : out std_logic_vector (half_div_width-1 downto 0);
-        clk_in : in STD_LOGIC;
-        clk_out : out STD_LOGIC;
-        en : in STD_LOGIC;
-        rst : in STD_LOGIC
+        period : std_logic_vector (period_width-1 downto 0);
+        clk : in std_logic;
+        en : in std_logic;
+        rst : in std_logic;
+        
+        en_out : out std_logic;
+        count_out : out std_logic_vector (period_width-1 downto 0)
     );
 end component;
 
 signal
-    test_clk_in,
-    test_clk_out,
+    test_clk,
     test_rst,
-    test_en
+    test_en,
+    test_en_out
     : std_logic;
     
-signal test_half_div : std_logic_vector(3 downto 0);
+signal test_count_out : std_logic_vector(3 downto 0);
 
 begin
 
     div0 : clk_div_generic
         generic map (
-            half_div_width => 4
+            period_width => 4
         )
         port map (
-            half_div_value => x"3",
-            half_div_out => test_half_div,
-            clk_in => test_clk_in,
-            clk_out => test_clk_out,
+            period => x"3",
+            clk => test_clk,
             en => test_en,
-            rst => test_rst
+            rst => test_rst,
+            en_out => test_en_out,
+            count_out => test_count_out
         );
 
     process
     begin
     
         -- initial
-        test_clk_in <= '0';
+        test_clk <= '0';
         test_rst <= '1';
         test_en <= '1';
         
             -- clock edge
             wait for 20ns;
-            test_clk_in <= '1';
+            test_clk <= '1';
             wait for 20ns;
-            test_clk_in <= '0';
+            test_clk <= '0';
 
-        test_clk_in <= '0';
+        test_clk <= '0';
         test_rst <= '0';
         test_en <= '1';
 
@@ -98,11 +99,11 @@ begin
         for i in 0 to 20 loop
             -- clock edge
             wait for 20ns;
-            test_clk_in <= '1';
+            test_clk <= '1';
             wait for 20ns;
-            test_clk_in <= '0';
+            test_clk <= '0';
             
-            test_clk_in <= '0';
+            test_clk <= '0';
             test_rst <= '0';
             test_en <= '1';
 

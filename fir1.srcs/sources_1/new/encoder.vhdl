@@ -45,12 +45,14 @@ begin
     begin
         nibble_out <= (others=>'0');
         -- higher inputs take precedence over lower inputs
-        for i in level_in'high to level_in'low loop
-            if (level_in(i) = '1') then
-                nibble_out <= std_logic_vector(to_unsigned(i, nibble_out'length));
-                exit;
-            end if;
-        end loop;
+        if (en = '1') then
+            for i in 15 downto 0 loop
+                if (level_in(i) = '1') then
+                    nibble_out <= std_logic_vector(to_unsigned(i, nibble_out'length));
+                    exit;
+                end if;
+            end loop;
+         end if;
         
         
 --        if (en = '1') then  -- active high enable pin
