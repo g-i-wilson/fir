@@ -16,9 +16,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 10459
+INFO: [Synth 8-7075] Helper process launched with PID 19561
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:10 . Memory (MB): peak = 2102.688 ; gain = 0.000 ; free physical = 791 ; free virtual = 6690
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:11 . Memory (MB): peak = 2041.223 ; gain = 0.000 ; free physical = 131 ; free virtual = 3326
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'test_synth' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl:49]
 	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
@@ -69,7 +69,7 @@ INFO: [Synth 8-638] synthesizing module 'shift_mult_generic' [/home/gwrw/fir1/fi
 	Parameter padding bound to: 4 - type: integer 
 	Parameter width bound to: 4 - type: integer 
 	Parameter padding bound to: 4 - type: integer 
-INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'in_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:90]
+INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'first_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:107]
 INFO: [Synth 8-638] synthesizing module 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:61]
 	Parameter width bound to: 4 - type: integer 
 	Parameter padding bound to: 4 - type: integer 
@@ -89,32 +89,32 @@ INFO: [Synth 8-638] synthesizing module 'reg_generic__parameterized3' [/home/gwr
 	Parameter reg_len bound to: 12 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'reg_generic__parameterized3' (3#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
 	Parameter in_len bound to: 4 - type: integer 
-INFO: [Synth 8-3491] module 'mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd:39' bound to instance 'mult1' of component 'mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:139]
+INFO: [Synth 8-3491] module 'mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd:39' bound to instance 'mult1' of component 'mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:140]
 INFO: [Synth 8-638] synthesizing module 'mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd:50]
 	Parameter in_len bound to: 4 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'mult_generic' (4#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd:50]
 INFO: [Synth 8-256] done synthesizing module 'reg_mult_generic' (5#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:61]
 	Parameter width bound to: 4 - type: integer 
 	Parameter padding bound to: 4 - type: integer 
-INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'middle_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:105]
+INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'middle_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:122]
 	Parameter width bound to: 4 - type: integer 
 	Parameter padding bound to: 4 - type: integer 
-INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'middle_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:105]
+INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'middle_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:122]
 	Parameter width bound to: 4 - type: integer 
 	Parameter padding bound to: 4 - type: integer 
-INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'middle_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:105]
+INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'middle_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:122]
 	Parameter width bound to: 4 - type: integer 
 	Parameter padding bound to: 4 - type: integer 
-INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'middle_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:105]
+INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'middle_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:122]
 	Parameter width bound to: 4 - type: integer 
 	Parameter padding bound to: 4 - type: integer 
-INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'middle_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:105]
+INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'middle_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:122]
 	Parameter width bound to: 4 - type: integer 
 	Parameter padding bound to: 4 - type: integer 
-INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'middle_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:105]
+INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'middle_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:122]
 	Parameter width bound to: 4 - type: integer 
 	Parameter padding bound to: 4 - type: integer 
-INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'out_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:120]
+INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'last_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:137]
 INFO: [Synth 8-256] done synthesizing module 'shift_mult_generic' (6#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:55]
 INFO: [Synth 8-3491] module 'decoder' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/decoder.vhdl:34' bound to instance 'decode' of component 'decoder' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl:199]
 INFO: [Synth 8-638] synthesizing module 'decoder' [/home/gwrw/fir1/fir1.srcs/sources_1/new/decoder.vhdl:40]
@@ -122,18 +122,18 @@ INFO: [Synth 8-226] default block is never used [/home/gwrw/fir1/fir1.srcs/sourc
 INFO: [Synth 8-256] done synthesizing module 'decoder' (7#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/decoder.vhdl:40]
 INFO: [Synth 8-256] done synthesizing module 'test_synth' (8#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl:49]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:13 . Memory (MB): peak = 2102.688 ; gain = 0.000 ; free physical = 786 ; free virtual = 6756
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:16 . Memory (MB): peak = 2041.223 ; gain = 0.000 ; free physical = 189 ; free virtual = 3434
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:14 . Memory (MB): peak = 2102.688 ; gain = 0.000 ; free physical = 780 ; free virtual = 6750
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:17 . Memory (MB): peak = 2041.223 ; gain = 0.000 ; free physical = 124 ; free virtual = 3408
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:14 . Memory (MB): peak = 2102.688 ; gain = 0.000 ; free physical = 780 ; free virtual = 6750
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:17 . Memory (MB): peak = 2041.223 ; gain = 0.000 ; free physical = 124 ; free virtual = 3408
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2102.688 ; gain = 0.000 ; free physical = 773 ; free virtual = 6744
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2041.223 ; gain = 0.000 ; free physical = 117 ; free virtual = 3396
 INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -147,30 +147,30 @@ Resolution: To avoid this warning, move constraints listed in [.Xil/test_synth_p
 INFO: [Timing 38-2] Deriving generated clocks
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2144.523 ; gain = 0.000 ; free physical = 680 ; free virtual = 6667
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2152.934 ; gain = 0.000 ; free physical = 543 ; free virtual = 3707
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 1 instances were transformed.
   MMCME2_BASE => MMCME2_ADV: 1 instance 
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2144.523 ; gain = 0.000 ; free physical = 680 ; free virtual = 6667
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2152.934 ; gain = 0.000 ; free physical = 543 ; free virtual = 3707
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:26 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 745 ; free virtual = 6734
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:41 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 597 ; free virtual = 3770
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:26 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 745 ; free virtual = 6733
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:41 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 596 ; free virtual = 3770
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:26 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 745 ; free virtual = 6733
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:41 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 596 ; free virtual = 3769
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:26 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 733 ; free virtual = 6722
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:42 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 585 ; free virtual = 3760
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -205,25 +205,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:28 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 718 ; free virtual = 6712
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:43 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 569 ; free virtual = 3752
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:37 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 596 ; free virtual = 6597
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:53 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 435 ; free virtual = 3633
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:37 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 595 ; free virtual = 6596
+Finished Timing Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:53 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 434 ; free virtual = 3632
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:26 ; elapsed = 00:00:37 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 595 ; free virtual = 6596
+Finished Technology Mapping : Time (s): cpu = 00:00:27 ; elapsed = 00:00:53 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 433 ; free virtual = 3631
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -241,37 +241,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 594 ; free virtual = 6595
+Finished IO Insertion : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 429 ; free virtual = 3631
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 594 ; free virtual = 6595
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 429 ; free virtual = 3631
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 594 ; free virtual = 6595
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 429 ; free virtual = 3631
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 594 ; free virtual = 6595
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 429 ; free virtual = 3631
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 594 ; free virtual = 6595
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 429 ; free virtual = 3631
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 594 ; free virtual = 6595
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 429 ; free virtual = 3631
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -288,31 +288,31 @@ Report Cell Usage:
 |      |Cell        |Count |
 +------+------------+------+
 |1     |BUFG        |     1|
-|2     |CARRY4      |    18|
-|3     |LUT1        |     7|
-|4     |LUT2        |    40|
+|2     |CARRY4      |    20|
+|3     |LUT1        |     8|
+|4     |LUT2        |    46|
 |5     |LUT3        |     1|
 |6     |LUT4        |    19|
 |7     |LUT5        |     2|
 |8     |LUT6        |    10|
 |9     |MMCME2_BASE |     1|
-|10    |FDRE        |    90|
+|10    |FDRE        |   101|
 |11    |IBUF        |    16|
 |12    |OBUF        |    16|
 +------+------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 2144.523 ; gain = 41.836 ; free physical = 594 ; free virtual = 6595
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 2152.934 ; gain = 111.711 ; free physical = 429 ; free virtual = 3631
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:27 ; elapsed = 00:00:37 . Memory (MB): peak = 2144.523 ; gain = 0.000 ; free physical = 645 ; free virtual = 6646
-Synthesis Optimization Complete : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 2144.531 ; gain = 41.836 ; free physical = 645 ; free virtual = 6646
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:28 ; elapsed = 00:00:42 . Memory (MB): peak = 2152.934 ; gain = 0.000 ; free physical = 481 ; free virtual = 3683
+Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:58 . Memory (MB): peak = 2152.941 ; gain = 111.711 ; free physical = 481 ; free virtual = 3683
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2144.531 ; gain = 0.000 ; free physical = 639 ; free virtual = 6640
-INFO: [Netlist 29-17] Analyzing 19 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2152.941 ; gain = 0.000 ; free physical = 473 ; free virtual = 3677
+INFO: [Netlist 29-17] Analyzing 21 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2144.531 ; gain = 0.000 ; free physical = 660 ; free virtual = 6662
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2152.941 ; gain = 0.000 ; free physical = 403 ; free virtual = 3623
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 1 instances were transformed.
   MMCME2_BASE => MMCME2_ADV: 1 instance 
@@ -320,7 +320,7 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 56 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:43 ; elapsed = 00:00:51 . Memory (MB): peak = 2144.531 ; gain = 41.930 ; free physical = 799 ; free virtual = 6801
+synth_design: Time (s): cpu = 00:00:38 ; elapsed = 00:01:20 . Memory (MB): peak = 2152.941 ; gain = 111.805 ; free physical = 539 ; free virtual = 3762
 INFO: [Common 17-1381] The checkpoint '/home/gwrw/fir1/fir1.runs/synth_1/test_synth.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file test_synth_utilization_synth.rpt -pb test_synth_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Jul 14 10:16:29 2020...
+INFO: [Common 17-206] Exiting Vivado at Tue Jul 14 12:34:22 2020...

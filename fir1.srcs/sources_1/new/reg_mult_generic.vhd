@@ -103,7 +103,7 @@ begin
         )
         port map (
             clk => clk,
-            en => en,
+            en => en, -- only enabled for samples
             rst => rst,
             reg_in => reg_in,
             reg_out => reg_out
@@ -116,7 +116,7 @@ begin
         )
         port map (
             clk => clk,
-            en => en,
+            en => '1', -- essentially part of the "sum pipeline" (see below)
             rst => rst,
             reg_in => mult_out_sig,
             reg_out => mult_out
@@ -129,11 +129,12 @@ begin
         )
         port map (
             clk => clk,
-            en => en,
+            en => '1', -- "sum pipeline" is always clocking (approximates a pass-thru)
             rst => rst,
             reg_in => sum_out_sig,
             reg_out => sum_out
         );
+
 
     -- multiplier
     mult1 : mult_generic

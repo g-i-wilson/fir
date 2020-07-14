@@ -79,15 +79,32 @@ component reg_mult_generic
     );
 end component;
 
+component reg_generic
+  generic (
+    reg_len : integer
+  );
+  port (
+    clk : in std_logic;
+    rst : in std_logic;
+    en : in std_logic;
+ 
+    reg_in : in std_logic_vector(reg_len-1 downto 0);
+    reg_out : out std_logic_vector(reg_len-1 downto 0)
+  );
+end component;
+
+
 signal all_reg_sig : std_logic_vector((width*(length-1))-1 downto 0);
 -- provides all signals "between" each register, so width*(length-1)
 
 signal all_sum_sig : std_logic_vector(((width*2+padding)*(length-1))-1 downto 0);
 
+--signal sum_out_comb : std_logic_vector (width*2+padding-1 downto 0);
+
 
 begin
 
-    in_reg : reg_mult_generic
+    first_reg : reg_mult_generic
         generic map (width, padding)
         port map (
             clk      => clk,
@@ -117,7 +134,7 @@ begin
             );
     end generate gen_middle;
     
-    out_reg : reg_mult_generic
+    last_reg : reg_mult_generic
         generic map (width, padding)
         port map (
             clk      => clk,
@@ -132,5 +149,17 @@ begin
         );
 
     par_out <= all_reg_sig;
+    
+--    sum_reg : reg_generic
+--        generic map (
+--            reg_len => width*2+padding
+--        )
+--        port map (
+--            clk => clk,
+--            en => en,
+--            rst => rst,
+--            reg_in => sum_out_comb,
+--            reg_out => sum_out
+--        );
     
 end Behavioral;
