@@ -2,3 +2,6 @@ Running: xsim.dir/clk_div_generic_tb_behav/xsimk -simmode gui -wdb clk_div_gener
 Design successfully loaded
 Design Loading Memory Usage: 46124 KB (Peak: 46124 KB)
 Design Loading CPU Usage: 20 ms
+Simulation completed
+Simulation Memory Usage: 136060 KB (Peak: 185392 KB)
+Simulation CPU Usage: 40 ms
