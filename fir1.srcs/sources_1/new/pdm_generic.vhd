@@ -40,8 +40,11 @@ entity pdm_generic is
     port (
         input : in STD_LOGIC_VECTOR (input_width-1 downto 0);
         output : out STD_LOGIC_VECTOR (output_width-1 downto 0);
-        error : out STD_LOGIC_VECTOR (pulse_count_width+(input_width-output_width)-1 downto 0);
-        pulse_count : in STD_LOGIC_VECTOR (pulse_count_width-1 downto 0);
+        error : out STD_LOGIC_VECTOR (1+pulse_count_width+(input_width-output_width)-1 downto 0);
+        error_sign : out std_logic;
+        pulse_length : in STD_LOGIC_VECTOR (pulse_count_width-1 downto 0);
+        pulse_count : out STD_LOGIC_VECTOR (pulse_count_width-1 downto 0);
+        pulse_en : out std_logic;
         clk : in STD_LOGIC;
         en : in STD_LOGIC;
         rst : in STD_LOGIC
@@ -66,116 +69,102 @@ architecture Behavioral of pdm_generic is
         );
     end component;
 
-    component reg_generic
-      generic (
-        reg_len : integer
-      );
-      port (
-        clk : in std_logic;
-        rst : in std_logic;
-        en : in std_logic;
-     
-        reg_in : in std_logic_vector(reg_len-1 downto 0);
-        reg_out : out std_logic_vector(reg_len-1 downto 0)
-      );
+    component diff_accum
+        generic (
+            in_width : integer;
+            sum_width : integer
+        );
+        port ( in_a : in STD_LOGIC_VECTOR (in_width-1 downto 0);
+               in_b : in STD_LOGIC_VECTOR (in_width-1 downto 0);
+               diff_sum : out STD_LOGIC_VECTOR (sum_width-1 downto 0);
+               pos_sign : out STD_LOGIC;
+               clk : in STD_LOGIC;
+               en : in STD_LOGIC;
+               rst : in STD_LOGIC
+        );
     end component;
 
+    component shorten
+        generic (
+            width : integer;
+            places : integer
+        );
+        port ( 
+            input : in STD_LOGIC_VECTOR (width-1 downto 0);
+            output : out STD_LOGIC_VECTOR (width-1 downto 0);
+            round_up : in STD_LOGIC;
+            clk : in STD_LOGIC;
+            en : in STD_LOGIC;
+            rst : in STD_LOGIC
+        );
+    end component;
+
+
     signal
-        enable_pulse_sig
+        en_pulse_sig,
+        pos_err
         : std_logic;
     signal
-        error_count_sig,
-        error_count_reg_sig 
-        : std_logic_vector (pulse_count_width+(input_width-output_width)-1 downto 0) := (others=>'0');
-    signal
-        input_downshifted_sig, 
-        input_reg_sig, output_sig, 
-        output_reg_sig, 
-        output_upshifted_sig,
-        in_out_difference_sig
+        out_sig,
+        out_sig_left_shifted
         : std_logic_vector (input_width-1 downto 0);
 
 
 begin
 
-    -- input downshifted will become the output (with possibly +1 added, depending on error function)
-    input_downshifted_sig <= std_logic_vector(
-        shift_right(signed(input_reg_sig),(input_width-output_width))
-    );
-    
-    -- (input-output) delta
-    in_out_difference_sig <= std_logic_vector(
-        signed(input_reg_sig) - shift_left(signed(output_reg_sig),(input_width-output_width))
-    );
-    
-    -- error function ADDER comb logic
-    error_count_sig <= std_logic_vector(
-        signed(error_count_reg_sig) + resize(signed(in_out_difference_sig),error_count_reg_sig'length)
-    );
-    
-    -- determine whether the error is positive or negative (for zero, we assume negative; truncate)
-    process (error_count_reg_sig, input_downshifted_sig) begin
-        if (signed(error_count_reg_sig) > 0) then
-            output_sig <= std_logic_vector( signed(input_downshifted_sig) + 1 );
-        else
-            output_sig <= input_downshifted_sig;
-        end if;
-    end process;
-    
-    
-    error <= error_count_reg_sig;
-    
-    output <= output_reg_sig(input_width-1 downto input_width-output_width);
-    
-
-    input_reg : reg_generic
-        generic map (
-            reg_len => input_width
-        )
-        port map (
-            clk => clk,
-            en => en,
-            rst => rst,
-            reg_in => input,
-            reg_out => input_reg_sig
-        );
-
-    error_reg : reg_generic
-        generic map (
-            reg_len => (pulse_count_width+(input_width-output_width))
-        )
-        port map (
-            clk => clk,
-            en => en,
-            rst => rst,
-            reg_in => error_count_sig,
-            reg_out => error_count_reg_sig
-        );
-
-    output_reg : reg_generic
-        generic map (
-            reg_len => input_width
-        )
-        port map (
-            clk => clk,
-            en => enable_pulse_sig,
-            rst => rst,
-            reg_in => output_sig,
-            reg_out => output_reg_sig
-        );
-        
-   pulse_enable : clk_div_generic
+    pulse_width: clk_div_generic
         generic map (
             period_width => pulse_count_width
         )
         port map (
-            period => pulse_count,
+            period => pulse_length,
             clk => clk,
-            en => '1',
+            en => en,
             rst => rst,
-            en_out => enable_pulse_sig
+            en_out => en_pulse_sig,
+            count_out => pulse_count
         );
-        
 
+    error_function: diff_accum
+        generic map (
+            in_width => input_width,
+            sum_width => 1+pulse_count_width+(input_width-output_width)
+        )
+        port map (
+            in_a => input,
+            in_b => out_sig_left_shifted,
+            diff_sum => error,
+            pos_sign => pos_err,
+            clk => clk,
+            en => en,
+            rst => rst
+        );
+
+    virtual_DAC: shorten
+        generic map (
+            width => input_width,
+            places => (input_width-output_width)
+        )
+        port map ( 
+            input => input,
+            output => out_sig,
+            round_up => pos_err,
+            clk => clk,
+            en => en_pulse_sig,
+            rst => rst
+        );
+
+    out_sig_left_shifted <= std_logic_vector(
+        shift_left(
+            signed(out_sig),
+            (input_width-output_width)
+        )
+    );
+    
+    output <= out_sig(output_width-1 downto 0);
+    
+    error_sign <= pos_err;
+
+    pulse_en <= en_pulse_sig;
 
 end Behavioral;

@@ -11,9 +11,11 @@ Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
-Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=8)\]
-Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=6)\]
 Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=2)...]
+Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=7)\]
+Compiling architecture behavioral of entity xil_defaultlib.diff_accum [\diff_accum(in_width=8,sum_width...]
+Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=8)\]
+Compiling architecture behavioral of entity xil_defaultlib.shorten [\shorten(width=8,places=4)\]
 Compiling architecture behavioral of entity xil_defaultlib.pdm_generic [\pdm_generic(input_width=8,outpu...]
 Compiling architecture behavioral of entity xil_defaultlib.pdm_generic_tb
 Built simulation snapshot pdm_generic_tb_behav

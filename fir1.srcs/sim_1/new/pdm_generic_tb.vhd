@@ -48,8 +48,11 @@ component pdm_generic
     port (
         input : in STD_LOGIC_VECTOR (input_width-1 downto 0);
         output : out STD_LOGIC_VECTOR (output_width-1 downto 0);
-        error : out STD_LOGIC_VECTOR (pulse_count_width+(input_width-output_width)-1 downto 0);
-        pulse_count : in STD_LOGIC_VECTOR (pulse_count_width-1 downto 0);
+        error : out STD_LOGIC_VECTOR (1+pulse_count_width+(input_width-output_width)-1 downto 0);
+        error_sign : out std_logic;
+        pulse_length : in STD_LOGIC_VECTOR (pulse_count_width-1 downto 0);
+        pulse_count : out STD_LOGIC_VECTOR (pulse_count_width-1 downto 0);
+        pulse_en : out std_logic;
         clk : in STD_LOGIC;
         en : in STD_LOGIC;
         rst : in STD_LOGIC
@@ -58,11 +61,9 @@ end component;
 
 signal test_input : STD_LOGIC_VECTOR (7 downto 0);
 signal test_output : STD_LOGIC_VECTOR (3 downto 0);
-signal test_error : STD_LOGIC_VECTOR (5 downto 0);
-signal test_pulse_count : STD_LOGIC_VECTOR (1 downto 0);
-signal test_clk : STD_LOGIC;
-signal test_en : STD_LOGIC;
-signal test_rst : STD_LOGIC;
+signal test_error : STD_LOGIC_VECTOR (6 downto 0);
+signal test_pulse_length, test_pulse_count : STD_LOGIC_VECTOR (1 downto 0);
+signal test_clk, test_en, test_rst, test_sign, test_pulse_en : STD_LOGIC;
 
 begin
 
@@ -76,7 +77,11 @@ begin
     port map (
         input => test_input,
         output => test_output,
+        pulse_length => test_pulse_length,
         pulse_count => test_pulse_count,
+        pulse_en => test_pulse_en,
+        error => test_error,
+        error_sign => test_sign,
         clk => test_clk,
         en => test_en,
         rst => test_rst
@@ -90,7 +95,7 @@ begin
         -- initial
         test_en <= '1';
         test_rst <= '1';
-        test_pulse_count <= "10";
+        test_pulse_length <= "11";
         
         wait for 5ns;
         test_clk <= '1';
@@ -104,14 +109,14 @@ begin
         test_en <= '1';
         test_rst <= '0';
 
-        for a in 0 to 15 loop
+        for a in 0 to 63 loop
         
             -- change inputs
             test_input <= std_logic_vector(to_signed(a, 8));
             
         
             -- just clock for a while
-            for b in 0 to 7 loop
+            for b in 0 to 15 loop
                 -- clock edge
                 wait for 5ns;
                 test_clk <= '1';
