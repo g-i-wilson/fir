@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1594747895">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1595541351">
+  <File Type="VDS-TIMINGSUMMARY" Name="test_synth_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="test_synth.dcp"/>
   <File Type="RDS-UTIL-PB" Name="test_synth_utilization_synth.pb"/>
-  <File Type="PA-TCL" Name="test_synth.tcl"/>
   <File Type="RDS-UTIL" Name="test_synth_utilization_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="test_synth_reports.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="test_synth_drc_synth.rpt"/>
   <File Type="RDS-RDS" Name="test_synth.vds"/>
+  <File Type="REPORTS-TCL" Name="test_synth_reports.tcl"/>
+  <File Type="VDS-TIMING-PB" Name="test_synth_timing_summary_synth.pb"/>
+  <File Type="PA-TCL" Name="test_synth.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/clk_div_generic.vhd">
@@ -20,6 +23,12 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/diff_accum.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/encoder.vhdl">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -27,6 +36,12 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/mult_generic.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/pdm_generic.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -45,6 +60,12 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/shift_mult_generic.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/shorten.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>

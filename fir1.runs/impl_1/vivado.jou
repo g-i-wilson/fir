@@ -2,8 +2,8 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Tue Jul 14 12:44:52 2020
-# Process ID: 21138
+# Start of session at: Thu Jul 23 17:01:16 2020
+# Process ID: 11698
 # Current directory: /home/gwrw/fir1/fir1.runs/impl_1
 # Command line: vivado -log test_synth.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source test_synth.tcl -notrace
 # Log file: /home/gwrw/fir1/fir1.runs/impl_1/test_synth.vdi

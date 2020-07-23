@@ -37,10 +37,13 @@ entity test_synth is
         clk : in std_logic;
         sw : in STD_LOGIC_VECTOR (15 downto 0);
         led : out STD_LOGIC_VECTOR (15 downto 0)
+
+        -- debug outputs for simulation only
+--        ;
 --        shift_reg_debug : out std_logic_vector (27 downto 0);
 --        mult_reg_debug : out std_logic_vector (63 downto 0);
 --        encoded_debug : out std_logic_vector (3 downto 0);
---        filtered_debug : out std_logic_vector (11 downto 0)
+--        filtered_debug : out std_logic_vector (19 downto 0)
     );
 end test_synth;
 
@@ -48,66 +51,109 @@ end test_synth;
 
 architecture Behavioral of test_synth is
 
-component clk_div_generic
-    generic (
-        period_width : integer
-    );
-    port (
-        period : std_logic_vector (period_width-1 downto 0);
+    component clk_div_generic
+        generic (
+            period_width : integer
+        );
+        port (
+            period : std_logic_vector (period_width-1 downto 0);
+            clk : in std_logic;
+            en : in std_logic;
+            rst : in std_logic;
+            
+            en_out : out std_logic;
+            count_out : out std_logic_vector (period_width-1 downto 0)
+        );
+    end component;
+    
+    component shift_mult_generic is
+        generic (
+            length : integer;
+            width : integer;
+            padding : integer
+        );
+        port (
+            shift_in : in STD_LOGIC_VECTOR (width-1 downto 0);
+            shift_out : out STD_LOGIC_VECTOR (width-1 downto 0);
+            sum_out : out STD_LOGIC_VECTOR (width*2+padding-1 downto 0);
+            clk : in STD_LOGIC;
+            en : in STD_LOGIC;
+            rst : in STD_LOGIC;
+            par_out : out STD_LOGIC_VECTOR ((width*(length-1))-1 downto 0);
+            coef_in : in STD_LOGIC_VECTOR (width*length-1 downto 0);
+            mult_out : out STD_LOGIC_VECTOR (width*2*length-1 downto 0)
+        );
+    end component;
+    
+    component encoder is
+        Port ( level_in : in STD_LOGIC_VECTOR (15 downto 0);
+               nibble_out : out STD_LOGIC_VECTOR (3 downto 0);
+               en : in STD_LOGIC);
+    end component;
+    
+    component decoder is
+        Port ( nibble_in : in STD_LOGIC_VECTOR (3 downto 0);
+               level_out : out STD_LOGIC_VECTOR (15 downto 0);
+               en : in STD_LOGIC);
+    end component;
+    
+    component pdm_generic
+        generic (
+            input_width : integer;
+            output_width : integer;
+            pulse_count_width : integer
+        );
+        port (
+            input : in STD_LOGIC_VECTOR (input_width-1 downto 0);
+            output : out STD_LOGIC_VECTOR (output_width-1 downto 0);
+            error : out STD_LOGIC_VECTOR (1+pulse_count_width+(input_width-output_width)-1 downto 0);
+            error_sign : out std_logic;
+            pulse_length : in STD_LOGIC_VECTOR (pulse_count_width-1 downto 0);
+            pulse_count : out STD_LOGIC_VECTOR (pulse_count_width-1 downto 0);
+            pulse_en : out std_logic;
+            clk : in STD_LOGIC;
+            en : in STD_LOGIC;
+            rst : in STD_LOGIC
+        );
+    end component;
+    
+    component reg_generic
+      generic (
+        reg_len : integer
+      );
+      port (
         clk : in std_logic;
-        en : in std_logic;
         rst : in std_logic;
-        
-        en_out : out std_logic;
-        count_out : out std_logic_vector (period_width-1 downto 0)
-    );
-end component;
-
-component shift_mult_generic is
-    generic (
-        length : integer;
-        width : integer;
-        padding : integer
-    );
-    port (
-        shift_in : in STD_LOGIC_VECTOR (width-1 downto 0);
-        shift_out : out STD_LOGIC_VECTOR (width-1 downto 0);
-        sum_out : out STD_LOGIC_VECTOR (width*2+padding-1 downto 0);
-        clk : in STD_LOGIC;
-        en : in STD_LOGIC;
-        rst : in STD_LOGIC;
-        par_out : out STD_LOGIC_VECTOR ((width*(length-1))-1 downto 0);
-        coef_in : in STD_LOGIC_VECTOR (width*length-1 downto 0);
-        mult_out : out STD_LOGIC_VECTOR (width*2*length-1 downto 0)
-    );
-end component;
-
-component encoder is
-    Port ( level_in : in STD_LOGIC_VECTOR (15 downto 0);
-           nibble_out : out STD_LOGIC_VECTOR (3 downto 0);
-           en : in STD_LOGIC);
-end component;
-
-component decoder is
-    Port ( nibble_in : in STD_LOGIC_VECTOR (3 downto 0);
-           level_out : out STD_LOGIC_VECTOR (15 downto 0);
-           en : in STD_LOGIC);
-end component;
-
-signal mmcm_clk, en_sig : std_logic;
-signal clkfb_loopback : std_logic;
-signal lock_sig : std_logic;
-signal rst : std_logic;
-signal encoded, for_decode : std_logic_vector (3 downto 0);
-signal filtered : std_logic_vector (11 downto 0);
+        en : in std_logic;
+     
+        reg_in : in std_logic_vector(reg_len-1 downto 0);
+        reg_out : out std_logic_vector(reg_len-1 downto 0)
+      );
+    end component;
+    
+    -- FPGA clocking only; disable for simulation
+    signal mmcm_clk : std_logic;
+    signal clkfb_loopback : std_logic;
+    signal lock_sig : std_logic;
+    
+    signal rst, en_sig : std_logic;
+    signal sw_sig : std_logic_vector (15 downto 0);
+    signal encoder_sig : std_logic_vector (3 downto 0);
+    signal filter_in_sig : std_logic_vector (7 downto 0);
+    signal filter_out_sig : std_logic_vector (19 downto 0);
+    signal pdm_in_sig : std_logic_vector (12 downto 0);
+    signal pdm_out_sig : std_logic_vector (3 downto 0);
+    signal decoder_sig : std_logic_vector (15 downto 0);
 
 begin
 
---   filtered_debug <= filtered;
---   encoded_debug <= encoded;
+--   filtered_debug <= filter_out_sig; -- simulation debug only
+--   encoded_debug <= encoder_sig; -- simulation debug only
 
    rst <= '0';
-   for_decode <= filtered(6 downto 3);
+   
+   filter_in_sig <= "0000" & encoder_sig;
+   pdm_in_sig <= filter_out_sig(12 downto 0);
 
    MMCME2_BASE_inst : MMCME2_BASE
    generic map (
@@ -162,44 +208,96 @@ begin
 
    clk_div : clk_div_generic
         generic map (
-            period_width => 24
+            period_width => 28
+--            period_width => 8 -- simulation debug only
         )
         port map (
-            period => x"989680", -- 100MHz/10Hz
+            period => x"1312D00", -- 100MHz/5Hz
+--            period => x"0F", -- simulation debug only
             clk => mmcm_clk,
+--            clk => clk, -- simulation debug only
             en => '1',
             rst => rst,
             en_out => en_sig
         );
+        
+    reg_sw : reg_generic
+        generic map (
+            reg_len => 16
+        )
+        port map (
+            clk => mmcm_clk,
+--            clk => clk, -- simulation debug only
+            en => '1',
+            rst => rst,
+            reg_in => sw,
+            reg_out => sw_sig
+        );
+
 
     encode : encoder
         port map (
-            level_in => sw,
-            nibble_out => encoded,
+            level_in => sw_sig,
+            nibble_out => encoder_sig,
             en => '1'
         );
     
     filter : shift_mult_generic
         generic map (
-            length => 8,
-            width => 4,
+            length => 15,
+            width => 8,
             padding => 4
         )
         port map (
-            shift_in => encoded,
-            sum_out => filtered,
+            shift_in => filter_in_sig,
+            sum_out => filter_out_sig,
             clk => mmcm_clk,
+--            clk => clk, -- simulation debug only
             en => en_sig,
             rst => rst,
-            coef_in => x"11111111"
+            coef_in => x"020913202C363D403D362C20130902"
 --            par_out => shift_reg_debug,
 --            mult_out => mult_reg_debug
         );
+        
+    PDM: pdm_generic
+        generic map (
+            input_width => 13,
+            output_width => 4,
+            pulse_count_width => 20
+--            pulse_count_width => 4 -- simulation debug only
+        )
+        port map (
+            input => pdm_in_sig,
+            output => pdm_out_sig,
+            pulse_length => x"186A0", -- 100MHz/1kHz
+--            pulse_length => x"1", -- simulation debug only
+            clk => mmcm_clk,
+--            clk => clk, -- simulation debug only
+            en => '1',
+            rst => rst
+        );
     
-    decode : decoder port map (
-        level_out => led,
-        nibble_in => for_decode,
-        en => '1'
-    );
+    
+    decode : decoder
+        port map (
+            nibble_in => pdm_out_sig,
+            level_out => decoder_sig,
+            en => '1'
+        );
+        
+    reg_led : reg_generic
+        generic map (
+            reg_len => 16
+        )
+        port map (
+            clk => mmcm_clk,
+--            clk => clk, -- simulation debug only
+            en => '1',
+            rst => rst,
+            reg_in => decoder_sig,
+            reg_out => led
+        );
+
 
 end Behavioral;

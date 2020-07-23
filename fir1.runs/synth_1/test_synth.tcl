@@ -89,11 +89,14 @@ OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
   /home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/decoder.vhdl
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/diff_accum.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/encoder.vhdl
   /home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/pdm_generic.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl
   /home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/shorten.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl
 }
 OPTRACE "Adding files" END { }

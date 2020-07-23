@@ -60,8 +60,8 @@ component pdm_generic
 end component;
 
 signal test_input : STD_LOGIC_VECTOR (7 downto 0);
-signal test_output : STD_LOGIC_VECTOR (3 downto 0);
-signal test_error : STD_LOGIC_VECTOR (6 downto 0);
+signal test_output : STD_LOGIC_VECTOR (1 downto 0);
+signal test_error : STD_LOGIC_VECTOR (8 downto 0);
 signal test_pulse_length, test_pulse_count : STD_LOGIC_VECTOR (1 downto 0);
 signal test_clk, test_en, test_rst, test_sign, test_pulse_en : STD_LOGIC;
 
@@ -71,7 +71,7 @@ begin
     u0: pdm_generic
     generic map (
         input_width => 8,
-        output_width => 4,
+        output_width => 2,
         pulse_count_width => 2
     )
     port map (
@@ -109,7 +109,7 @@ begin
         test_en <= '1';
         test_rst <= '0';
 
-        for a in 0 to 63 loop
+        for a in 0 to 127 loop
         
             -- change inputs
             test_input <= std_logic_vector(to_signed(a, 8));
