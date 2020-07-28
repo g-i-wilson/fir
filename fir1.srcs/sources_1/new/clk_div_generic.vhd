@@ -33,7 +33,8 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity clk_div_generic is
     generic (
-        period_width : integer
+        period_width : integer;
+        phase_lag : integer := 0 -- units of clock cycles
     );
     port (
         period : std_logic_vector (period_width-1 downto 0);
@@ -56,7 +57,7 @@ signal count_in_sig, count_out_sig : std_logic_vector (period_width-1 downto 0) 
 begin
 
     count_out <= count_out_sig;
-    count_in_sig <= std_logic_vector( unsigned(count_out_sig) + 1 );
+    count_in_sig <= std_logic_vector( unsigned(count_out_sig) - 1 );
     en_out <= en_sig;
 
     -- counter register and output logic
@@ -64,10 +65,10 @@ begin
         if rising_edge(clk) then
             if (rst = '1') then
                 en_sig <= '0';
-                count_out_sig <= (others=>'0'); -- reset to zeros
+                count_out_sig <= std_logic_vector(unsigned(period) + to_unsigned(phase_lag,period_width)); -- reset to phase start
             elsif (en = '1') then
-                if (count_in_sig = period) then
-                    count_out_sig <= (others=>'0'); -- reset to zeros
+                if (unsigned(count_in_sig) = 0) then
+                    count_out_sig <= period; -- reset to period
                     en_sig <= '1';
                 else
                     count_out_sig <= count_in_sig;

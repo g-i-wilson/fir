@@ -24,7 +24,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -33,7 +33,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity square_wave_gen is
     generic (
-        half_period_width : integer
+        half_period_width : integer;
+        phase_lag : integer := 0;
+        phase_bit : integer := 0
     );
     port (
         half_period : in STD_LOGIC_VECTOR (half_period_width-1 downto 0);
@@ -52,7 +54,8 @@ begin
 
    clk_div : entity work.clk_div_generic
         generic map (
-            period_width => half_period_width
+            period_width => half_period_width,
+            phase_lag => phase_lag
         )
         port map (
             period => half_period,
@@ -66,7 +69,7 @@ begin
     process (clk) begin
         if rising_edge(clk) then
             if (rst = '1') then
-                sq_sig <= '0';
+                sq_sig <= std_logic(to_unsigned(phase_bit, 1)(0));
             elsif (en_sig = '1') then
                 sq_sig <= not sq_sig;
             end if;

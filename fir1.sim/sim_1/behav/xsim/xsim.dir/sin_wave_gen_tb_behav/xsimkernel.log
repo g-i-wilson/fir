@@ -2,3 +2,6 @@ Running: xsim.dir/sin_wave_gen_tb_behav/xsimk -simmode gui -wdb sin_wave_gen_tb_
 Design successfully loaded
 Design Loading Memory Usage: 46240 KB (Peak: 46292 KB)
 Design Loading CPU Usage: 50 ms
+Simulation completed
+Simulation Memory Usage: 136176 KB (Peak: 185508 KB)
+Simulation CPU Usage: 380 ms

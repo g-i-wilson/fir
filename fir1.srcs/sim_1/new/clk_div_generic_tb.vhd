@@ -38,20 +38,6 @@ end clk_div_generic_tb;
 
 architecture Behavioral of clk_div_generic_tb is
 
-component clk_div_generic
-    generic (
-        period_width : integer
-    );
-    port (
-        period : std_logic_vector (period_width-1 downto 0);
-        clk : in std_logic;
-        en : in std_logic;
-        rst : in std_logic;
-        
-        en_out : out std_logic;
-        count_out : out std_logic_vector (period_width-1 downto 0)
-    );
-end component;
 
 signal
     test_clk,
@@ -64,9 +50,10 @@ signal test_count_out : std_logic_vector(7 downto 0);
 
 begin
 
-    div0 : clk_div_generic
+    div0 : entity work.clk_div_generic
         generic map (
-            period_width => 8
+            period_width => 8,
+            phase_lag => 2
         )
         port map (
             period => x"04",
