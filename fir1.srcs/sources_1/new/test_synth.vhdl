@@ -51,85 +51,6 @@ end test_synth;
 
 architecture Behavioral of test_synth is
 
-    component clk_div_generic
-        generic (
-            period_width : integer
-        );
-        port (
-            period : std_logic_vector (period_width-1 downto 0);
-            clk : in std_logic;
-            en : in std_logic;
-            rst : in std_logic;
-            
-            en_out : out std_logic;
-            count_out : out std_logic_vector (period_width-1 downto 0)
-        );
-    end component;
-    
-    component shift_mult_generic is
-        generic (
-            length : integer;
-            width : integer;
-            padding : integer
-        );
-        port (
-            shift_in : in STD_LOGIC_VECTOR (width-1 downto 0);
-            shift_out : out STD_LOGIC_VECTOR (width-1 downto 0);
-            sum_out : out STD_LOGIC_VECTOR (width*2+padding-1 downto 0);
-            clk : in STD_LOGIC;
-            en : in STD_LOGIC;
-            rst : in STD_LOGIC;
-            par_out : out STD_LOGIC_VECTOR ((width*(length-1))-1 downto 0);
-            coef_in : in STD_LOGIC_VECTOR (width*length-1 downto 0);
-            mult_out : out STD_LOGIC_VECTOR (width*2*length-1 downto 0)
-        );
-    end component;
-    
-    component encoder is
-        Port ( level_in : in STD_LOGIC_VECTOR (15 downto 0);
-               nibble_out : out STD_LOGIC_VECTOR (3 downto 0);
-               en : in STD_LOGIC);
-    end component;
-    
-    component decoder is
-        Port ( nibble_in : in STD_LOGIC_VECTOR (3 downto 0);
-               level_out : out STD_LOGIC_VECTOR (15 downto 0);
-               en : in STD_LOGIC);
-    end component;
-    
-    component pdm_generic
-        generic (
-            input_width : integer;
-            output_width : integer;
-            pulse_count_width : integer
-        );
-        port (
-            input : in STD_LOGIC_VECTOR (input_width-1 downto 0);
-            output : out STD_LOGIC_VECTOR (output_width-1 downto 0);
-            error : out STD_LOGIC_VECTOR (1+pulse_count_width+(input_width-output_width)-1 downto 0);
-            error_sign : out std_logic;
-            pulse_length : in STD_LOGIC_VECTOR (pulse_count_width-1 downto 0);
-            pulse_count : out STD_LOGIC_VECTOR (pulse_count_width-1 downto 0);
-            pulse_en : out std_logic;
-            clk : in STD_LOGIC;
-            en : in STD_LOGIC;
-            rst : in STD_LOGIC
-        );
-    end component;
-    
-    component reg_generic
-      generic (
-        reg_len : integer
-      );
-      port (
-        clk : in std_logic;
-        rst : in std_logic;
-        en : in std_logic;
-     
-        reg_in : in std_logic_vector(reg_len-1 downto 0);
-        reg_out : out std_logic_vector(reg_len-1 downto 0)
-      );
-    end component;
     
     -- FPGA clocking only; disable for simulation
     signal mmcm_clk : std_logic;
@@ -206,7 +127,7 @@ begin
       CLKFBIN => clkfb_loopback      -- 1-bit input: Feedback clock
    );
 
-   clk_div : clk_div_generic
+   clk_div : entity work.clk_div_generic
         generic map (
             period_width => 28
 --            period_width => 8 -- simulation debug only
@@ -221,7 +142,7 @@ begin
             en_out => en_sig
         );
         
-    reg_sw : reg_generic
+    reg_sw : entity work.reg_generic
         generic map (
             reg_len => 16
         )
@@ -235,14 +156,14 @@ begin
         );
 
 
-    encode : encoder
+    encode : entity work.encoder
         port map (
             level_in => sw_sig,
             nibble_out => encoder_sig,
             en => '1'
         );
     
-    filter : shift_mult_generic
+    filter : entity work.shift_mult_generic
         generic map (
             length => 15,
             width => 8,
@@ -260,7 +181,7 @@ begin
 --            mult_out => mult_reg_debug
         );
         
-    PDM: pdm_generic
+    PDM: entity work.pdm_generic
         generic map (
             input_width => 13,
             output_width => 4,
@@ -279,14 +200,14 @@ begin
         );
     
     
-    decode : decoder
+    decode : entity work.decoder
         port map (
             nibble_in => pdm_out_sig,
             level_out => decoder_sig,
             en => '1'
         );
         
-    reg_led : reg_generic
+    reg_led : entity work.reg_generic
         generic map (
             reg_len => 16
         )

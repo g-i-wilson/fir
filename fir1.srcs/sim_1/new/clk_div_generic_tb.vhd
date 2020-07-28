@@ -60,16 +60,16 @@ signal
     test_en_out
     : std_logic;
     
-signal test_count_out : std_logic_vector(3 downto 0);
+signal test_count_out : std_logic_vector(7 downto 0);
 
 begin
 
     div0 : clk_div_generic
         generic map (
-            period_width => 4
+            period_width => 8
         )
         port map (
-            period => x"3",
+            period => x"04",
             clk => test_clk,
             en => test_en,
             rst => test_rst,

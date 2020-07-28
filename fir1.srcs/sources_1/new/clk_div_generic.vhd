@@ -51,24 +51,26 @@ end clk_div_generic;
 architecture Behavioral of clk_div_generic is
 
 signal en_sig : std_logic;
-signal count_sig : std_logic_vector (period_width-1 downto 0) := (others=>'0');
+signal count_in_sig, count_out_sig : std_logic_vector (period_width-1 downto 0) := (others=>'0');
 
 begin
 
-    count_out <= count_sig;
+    count_out <= count_out_sig;
+    count_in_sig <= std_logic_vector( unsigned(count_out_sig) + 1 );
+    en_out <= en_sig;
 
     -- counter register and output logic
     process (clk) begin
         if rising_edge(clk) then
             if (rst = '1') then
                 en_sig <= '0';
-                count_sig <= (others=>'0'); -- reset to zeros
+                count_out_sig <= (others=>'0'); -- reset to zeros
             elsif (en = '1') then
-                count_sig <= std_logic_vector( unsigned(count_sig) + 1 );
-                if (count_sig = period) then
-                    count_sig <= (others=>'0'); -- reset to zeros
+                if (count_in_sig = period) then
+                    count_out_sig <= (others=>'0'); -- reset to zeros
                     en_sig <= '1';
                 else
+                    count_out_sig <= count_in_sig;
                     en_sig <= '0';
                 end if;
             end if;
@@ -76,14 +78,14 @@ begin
     end process;
     
     -- FF after output logic
-    process (clk) begin
-        if rising_edge(clk) then
-            if (rst = '1') then
-                en_out <= '0';
-            elsif (en = '1') then
-                en_out <= en_sig;
-            end if;
-        end if;
-    end process;
+--    process (clk) begin
+--        if rising_edge(clk) then
+--            if (rst = '1') then
+--                en_out <= '0';
+--            elsif (en = '1') then
+--                en_out <= en_sig;
+--            end if;
+--        end if;
+--    end process;
 
 end Behavioral;

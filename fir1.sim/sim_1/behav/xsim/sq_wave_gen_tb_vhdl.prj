@@ -1,0 +1,8 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../fir1.srcs/sources_1/new/clk_div_generic.vhd" \
+"../../../../fir1.srcs/sources_1/new/square_wave_gen.vhd" \
+"../../../../fir1.srcs/sim_1/new/sq_wave_gen_tb.vhd" \
+
+# Do not sort compile order
+nosort
