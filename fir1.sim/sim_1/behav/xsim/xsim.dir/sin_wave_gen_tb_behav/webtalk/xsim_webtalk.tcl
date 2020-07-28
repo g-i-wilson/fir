@@ -1,6 +1,6 @@
 webtalk_init -webtalk_dir /home/gwrw/fir1/fir1.sim/sim_1/behav/xsim/xsim.dir/sin_wave_gen_tb_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Tue Jul 28 13:07:26 2020" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Tue Jul 28 14:13:12 2020" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2020.1 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "2902540" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "LIN64" -context "software_version_and_target_device"
@@ -14,11 +14,11 @@ webtalk_add_data -client project -key target_package -value "not_applicable" -co
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key random_id -value "38e3a40b-d7f6-4bb0-9830-3fbf8fee226c" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "1f4367962a4b4441b8e64d3ba15e400e" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "43" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "77" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Ubuntu" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "Ubuntu 18.04.4 LTS" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "Intel(R) Core(TM) i5 CPU       M 560  @ 2.67GHz" -context "user_environment"
-webtalk_add_data -client project -key cpu_speed -value "1341.339 MHz" -context "user_environment"
+webtalk_add_data -client project -key cpu_speed -value "1532.678 MHz" -context "user_environment"
 webtalk_add_data -client project -key total_processors -value "1" -context "user_environment"
 webtalk_add_data -client project -key system_ram -value "3.000 GB" -context "user_environment"
 webtalk_register_client -client xsim
@@ -36,7 +36,7 @@ webtalk_add_data -client xsim -key Total_Nets -value "0" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Total_Processes -value "136" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Total_Instances -value "91" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Xilinx_HDL_Libraries_Used -value "secureip " -context "xsim\\usage"
-webtalk_add_data -client xsim -key Compiler_Time -value "2.11_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Compiler_Memory -value "259836_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 1605801061 -regid "" -xml /home/gwrw/fir1/fir1.sim/sim_1/behav/xsim/xsim.dir/sin_wave_gen_tb_behav/webtalk/usage_statistics_ext_xsim.xml -html /home/gwrw/fir1/fir1.sim/sim_1/behav/xsim/xsim.dir/sin_wave_gen_tb_behav/webtalk/usage_statistics_ext_xsim.html -wdm /home/gwrw/fir1/fir1.sim/sim_1/behav/xsim/xsim.dir/sin_wave_gen_tb_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Compiler_Time -value "2.19_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Compiler_Memory -value "259964_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 3103889693 -regid "" -xml /home/gwrw/fir1/fir1.sim/sim_1/behav/xsim/xsim.dir/sin_wave_gen_tb_behav/webtalk/usage_statistics_ext_xsim.xml -html /home/gwrw/fir1/fir1.sim/sim_1/behav/xsim/xsim.dir/sin_wave_gen_tb_behav/webtalk/usage_statistics_ext_xsim.html -wdm /home/gwrw/fir1/fir1.sim/sim_1/behav/xsim/xsim.dir/sin_wave_gen_tb_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate

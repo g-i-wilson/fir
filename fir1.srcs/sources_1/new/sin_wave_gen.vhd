@@ -63,7 +63,10 @@ begin
 
     
     
-    wave_in_sig <= "000000" & sq_sig & '0';
+--    wave_in_sig <= "00" & sq_sig & sq_sig & sq_sig & sq_sig & sq_sig & sq_sig;
+    wave_in_sig <= '0' & sq_sig & sq_sig & sq_sig & sq_sig & sq_sig & sq_sig & sq_sig;
+--    wave_in_sig(0) <= not sq_sig; -- +/-1
+--    wave_in_sig(7 downto 1) <= (others => sq_sig); -- sign bits (2s compliment)
 
     
     sq_out_debug <= wave_in_sig;
@@ -114,12 +117,12 @@ begin
         
     PDM: entity work.pdm_generic
         generic map (
-            input_width => 11,
+            input_width => 17,
             output_width => pdm_out_width,
             pulse_count_width => pdm_period_width
         )
         port map (
-            input => filter_out_sig(10 downto 0),
+            input => filter_out_sig(16 downto 0),
             output => pdm_out,
             pulse_length => pdm_period,
             clk => clk,

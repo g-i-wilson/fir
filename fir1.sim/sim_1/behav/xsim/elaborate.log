@@ -21,11 +21,11 @@ Compiling architecture behavioral of entity xil_defaultlib.mult_generic [\mult_g
 Compiling architecture behavioral of entity xil_defaultlib.reg_mult_generic [\reg_mult_generic(width=8,paddin...]
 Compiling architecture behavioral of entity xil_defaultlib.shift_mult_generic [\shift_mult_generic(length=15,wi...]
 Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=4)...]
-Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=15)\]
-Compiling architecture behavioral of entity xil_defaultlib.diff_accum [\diff_accum(in_width=11,sum_widt...]
-Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=11)\]
-Compiling architecture behavioral of entity xil_defaultlib.shorten [\shorten(width=11,places=10)\]
-Compiling architecture behavioral of entity xil_defaultlib.pdm_generic [\pdm_generic(input_width=11,outp...]
+Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=21)\]
+Compiling architecture behavioral of entity xil_defaultlib.diff_accum [\diff_accum(in_width=17,sum_widt...]
+Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=17)\]
+Compiling architecture behavioral of entity xil_defaultlib.shorten [\shorten(width=17,places=16)\]
+Compiling architecture behavioral of entity xil_defaultlib.pdm_generic [\pdm_generic(input_width=17,outp...]
 Compiling architecture behavioral of entity xil_defaultlib.sin_wave_gen [\sin_wave_gen(half_period_width=...]
 Compiling architecture behavioral of entity xil_defaultlib.sin_wave_gen_tb
 Built simulation snapshot sin_wave_gen_tb_behav
