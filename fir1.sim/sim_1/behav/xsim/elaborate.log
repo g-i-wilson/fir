@@ -1,6 +1,6 @@
 Vivado Simulator 2020.1
 Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: /home/gwrw/Xilinx/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 1f4367962a4b4441b8e64d3ba15e400e --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot fun_gen_tb_behav xil_defaultlib.fun_gen_tb -log elaborate.log 
+Running: /home/gwrw/Xilinx/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 1f4367962a4b4441b8e64d3ba15e400e --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot test_values_tb_behav xil_defaultlib.test_values_tb -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
 Completed static elaboration
@@ -11,24 +11,9 @@ Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
-Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=12...]
-Compiling architecture behavioral of entity xil_defaultlib.square_wave_gen [\square_wave_gen(half_period_wid...]
-Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=8)...]
-Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=8)\]
-Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=16)\]
-Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=20)\]
 Compiling architecture behavioral of entity xil_defaultlib.mult_generic [\mult_generic(in_len=8)\]
-Compiling architecture behavioral of entity xil_defaultlib.reg_mult_generic [\reg_mult_generic(width=8,paddin...]
-Compiling architecture behavioral of entity xil_defaultlib.shift_mult_generic [\shift_mult_generic(length=15,wi...]
 Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=4)...]
-Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=21)\]
-Compiling architecture behavioral of entity xil_defaultlib.diff_accum [\diff_accum(in_width=17,sum_widt...]
-Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=17)\]
-Compiling architecture behavioral of entity xil_defaultlib.shorten [\shorten(width=17,places=16)\]
-Compiling architecture behavioral of entity xil_defaultlib.pdm_generic [\pdm_generic(input_width=17,outp...]
-Compiling architecture behavioral of entity xil_defaultlib.fun_gen [\fun_gen(half_period_width=12,sa...]
-Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=12...]
-Compiling architecture behavioral of entity xil_defaultlib.square_wave_gen [\square_wave_gen(half_period_wid...]
-Compiling architecture behavioral of entity xil_defaultlib.fun_gen [\fun_gen(half_period_width=12,sa...]
-Compiling architecture behavioral of entity xil_defaultlib.fun_gen_tb
-Built simulation snapshot fun_gen_tb_behav
+Compiling architecture behavioral of entity xil_defaultlib.reg1D [\reg1D(length=8)\]
+Compiling architecture behavioral of entity xil_defaultlib.test_values [\test_values(in_width=8,period_w...]
+Compiling architecture behavioral of entity xil_defaultlib.test_values_tb
+Built simulation snapshot test_values_tb_behav

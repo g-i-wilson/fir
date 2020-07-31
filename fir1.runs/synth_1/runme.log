@@ -1,6 +1,6 @@
 
 *** Running vivado
-    with args -log test_synth.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source test_synth.tcl
+    with args -log test_fun_gen.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source test_fun_gen.tcl
 
 
 ****** Vivado v2020.1 (64-bit)
@@ -8,66 +8,59 @@
   **** IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
     ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 
-source test_synth.tcl -notrace
-Command: synth_design -top test_synth -part xc7a35tcpg236-1
+source test_fun_gen.tcl -notrace
+create_project: Time (s): cpu = 00:00:00.56 ; elapsed = 00:00:09 . Memory (MB): peak = 2062.242 ; gain = 2.016 ; free physical = 659 ; free virtual = 3693
+Command: synth_design -top test_fun_gen -part xc7a35tcpg236-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 9872
+INFO: [Synth 8-7075] Helper process launched with PID 20121
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:13 . Memory (MB): peak = 2034.230 ; gain = 0.000 ; free physical = 116 ; free virtual = 3557
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:13 . Memory (MB): peak = 2062.340 ; gain = 0.000 ; free physical = 117 ; free virtual = 3249
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'test_synth' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl:52]
-	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
-	Parameter CLKFBOUT_MULT_F bound to: 10.000000 - type: double 
-	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: double 
-	Parameter CLKIN1_PERIOD bound to: 10.000000 - type: double 
-	Parameter CLKOUT0_DIVIDE_F bound to: 1.000000 - type: double 
-	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: double 
-	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: double 
-	Parameter CLKOUT1_DIVIDE bound to: 10 - type: integer 
-	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: double 
-	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: double 
-	Parameter CLKOUT2_DIVIDE bound to: 1 - type: integer 
-	Parameter CLKOUT2_DUTY_CYCLE bound to: 0.500000 - type: double 
-	Parameter CLKOUT2_PHASE bound to: 0.000000 - type: double 
-	Parameter CLKOUT3_DIVIDE bound to: 1 - type: integer 
-	Parameter CLKOUT3_DUTY_CYCLE bound to: 0.500000 - type: double 
-	Parameter CLKOUT3_PHASE bound to: 0.000000 - type: double 
-	Parameter CLKOUT4_CASCADE bound to: 0 - type: bool 
-	Parameter CLKOUT4_DIVIDE bound to: 1 - type: integer 
-	Parameter CLKOUT4_DUTY_CYCLE bound to: 0.500000 - type: double 
-	Parameter CLKOUT4_PHASE bound to: 0.000000 - type: double 
-	Parameter CLKOUT5_DIVIDE bound to: 1 - type: integer 
-	Parameter CLKOUT5_DUTY_CYCLE bound to: 0.500000 - type: double 
-	Parameter CLKOUT5_PHASE bound to: 0.000000 - type: double 
-	Parameter CLKOUT6_DIVIDE bound to: 1 - type: integer 
-	Parameter CLKOUT6_DUTY_CYCLE bound to: 0.500000 - type: double 
-	Parameter CLKOUT6_PHASE bound to: 0.000000 - type: double 
-	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
-	Parameter REF_JITTER1 bound to: 0.000000 - type: double 
-	Parameter STARTUP_WAIT bound to: 0 - type: bool 
-INFO: [Synth 8-113] binding component instance 'MMCME2_BASE_inst' to cell 'MMCME2_BASE' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl:158]
-	Parameter period_width bound to: 28 - type: integer 
-INFO: [Synth 8-3491] module 'clk_div_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:34' bound to instance 'clk_div' of component 'clk_div_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl:209]
-INFO: [Synth 8-638] synthesizing module 'clk_div_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:51]
-	Parameter period_width bound to: 28 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'clk_div_generic' (1#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:51]
-	Parameter reg_len bound to: 16 - type: integer 
-INFO: [Synth 8-3491] module 'reg_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:37' bound to instance 'reg_sw' of component 'reg_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl:224]
-INFO: [Synth 8-638] synthesizing module 'reg_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
-	Parameter reg_len bound to: 16 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'reg_generic' (2#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
-INFO: [Synth 8-3491] module 'encoder' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/encoder.vhdl:34' bound to instance 'encode' of component 'encoder' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl:238]
-INFO: [Synth 8-638] synthesizing module 'encoder' [/home/gwrw/fir1/fir1.srcs/sources_1/new/encoder.vhdl:40]
-INFO: [Synth 8-256] done synthesizing module 'encoder' (3#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/encoder.vhdl:40]
-	Parameter length bound to: 15 - type: integer 
-	Parameter width bound to: 8 - type: integer 
-	Parameter padding bound to: 4 - type: integer 
-INFO: [Synth 8-3491] module 'shift_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:34' bound to instance 'filter' of component 'shift_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl:245]
+INFO: [Synth 8-638] synthesizing module 'test_fun_gen' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_fun_gen.vhd:42]
+INFO: [Synth 8-638] synthesizing module 'test_values' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_values.vhd:50]
+	Parameter in_width bound to: 32 - type: integer 
+	Parameter period_width bound to: 32 - type: integer 
+	Parameter rst_count_width bound to: 4 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd:50]
+	Parameter in_len bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mult_generic' (1#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd:50]
+INFO: [Synth 8-638] synthesizing module 'clk_div_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:52]
+	Parameter period_width bound to: 32 - type: integer 
+	Parameter phase_lag bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'clk_div_generic' (2#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:52]
+INFO: [Synth 8-638] synthesizing module 'clk_div_generic__parameterized0' [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:52]
+	Parameter period_width bound to: 4 - type: integer 
+	Parameter phase_lag bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'clk_div_generic__parameterized0' (2#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:52]
+INFO: [Synth 8-638] synthesizing module 'reg1D' [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd:58]
+	Parameter length bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'reg1D' (3#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd:58]
+INFO: [Synth 8-256] done synthesizing module 'test_values' (4#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_values.vhd:50]
+INFO: [Synth 8-638] synthesizing module 'fun_gen' [/home/gwrw/fir1/fir1.srcs/sources_1/new/fun_gen.vhd:57]
+	Parameter half_period_width bound to: 32 - type: integer 
+	Parameter sample_period_width bound to: 16 - type: integer 
+	Parameter pdm_period_width bound to: 8 - type: integer 
+	Parameter pdm_out_width bound to: 1 - type: integer 
+	Parameter phase_lag bound to: 0 - type: integer 
+	Parameter phase_bit bound to: 0 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'square_wave_gen' [/home/gwrw/fir1/fir1.srcs/sources_1/new/square_wave_gen.vhd:49]
+	Parameter half_period_width bound to: 32 - type: integer 
+	Parameter phase_lag bound to: 0 - type: integer 
+	Parameter phase_bit bound to: 0 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'clk_div_generic__parameterized1' [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:52]
+	Parameter period_width bound to: 32 - type: integer 
+	Parameter phase_lag bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'clk_div_generic__parameterized1' (4#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:52]
+INFO: [Synth 8-256] done synthesizing module 'square_wave_gen' (5#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/square_wave_gen.vhd:49]
+INFO: [Synth 8-638] synthesizing module 'clk_div_generic__parameterized2' [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:52]
+	Parameter period_width bound to: 16 - type: integer 
+	Parameter phase_lag bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'clk_div_generic__parameterized2' (5#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:52]
 INFO: [Synth 8-638] synthesizing module 'shift_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:55]
 	Parameter length bound to: 15 - type: integer 
 	Parameter width bound to: 8 - type: integer 
@@ -80,22 +73,25 @@ INFO: [Synth 8-638] synthesizing module 'reg_mult_generic' [/home/gwrw/fir1/fir1
 	Parameter padding bound to: 4 - type: integer 
 	Parameter reg_len bound to: 8 - type: integer 
 INFO: [Synth 8-3491] module 'reg_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:37' bound to instance 'reg0' of component 'reg_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:100]
-INFO: [Synth 8-638] synthesizing module 'reg_generic__parameterized1' [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
+INFO: [Synth 8-638] synthesizing module 'reg_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
 	Parameter reg_len bound to: 8 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'reg_generic__parameterized1' (3#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
+INFO: [Synth 8-256] done synthesizing module 'reg_generic' (6#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
 	Parameter reg_len bound to: 16 - type: integer 
 INFO: [Synth 8-3491] module 'reg_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:37' bound to instance 'reg1' of component 'reg_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:113]
+INFO: [Synth 8-638] synthesizing module 'reg_generic__parameterized1' [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
+	Parameter reg_len bound to: 16 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'reg_generic__parameterized1' (6#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
 	Parameter reg_len bound to: 20 - type: integer 
 INFO: [Synth 8-3491] module 'reg_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:37' bound to instance 'reg2' of component 'reg_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:126]
-INFO: [Synth 8-638] synthesizing module 'reg_generic__parameterized4' [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
+INFO: [Synth 8-638] synthesizing module 'reg_generic__parameterized3' [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
 	Parameter reg_len bound to: 20 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'reg_generic__parameterized4' (3#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
+INFO: [Synth 8-256] done synthesizing module 'reg_generic__parameterized3' (6#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
 	Parameter in_len bound to: 8 - type: integer 
 INFO: [Synth 8-3491] module 'mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd:39' bound to instance 'mult1' of component 'mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:140]
-INFO: [Synth 8-638] synthesizing module 'mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd:50]
+INFO: [Synth 8-638] synthesizing module 'mult_generic__parameterized1' [/home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd:50]
 	Parameter in_len bound to: 8 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'mult_generic' (4#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd:50]
-INFO: [Synth 8-256] done synthesizing module 'reg_mult_generic' (5#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:61]
+INFO: [Synth 8-256] done synthesizing module 'mult_generic__parameterized1' (6#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd:50]
+INFO: [Synth 8-256] done synthesizing module 'reg_mult_generic' (7#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:61]
 	Parameter width bound to: 8 - type: integer 
 	Parameter padding bound to: 4 - type: integer 
 INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'middle_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:122]
@@ -138,65 +134,87 @@ INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1
 	Parameter width bound to: 8 - type: integer 
 	Parameter padding bound to: 4 - type: integer 
 INFO: [Synth 8-3491] module 'reg_mult_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd:34' bound to instance 'last_reg' of component 'reg_mult_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:137]
-INFO: [Synth 8-256] done synthesizing module 'shift_mult_generic' (6#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:55]
-	Parameter input_width bound to: 13 - type: integer 
-	Parameter output_width bound to: 4 - type: integer 
-	Parameter pulse_count_width bound to: 20 - type: integer 
-INFO: [Synth 8-3491] module 'pdm_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/pdm_generic.vhd:34' bound to instance 'PDM' of component 'pdm_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl:263]
+INFO: [Synth 8-256] done synthesizing module 'shift_mult_generic' (8#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd:55]
 INFO: [Synth 8-638] synthesizing module 'pdm_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/pdm_generic.vhd:55]
-	Parameter input_width bound to: 13 - type: integer 
-	Parameter output_width bound to: 4 - type: integer 
-	Parameter pulse_count_width bound to: 20 - type: integer 
-	Parameter period_width bound to: 20 - type: integer 
+	Parameter input_width bound to: 17 - type: integer 
+	Parameter output_width bound to: 1 - type: integer 
+	Parameter pulse_count_width bound to: 8 - type: integer 
+	Parameter period_width bound to: 8 - type: integer 
 INFO: [Synth 8-3491] module 'clk_div_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:34' bound to instance 'pulse_width' of component 'clk_div_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/pdm_generic.vhd:115]
-INFO: [Synth 8-638] synthesizing module 'clk_div_generic__parameterized1' [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:51]
-	Parameter period_width bound to: 20 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'clk_div_generic__parameterized1' (6#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:51]
-	Parameter in_width bound to: 13 - type: integer 
-	Parameter sum_width bound to: 30 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'clk_div_generic__parameterized4' [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:52]
+	Parameter period_width bound to: 8 - type: integer 
+	Parameter phase_lag bound to: 0 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'clk_div_generic__parameterized4' (8#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:52]
+	Parameter in_width bound to: 17 - type: integer 
+	Parameter sum_width bound to: 25 - type: integer 
 INFO: [Synth 8-3491] module 'diff_accum' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/diff_accum.vhd:34' bound to instance 'error_function' of component 'diff_accum' [/home/gwrw/fir1/fir1.srcs/sources_1/new/pdm_generic.vhd:128]
 INFO: [Synth 8-638] synthesizing module 'diff_accum' [/home/gwrw/fir1/fir1.srcs/sources_1/new/diff_accum.vhd:49]
-	Parameter in_width bound to: 13 - type: integer 
-	Parameter sum_width bound to: 30 - type: integer 
-	Parameter reg_len bound to: 30 - type: integer 
+	Parameter in_width bound to: 17 - type: integer 
+	Parameter sum_width bound to: 25 - type: integer 
+	Parameter reg_len bound to: 25 - type: integer 
 INFO: [Synth 8-3491] module 'reg_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:37' bound to instance 'adder' of component 'reg_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/diff_accum.vhd:76]
-INFO: [Synth 8-638] synthesizing module 'reg_generic__parameterized6' [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
-	Parameter reg_len bound to: 30 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'reg_generic__parameterized6' (6#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
-INFO: [Synth 8-256] done synthesizing module 'diff_accum' (7#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/diff_accum.vhd:49]
-	Parameter width bound to: 13 - type: integer 
-	Parameter places bound to: 9 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'reg_generic__parameterized5' [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
+	Parameter reg_len bound to: 25 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'reg_generic__parameterized5' (8#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
+INFO: [Synth 8-256] done synthesizing module 'diff_accum' (9#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/diff_accum.vhd:49]
+	Parameter width bound to: 17 - type: integer 
+	Parameter places bound to: 16 - type: integer 
 INFO: [Synth 8-3491] module 'shorten' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/shorten.vhd:34' bound to instance 'virtual_DAC' of component 'shorten' [/home/gwrw/fir1/fir1.srcs/sources_1/new/pdm_generic.vhd:143]
 INFO: [Synth 8-638] synthesizing module 'shorten' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shorten.vhd:49]
-	Parameter width bound to: 13 - type: integer 
-	Parameter places bound to: 9 - type: integer 
-	Parameter reg_len bound to: 13 - type: integer 
+	Parameter width bound to: 17 - type: integer 
+	Parameter places bound to: 16 - type: integer 
+	Parameter reg_len bound to: 17 - type: integer 
 INFO: [Synth 8-3491] module 'reg_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:37' bound to instance 'shifted_reg' of component 'reg_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/shorten.vhd:72]
-INFO: [Synth 8-638] synthesizing module 'reg_generic__parameterized8' [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
-	Parameter reg_len bound to: 13 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'reg_generic__parameterized8' (7#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
-INFO: [Synth 8-256] done synthesizing module 'shorten' (8#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/shorten.vhd:49]
-INFO: [Synth 8-256] done synthesizing module 'pdm_generic' (9#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/pdm_generic.vhd:55]
-INFO: [Synth 8-3491] module 'decoder' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/decoder.vhdl:34' bound to instance 'decode' of component 'decoder' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl:282]
-INFO: [Synth 8-638] synthesizing module 'decoder' [/home/gwrw/fir1/fir1.srcs/sources_1/new/decoder.vhdl:40]
-INFO: [Synth 8-226] default block is never used [/home/gwrw/fir1/fir1.srcs/sources_1/new/decoder.vhdl:48]
-INFO: [Synth 8-256] done synthesizing module 'decoder' (10#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/decoder.vhdl:40]
-	Parameter reg_len bound to: 16 - type: integer 
-INFO: [Synth 8-3491] module 'reg_generic' declared at '/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:37' bound to instance 'reg_led' of component 'reg_generic' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl:289]
-INFO: [Synth 8-256] done synthesizing module 'test_synth' (11#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl:52]
+INFO: [Synth 8-638] synthesizing module 'reg_generic__parameterized7' [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
+	Parameter reg_len bound to: 17 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'reg_generic__parameterized7' (9#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl:52]
+INFO: [Synth 8-256] done synthesizing module 'shorten' (10#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/shorten.vhd:49]
+INFO: [Synth 8-256] done synthesizing module 'pdm_generic' (11#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/pdm_generic.vhd:55]
+INFO: [Synth 8-256] done synthesizing module 'fun_gen' (12#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/fun_gen.vhd:57]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 10.000000 - type: double 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKIN1_PERIOD bound to: 10.000000 - type: double 
+	Parameter CLKOUT0_DIVIDE_F bound to: 1.000000 - type: double 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT1_DIVIDE bound to: 10 - type: integer 
+	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT2_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT2_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT2_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT3_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT3_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT3_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT4_CASCADE bound to: 0 - type: bool 
+	Parameter CLKOUT4_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT4_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT4_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT5_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT5_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT5_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT6_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT6_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT6_PHASE bound to: 0.000000 - type: double 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter REF_JITTER1 bound to: 0.000000 - type: double 
+	Parameter STARTUP_WAIT bound to: 0 - type: bool 
+INFO: [Synth 8-113] binding component instance 'MMCME2_BASE_inst' to cell 'MMCME2_BASE' [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_fun_gen.vhd:100]
+INFO: [Synth 8-256] done synthesizing module 'test_fun_gen' (13#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/test_fun_gen.vhd:42]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:19 . Memory (MB): peak = 2034.230 ; gain = 0.000 ; free physical = 791 ; free virtual = 3960
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:16 . Memory (MB): peak = 2062.340 ; gain = 0.000 ; free physical = 202 ; free virtual = 3318
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:21 . Memory (MB): peak = 2034.230 ; gain = 0.000 ; free physical = 747 ; free virtual = 3946
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:17 . Memory (MB): peak = 2062.340 ; gain = 0.000 ; free physical = 189 ; free virtual = 3309
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:21 . Memory (MB): peak = 2034.230 ; gain = 0.000 ; free physical = 747 ; free virtual = 3946
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:17 . Memory (MB): peak = 2062.340 ; gain = 0.000 ; free physical = 189 ; free virtual = 3309
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2034.230 ; gain = 0.000 ; free physical = 716 ; free virtual = 3953
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.10 . Memory (MB): peak = 2065.211 ; gain = 0.000 ; free physical = 172 ; free virtual = 3306
 INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -205,58 +223,66 @@ Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [/home/gwrw/Basys3_Master.xdc]
 Finished Parsing XDC File [/home/gwrw/Basys3_Master.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/gwrw/Basys3_Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/test_synth_propImpl.xdc].
-Resolution: To avoid this warning, move constraints listed in [.Xil/test_synth_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/gwrw/Basys3_Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/test_fun_gen_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/test_fun_gen_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 INFO: [Timing 38-2] Deriving generated clocks
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2153.930 ; gain = 0.000 ; free physical = 615 ; free virtual = 3878
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2192.008 ; gain = 0.000 ; free physical = 107 ; free virtual = 3320
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 1 instances were transformed.
   MMCME2_BASE => MMCME2_ADV: 1 instance 
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.11 . Memory (MB): peak = 2153.930 ; gain = 0.000 ; free physical = 614 ; free virtual = 3879
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.09 . Memory (MB): peak = 2192.008 ; gain = 0.000 ; free physical = 112 ; free virtual = 3320
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:39 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 672 ; free virtual = 3941
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:56 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 700 ; free virtual = 3771
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:39 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 672 ; free virtual = 3941
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:57 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 699 ; free virtual = 3771
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:39 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 672 ; free virtual = 3940
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:57 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 698 ; free virtual = 3771
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:40 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 662 ; free virtual = 3932
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:01:01 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 679 ; free virtual = 3775
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   30 Bit       Adders := 1     
+	   2 Input   32 Bit       Adders := 2     
+	   2 Input   25 Bit       Adders := 1     
 	   2 Input   20 Bit       Adders := 15    
-	   3 Input   13 Bit       Adders := 1     
-	   2 Input   13 Bit       Adders := 1     
+	   3 Input   17 Bit       Adders := 1     
+	   2 Input   17 Bit       Adders := 1     
+	   2 Input   16 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 1     
 +---Registers : 
-	               30 Bit    Registers := 1     
+	               32 Bit    Registers := 3     
+	               25 Bit    Registers := 1     
 	               20 Bit    Registers := 15    
-	               16 Bit    Registers := 17    
-	               13 Bit    Registers := 1     
-	                8 Bit    Registers := 15    
-	                1 Bit    Registers := 4     
+	               17 Bit    Registers := 1     
+	               16 Bit    Registers := 16    
+	                8 Bit    Registers := 16    
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 6     
++---Multipliers : 
+	              32x32  Multipliers := 1     
 +---Muxes : 
-	  16 Input   16 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 4     
 	   2 Input   16 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 1     
-	  16 Input    4 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 2     
+	   2 Input    8 Bit        Muxes := 2     
+	   2 Input    4 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 9     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -273,25 +299,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:43 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 645 ; free virtual = 3925
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:01:12 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 619 ; free virtual = 3768
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:52 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 515 ; free virtual = 3803
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:01:23 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 461 ; free virtual = 3651
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:52 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 514 ; free virtual = 3801
+Finished Timing Optimization : Time (s): cpu = 00:00:34 ; elapsed = 00:01:24 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 455 ; free virtual = 3647
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:53 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 512 ; free virtual = 3799
+Finished Technology Mapping : Time (s): cpu = 00:00:34 ; elapsed = 00:01:25 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 450 ; free virtual = 3644
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -309,49 +335,48 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:32 ; elapsed = 00:00:57 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 512 ; free virtual = 3799
+Finished IO Insertion : Time (s): cpu = 00:00:39 ; elapsed = 00:01:29 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 444 ; free virtual = 3646
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:32 ; elapsed = 00:00:57 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 512 ; free virtual = 3799
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:39 ; elapsed = 00:01:29 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 444 ; free virtual = 3646
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:32 ; elapsed = 00:00:57 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 512 ; free virtual = 3799
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:39 ; elapsed = 00:01:29 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 443 ; free virtual = 3646
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:32 ; elapsed = 00:00:57 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 512 ; free virtual = 3799
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:39 ; elapsed = 00:01:29 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 443 ; free virtual = 3646
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:57 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 512 ; free virtual = 3799
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:39 ; elapsed = 00:01:30 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 443 ; free virtual = 3646
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:32 ; elapsed = 00:00:57 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 512 ; free virtual = 3799
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:39 ; elapsed = 00:01:30 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 443 ; free virtual = 3646
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
 
 Static Shift Register Report:
-+------------+------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
-|Module Name | RTL Name                                             | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
-+------------+------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
-|test_synth  | filter/gen_middle[4].middle_reg/reg2/reg_out_reg[0]  | 4      | 2     | NO           | YES                | YES               | 2      | 0       | 
-|test_synth  | filter/gen_middle[10].middle_reg/reg2/reg_out_reg[1] | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
-+------------+------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
++-------------+----------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name  | RTL Name                                                 | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++-------------+----------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|test_fun_gen | fun0/filter/gen_middle[4].middle_reg/reg2/reg_out_reg[0] | 4      | 2     | YES          | NO                 | YES               | 2      | 0       | 
++-------------+----------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP and Shift Register Reporting
@@ -371,41 +396,43 @@ Report Cell Usage:
 |      |Cell        |Count |
 +------+------------+------+
 |1     |BUFG        |     1|
-|2     |CARRY4      |   119|
-|3     |LUT1        |    40|
-|4     |LUT2        |   266|
-|5     |LUT3        |     5|
-|6     |LUT4        |    26|
-|7     |LUT5        |     6|
-|8     |LUT6        |    13|
+|2     |CARRY4      |   145|
+|3     |LUT1        |   136|
+|4     |LUT2        |   281|
+|5     |LUT3        |    23|
+|6     |LUT4        |    29|
+|7     |LUT5        |    15|
+|8     |LUT6        |    36|
 |9     |MMCME2_BASE |     1|
-|10    |SRL16E      |     3|
-|11    |FDRE        |   349|
-|12    |IBUF        |    16|
-|13    |OBUF        |    16|
+|10    |SRL16E      |     2|
+|11    |FDRE        |   392|
+|12    |FDSE        |    23|
+|13    |IBUF        |     1|
+|14    |OBUF        |     2|
+|15    |OBUFT       |     6|
 +------+------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:32 ; elapsed = 00:00:57 . Memory (MB): peak = 2153.930 ; gain = 119.699 ; free physical = 512 ; free virtual = 3799
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:39 ; elapsed = 00:01:30 . Memory (MB): peak = 2192.008 ; gain = 129.668 ; free physical = 442 ; free virtual = 3646
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:29 ; elapsed = 00:00:46 . Memory (MB): peak = 2153.930 ; gain = 0.000 ; free physical = 564 ; free virtual = 3852
-Synthesis Optimization Complete : Time (s): cpu = 00:00:32 ; elapsed = 00:00:57 . Memory (MB): peak = 2153.938 ; gain = 119.699 ; free physical = 564 ; free virtual = 3852
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:36 ; elapsed = 00:01:03 . Memory (MB): peak = 2192.008 ; gain = 0.000 ; free physical = 494 ; free virtual = 3698
+Synthesis Optimization Complete : Time (s): cpu = 00:00:39 ; elapsed = 00:01:30 . Memory (MB): peak = 2192.016 ; gain = 129.668 ; free physical = 494 ; free virtual = 3698
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2153.938 ; gain = 0.000 ; free physical = 556 ; free virtual = 3846
-INFO: [Netlist 29-17] Analyzing 120 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2192.016 ; gain = 0.000 ; free physical = 480 ; free virtual = 3693
+INFO: [Netlist 29-17] Analyzing 146 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2153.938 ; gain = 0.000 ; free physical = 492 ; free virtual = 3792
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2192.016 ; gain = 0.000 ; free physical = 409 ; free virtual = 3638
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 1 instances were transformed.
   MMCME2_BASE => MMCME2_ADV: 1 instance 
 
 INFO: [Common 17-83] Releasing license: Synthesis
-83 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+87 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:01:20 . Memory (MB): peak = 2153.938 ; gain = 119.805 ; free physical = 628 ; free virtual = 3930
-INFO: [Common 17-1381] The checkpoint '/home/gwrw/fir1/fir1.runs/synth_1/test_synth.dcp' has been generated.
-INFO: [runtcl-4] Executing : report_utilization -file test_synth_utilization_synth.rpt -pb test_synth_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 2185.945 ; gain = 0.000 ; free physical = 669 ; free virtual = 4006
-INFO: [Common 17-206] Exiting Vivado at Thu Jul 23 16:58:07 2020...
+synth_design: Time (s): cpu = 00:00:46 ; elapsed = 00:02:36 . Memory (MB): peak = 2192.016 ; gain = 129.773 ; free physical = 544 ; free virtual = 3774
+INFO: [Common 17-1381] The checkpoint '/home/gwrw/fir1/fir1.runs/synth_1/test_fun_gen.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file test_fun_gen_utilization_synth.rpt -pb test_fun_gen_utilization_synth.pb
+report_utilization: Time (s): cpu = 00:00:00.14 ; elapsed = 00:00:06 . Memory (MB): peak = 2224.023 ; gain = 0.000 ; free physical = 604 ; free virtual = 3847
+INFO: [Common 17-206] Exiting Vivado at Fri Jul 31 10:55:46 2020...

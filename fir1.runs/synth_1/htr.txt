@@ -6,4 +6,4 @@
 # Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 #
 
-vivado -log test_synth.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source test_synth.tcl
+vivado -log test_fun_gen.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source test_fun_gen.tcl
