@@ -1,21 +1,21 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
+-- Company:
+-- Engineer:
+--
 -- Create Date: 06/23/2020 08:32:04 AM
--- Design Name: 
+-- Design Name:
 -- Module Name: register - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
+-- Project Name:
+-- Target Devices:
+-- Tool Versions:
+-- Description:
+--
+-- Dependencies:
+--
 -- Revision:
 -- Revision 0.01 - File Created
 -- Additional Comments:
--- 
+--
 ----------------------------------------------------------------------------------
 
 
@@ -32,8 +32,6 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 
--- copied from https://vhdlwhiz.com/shift-register/
-
 entity reg1D is
   generic (
     length : integer
@@ -41,13 +39,13 @@ entity reg1D is
   port (
     clk : in std_logic;
     rst : in std_logic;
-    
+
     shift_en : in std_logic := '0';
     par_en : in std_logic := '0';
- 
+
     shift_in : in std_logic := '0';
     par_in : in std_logic_vector(length-1 downto 0) := (others=>'0');
-    
+
     default_state : in std_logic_vector(length-1 downto 0) := (others=>'0');
     shift_out : out std_logic;
     par_out : out std_logic_vector(length-1 downto 0)
@@ -63,7 +61,7 @@ begin
 
     shift_out <= reg_state(reg_state'high);
     par_out <= reg_state;
-    
+
     process (clk) begin
         if rising_edge(clk) then
             if (rst = '1') then
