@@ -1,4 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/test_values.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'test_values'
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/test_values_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'test_values_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/reg2D_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'reg2D_tb'

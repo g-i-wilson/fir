@@ -77,13 +77,13 @@ architecture Behavioral of reg2D is
               shift_en => shift_en,
               par_en   => par_en,
 
-              default_state => default_state ( (i+1)*width  +(width-1)            downto  i   *width ),
+              default_state => default_state ( (i+1)*width  +(width-1)            downto  (i+1)   *width ),
 
               shift_in  => shift_connect_sig (  i   ),
               shift_out => shift_connect_sig (  i+1 ),
 
-              par_in    => par_connect_sig (    i   *width   +(width-1)           downto  i    *width ),
-              par_out   => par_connect_sig (   (i+1)*width   +(width-1)           downto  i    *width )
+              par_in    => par_connect_sig (    i   *width   +(width-1)           downto  i       *width ),
+              par_out   => par_connect_sig (   (i+1)*width   +(width-1)           downto  (i+1)   *width )
 
             );
       end generate gen_middle;
@@ -99,7 +99,7 @@ architecture Behavioral of reg2D is
           shift_en => shift_en,
           par_en   => par_en,
 
-          default_state => default_state   ( width-1 downto 0 ),
+          default_state => default_state   ( default_state'high   downto   default_state'high-(width-1) ),
 
           shift_in   => shift_connect_sig  ( shift_connect_sig'high ),
           shift_out  => shift_out,
