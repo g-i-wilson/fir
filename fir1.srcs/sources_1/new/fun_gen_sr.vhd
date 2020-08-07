@@ -33,22 +33,25 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity fun_gen_sr is
     generic (
-        sample_period_width : integer := 16; -- vector size to hold units of clock cycles
-        pdm_period_width : integer := 8; -- vector size to hold units of clock cycles
-        pdm_out_width : integer := 4; -- n-bit DAC
+        sample_period_width : integer := 8; -- vector size to hold units of clock cycles
+        pdm_period_width : integer := 4; -- vector size to hold units of clock cycles
+        pdm_out_width : integer := 1; -- n-bit DAC
         phase_lag : integer := 0; -- lag/period * 2 * pi
         phase_bit : integer := 0; -- square wave to start as either 1 or 0
-        pattern_width : integer :=16;
+        pattern_width : integer := 16;
         pattern_length : integer := 16
     );
     port (
-        repeat_pattern : in STD_LOGIC_VECTOR ((pattern_width*pattern_length)-1 downto 0); 
+        repeat_pattern : in STD_LOGIC_VECTOR ((pattern_width*pattern_length)-1 downto 0) := x"3FFF587C6D3F7B1E7FFE7B1E6D3F587C3FFF278112BE04DF000004DF12BE2781"; 
         sample_period :  in STD_LOGIC_VECTOR (sample_period_width-1 downto 0) := x"10"; -- units of clock cycles
         pdm_period :  in STD_LOGIC_VECTOR (pdm_period_width-1 downto 0) := x"1"; -- units of clock cycles
-        pdm_out : out STD_LOGIC_VECTOR (pdm_out_width-1 downto 0);
         clk : in std_logic;
-        en : in std_logic;
-        rst : in std_logic
+        en : in std_logic := '1';
+        rst : in std_logic;
+
+        pdm_out : out STD_LOGIC_VECTOR (pdm_out_width-1 downto 0);
+        pattern_out : out STD_LOGIC_VECTOR (pattern_width-1 downto 0);
+        sample_en_out : out std_logic
     );
 end fun_gen_sr;
 
@@ -72,11 +75,13 @@ begin
             rst => rst,
             en_out => sample_en
         );
+        
+    sample_en_out <= sample_en;
     
     shift_reg : entity work.reg2D
         generic map (
-          length => 4,
-          width => 8
+          length => pattern_length,
+          width => pattern_width
         )
         port map (
           clk      => clk,
@@ -89,6 +94,8 @@ begin
           par_in     => loopback_sig,
           par_out    => loopback_sig
         );
+        
+    pattern_out <= loopback_sig;
 
     PDM: entity work.pdm_generic
         generic map (

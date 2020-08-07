@@ -38,48 +38,73 @@ end fun_gen_tb;
 architecture Behavioral of fun_gen_tb is
 
 
-signal test_clk, test_rst : std_logic;
-signal test_pdm_out_0, test_pdm_out_1 : std_logic_vector(0 downto 0);
+signal test_clk, test_rst, test_sample_en : std_logic;
+signal test_pdm_out_0, test_pdm_out_1 : std_logic_vector(1 downto 0);
+signal test_pattern_out_0, test_pattern_out_1 : std_logic_vector(15 downto 0);
 
 begin
 
-    fun00deg: entity work.fun_gen
-    generic map (
-        half_period_width => 12,
-        sample_period_width => 8,
-        pdm_period_width => 4,
-        pdm_out_width => 1
-    )
-    port map (
+      funPos: entity work.fun_gen_sr
+      generic map (
+        pdm_out_width => 2
+      )
+      port map (
         clk => test_clk,
-        en => '1',
         rst => test_rst,
-        half_period => x"100",
-        sample_period => x"20",
-        pdm_period => x"1",
+        repeat_pattern => x"3FFF587C6D3F7B1E7FFE7B1E6D3F587C3FFF278112BE04DF000004DF12BE2781",
         pdm_out => test_pdm_out_0,
-        conv_pattern => x"020913202C363D403D362C20130902" -- approximates a sin wive
-    );
-    
-    
-    funNeg90deg: entity work.fun_gen
-    generic map (
-        half_period_width => 12,
-        sample_period_width => 8,
-        pdm_period_width => 4,
-        pdm_out_width => 1,
-        phase_lag => 128 -- 90deg phase lag: x"200"/4 = x"80" = 128
-    )
-    port map (
+        pattern_out => test_pattern_out_0
+      );
+
+      funDiff: entity work.fun_gen_sr
+      generic map (
+        pdm_out_width => 2
+      )
+      port map (
         clk => test_clk,
-        en => '1',
         rst => test_rst,
-        half_period => x"100",
-        sample_period => x"20",
-        pdm_period => x"1",
+        repeat_pattern => x"0000187D2D403B1F3FFF3B1F2D40187D0000E782D2BFC4E0C001C4E0D2BFE782",
         pdm_out => test_pdm_out_1,
-        conv_pattern => x"020913202C363D403D362C20130902" -- approximates a sin wive
-    );
+        pattern_out => test_pattern_out_1
+      );
+
+--    fun00deg: entity work.fun_gen
+--    generic map (
+--        half_period_width => 12,
+--        sample_period_width => 8,
+--        pdm_period_width => 4,
+--        pdm_out_width => 1
+--    )
+--    port map (
+--        clk => test_clk,
+--        en => '1',
+--        rst => test_rst,
+--        half_period => x"100",
+--        sample_period => x"20",
+--        pdm_period => x"1",
+--        pdm_out => test_pdm_out_0,
+--        conv_pattern => x"020913202C363D403D362C20130902" -- approximates a sin wive
+--    );
+    
+    
+--    funNeg90deg: entity work.fun_gen
+--    generic map (
+--        half_period_width => 12,
+--        sample_period_width => 8,
+--        pdm_period_width => 4,
+--        pdm_out_width => 1,
+--        phase_lag => 128 -- 90deg phase lag: x"200"/4 = x"80" = 128
+--    )
+--    port map (
+--        clk => test_clk,
+--        en => '1',
+--        rst => test_rst,
+--        half_period => x"100",
+--        sample_period => x"20",
+--        pdm_period => x"1",
+--        pdm_out => test_pdm_out_1,
+--        conv_pattern => x"020913202C363D403D362C20130902" -- approximates a sin wive
+--    );
 
 
     process
@@ -89,6 +114,8 @@ begin
         -- initial
         test_rst <= '1';
         
+        test_clk <= '0';
+        wait for 5ns;
         wait for 5ns;
         test_clk <= '1';
         wait for 5ns;

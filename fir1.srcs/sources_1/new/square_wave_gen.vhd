@@ -40,7 +40,7 @@ entity square_wave_gen is
     port (
         half_period : in STD_LOGIC_VECTOR (half_period_width-1 downto 0);
         sq_out : out STD_LOGIC;
-        en : in STD_LOGIC;
+        en : in STD_LOGIC := '1';
         clk : in STD_LOGIC;
         rst : in STD_LOGIC
     );

@@ -45,11 +45,11 @@ architecture Behavioral of diff_out_test is
     signal mmcm_clk : std_logic;
     signal clkfb_loopback : std_logic;
     signal lock_sig : std_logic;
-    signal out_sig : std_logic_vector(0 downto 0);
+    signal fast_sig, slow_sig : std_logic_vector(0 downto 0);
     
     signal rst : std_logic;
 
-    signal fast_sig, slow_sig, led_sig : std_logic;
+    signal led_sig : std_logic;
 
 
 begin
@@ -58,48 +58,82 @@ begin
     
     led_0 <= led_sig;
     
-    XA4_P <= slow_sig;
-    XA4_N <= not slow_sig;
+    XA4_P <= slow_sig(0);
+    XA4_N <= not slow_sig(0);
     
-    XA1_P <= fast_sig;
-    XA1_N <= not fast_sig;
+    XA1_P <= fast_sig(0);
+    XA1_N <= not fast_sig(0);
 
-    process (mmcm_clk) begin
-        if rising_edge(mmcm_clk) then
-            if (rst = '1') then
-                fast_sig <= '0';
-            else
-                fast_sig <= not fast_sig;
-            end if;
-        end if;
-    end process;
+--    process (mmcm_clk) begin
+--        if rising_edge(mmcm_clk) then
+--            if (rst = '1') then
+--                fast_sig <= '0';
+--            else
+--                fast_sig <= not fast_sig;
+--            end if;
+--        end if;
+--    end process;
     
 
     
-    slow_sq: entity work.square_wave_gen
-    generic map (
-        half_period_width => 16
-    )
-    port map (
-        clk => mmcm_clk,
-        en => '1',
+--    slow_sq: entity work.square_wave_gen
+--    generic map (
+--        half_period_width => 16
+--    )
+--    port map (
+--        clk => mmcm_clk,
+--        en => '1',
+--        rst => rst,
+--        half_period => x"36B0",
+--        sq_out => slow_sig
+--    );
+
+      low_freq: entity work.fun_gen_sr
+      generic map (
+        sample_period_width => 24,
+        pdm_period_width => 8,
+        pattern_width => 16,
+        pattern_length => 100
+      )
+      port map (
+        clk => clk,
         rst => rst,
-        half_period => x"36B0",
-        sq_out => slow_sig
-    );
+        repeat_pattern => x"3FFF440348044BFC4FE953C5578D5B3E5ED36249659C68C96BCD6EA5714E73C57607781379E67B7F7CDC7DFB7EDB7F7C7FDD7FFE7FDD7F7C7EDB7DFB7CDC7B7F79E67813760773C5714E6EA56BCD68C9659C62495ED35B3E578D53C54FE94BFC480444033FFF3BFA37F9340130142C38287024BF212A1DB41A611734143011580EAF0C3809F607EA0617047E03210202012200810020000000200081012202020321047E061707EA09F60C380EAF1158143017341A611DB4212A24BF28702C383014340137F93BFA",
+        sample_period => x"F42400",
+        pdm_period => x"A0",
+        pdm_out => slow_sig
+      );
+
+    low_freq_led: entity work.square_wave_gen
+        generic map (
+            half_period_width => 24
+        )
+        port map (
+            clk => clk,
+            rst => rst,
+            half_period => x"F42400",
+            sq_out => led_sig
+        );
 
 
-    led_sq: entity work.square_wave_gen
-    generic map (
-        half_period_width => 28
-    )
-    port map (
-        clk => mmcm_clk,
-        en => '1',
+--    led_sq: entity work.square_wave_gen
+--    generic map (
+--        half_period_width => 28
+--    )
+--    port map (
+--        clk => mmcm_clk,
+--        en => '1',
+--        rst => rst,
+--        half_period => x"42C1D80",
+--        sq_out => led_sig
+--    );
+
+      high_freq: entity work.fun_gen_sr
+      port map (
+        clk => clk,
         rst => rst,
-        half_period => x"42C1D80",
-        sq_out => led_sig
-    );
+        pdm_out => fast_sig
+      );
 
 
     
@@ -134,7 +168,7 @@ begin
       CLKFBOUT_PHASE => 0.0,     -- Phase offset in degrees of CLKFB (-360.000-360.000).
       CLKIN1_PERIOD => 10.0,      -- Input clock period in ns to ps resolution (i.e. 33.333 is 30 MHz).
       -- CLKOUT0_DIVIDE - CLKOUT6_DIVIDE: Divide amount for each CLKOUT (1-128)
-      CLKOUT1_DIVIDE => 8,
+      CLKOUT1_DIVIDE => 1,
       CLKOUT2_DIVIDE => 1,
       CLKOUT3_DIVIDE => 1,
       CLKOUT4_DIVIDE => 1,
