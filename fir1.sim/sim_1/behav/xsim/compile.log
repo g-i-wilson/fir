@@ -1,2 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/fun_gen_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'fun_gen_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/reg1D_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'reg1D_tb'

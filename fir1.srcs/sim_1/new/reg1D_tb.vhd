@@ -43,12 +43,14 @@ architecture Behavioral of reg1D_tb is
         test_shift_en,
         test_par_en,
         test_shift_in,
-        test_shift_out
+        test_shift_out_0,
+        test_shift_out_1
         : std_logic;
         
     signal
         test_par_in,
-        test_par_out,
+        test_par_out_0,
+        test_par_out_1,
         test_default_state
         : std_logic_vector(7 downto 0);
 
@@ -70,16 +72,35 @@ u0: entity work.reg1D
     par_in => test_par_in,
     
     default_state => test_default_state,
-    shift_out => test_shift_out,
-    par_out => test_par_out
+    shift_out => test_shift_out_0,
+    par_out => test_par_out_0
   );
   
-  
+  u1: entity work.reg1D
+  generic map (
+    length => 8,
+    big_endian => false
+  )
+  port map (
+    clk => test_clk,
+    rst => test_rst,
+    
+    shift_en => test_shift_en,
+    par_en => test_par_en,
+ 
+    shift_in => test_shift_in,
+    par_in => test_par_in,
+    
+    default_state => test_default_state,
+    shift_out => test_shift_out_1,
+    par_out => test_par_out_1
+  );
+
     process
     
     begin
         
-        test_default_state <= x"88";
+        test_default_state <= x"99";
 
         wait for 5ns;
         test_clk <= '1';

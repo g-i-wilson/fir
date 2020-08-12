@@ -1,13 +1,14 @@
-
-*** Running vivado
-    with args -log reg1D.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source reg1D.tcl
-
-
-****** Vivado v2020.1 (64-bit)
-  **** SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
-  **** IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
-
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Tue Aug 11 12:01:07 2020
+# Process ID: 14668
+# Current directory: /home/gwrw/fir1/fir1.runs/synth_1
+# Command line: vivado -log reg1D.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source reg1D.tcl
+# Log file: /home/gwrw/fir1/fir1.runs/synth_1/reg1D.vds
+# Journal file: /home/gwrw/fir1/fir1.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
 source reg1D.tcl -notrace
 Command: synth_design -top reg1D -part xc7a35tcpg236-1
 Starting synth_design
