@@ -12,141 +12,141 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 
-entity reg2D is
+entity Reg2D is
   generic (
-    length : integer := 0; -- for length <= 0: generates a zero-length "pass-through"
-    width : positive := 8;
-    big_endian : boolean := true
+    LENGTH          : integer := 0; -- for LENGTH <= 0: generates a zero-LENGTH "pass-through"
+    WIDTH           : positive := 8;
+    BIG_ENDIAN      : boolean := true
   );
   port (
-    clk : in std_logic;
-    rst : in std_logic;
+    CLK             : in std_logic;
+    RST             : in std_logic;
 
-    shift_en : in std_logic := '0';
-    par_en : in std_logic := '0';
+    SHIFT_EN        : in std_logic := '0';
+    PAR_EN          : in std_logic := '0';
 
-    shift_in : in std_logic := '0';
-    par_in : in std_logic_vector(width-1 downto 0) := (others=>'0');
+    SHIFT_IN        : in std_logic := '0';
+    PAR_IN          : in std_logic_vector(WIDTH-1 downto 0) := (others=>'0');
 
-    default_state : in std_logic_vector((width*length)-1 downto 0) := (others=>'0');
-    shift_out : out std_logic;
-    par_out : out std_logic_vector(width-1 downto 0);
-    all_lower_out : out std_logic_vector((width*(length-1))-1 downto 0)
+    DEFAULT_STATE   : in std_logic_vector((WIDTH*LENGTH)-1 downto 0) := (others=>'0');
+    SHIFT_OUT       : out std_logic;
+    PAR_OUT         : out std_logic_vector(WIDTH-1 downto 0);
+    ALL_LOWER_OUT   : out std_logic_vector((WIDTH*(LENGTH-1))-1 downto 0)
   );
 end;
 
 
-architecture Behavioral of reg2D is
+architecture Behavioral of Reg2D is
 
-  signal par_connect_sig : std_logic_vector((width*(length-1))-1 downto 0);
-  -- provides parallel signals "between" each register, so width*(length-1)
+  signal par_connect_sig : std_logic_vector((WIDTH*(LENGTH-1))-1 downto 0);
+  -- provides parallel signals "between" each register, so WIDTH*(LENGTH-1)
 
-  signal shift_connect_sig : std_logic_vector((length-1)-1 downto 0);
-  -- provides bit signals "between" each register, so width*(length-1)
+  signal shift_connect_sig : std_logic_vector((LENGTH-1)-1 downto 0);
+  -- provides bit signals "between" each register, so WIDTH*(LENGTH-1)
 
   begin
-      
-    -- special case where length = 0
-    gen_zero: if (length <= 0) generate
-      shift_out  <= shift_in;
-      par_out    <= par_in;
-      all_lower_out <= (others=>'0');
+
+    -- special case where LENGTH = 0
+    gen_zero: if (LENGTH <= 0) generate
+      SHIFT_OUT  <= SHIFT_IN;
+      PAR_OUT    <= PAR_IN;
+      ALL_LOWER_OUT <= (others=>'0');
     end generate gen_zero;
 
-    -- special case where length = 1
-    gen_first_unity: if (length = 1) generate
-    first_reg : entity work.reg1D
+    -- special case where LENGTH = 1
+    gen_fiRST_unity: if (LENGTH = 1) generate
+    fiRST_reg : entity work.reg1D
     generic map (
-      length => width,
-      big_endian => big_endian
+      LENGTH => WIDTH,
+      BIG_ENDIAN => BIG_ENDIAN
     )
     port map (
-      clk      => clk,
-      rst      => rst,
-    
-      shift_en => shift_en,
-      par_en   => par_en,
-    
-      default_state => default_state   (width-1 downto 0),
-    
-      shift_in   => shift_in,
-      shift_out  => shift_out,
-    
-      par_in     => par_in,
-      par_out    => par_out
-    );
-    end generate gen_first_unity;
+      CLK      => CLK,
+      RST      => RST,
 
-    gen_first: if (length > 1) generate
-      first_reg : entity work.reg1D
+      SHIFT_EN => SHIFT_EN,
+      PAR_EN   => PAR_EN,
+
+      DEFAULT_STATE => DEFAULT_STATE   (WIDTH-1 downto 0),
+
+      SHIFT_IN   => SHIFT_IN,
+      SHIFT_OUT  => SHIFT_OUT,
+
+      PAR_IN     => PAR_IN,
+      PAR_OUT    => PAR_OUT
+    );
+    end generate gen_fiRST_unity;
+
+    gen_fiRST: if (LENGTH > 1) generate
+      fiRST_reg : entity work.reg1D
         generic map (
-          length => width,
-          big_endian => big_endian
+          LENGTH => WIDTH,
+          BIG_ENDIAN => BIG_ENDIAN
         )
         port map (
-          clk      => clk,
-          rst      => rst,
+          CLK      => CLK,
+          RST      => RST,
 
-          shift_en => shift_en,
-          par_en   => par_en,
+          SHIFT_EN => SHIFT_EN,
+          PAR_EN   => PAR_EN,
 
-          default_state => default_state   (width-1 downto 0),
+          DEFAULT_STATE => DEFAULT_STATE   (WIDTH-1 downto 0),
 
-          shift_in   => shift_in,
-          shift_out  => shift_connect_sig  (0),
+          SHIFT_IN   => SHIFT_IN,
+          SHIFT_OUT  => shift_connect_sig  (0),
 
-          par_in     => par_in,
-          par_out    => par_connect_sig    (width-1 downto 0)
+          PAR_IN     => PAR_IN,
+          PAR_OUT    => par_connect_sig    (WIDTH-1 downto 0)
         );
-      end generate gen_first;
-      
-      gen_middle : for i in 0 to (length-3) generate -- length 5 regs is: in,0,1,2,out
+      end generate gen_fiRST;
+
+      gen_middle : for i in 0 to (LENGTH-3) generate -- LENGTH 5 regs is: in,0,1,2,out
           middle_reg : entity work.reg1D
             generic map (
-              length => width,
-              big_endian => big_endian
+              LENGTH => WIDTH,
+              BIG_ENDIAN => BIG_ENDIAN
             )
             port map (
-              clk      => clk,
-              rst      => rst,
+              CLK      => CLK,
+              RST      => RST,
 
-              shift_en => shift_en,
-              par_en   => par_en,
+              SHIFT_EN => SHIFT_EN,
+              PAR_EN   => PAR_EN,
 
-              default_state => default_state ( (i+1)*width  +(width-1)            downto  (i+1)   *width ),
+              DEFAULT_STATE => DEFAULT_STATE ( (i+1)*WIDTH  +(WIDTH-1)            downto  (i+1)   *WIDTH ),
 
-              shift_in  => shift_connect_sig (  i   ),
-              shift_out => shift_connect_sig (  i+1 ),
+              SHIFT_IN  => shift_connect_sig (  i   ),
+              SHIFT_OUT => shift_connect_sig (  i+1 ),
 
-              par_in    => par_connect_sig (    i   *width   +(width-1)           downto  i       *width ),
-              par_out   => par_connect_sig (   (i+1)*width   +(width-1)           downto  (i+1)   *width )
+              PAR_IN    => par_connect_sig (    i   *WIDTH   +(WIDTH-1)           downto  i       *WIDTH ),
+              PAR_OUT   => par_connect_sig (   (i+1)*WIDTH   +(WIDTH-1)           downto  (i+1)   *WIDTH )
 
             );
       end generate gen_middle;
 
-      gen_last: if (length >= 2) generate
+      gen_last: if (LENGTH >= 2) generate
           last_reg : entity work.reg1D
             generic map (
-              length => width,
-              big_endian => big_endian
+              LENGTH => WIDTH,
+              BIG_ENDIAN => BIG_ENDIAN
             )
             port map (
-              clk      => clk,
-              rst      => rst,
-    
-              shift_en => shift_en,
-              par_en   => par_en,
-    
-              default_state => default_state   ( default_state'high   downto   default_state'high-(width-1) ),
-    
-              shift_in   => shift_connect_sig  ( shift_connect_sig'high ),
-              shift_out  => shift_out,
-    
-              par_in     => par_connect_sig    ( par_connect_sig'high   downto   par_connect_sig'high-(width-1) ),
-              par_out    => par_out
+              CLK      => CLK,
+              RST      => RST,
+
+              SHIFT_EN => SHIFT_EN,
+              PAR_EN   => PAR_EN,
+
+              DEFAULT_STATE => DEFAULT_STATE   ( DEFAULT_STATE'high   downto   DEFAULT_STATE'high-(WIDTH-1) ),
+
+              SHIFT_IN   => shift_connect_sig  ( shift_connect_sig'high ),
+              SHIFT_OUT  => SHIFT_OUT,
+
+              PAR_IN     => par_connect_sig    ( par_connect_sig'high   downto   par_connect_sig'high-(WIDTH-1) ),
+              PAR_OUT    => PAR_OUT
             );
-    
-          all_lower_out <= par_connect_sig;
+
+          ALL_LOWER_OUT <= par_connect_sig;
       end generate gen_last;
 
 end Behavioral;

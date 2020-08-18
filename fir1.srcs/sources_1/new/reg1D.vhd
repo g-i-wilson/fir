@@ -32,56 +32,56 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 
-entity reg1D is
+entity Reg1D is
   generic (
-    length : positive := 8;
-    big_endian : boolean := true
+    LENGTH        : positive := 8;
+    BIG_ENDIAN    : boolean := true
   );
   port (
-    clk : in std_logic;
-    rst : in std_logic;
+    CLK           : in std_logic;
+    RST           : in std_logic;
 
-    shift_en : in std_logic := '0';
-    par_en : in std_logic := '0';
+    SHIFT_EN      : in std_logic := '0';
+    PAR_EN        : in std_logic := '0';
 
-    shift_in : in std_logic := '0';
-    par_in : in std_logic_vector(length-1 downto 0) := (others=>'0');
+    SHIFT_IN      : in std_logic := '0';
+    PAR_IN        : in std_logic_vector(LENGTH-1 downto 0) := (others=>'0');
 
-    default_state : in std_logic_vector(length-1 downto 0) := (others=>'0');
-    shift_out : out std_logic;
-    par_out : out std_logic_vector(length-1 downto 0)
+    DEFAULT_STATE : in std_logic_vector(LENGTH-1 downto 0) := (others=>'0');
+    SHIFT_OUT     : out std_logic;
+    PAR_OUT       : out std_logic_vector(LENGTH-1 downto 0)
   );
 end;
 
 
-architecture Behavioral of reg1D is
+architecture Behavioral of Reg1D is
 
-    signal reg_state : std_logic_vector(length-1 downto 0);
+    signal reg_state : std_logic_vector(LENGTH-1 downto 0);
 
 begin
 
-    par_out <= reg_state;
-    
+    PAR_OUT <= reg_state;
+
     process (reg_state) begin
-        if (big_endian) then
-            shift_out <= reg_state(length-1);
+        if (BIG_ENDIAN) then
+            SHIFT_OUT <= reg_state(LENGTH-1);
         else
-            shift_out <= reg_state(0);
+            SHIFT_OUT <= reg_state(0);
         end if;
     end process;
-    
-    process (clk) begin
-        if rising_edge(clk) then
-            if (rst = '1') then
-                reg_state <= default_state;
-            elsif (shift_en = '1') then
-                if (big_endian) then
-                    reg_state <= reg_state(length-2 downto 0) & shift_in;
+
+    process (CLK) begin
+        if rising_edge(CLK) then
+            if (RST = '1') then
+                reg_state <= DEFAULT_STATE;
+            elsif (SHIFT_EN = '1') then
+                if (BIG_ENDIAN) then
+                    reg_state <= reg_state(LENGTH-2 downto 0) & SHIFT_IN;
                 else
-                    reg_state <= shift_in & reg_state(length-1 downto 1);
+                    reg_state <= SHIFT_IN & reg_state(LENGTH-1 downto 1);
                 end if;
-            elsif (par_en = '1') then
-                reg_state <= par_in;
+            elsif (PAR_EN = '1') then
+                reg_state <= PAR_IN;
             end if;
         end if;
     end process;
