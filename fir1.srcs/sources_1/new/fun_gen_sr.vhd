@@ -38,13 +38,13 @@ entity fun_gen_sr is
         pdm_out_width : integer := 1; -- n-bit DAC
         phase_lag : integer := 0; -- lag/period * 2 * pi
         phase_bit : integer := 0; -- square wave to start as either 1 or 0
-        pattern_width : integer := 16;
-        pattern_length : integer := 16
+        pattern_width : integer;
+        pattern_length : integer
     );
     port (
-        repeat_pattern : in STD_LOGIC_VECTOR ((pattern_width*pattern_length)-1 downto 0) := x"3FFF587C6D3F7B1E7FFE7B1E6D3F587C3FFF278112BE04DF000004DF12BE2781"; 
-        sample_period :  in STD_LOGIC_VECTOR (sample_period_width-1 downto 0) := x"10"; -- units of clock cycles
-        pdm_period :  in STD_LOGIC_VECTOR (pdm_period_width-1 downto 0) := x"1"; -- units of clock cycles
+        repeat_pattern : in STD_LOGIC_VECTOR ((pattern_width*pattern_length)-1 downto 0);
+        sample_period :  in STD_LOGIC_VECTOR (sample_period_width-1 downto 0); -- units of clock cycles
+        pdm_period :  in STD_LOGIC_VECTOR (pdm_period_width-1 downto 0); -- units of clock cycles
         clk : in std_logic;
         en : in std_logic := '1';
         rst : in std_logic;

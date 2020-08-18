@@ -14,8 +14,9 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity reg2D is
   generic (
-    length : positive;
-    width : positive
+    length : integer := 0; -- for length <= 0: generates a zero-length "pass-through"
+    width : positive := 8;
+    big_endian : boolean := true
   );
   port (
     clk : in std_logic;
@@ -44,10 +45,43 @@ architecture Behavioral of reg2D is
   -- provides bit signals "between" each register, so width*(length-1)
 
   begin
+      
+    -- special case where length = 0
+    gen_zero: if (length <= 0) generate
+      shift_out  <= shift_in;
+      par_out    <= par_in;
+      all_lower_out <= (others=>'0');
+    end generate gen_zero;
 
+    -- special case where length = 1
+    gen_first_unity: if (length = 1) generate
+    first_reg : entity work.reg1D
+    generic map (
+      length => width,
+      big_endian => big_endian
+    )
+    port map (
+      clk      => clk,
+      rst      => rst,
+    
+      shift_en => shift_en,
+      par_en   => par_en,
+    
+      default_state => default_state   (width-1 downto 0),
+    
+      shift_in   => shift_in,
+      shift_out  => shift_out,
+    
+      par_in     => par_in,
+      par_out    => par_out
+    );
+    end generate gen_first_unity;
+
+    gen_first: if (length > 1) generate
       first_reg : entity work.reg1D
         generic map (
-          length => width
+          length => width,
+          big_endian => big_endian
         )
         port map (
           clk      => clk,
@@ -64,11 +98,13 @@ architecture Behavioral of reg2D is
           par_in     => par_in,
           par_out    => par_connect_sig    (width-1 downto 0)
         );
-
+      end generate gen_first;
+      
       gen_middle : for i in 0 to (length-3) generate -- length 5 regs is: in,0,1,2,out
           middle_reg : entity work.reg1D
             generic map (
-              length => width
+              length => width,
+              big_endian => big_endian
             )
             port map (
               clk      => clk,
@@ -88,26 +124,29 @@ architecture Behavioral of reg2D is
             );
       end generate gen_middle;
 
-      last_reg : entity work.reg1D
-        generic map (
-          length => width
-        )
-        port map (
-          clk      => clk,
-          rst      => rst,
-
-          shift_en => shift_en,
-          par_en   => par_en,
-
-          default_state => default_state   ( default_state'high   downto   default_state'high-(width-1) ),
-
-          shift_in   => shift_connect_sig  ( shift_connect_sig'high ),
-          shift_out  => shift_out,
-
-          par_in     => par_connect_sig    ( par_connect_sig'high   downto   par_connect_sig'high-(width-1) ),
-          par_out    => par_out
-        );
-
-      all_lower_out <= par_connect_sig;
+      gen_last: if (length >= 2) generate
+          last_reg : entity work.reg1D
+            generic map (
+              length => width,
+              big_endian => big_endian
+            )
+            port map (
+              clk      => clk,
+              rst      => rst,
+    
+              shift_en => shift_en,
+              par_en   => par_en,
+    
+              default_state => default_state   ( default_state'high   downto   default_state'high-(width-1) ),
+    
+              shift_in   => shift_connect_sig  ( shift_connect_sig'high ),
+              shift_out  => shift_out,
+    
+              par_in     => par_connect_sig    ( par_connect_sig'high   downto   par_connect_sig'high-(width-1) ),
+              par_out    => par_out
+            );
+    
+          all_lower_out <= par_connect_sig;
+      end generate gen_last;
 
 end Behavioral;

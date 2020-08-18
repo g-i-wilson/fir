@@ -34,7 +34,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity reg1D is
   generic (
-    length : integer;
+    length : positive := 8;
     big_endian : boolean := true
   );
   port (
@@ -61,7 +61,15 @@ architecture Behavioral of reg1D is
 begin
 
     par_out <= reg_state;
-
+    
+    process (reg_state) begin
+        if (big_endian) then
+            shift_out <= reg_state(length-1);
+        else
+            shift_out <= reg_state(0);
+        end if;
+    end process;
+    
     process (clk) begin
         if rising_edge(clk) then
             if (rst = '1') then
@@ -69,10 +77,8 @@ begin
             elsif (shift_en = '1') then
                 if (big_endian) then
                     reg_state <= reg_state(length-2 downto 0) & shift_in;
-                    shift_out <= reg_state(reg_state'high);
                 else
                     reg_state <= shift_in & reg_state(length-1 downto 1);
-                    shift_out <= reg_state(0);
                 end if;
             elsif (par_en = '1') then
                 reg_state <= par_in;

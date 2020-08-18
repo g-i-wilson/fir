@@ -90,28 +90,128 @@ begin
 
       low_freq: entity work.fun_gen_sr
       generic map (
-        sample_period_width => 24,
-        pdm_period_width => 8,
+        sample_period_width => 20,
+        pdm_period_width => 12,
         pattern_width => 16,
         pattern_length => 100
       )
       port map (
         clk => clk,
         rst => rst,
-        repeat_pattern => x"3FFF440348044BFC4FE953C5578D5B3E5ED36249659C68C96BCD6EA5714E73C57607781379E67B7F7CDC7DFB7EDB7F7C7FDD7FFE7FDD7F7C7EDB7DFB7CDC7B7F79E67813760773C5714E6EA56BCD68C9659C62495ED35B3E578D53C54FE94BFC480444033FFF3BFA37F9340130142C38287024BF212A1DB41A611734143011580EAF0C3809F607EA0617047E03210202012200810020000000200081012202020321047E061707EA09F60C380EAF1158143017341A611DB4212A24BF28702C383014340137F93BFA",
-        sample_period => x"F42400",
-        pdm_period => x"A0",
+        repeat_pattern =>
+            x"3FFF" &
+            x"4403" &
+            x"4804" &
+            x"4BFC" &
+            x"4FE9" &
+            x"53C5" &
+            x"578D" &
+            x"5B3E" &
+            x"5ED3" &
+            x"6249" &
+            x"659C" &
+            x"68C9" &
+            x"6BCD" &
+            x"6EA5" &
+            x"714E" &
+            x"73C5" &
+            x"7607" &
+            x"7813" &
+            x"79E6" &
+            x"7B7F" &
+            x"7CDC" &
+            x"7DFB" &
+            x"7EDB" &
+            x"7F7C" &
+            x"7FDD" &
+            x"7FFE" &
+            x"7FDD" &
+            x"7F7C" &
+            x"7EDB" &
+            x"7DFB" &
+            x"7CDC" &
+            x"7B7F" &
+            x"79E6" &
+            x"7813" &
+            x"7607" &
+            x"73C5" &
+            x"714E" &
+            x"6EA5" &
+            x"6BCD" &
+            x"68C9" &
+            x"659C" &
+            x"6249" &
+            x"5ED3" &
+            x"5B3E" &
+            x"578D" &
+            x"53C5" &
+            x"4FE9" &
+            x"4BFC" &
+            x"4804" &
+            x"4403" &
+            x"3FFF" &
+            x"3BFA" &
+            x"37F9" &
+            x"3401" &
+            x"3014" &
+            x"2C38" &
+            x"2870" &
+            x"24BF" &
+            x"212A" &
+            x"1DB4" &
+            x"1A61" &
+            x"1734" &
+            x"1430" &
+            x"1158" &
+            x"0EAF" &
+            x"0C38" &
+            x"09F6" &
+            x"07EA" &
+            x"0617" &
+            x"047E" &
+            x"0321" &
+            x"0202" &
+            x"0122" &
+            x"0081" &
+            x"0020" &
+            x"0000" &
+            x"0020" &
+            x"0081" &
+            x"0122" &
+            x"0202" &
+            x"0321" &
+            x"047E" &
+            x"0617" &
+            x"07EA" &
+            x"09F6" &
+            x"0C38" &
+            x"0EAF" &
+            x"1158" &
+            x"1430" &
+            x"1734" &
+            x"1A61" &
+            x"1DB4" &
+            x"212A" &
+            x"24BF" &
+            x"2870" &
+            x"2C38" &
+            x"3014" &
+            x"3401" &
+            x"37F9" &
+            x"3BFA" ,
+        sample_period => x"445C0",
+        pdm_period => x"AF0",
         pdm_out => slow_sig
       );
 
     low_freq_led: entity work.square_wave_gen
         generic map (
-            half_period_width => 24
+            half_period_width => 28
         )
         port map (
-            clk => clk,
+            clk => mmcm_clk,
             rst => rst,
-            half_period => x"F42400",
+            half_period => x"1AB3F00",
             sq_out => led_sig
         );
 
@@ -129,10 +229,26 @@ begin
 --    );
 
       high_freq: entity work.fun_gen_sr
+      generic map (
+        sample_period_width => 8,
+        pdm_period_width => 4,
+        pattern_length => 8,
+        pattern_width => 16
+      )
       port map (
-        clk => clk,
+        clk => mmcm_clk,
         rst => rst,
-        pdm_out => fast_sig
+        sample_period => x"10",
+        pdm_period => x"1",
+        repeat_pattern =>   x"3FFF" &
+                            x"6D3F" &
+                            x"7FFE" &
+                            x"6D3F" &
+                            x"3FFF" &
+                            x"12BE" &
+                            x"0000" &
+                            x"12BE" ,
+       pdm_out => fast_sig
       );
 
 
@@ -164,11 +280,11 @@ begin
    MMCME2_BASE_inst : MMCME2_BASE
    generic map (
       BANDWIDTH => "OPTIMIZED",  -- Jitter programming (OPTIMIZED, HIGH, LOW)
-      CLKFBOUT_MULT_F => 11.2,    -- Multiply value for all CLKOUT (2.000-64.000).
+      CLKFBOUT_MULT_F => 11.2,    -- 100MHz*11.2=1.12GHz-- Multiply value for all CLKOUT (2.000-64.000).
       CLKFBOUT_PHASE => 0.0,     -- Phase offset in degrees of CLKFB (-360.000-360.000).
       CLKIN1_PERIOD => 10.0,      -- Input clock period in ns to ps resolution (i.e. 33.333 is 30 MHz).
       -- CLKOUT0_DIVIDE - CLKOUT6_DIVIDE: Divide amount for each CLKOUT (1-128)
-      CLKOUT1_DIVIDE => 1,
+      CLKOUT1_DIVIDE => 4,         -- 1.12GHz/4=280MHz
       CLKOUT2_DIVIDE => 1,
       CLKOUT3_DIVIDE => 1,
       CLKOUT4_DIVIDE => 1,

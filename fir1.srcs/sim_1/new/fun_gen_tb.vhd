@@ -46,24 +46,43 @@ begin
 
       funPos: entity work.fun_gen_sr
       generic map (
-        pdm_out_width => 2
+        pdm_out_width => 2,
+        pattern_length => 8,
+        pattern_width => 16
       )
       port map (
         clk => test_clk,
         rst => test_rst,
-        repeat_pattern => x"3FFF587C6D3F7B1E7FFE7B1E6D3F587C3FFF278112BE04DF000004DF12BE2781",
+        repeat_pattern => x"3FFF587C6D3F7B1E7FFE7B1E6D3F587C", --3FFF278112BE04DF000004DF12BE2781",
         pdm_out => test_pdm_out_0,
         pattern_out => test_pattern_out_0
       );
 
       funDiff: entity work.fun_gen_sr
       generic map (
-        pdm_out_width => 2
+        pdm_out_width => 2,
+        pattern_length => 16,
+        pattern_width => 16
       )
       port map (
         clk => test_clk,
         rst => test_rst,
-        repeat_pattern => x"0000187D2D403B1F3FFF3B1F2D40187D0000E782D2BFC4E0C001C4E0D2BFE782",
+        repeat_pattern =>   x"3FFF" &
+                            x"587C" &
+                            x"6D3F" &
+                            x"7B1E" &
+                            x"7FFE" &
+                            x"7B1E" &
+                            x"6D3F" &
+                            x"587C" &
+                            x"3FFF" &
+                            x"2781" &
+                            x"12BE" &
+                            x"04DF" &
+                            x"0000" &
+                            x"04DF" &
+                            x"12BE" &
+                            x"2781" ,
         pdm_out => test_pdm_out_1,
         pattern_out => test_pattern_out_1
       );
