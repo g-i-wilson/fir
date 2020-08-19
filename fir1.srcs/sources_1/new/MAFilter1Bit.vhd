@@ -12,8 +12,9 @@ use UNISIM.VComponents.all;
 
 entity MAFilter1Bit is
   generic (
-    SAMPLE_LENGTH             : positive := 10;
-    SUM_WIDTH                 : positive := 3
+    SAMPLE_LENGTH             : positive := 16;
+    SUM_WIDTH                 : positive := 4;
+    SUM_START                 : positive := 7
   );
   port (
     RST                       : in std_logic;
@@ -52,15 +53,22 @@ begin
 
   sequential_adder: process (sum_out_sig, newest_sample, oldest_sample)
   begin
+  
+    -- default logic
+    sum_in_sig <= sum_out_sig;
+  
     if (newest_sample='0' and oldest_sample='1') then
---      sum_in_sig <= std_logic_vector( unsigned(sum_out_sig) - 1 );
-      sum_in_sig <= std_logic_vector( unsigned(sum_out_sig) - 1 );
+        if (unsigned(sum_out_sig) > 0) then
+            sum_in_sig <= std_logic_vector( unsigned(sum_out_sig) - 1 );
+        end if;
+        
     elsif (newest_sample='1' and oldest_sample='0') then
---      sum_in_sig <= std_logic_vector( unsigned(sum_out_sig) + 1 );
-      sum_in_sig <= std_logic_vector( unsigned(sum_out_sig) + 1 );
-    else
-      sum_in_sig <= sum_out_sig;
+        if (unsigned(sum_out_sig) < SAMPLE_LENGTH) then
+            sum_in_sig <= std_logic_vector( unsigned(sum_out_sig) + 1 );
+        end if;
+        
     end if;
+    
   end process;
 
 
@@ -73,7 +81,8 @@ begin
     CLK             => CLK,
     PAR_EN          => EN,
     PAR_IN          => sum_in_sig,
-    PAR_OUT         => sum_out_sig
+    PAR_OUT         => sum_out_sig,
+    DEFAULT_STATE   => std_logic_vector(to_unsigned(SUM_START, SUM_WIDTH))
   );
 
   SUM_OUT <= sum_out_sig;

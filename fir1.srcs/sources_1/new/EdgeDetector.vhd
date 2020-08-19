@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -12,10 +12,11 @@ use UNISIM.VComponents.all;
 
 entity EdgeDetector is
   generic (
-    SAMPLE_LENGTH             : positive := 10,
-    SUM_WIDTH                 : positive := 3,
-    LOGIC_HIGH                : positive := 8,
-    LOGIC_LOW                 : positive := 2
+    SAMPLE_LENGTH             : positive := 16;
+    SUM_WIDTH                 : positive := 4;
+    LOGIC_HIGH                : positive := 13;
+    LOGIC_LOW                 : positive := 2;
+    SUM_START                 : positive := 7
   );
   port (
     RST                       : in std_logic;
@@ -39,20 +40,21 @@ architecture Behavioral of EdgeDetector is
     VALID_LOW,
     FALLING,
     RISING
-  )
+  );
 
-  signal current_state        : std_logic_vector(2 downto 0) := (others=>'0');
-  signal next_state           : std_logic_vector(2 downto 0) := (others=>'0');
+  signal current_state        : state_type := INIT;
+  signal next_state           : state_type := INIT;
 
   signal sum_sig              : std_logic_vector(SUM_WIDTH-1 downto 0);
 
 begin
 
 
-  moving_average : entity work.MAFilter
+  moving_average : entity work.MAFilter1Bit
   generic map (
     SAMPLE_LENGTH => SAMPLE_LENGTH,
-    SUM_WIDTH => SUM_WIDTH
+    SUM_WIDTH => SUM_WIDTH,
+    SUM_START => SUM_START
   )
   port map (
     CLK => CLK,
@@ -67,7 +69,7 @@ begin
     if rising_edge(CLK) then
       if (RST = '1') then
         current_state <= INIT;
-      elsif (EN = '1')
+      elsif (EN = '1') then
         current_state <= next_state;
       else
         current_state <= current_state;
@@ -83,46 +85,46 @@ begin
     EDGE_EVENT <= '0';
     -- INIT
     if (current_state = INIT) then
-      if (sum_sig >= LOGIC_HIGH) then
+      if (unsigned(sum_sig) >= LOGIC_HIGH) then
         next_state <= VALID_HIGH;
-      elsif (sum_sig <= LOGIC_LOW) then
+      elsif (unsigned(sum_sig) <= LOGIC_LOW) then
         next_state <= VALID_LOW;
       end if;
     -- VALID_HIGH
     elsif (current_state = VALID_HIGH) then
       VALID <= '1';
       DATA <= '1';
-      if (sum_sig < LOGIC_HIGH and sum_sig > LOGIC_LOW) then
+      if (unsigned(sum_sig) < LOGIC_HIGH and unsigned(sum_sig) > LOGIC_LOW) then
         next_state <= FALLING;
-      elsif (sum_sig <= LOGIC_LOW) then
+      elsif (unsigned(sum_sig) <= LOGIC_LOW) then
         next_state <= VALID_LOW;
       end if;
     -- FALLING
     elsif (current_state = FALLING) then
       DATA <= '1';
-      if (sum_sig <= LOGIC_LOW) then
+      if (unsigned(sum_sig) <= LOGIC_LOW) then
         next_state <= VALID_LOW;
         EDGE_EVENT <= '1';
         VALID <= '1';
-      elsif (sum_sig >= LOGIC_HIGH) then
-        next_state <= LOGIC_HIGH;
+      elsif (unsigned(sum_sig) >= LOGIC_HIGH) then
+        next_state <= VALID_HIGH;
       end if;
     -- VALID_LOW
     elsif (current_state = VALID_LOW) then
       VALID <= '1';
-      if (sum_sig < LOGIC_HIGH and sum_sig > LOGIC_LOW) then
+      if (unsigned(sum_sig) < LOGIC_HIGH and unsigned(sum_sig) > LOGIC_LOW) then
         next_state <= RISING;
-      elsif (sum_sig >= LOGIC_HIGH) then
+      elsif (unsigned(sum_sig) >= LOGIC_HIGH) then
         next_state <= VALID_HIGH;
       end if;
     -- RISING
     elsif (current_state = RISING) then
-      if (sum_sig >= LOGIC_HIGH) then
+      if (unsigned(sum_sig) >= LOGIC_HIGH) then
         next_state <= VALID_HIGH;
         EDGE_EVENT <= '1';
         VALID <= '1';
-      elsif (sum_sig >= LOGIC_HIGH) then
-        next_state <= LOGIC_HIGH;
+      elsif (unsigned(sum_sig) >= LOGIC_HIGH) then
+        next_state <= VALID_LOW;
       end if;
     -- DEFAULT STATE (to be sure to not infer memory)
     else

@@ -10,7 +10,7 @@ use IEEE.NUMERIC_STD.ALL;
 library UNISIM;
 use UNISIM.VComponents.all;
 
-entity MAFilter is
+entity SequentialAdder is
   generic (
     SAMPLE_LENGTH             : positive := 10;
     SUM_WIDTH                 : positive := 3
@@ -22,10 +22,10 @@ entity MAFilter is
 
     SUM_OUT                   : out std_logic_vector(SUM_WIDTH-1 downto 0)
   );
-end MAFilter;
+end SequentialAdder;
 
 
-architecture Behavioral of MAFilter is
+architecture Behavioral of SequentialAdder is
 
   signal history          : std_logic_vector(SAMPLE_LENGTH-1 downto 0);
   signal sum              : integer := 0;

@@ -1,0 +1,7 @@
+Running: xsim.dir/MAFilter_tb_behav/xsimk -simmode gui -wdb MAFilter_tb_behav.wdb -simrunnum 0 -socket 39541
+Design successfully loaded
+Design Loading Memory Usage: 46148 KB (Peak: 46268 KB)
+Design Loading CPU Usage: 40 ms
+Simulation completed
+Simulation Memory Usage: 136084 KB (Peak: 185416 KB)
+Simulation CPU Usage: 70 ms

@@ -39,14 +39,14 @@ architecture Behavioral of MAFilter_tb is
 
 
 signal test_clk, test_rst, test_in : std_logic;
-signal test_sum : std_logic_vector(2 downto 0);
+signal test_sum : std_logic_vector(3 downto 0);
 
 begin
 
-    test0: entity work.MAFilter
+    test0: entity work.MAFilter1Bit
     generic map (
-        SAMPLE_LENGTH => 5,
-        SUM_WIDTH => 3
+        SAMPLE_LENGTH => 10,
+        SUM_WIDTH => 4
     )
     port map (
         clk => test_clk,
@@ -58,9 +58,6 @@ begin
     );
 
     process
-
-        variable per_mult : integer := 1;
-
     begin
 
         -- initial
@@ -77,7 +74,7 @@ begin
 
         test_rst <= '0';
 
-        for a in 0 to 9 loop
+        for a in 0 to 19 loop
 
           test_in <= '1';
 
@@ -89,7 +86,7 @@ begin
 
         end loop;
 
-        for a in 0 to 9 loop
+        for a in 0 to 19 loop
 
           test_in <= '1';
 
@@ -111,7 +108,7 @@ begin
 
         end loop;
 
-        for a in 0 to 9 loop
+        for a in 0 to 19 loop
 
           test_in <= '1';
 
@@ -123,7 +120,7 @@ begin
 
           test_in <= '0';
 
-          for b in 0 to 9-a loop
+          for b in 0 to 19-a loop
             -- clock edge
             wait for 5ns;
             test_clk <= '1';

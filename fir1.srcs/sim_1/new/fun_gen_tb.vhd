@@ -54,6 +54,7 @@ begin
         clk => test_clk,
         rst => test_rst,
         repeat_pattern => x"3FFF587C6D3F7B1E7FFE7B1E6D3F587C", --3FFF278112BE04DF000004DF12BE2781",
+        sample_period => x"10",
         pdm_out => test_pdm_out_0,
         pattern_out => test_pattern_out_0
       );
@@ -83,6 +84,7 @@ begin
                             x"04DF" &
                             x"12BE" &
                             x"2781" ,
+        sample_period => x"10",
         pdm_out => test_pdm_out_1,
         pattern_out => test_pattern_out_1
       );

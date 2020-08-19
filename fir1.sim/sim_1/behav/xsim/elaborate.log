@@ -1,6 +1,6 @@
 Vivado Simulator 2020.1
 Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: /home/gwrw/Xilinx/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 1f4367962a4b4441b8e64d3ba15e400e --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot fun_gen_tb_behav xil_defaultlib.fun_gen_tb -log elaborate.log 
+Running: /home/gwrw/Xilinx/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 1f4367962a4b4441b8e64d3ba15e400e --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot EdgeDetector_tb_behav xil_defaultlib.EdgeDetector_tb -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
 Completed static elaboration
@@ -11,17 +11,10 @@ Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
-Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=8)...]
-Compiling architecture behavioral of entity xil_defaultlib.reg1D [\reg1D(length=16)\]
-Compiling architecture behavioral of entity xil_defaultlib.reg2D [\reg2D(length=8,width=16)\]
-Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=4)...]
-Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=19)\]
-Compiling architecture behavioral of entity xil_defaultlib.diff_accum [\diff_accum(in_width=16,sum_widt...]
-Compiling architecture behavioral of entity xil_defaultlib.reg_generic [\reg_generic(reg_len=16)\]
-Compiling architecture behavioral of entity xil_defaultlib.shorten [\shorten(width=16,places=14)\]
-Compiling architecture behavioral of entity xil_defaultlib.pdm_generic [\pdm_generic(input_width=16,outp...]
-Compiling architecture behavioral of entity xil_defaultlib.fun_gen_sr [\fun_gen_sr(pdm_out_width=2,patt...]
-Compiling architecture behavioral of entity xil_defaultlib.reg2D [\reg2D(length=16,width=16)\]
-Compiling architecture behavioral of entity xil_defaultlib.fun_gen_sr [\fun_gen_sr(pdm_out_width=2,patt...]
-Compiling architecture behavioral of entity xil_defaultlib.fun_gen_tb
-Built simulation snapshot fun_gen_tb_behav
+Compiling package unisim.vcomponents
+Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=16)\]
+Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.MAFilter1Bit [mafilter1bit_default]
+Compiling architecture behavioral of entity xil_defaultlib.EdgeDetector [edgedetector_default]
+Compiling architecture behavioral of entity xil_defaultlib.edgedetector_tb
+Built simulation snapshot EdgeDetector_tb_behav
