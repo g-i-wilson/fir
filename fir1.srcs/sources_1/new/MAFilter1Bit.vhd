@@ -22,6 +22,7 @@ entity MAFilter1Bit is
     EN                        : in std_logic;
     SIG_IN                    : in std_logic;
 
+    SIG_OUT                   : out std_logic;
     SUM_OUT                   : out std_logic_vector(SUM_WIDTH-1 downto 0)
   );
 end MAFilter1Bit;
@@ -37,6 +38,7 @@ architecture Behavioral of MAFilter1Bit is
 begin
 
   newest_sample <= SIG_IN;
+  SIG_OUT <= oldest_sample;
 
   shift_reg : entity work.Reg1D
   generic map (
@@ -63,7 +65,7 @@ begin
         end if;
         
     elsif (newest_sample='1' and oldest_sample='0') then
-        if (unsigned(sum_out_sig) < SAMPLE_LENGTH) then
+        if (unsigned(sum_out_sig) < SAMPLE_LENGTH-1) then
             sum_in_sig <= std_logic_vector( unsigned(sum_out_sig) + 1 );
         end if;
         

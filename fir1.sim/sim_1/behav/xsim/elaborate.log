@@ -12,7 +12,7 @@ Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
 Compiling package unisim.vcomponents
-Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=16)\]
+Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=17)\]
 Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=4)\]
 Compiling architecture behavioral of entity xil_defaultlib.MAFilter1Bit [mafilter1bit_default]
 Compiling architecture behavioral of entity xil_defaultlib.EdgeDetector [edgedetector_default]

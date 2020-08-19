@@ -69,13 +69,13 @@ begin
         test_rst <= '1';
         test_in <= '0';
 
-        wait for 5ns;
+        wait for 2ns;
         test_clk <= '0';
-        wait for 5ns;
+        wait for 2ns;
         test_clk <= '1';
-        wait for 5ns;
+        wait for 2ns;
         test_clk <= '0';
-        wait for 5ns;
+        wait for 2ns;
 
         test_rst <= '0';
 
@@ -84,9 +84,9 @@ begin
           test_in <= '1';
 
           -- clock edge
-          wait for 5ns;
+          wait for 2ns;
           test_clk <= '1';
-          wait for 5ns;
+          wait for 2ns;
           test_clk <= '0';
 
         end loop;
@@ -96,18 +96,18 @@ begin
           test_in <= '1';
 
           -- clock edge
-          wait for 5ns;
+          wait for 2ns;
           test_clk <= '1';
-          wait for 5ns;
+          wait for 2ns;
           test_clk <= '0';
 
           test_in <= '0';
 
           for b in 0 to a loop
             -- clock edge
-            wait for 5ns;
+            wait for 2ns;
             test_clk <= '1';
-            wait for 5ns;
+            wait for 2ns;
             test_clk <= '0';
           end loop;
 
@@ -118,18 +118,18 @@ begin
           test_in <= '1';
 
           -- clock edge
-          wait for 5ns;
+          wait for 2ns;
           test_clk <= '1';
-          wait for 5ns;
+          wait for 2ns;
           test_clk <= '0';
 
           test_in <= '0';
 
           for b in 0 to 31-a loop
             -- clock edge
-            wait for 5ns;
+            wait for 2ns;
             test_clk <= '1';
-            wait for 5ns;
+            wait for 2ns;
             test_clk <= '0';
           end loop;
 

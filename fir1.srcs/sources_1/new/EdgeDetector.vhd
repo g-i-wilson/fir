@@ -106,6 +106,7 @@ begin
         next_state <= VALID_LOW;
         EDGE_EVENT <= '1';
         VALID <= '1';
+        DATA <= '0';
       elsif (unsigned(sum_sig) >= LOGIC_HIGH) then
         next_state <= VALID_HIGH;
       end if;
@@ -123,6 +124,7 @@ begin
         next_state <= VALID_HIGH;
         EDGE_EVENT <= '1';
         VALID <= '1';
+        DATA <= '1';
       elsif (unsigned(sum_sig) >= LOGIC_HIGH) then
         next_state <= VALID_LOW;
       end if;
