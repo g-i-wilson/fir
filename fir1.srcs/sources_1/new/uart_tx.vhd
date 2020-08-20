@@ -33,157 +33,101 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity SerialTx is
     generic (
-        BIT_PERIOD_WIDTH : positive;
-        LITTLE_ENDIAN : boolean := true
+        BIT_PERIOD : positive := 4
     );
     port ( 
         CLK : in STD_LOGIC;
         EN : in STD_LOGIC;
         RST : in STD_LOGIC;
-        VALID_IN : in STD_LOGIC;
-        DATA_IN : in STD_LOGIC_VECTOR (7 downto 0);
-        BIT_PERIOD : in STD_LOGIC_VECTOR (bit_period_width-1 downto 0); -- units of clock cycles
+        VALID : in STD_LOGIC;
+        DATA : in STD_LOGIC_VECTOR (7 downto 0);
         
-        READY_OUT : out STD_LOGIC;
-        TX_OUT : out STD_LOGIC
+        READY : out STD_LOGIC;
+        TX : out STD_LOGIC
     );
 end SerialTx;
 
 architecture Behavioral of SerialTx is
-
-  
-  type state_type is (
-    READY,
-    START,
-    TX_BYTE,
-    STOP
-  );
-
-  signal current_state        : state_type := STOP;
-  signal next_state           : state_type := STOP;
        
-  signal timing_en            : std_logic;
-  signal timing_rst           : std_logic;
-  signal bit_en               : std_logic;
-  signal bit_countdown        : std_logic_vector (3 downto 0);
-  signal byte_en              : std_logic;
-  signal bit_period_sig       : std_logic;
-  signal byte_period_sig      : std_logic;
+  signal bit_en_sig               : std_logic;
+  signal byte_en_sig        : std_logic;
+  signal ready_sig              : std_logic;
+  signal count_rst              : std_logic;
 
-  signal reg_shift_en         : std_logic;
   signal reg_par_en           : std_logic;
-  signal reg_rst              : std_logic;
-  signal reg_shift_out        : std_logic;
-  signal reg_default_state    : std_logic_vector (7 downto 0) := x"00";
+  signal reg_shift_en           : std_logic;
+  signal reg_bits_in        : std_logic_vector (9 downto 0);
+  
+  constant WORD_PERIOD       : integer := BIT_PERIOD*10;
+  signal bit_period_count       : integer := 0;
+  signal word_period_count       : integer := 0;
        
 begin
 
 
+    count_rst <= ready_sig;
+
+    -- bit & byte counters
    bit_div : entity work.clk_div_generic
         generic map (
-            period_width => bit_period_width
+            period_width => half_period_width
         )
         port map (
-            PERIOD => BIT_PERIOD,
-            CLK => CLK,
-            EN => timing_en,
-            RST => timing_rst,
-            
-            EN_OUT => bit_en
-        );
-   
-   byte_div : entity work.clk_div_generic
-        generic map (
-            period_width => 4
-        )
-        port map (
-            PERIOD => x"A",
-            CLK => CLK,
-            EN => bit_en,
-            RST => timing_rst,
-            
-            COUNT_OUT => bit_countdown
+            period => half_period,
+            clk => clk,
+            en => en,
+            rst => rst,
+            en_out => bit_en_sig
         );
 
+   word_div : entity work.clk_div_generic
+        generic map (
+            period_width => half_period_width
+        )
+        port map (
+            period => half_period,
+            clk => clk,
+            en => en,
+            rst => rst,
+            en_out => byte_en_sig
+        );
+        
+        
+    reg_bits_in <= '1' & DATA & '0'; -- stop-bit, data, start-bit
+   
     tx_reg: entity work.reg1D
       generic map (
-        length => 8,
-        big_endian => false
+        LENGTH => 10,
+        BIG_ENDIAN => false
       )
       port map (
         CLK => CLK,
-        RST => reg_rst,
+        RST => ready_sig,
         
-        shift_en => reg_shift_en,
-        par_en => reg_par_en,
-     
-        par_in => DATA_IN,
-        shift_out => reg_shift_out,
+        PAR_EN => reg_par_en,
+        PAR_IN => reg_bits_in,
         
-        default_state => reg_default_state
+        SHIFT_EN => reg_shift_en,
+        SHIFT_OUT => TX,
+        
+        DEFAULT_STATE => "1111111111" -- all stop bits
       );
 
-  FSM_state_register: process (CLK) begin
-    if rising_edge(CLK) then
-      if (RST = '1') then
-        current_state <= READY;
-      elsif (EN = '1') then
-        current_state <= next_state;
-      else
-        current_state <= current_state;
-      end if;
-    end if;
-  end process;
-
-
-  FSM_next_state_logic: process (current_state, bit_countdown, VALID_IN) begin
-
-    if (current_state = READY) then
-      if (VALID_IN = '1') then
-        next_state <= START;
-      end if;
-
-    elsif (current_state = START) then
-      if (unsigned(bit_countdown) = 9) then
-        next_state <= TX_BYTE;
-      end if;
-
-    elsif (current_state = TX_BYTE) then
-      if (unsigned(bit_countdown) = 2) then
-        next_state <= STOP;
-      end if;
-
-    elsif (current_state = STOP) then
-      if (unsigned(bit_countdown) = 1) then
-          if (VALID_IN = '1') then
-            next_state <= START;
-          else
-            next_state <= READY;
-          end if;
-      end if;
-      
-    else
-      next_state <= READY;
-    end if;
-
-  end process;
-
-
-  FSM_output_logic: process (current_state) begin
+  FSM: entity work.SerialTxFSM
+  port map (
+    CLK => CLK,
+    EN => EN,
+    RST => RST,
+    VALID => VALID,
+    BIT_EN => bit_en_sig,
+    BYTE_EN => byte_en_sig,
+    
+    READY => ready_sig,
+    LOAD => reg_par_en,
+    SHIFT => reg_shift_en
+  );
   
-    if (current_state = READY) then
-
-    elsif (current_state = START) then
-
-    elsif (current_state = TX_BYTE) then
-
-    elsif (current_state = STOP) then
-      
-    else
-
-    end if;
-
-  end process;
+  READY <= ready_sig;
 
 
 end Behavioral;

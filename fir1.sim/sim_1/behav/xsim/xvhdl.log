@@ -1,4 +1,4 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetector.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'EdgeDetector'
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/EdgeDetector_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'EdgeDetector_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/uart_tx.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SerialTx'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/SerialTx_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SerialTx_tb'

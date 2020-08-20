@@ -74,19 +74,11 @@ begin
                     count_out_sig <= count_in_sig;
                     en_sig <= '0';
                 end if;
+            else
+                count_out_sig <= count_out_sig;
+                en_sig <= '0';
             end if;
         end if;
     end process;
     
-    -- FF after output logic
---    process (clk) begin
---        if rising_edge(clk) then
---            if (rst = '1') then
---                en_out <= '0';
---            elsif (en = '1') then
---                en_out <= en_sig;
---            end if;
---        end if;
---    end process;
-
 end Behavioral;

@@ -27,7 +27,7 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "vivado",
-         "-log diff_out_test.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source diff_out_test.tcl" );
+         "-log SerialTxFSM.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source SerialTxFSM.tcl" );
 
 
 
