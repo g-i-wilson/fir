@@ -46,7 +46,7 @@ begin
 
     test0: entity work.SerialTx
     generic map (
-        BIT_PERIOD => 4
+        BIT_PERIOD_WIDTH => 4
     )
     port map ( 
         CLK => test_clk,
@@ -54,6 +54,7 @@ begin
         RST => test_rst,
         VALID => test_valid,
         DATA => test_data,
+        BIT_PERIOD => x"4",
         
         READY => test_ready,
         TX => test_tx

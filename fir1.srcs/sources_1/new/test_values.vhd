@@ -98,7 +98,7 @@ begin
     );
     
     
-    reg0: entity work.reg1D
+    reg0: entity work.Reg1D
     generic map (
         length => in_width
     )

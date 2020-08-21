@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1597949641">
-  <File Type="RDS-DCP" Name="SerialTxFSM.dcp"/>
   <File Type="PA-TCL" Name="SerialTxFSM.tcl"/>
   <File Type="REPORTS-TCL" Name="SerialTxFSM_reports.tcl"/>
   <File Type="RDS-RDS" Name="SerialTxFSM.vds"/>
+  <File Type="RDS-DCP" Name="SerialTxFSM.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/SerialTxFSM.vhd">

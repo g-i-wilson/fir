@@ -1,6 +1,6 @@
 Vivado Simulator 2020.1
 Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: /home/gwrw/Xilinx/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 1f4367962a4b4441b8e64d3ba15e400e --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot EdgeDetector_tb_behav xil_defaultlib.EdgeDetector_tb -log elaborate.log 
+Running: /home/gwrw/Xilinx/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 1f4367962a4b4441b8e64d3ba15e400e --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot SerialTx_tb_behav xil_defaultlib.SerialTx_tb -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
 Completed static elaboration
@@ -11,11 +11,10 @@ Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
-Compiling package unisim.vcomponents
-Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=16)\]
-Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=4)\]
-Compiling architecture behavioral of entity xil_defaultlib.MAFilter1Bit [mafilter1bit_default]
-Compiling architecture behavioral of entity xil_defaultlib.EdgeDetectorFSM [edgedetectorfsm_default]
-Compiling architecture behavioral of entity xil_defaultlib.EdgeDetector [edgedetector_default]
-Compiling architecture behavioral of entity xil_defaultlib.edgedetector_tb
-Built simulation snapshot EdgeDetector_tb_behav
+Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=4,...]
+Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=8,...]
+Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=10,big_endian=fals...]
+Compiling architecture behavioral of entity xil_defaultlib.SerialTxFSM [serialtxfsm_default]
+Compiling architecture behavioral of entity xil_defaultlib.SerialTx [serialtx_default]
+Compiling architecture behavioral of entity xil_defaultlib.serialtx_tb
+Built simulation snapshot SerialTx_tb_behav

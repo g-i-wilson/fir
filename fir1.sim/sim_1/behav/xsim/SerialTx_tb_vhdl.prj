@@ -1,9 +1,54 @@
 # compile vhdl design source files
 vhdl xil_defaultlib  \
 "../../../../fir1.srcs/sources_1/new/reg1D.vhd" \
+"../../../../fir1.srcs/sources_1/new/MAFilter1Bit.vhd" \
+"../../../../fir1.srcs/sources_1/new/EdgeDetectorFSM.vhd" \
+"../../../../fir1.srcs/sources_1/new/EdgeDetector.vhd" \
+"../../../../fir1.srcs/sources_1/new/reg2D.vhd" \
+"../../../../fir1.srcs/sources_1/new/MAFilter.vhd" \
+"../../../../fir1.srcs/sources_1/new/SequentialAdder.vhd" \
 "../../../../fir1.srcs/sources_1/new/SerialTxFSM.vhd" \
-"../../../../fir1.srcs/sources_1/new/uart_tx.vhd" \
+"../../../../fir1.srcs/sources_1/new/clk_div_generic.vhd" \
+"../../../../fir1.srcs/sources_1/new/decoder.vhdl" \
+"../../../../fir1.srcs/sources_1/new/diff_accum.vhd" \
+"../../../../fir1.srcs/sources_1/new/pdm_generic.vhd" \
+"../../../../fir1.srcs/sources_1/new/fun_gen_sr.vhd" \
+"../../../../fir1.srcs/sources_1/new/square_wave_gen.vhd" \
+"../../../../fir1.srcs/sources_1/new/diff_out_test.vhd" \
+"../../../../fir1.srcs/sources_1/new/encoder.vhdl" \
+"../../../../fir1.srcs/sources_1/new/shift_mult_generic.vhd" \
+"../../../../fir1.srcs/sources_1/new/fun_gen.vhd" \
+"../../../../fir1.srcs/sources_1/new/mult_generic.vhd" \
+"../../../../fir1.srcs/sources_1/new/pulsing_leds.vhd" \
+"../../../../fir1.srcs/sources_1/new/reg_add_generic.vhd" \
+"../../../../fir1.srcs/sources_1/new/reg_mult_generic.vhd" \
+"../../../../fir1.srcs/sources_1/new/register.vhdl" \
+"../../../../fir1.srcs/sources_1/new/shorten.vhd" \
+"../../../../fir1.srcs/sources_1/new/sin_wave_gen.vhd" \
+"../../../../fir1.srcs/sources_1/new/test_values.vhd" \
+"../../../../fir1.srcs/sources_1/new/test_fun_gen.vhd" \
+"../../../../fir1.srcs/sources_1/new/test_synth.vhdl" \
+"../../../../fir1.srcs/sources_1/new/mult_generic_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/reg2D_tb.vhd" \
+"../../../../fir1.srcs/sources_1/new/SerialTx.vhd" \
+"../../../../fir1.srcs/sim_1/new/EdgeDetector_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/EdgeDetectorFSM_tb.vhd" \
 "../../../../fir1.srcs/sim_1/new/SerialTx_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/MAFilter_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/fun_gen_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/reg1D_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/test_values_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/clk_div_generic_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/sin_wave_gen_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/sq_wave_gen_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/test_synth_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/pdm_generic_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/diff_accum_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/shorten_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/encoder_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/shift_mult_generic_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/mult_generic_tb.vhd" \
+"../../../../fir1.srcs/sim_1/new/register_tb.vhd" \
 
 # Do not sort compile order
 nosort
