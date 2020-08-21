@@ -34,18 +34,7 @@ end EdgeDetector;
 
 architecture Behavioral of EdgeDetector is
 
-  type state_type is (
-    INIT,
-    VALID_HIGH,
-    VALID_LOW,
-    FALLING,
-    RISING
-  );
-
-  signal current_state        : state_type := INIT;
-  signal next_state           : state_type := INIT;
-
-  signal sum_sig              : std_logic_vector(SUM_WIDTH-1 downto 0);
+    signal sum_sig : std_logic_vector(SUM_WIDTH-1 downto 0);
 
 begin
 
@@ -65,76 +54,24 @@ begin
   );
 
 
-  FSM_register: process (CLK) begin
-    if rising_edge(CLK) then
-      if (RST = '1') then
-        current_state <= INIT;
-      elsif (EN = '1') then
-        current_state <= next_state;
-      else
-        current_state <= current_state;
-      end if;
-    end if;
-  end process;
+  FSM: entity work.EdgeDetectorFSM
+  generic map (
+    SUM_WIDTH                 => SUM_WIDTH,
+    LOGIC_HIGH                => 13,
+    LOGIC_LOW                 => 2
+  )
+  port map (
+    RST                       => RST,
+    EN                        => EN,
+    CLK                       => CLK,
 
+    SUM_IN                    => sum_sig,
 
-  FSM_comb_logic: process (current_state, sum_sig) begin
-    -- begin with assumption output signals will be '0'
-    VALID <= '0';
-    DATA <= '0';
-    EDGE_EVENT <= '0';
-    -- INIT
-    if (current_state = INIT) then
-      if (unsigned(sum_sig) >= LOGIC_HIGH) then
-        next_state <= VALID_HIGH;
-      elsif (unsigned(sum_sig) <= LOGIC_LOW) then
-        next_state <= VALID_LOW;
-      end if;
-    -- VALID_HIGH
-    elsif (current_state = VALID_HIGH) then
-      VALID <= '1';
-      DATA <= '1';
-      if (unsigned(sum_sig) < LOGIC_HIGH and unsigned(sum_sig) > LOGIC_LOW) then
-        next_state <= FALLING;
-      elsif (unsigned(sum_sig) <= LOGIC_LOW) then
-        next_state <= VALID_LOW;
-      end if;
-    -- FALLING
-    elsif (current_state = FALLING) then
-      DATA <= '1';
-      if (unsigned(sum_sig) <= LOGIC_LOW) then
-        next_state <= VALID_LOW;
-        EDGE_EVENT <= '1';
-        VALID <= '1';
-        DATA <= '0';
-      elsif (unsigned(sum_sig) >= LOGIC_HIGH) then
-        next_state <= VALID_HIGH;
-      end if;
-    -- VALID_LOW
-    elsif (current_state = VALID_LOW) then
-      VALID <= '1';
-      if (unsigned(sum_sig) < LOGIC_HIGH and unsigned(sum_sig) > LOGIC_LOW) then
-        next_state <= RISING;
-      elsif (unsigned(sum_sig) >= LOGIC_HIGH) then
-        next_state <= VALID_HIGH;
-      end if;
-    -- RISING
-    elsif (current_state = RISING) then
-      if (unsigned(sum_sig) >= LOGIC_HIGH) then
-        next_state <= VALID_HIGH;
-        EDGE_EVENT <= '1';
-        VALID <= '1';
-        DATA <= '1';
-      elsif (unsigned(sum_sig) >= LOGIC_HIGH) then
-        next_state <= VALID_LOW;
-      end if;
-    -- DEFAULT STATE (to be sure to not infer memory)
-    else
-      next_state <= INIT;
-    end if;
+    EDGE_EVENT                => EDGE_EVENT,
+    VALID                     => VALID,
+    DATA                      => DATA
+  );
 
-
-  end process;
 
 
 end Behavioral;
