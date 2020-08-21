@@ -41,7 +41,7 @@ begin
     SIG_OUT         => sync_sig
   );
   
-  test0: entity work.EdgeDetector
+  rising_edge_detect: entity work.EdgeDetector
   generic map (
     SAMPLE_LENGTH             => 32,
     SUM_WIDTH                 => 5,
