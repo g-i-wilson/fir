@@ -2,3 +2,6 @@ Running: xsim.dir/SerialTx_tb_behav/xsimk -simmode gui -wdb SerialTx_tb_behav.wd
 Design successfully loaded
 Design Loading Memory Usage: 46152 KB (Peak: 46272 KB)
 Design Loading CPU Usage: 40 ms
+Simulation completed
+Simulation Memory Usage: 127888 KB (Peak: 185420 KB)
+Simulation CPU Usage: 180 ms
