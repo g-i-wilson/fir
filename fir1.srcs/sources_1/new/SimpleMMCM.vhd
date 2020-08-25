@@ -12,9 +12,9 @@ use UNISIM.VComponents.all;
 
 entity SimpleMMCM is
   generic (
-    CLKIN_PERIOD              : real := 5.000;
-    PLL_MUL                   : real := 5.0;
-    PLL_DIV                   : positive := 5;
+    CLKIN_PERIOD              : real := 10.000;
+    PLL_MUL                   : real := 10.0;
+    PLL_DIV                   : positive := 10;
     FB_BUFG                   : boolean := TRUE
   );
   port (
@@ -133,7 +133,8 @@ begin
     SYNC_LENGTH          => 3
   )
   port map (
-    CLK             => CLK,
+    RST             => '0',
+    CLK             => CLK_IN,
     SIG_IN        	=> rst_in_sig,
     SIG_OUT         => RST_OUT
   );
