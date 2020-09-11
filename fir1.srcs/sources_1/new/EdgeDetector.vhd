@@ -57,8 +57,8 @@ begin
   FSM: entity work.EdgeDetectorFSM
   generic map (
     SUM_WIDTH                 => SUM_WIDTH,
-    LOGIC_HIGH                => 13,
-    LOGIC_LOW                 => 2
+    LOGIC_HIGH                => LOGIC_HIGH,
+    LOGIC_LOW                 => LOGIC_LOW
   )
   port map (
     RST                       => RST,

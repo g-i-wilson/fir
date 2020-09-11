@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "/home/gwrw/fir1/fir1.runs/synth_1/SerialTxFSM.tcl"
+  variable script "/home/gwrw/fir1/fir1.runs/synth_1/SerialRxFSM.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,7 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param synth.incrementalSynthesisCache ./.Xil/Vivado-2852-black-computer/incrSyn
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
@@ -87,7 +86,45 @@ set_property ip_output_repo /home/gwrw/fir1/fir1.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_vhdl -library xil_defaultlib /home/gwrw/fir1/fir1.srcs/sources_1/new/SerialTxFSM.vhd
+read_vhdl -library xil_defaultlib {
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/MAFilter1Bit.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetectorFSM.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetector.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/reg2D.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/MAFilter.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/SequentialAdder.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/SerialTxFSM.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/decoder.vhdl
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/diff_accum.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/pdm_generic.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/fun_gen_sr.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/square_wave_gen.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/diff_out_test.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/encoder.vhdl
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/fun_gen.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/pulsing_leds.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/reg_add_generic.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/shorten.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/sin_wave_gen.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/test_values.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/test_fun_gen.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic_tb.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/SerialTx.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/SerialRx.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/PushButtonToggle.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/Synchronizer.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/ADC1Bit.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/SimpleMMCM.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/DAC_ADC.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/SerialRxFSM.vhd
+}
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -104,17 +141,17 @@ set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top SerialTxFSM -part xc7a35tcpg236-1
+synth_design -top SerialRxFSM -part xc7a35tcpg236-1
 OPTRACE "synth_design" END { }
 
 
 OPTRACE "write_checkpoint" START { CHECKPOINT }
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef SerialTxFSM.dcp
+write_checkpoint -force -noxdef SerialRxFSM.dcp
 OPTRACE "write_checkpoint" END { }
 OPTRACE "synth reports" START { REPORT }
-create_report "synth_1_synth_report_utilization_0" "report_utilization -file SerialTxFSM_utilization_synth.rpt -pb SerialTxFSM_utilization_synth.pb"
+create_report "synth_1_synth_report_utilization_0" "report_utilization -file SerialRxFSM_utilization_synth.rpt -pb SerialRxFSM_utilization_synth.pb"
 OPTRACE "synth reports" END { }
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]

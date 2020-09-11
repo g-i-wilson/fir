@@ -2,11 +2,11 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Thu Aug 20 13:54:07 2020
-# Process ID: 29306
+# Start of session at: Thu Sep 10 16:19:20 2020
+# Process ID: 20462
 # Current directory: /home/gwrw/fir1/fir1.runs/synth_1
-# Command line: vivado -log SerialTxFSM.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source SerialTxFSM.tcl
-# Log file: /home/gwrw/fir1/fir1.runs/synth_1/SerialTxFSM.vds
+# Command line: vivado -log SerialRxFSM.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source SerialRxFSM.tcl
+# Log file: /home/gwrw/fir1/fir1.runs/synth_1/SerialRxFSM.vds
 # Journal file: /home/gwrw/fir1/fir1.runs/synth_1/vivado.jou
 #-----------------------------------------------------------
-source SerialTxFSM.tcl -notrace
+source SerialRxFSM.tcl -notrace

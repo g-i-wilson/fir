@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log SerialTxFSM.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source SerialTxFSM.tcl
+EAStep vivado -log SerialRxFSM.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source SerialRxFSM.tcl

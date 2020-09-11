@@ -6,4 +6,4 @@
 # Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 #
 
-vivado -log SerialTxFSM.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source SerialTxFSM.tcl
+vivado -log SerialRxFSM.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source SerialRxFSM.tcl
