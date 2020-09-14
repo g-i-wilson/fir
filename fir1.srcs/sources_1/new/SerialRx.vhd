@@ -39,7 +39,7 @@ entity SerialRx is
         DETECTOR_PERIOD         : positive := 512;      -- units of samples
         DETECTOR_LOGIC_HIGH     : positive := 384;      -- units of samples
         DETECTOR_LOGIC_LOW      : positive := 128;      -- units of samples
-        BIT_TIMER_WIDTH         : positive := 8;        -- vector width
+        BIT_TIMER_WIDTH         : positive := 12;        -- vector width
         BIT_TIMER_PERIOD        : positive := 1042;     -- units of samples (default: 9600bps)
         VALID_LAG               : positive := 300       -- units of samples (when to start looking for a VALID signal)
     );
@@ -50,7 +50,13 @@ entity SerialRx is
         RX                      : in STD_LOGIC;
         VALID                   : out STD_LOGIC;
         DATA                    : out STD_LOGIC_VECTOR (7 downto 0);
-        ALARM                   : out STD_LOGIC_VECTOR (1 downto 0)
+        ALARM                   : out STD_LOGIC_VECTOR (1 downto 0);
+        COUNT                   : out STD_LOGIC_VECTOR (4 downto 0);
+        DETECTOR_COUNT          : out STD_LOGIC_VECTOR (DETECTOR_PERIOD_WIDTH-1 downto 0);
+        DETECTOR_EDGE_EVENT     : out STD_LOGIC;
+        DETECTOR_DATA           : out STD_LOGIC;
+        DETECTOR_VALID          : out STD_LOGIC;
+        SAMPLE                  : out STD_LOGIC
     );
 end SerialRx;
 
@@ -71,6 +77,7 @@ architecture Behavioral of SerialRx is
     signal data_bit_invalid_sig : std_logic;
     signal stop_bit_invalid_sig : std_logic;
     signal alarm_sig : std_logic_vector(1 downto 0);
+    signal detector_count_sig : std_logic_vector(DETECTOR_PERIOD_WIDTH-1 downto 0);
 
 begin
 
@@ -85,6 +92,8 @@ begin
             rst                 => RST,
             en_out              => sample_en_sig
         );
+        
+     SAMPLE <= sample_en_sig;
 
     edge_detect: entity work.EdgeDetector
     generic map (
@@ -98,13 +107,19 @@ begin
     -- inputs
         CLK                       => CLK,
         RST                       => RST,
-        EN                        => sample_en_sig,
+        SAMPLE                    => sample_en_sig,
         SIG_IN                    => RX,
     -- outputs
         EDGE_EVENT                => edge_event_sig,
         DATA                      => data_sig,
-        VALID                     => valid_sig
+        VALID                     => valid_sig,
+        SUM                       => detector_count_sig
     );
+
+    DETECTOR_COUNT <= detector_count_sig;
+    DETECTOR_EDGE_EVENT <= edge_event_sig;
+    DETECTOR_DATA <= data_sig;
+    DETECTOR_VALID <= valid_sig;
 
    bit_timer : entity work.clk_div_generic
         generic map (
@@ -133,6 +148,8 @@ begin
             end if;
         end if;
     end process;
+    
+  COUNT <= count_sig;
 
   data_reg : entity work.Reg1D
   generic map (

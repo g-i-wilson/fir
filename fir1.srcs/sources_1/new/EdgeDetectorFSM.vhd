@@ -38,7 +38,7 @@ entity EdgeDetectorFSM is
         LOGIC_LOW           : positive := 2
     );
     Port ( CLK              : in STD_LOGIC;
-           EN               : in STD_LOGIC;
+           EN               : in STD_LOGIC := '1';
            RST              : in STD_LOGIC;
            SUM_IN           : in STD_LOGIC_VECTOR (SUM_WIDTH-1 downto 0);
            EDGE_EVENT       : out STD_LOGIC;

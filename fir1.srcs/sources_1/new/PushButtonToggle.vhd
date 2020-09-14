@@ -46,13 +46,14 @@ begin
     SAMPLE_LENGTH             => 32,
     SUM_WIDTH                 => 5,
     LOGIC_HIGH                => 24,
-    LOGIC_LOW                 => 8
+    LOGIC_LOW                 => 8,
+    SUM_START                 => 15
   )
   port map (
     RST                       => RST,
-    EN                        => '1',
     CLK                       => CLK,
 
+    SAMPLE                    => '1',
     SIG_IN                    => sync_sig,
 
     EDGE_EVENT                => edge_sig,

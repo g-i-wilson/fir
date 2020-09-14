@@ -20,14 +20,15 @@ entity EdgeDetector is
   );
   port (
     RST                       : in std_logic;
-    EN                        : in std_logic;
     CLK                       : in std_logic;
+    SAMPLE                    : in std_logic;
 
     SIG_IN                    : in std_logic;
 
     EDGE_EVENT                : out std_logic;
     VALID                     : out std_logic;
-    DATA                      : out std_logic
+    DATA                      : out std_logic;
+    SUM                       : out std_logic_vector(SUM_WIDTH-1 downto 0)
   );
 end EdgeDetector;
 
@@ -47,7 +48,7 @@ begin
   )
   port map (
     CLK => CLK,
-    EN => EN,
+    EN => SAMPLE,
     RST => RST,
     SIG_IN => SIG_IN,
     SUM_OUT => sum_sig
@@ -62,7 +63,6 @@ begin
   )
   port map (
     RST                       => RST,
-    EN                        => EN,
     CLK                       => CLK,
 
     SUM_IN                    => sum_sig,
@@ -72,6 +72,6 @@ begin
     DATA                      => DATA
   );
 
-
+  SUM <= sum_sig;
 
 end Behavioral;
