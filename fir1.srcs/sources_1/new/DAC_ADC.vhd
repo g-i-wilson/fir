@@ -41,8 +41,7 @@ entity DAC_ADC is
         XA4_P : out STD_LOGIC;
         XA4_N : out STD_LOGIC;
         
-        led : out STD_LOGIC_VECTOR(15 downto 0);
-        sw : in STD_LOGIC_VECTOR(15 downto 0)
+        led : out STD_LOGIC_VECTOR(15 downto 0)
     );
 end DAC_ADC;
 
@@ -56,11 +55,13 @@ architecture Behavioral of DAC_ADC is
     signal adc_out : std_logic;
     signal adc_sample_en : std_logic;
     signal wave_in_sig : std_logic_vector(7 downto 0);
-    signal filter_out_sig : std_logic_vector(7 downto 0);
+    signal filter_out_sig : std_logic_vector(19 downto 0);
+    
+    signal led_sig : std_logic;
 
 begin
 
-    mmcm0: entity work.SimpleMMCM
+    mmcm0: entity work.SimpleMMCM2
       generic map (
         CLKIN_PERIOD              => 10.000,
         PLL_MUL                   => 10.0,
@@ -74,33 +75,25 @@ begin
         RST_OUT                   => mmcm_rst,
         CLK_OUT                   => mmcm_clk
       );
-      
-      
-    dac: entity work.pdm_generic
+    
+    led_blink: entity work.square_wave_gen
         generic map (
-            input_width         => 16,
-            output_width        => 1,
-            pulse_count_width   => 8
+            half_period_width => 28
         )
         port map (
-            input               => sw,
-            output(0)           => dac_out,
-            pulse_length        => x"64",  -- 100MHz/1MHz to hex
-            clk                 => mmcm_clk,
-            en                  => '1',
-            rst                 => mmcm_rst
+            clk => CLK,
+            en => '1',
+            rst => mmcm_rst,
+            half_period => x"2FAF080",
+            sq_out => led_sig
         );
-        
-     XA4_P <= dac_out;
-     XA4_N <= not dac_out;
-
-
+      
    clk_div : entity work.clk_div_generic
         generic map (
-            period_width    => 12
+            period_width    => 8
         )
         port map (
-            PERIOD          => x"3E8",   -- 100MHz/0.1MHz to hex
+            PERIOD          => x"64",   -- 100MHz/1MHz to hex
             CLK             => mmcm_clk,
             EN              => '1',
             RST             => mmcm_rst,
@@ -129,14 +122,31 @@ begin
         )
         port map (
             shift_in => wave_in_sig,
-            sum_out => led(7 downto 0),
+            sum_out => filter_out_sig,
             clk => mmcm_clk,
             en => adc_sample_en,
             rst => mmcm_rst,
             coef_in => x"020913202C363D403D362C20130902"
         );
         
-    
+    dac: entity work.pdm_generic
+        generic map (
+            input_width         => 20,
+            output_width        => 1,
+            pulse_count_width   => 4
+        )
+        port map (
+            input               => filter_out_sig,
+            output(0)           => dac_out,
+            pulse_length        => x"A",  -- 100MHz/10MHz to hex
+            clk                 => mmcm_clk,
+            en                  => '1',
+            rst                 => mmcm_rst
+        );
+        
+     XA4_P <= dac_out;
+     XA4_N <= not dac_out;
 
+    led <= filter_out_sig(14 downto 0) & led_sig;
 
 end Behavioral;

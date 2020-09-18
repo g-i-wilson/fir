@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Fri Sep 18 15:41:41 2020
+# Process ID: 9119
+# Current directory: /home/gwrw/fir1/fir1.runs/impl_1
+# Command line: vivado -log DAC_ADC.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source DAC_ADC.tcl -notrace
+# Log file: /home/gwrw/fir1/fir1.runs/impl_1/DAC_ADC.vdi
+# Journal file: /home/gwrw/fir1/fir1.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source DAC_ADC.tcl -notrace

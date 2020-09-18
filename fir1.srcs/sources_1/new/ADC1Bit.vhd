@@ -28,15 +28,15 @@ end ADC1Bit;
 architecture Behavioral of ADC1Bit is
 
     signal pdm_out_sig : std_logic;
-    signal cmp_en_sig : std_logic;
+    signal cmp_in_sig : std_logic;
 
 begin
 
-    process (CLK) begin
+    adc: process (CLK) begin
         if rising_edge(CLK) then
             if (RST = '1') then
             	pdm_out_sig <= '0';
-           	elsif (cmp_en_sig = '1') then
+           	elsif (EN = '1') then
            		pdm_out_sig <= CMP_IN;
            	else
            		pdm_out_sig <= pdm_out_sig;
