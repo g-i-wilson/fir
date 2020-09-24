@@ -44,13 +44,16 @@ entity SerialRx is
         VALID_LAG               : positive := 300       -- units of samples (when to start looking for a VALID signal)
     );
     port (
+        -- inputs
         CLK                     : in STD_LOGIC;
         EN                      : in STD_LOGIC;
         RST                     : in STD_LOGIC;
         RX                      : in STD_LOGIC;
+        -- outputs
         VALID                   : out STD_LOGIC;
         DATA                    : out STD_LOGIC_VECTOR (7 downto 0);
         ALARM                   : out STD_LOGIC_VECTOR (1 downto 0);
+        -- debug outputs
         COUNT                   : out STD_LOGIC_VECTOR (4 downto 0);
         DETECTOR_COUNT          : out STD_LOGIC_VECTOR (DETECTOR_PERIOD_WIDTH-1 downto 0);
         DETECTOR_EDGE_EVENT     : out STD_LOGIC;
@@ -188,7 +191,7 @@ begin
         RST                     => RST,
         EN                      => EN,
         EDGE_EVENT              => edge_event_sig,
-        VALID                   => valid_sig,
+        VALID_IN                => valid_sig,
         DATA                    => data_sig,
         TIMER                   => timer_sig,
         COUNT                   => count_sig,
@@ -198,7 +201,7 @@ begin
         RST_COUNT               => rst_count_sig,
         RST_TIMER               => rst_timer_sig,
         SHIFT_IN_BIT            => shift_in_bit_sig,
-        BYTE_COMPLETE           => VALID,
+        VALID_OUT               => VALID,
         DATA_BIT_INVALID_ALARM  => data_bit_invalid_sig,
         STOP_BIT_INVALID_ALARM  => stop_bit_invalid_sig
     );

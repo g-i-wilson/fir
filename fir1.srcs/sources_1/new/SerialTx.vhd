@@ -15,13 +15,14 @@ entity SerialTx is
         BIT_PERIOD_WIDTH        : positive := 4
     );
     port ( 
+        -- inputs
         CLK                     : in STD_LOGIC;
         EN                      : in STD_LOGIC;
         RST                     : in STD_LOGIC;
         VALID                   : in STD_LOGIC;
         DATA                    : in STD_LOGIC_VECTOR (7 downto 0);
         BIT_PERIOD              : in STD_LOGIC_VECTOR (BIT_PERIOD_WIDTH-1 downto 0);
-        
+        -- outputs
         READY                   : out STD_LOGIC;
         TX                      : out STD_LOGIC
     );

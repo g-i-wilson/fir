@@ -36,7 +36,7 @@ entity SerialRxFSM is
            RST              : in STD_LOGIC;
            EN               : in STD_LOGIC;
            EDGE_EVENT       : in STD_LOGIC;
-           VALID            : in STD_LOGIC;
+           VALID_IN         : in STD_LOGIC;
            DATA             : in STD_LOGIC;
            TIMER            : in STD_LOGIC;
            COUNT            : in STD_LOGIC_VECTOR (4 downto 0); -- 5 bits
@@ -46,7 +46,7 @@ entity SerialRxFSM is
            RST_COUNT        : out STD_LOGIC;
            RST_TIMER        : out STD_LOGIC;
            SHIFT_IN_BIT     : out STD_LOGIC;
-           BYTE_COMPLETE    : out STD_LOGIC;
+           VALID_OUT        : out STD_LOGIC;
            DATA_BIT_INVALID_ALARM    : out STD_LOGIC;
            STOP_BIT_INVALID_ALARM    : out STD_LOGIC           
     );
@@ -64,7 +64,7 @@ architecture Behavioral of SerialRxFSM is
     DATA_BIT_STATE,
     STOP_WAIT_STATE,
     STOP_BIT_STATE,
-    BYTE_COMPLETE_STATE,
+    VALID_OUT_STATE,
     DATA_BIT_INVALID_ALARM_STATE,
     STOP_BIT_INVALID_ALARM_STATE
   );
@@ -87,12 +87,12 @@ begin
   end process;
 
 
-    FSM_next_state_logic: process (current_state, EDGE_EVENT, VALID, DATA, TIMER, COUNT) begin
+    FSM_next_state_logic: process (current_state, EDGE_EVENT, VALID_IN, DATA, TIMER, COUNT) begin
     
         next_state <= current_state;
         
         if current_state = INIT_STATE then
-            if (VALID = '1' and DATA = '1') then
+            if (VALID_IN = '1' and DATA = '1') then
                 next_state <= BREAK_STATE;
             end if;
             
@@ -111,7 +111,7 @@ begin
         elsif current_state = DATA_WAIT_STATE then
             if (EDGE_EVENT = '1') then
                 next_state <= RST_TIMER_STATE;
-            elsif (TIMER = '1' and VALID = '1') then
+            elsif (TIMER = '1' and VALID_IN = '1') then
                 next_state <= DATA_BIT_STATE;
             elsif (TIMER = '1') then
                 next_state <= DATA_VALID_WAIT_STATE;
@@ -121,7 +121,7 @@ begin
             next_state <= DATA_BIT_STATE;
             
        elsif current_state = DATA_VALID_WAIT_STATE then
-            if (VALID = '1') then
+            if (VALID_IN = '1') then
                 next_state <= DATA_BIT_STATE;
             elsif (TIMER = '1') then
                 next_state <= DATA_BIT_INVALID_ALARM_STATE;
@@ -137,13 +137,13 @@ begin
        elsif current_state = STOP_WAIT_STATE then
             if (EDGE_EVENT = '1' or TIMER = '1') then
                 if (DATA = '1') then
-                    next_state <= BYTE_COMPLETE_STATE;
+                    next_state <= VALID_OUT_STATE;
                 else
                     next_state <= STOP_BIT_INVALID_ALARM_STATE;
                 end if;
             end if;
             
-       elsif current_state = BYTE_COMPLETE_STATE then
+       elsif current_state = VALID_OUT_STATE then
             next_state <= START_WAIT_STATE;
             
        elsif current_state = DATA_BIT_INVALID_ALARM_STATE then
@@ -165,7 +165,7 @@ begin
    COUNT_BREAK <= '0';
    COUNT_BIT <= '0';
    SHIFT_IN_BIT <= '0';
-   BYTE_COMPLETE <= '0';
+   VALID_OUT <= '0';
    DATA_BIT_INVALID_ALARM <= '0';
    STOP_BIT_INVALID_ALARM <= '0';
     
@@ -182,8 +182,8 @@ begin
     elsif (current_state = DATA_BIT_STATE) then
         SHIFT_IN_BIT <= '1';
         COUNT_BIT <= '1';
-    elsif (current_state = BYTE_COMPLETE_STATE) then
-        BYTE_COMPLETE <= '1';
+    elsif (current_state = VALID_OUT_STATE) then
+        VALID_OUT <= '1';
     elsif (current_state = DATA_BIT_INVALID_ALARM_STATE) then
         DATA_BIT_INVALID_ALARM <= '1';
     elsif (current_state = STOP_BIT_INVALID_ALARM_STATE) then
