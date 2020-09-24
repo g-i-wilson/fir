@@ -1,13 +1,13 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Thu Sep 10 16:23:23 2020
-| Host         : black-computer running 64-bit Ubuntu 18.04.5 LTS
-| Command      : report_utilization -file SerialRxFSM_utilization_synth.rpt -pb SerialRxFSM_utilization_synth.pb
-| Design       : SerialRxFSM
+| Date         : Fri Sep 18 15:41:20 2020
+| Host         : blacklaptop running 64-bit Ubuntu 18.04.5 LTS
+| Command      : report_utilization -file DAC_ADC_utilization_synth.rpt -pb DAC_ADC_utilization_synth.pb
+| Design       : DAC_ADC
 | Device       : 7a35tcpg236-1
 | Design State : Synthesized
------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
 
 Utilization Design Information
 
@@ -27,18 +27,20 @@ Table of Contents
 1. Slice Logic
 --------------
 
-+-------------------------+------+-------+-----------+-------+
-|        Site Type        | Used | Fixed | Available | Util% |
-+-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |   16 |     0 |     20800 |  0.08 |
-|   LUT as Logic          |   16 |     0 |     20800 |  0.08 |
-|   LUT as Memory         |    0 |     0 |      9600 |  0.00 |
-| Slice Registers         |    4 |     0 |     41600 | <0.01 |
-|   Register as Flip Flop |    4 |     0 |     41600 | <0.01 |
-|   Register as Latch     |    0 |     0 |     41600 |  0.00 |
-| F7 Muxes                |    0 |     0 |     16300 |  0.00 |
-| F8 Muxes                |    0 |     0 |      8150 |  0.00 |
-+-------------------------+------+-------+-----------+-------+
++----------------------------+------+-------+-----------+-------+
+|          Site Type         | Used | Fixed | Available | Util% |
++----------------------------+------+-------+-----------+-------+
+| Slice LUTs*                |  372 |     0 |     20800 |  1.79 |
+|   LUT as Logic             |  369 |     0 |     20800 |  1.77 |
+|   LUT as Memory            |    3 |     0 |      9600 |  0.03 |
+|     LUT as Distributed RAM |    0 |     0 |           |       |
+|     LUT as Shift Register  |    3 |     0 |           |       |
+| Slice Registers            |  339 |     0 |     41600 |  0.81 |
+|   Register as Flip Flop    |  339 |     0 |     41600 |  0.81 |
+|   Register as Latch        |    0 |     0 |     41600 |  0.00 |
+| F7 Muxes                   |    0 |     0 |     16300 |  0.00 |
+| F8 Muxes                   |    0 |     0 |      8150 |  0.00 |
++----------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
 
@@ -56,8 +58,8 @@ Table of Contents
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
-| 0     |          Yes |         Set |            - |
-| 4     |          Yes |       Reset |            - |
+| 12    |          Yes |         Set |            - |
+| 327   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -90,7 +92,7 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |   18 |     0 |       106 | 16.98 |
+| Bonded IOB                  |   21 |     0 |       106 | 19.81 |
 | Bonded IPADs                |    0 |     0 |        10 |  0.00 |
 | Bonded OPADs                |    0 |     0 |         4 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |         5 |  0.00 |
@@ -115,9 +117,9 @@ Table of Contents
 +------------+------+-------+-----------+-------+
 |  Site Type | Used | Fixed | Available | Util% |
 +------------+------+-------+-----------+-------+
-| BUFGCTRL   |    1 |     0 |        32 |  3.13 |
+| BUFGCTRL   |    2 |     0 |        32 |  6.25 |
 | BUFIO      |    0 |     0 |        20 |  0.00 |
-| MMCME2_ADV |    0 |     0 |         5 |  0.00 |
+| MMCME2_ADV |    1 |     0 |         5 | 20.00 |
 | PLLE2_ADV  |    0 |     0 |         5 |  0.00 |
 | BUFMRCE    |    0 |     0 |        10 |  0.00 |
 | BUFHCE     |    0 |     0 |        72 |  0.00 |
@@ -146,18 +148,24 @@ Table of Contents
 7. Primitives
 -------------
 
-+----------+------+---------------------+
-| Ref Name | Used | Functional Category |
-+----------+------+---------------------+
-| IBUF     |   12 |                  IO |
-| LUT6     |   10 |                 LUT |
-| LUT4     |    7 |                 LUT |
-| OBUF     |    6 |                  IO |
-| FDRE     |    4 |        Flop & Latch |
-| LUT5     |    2 |                 LUT |
-| LUT2     |    1 |                 LUT |
-| BUFG     |    1 |               Clock |
-+----------+------+---------------------+
++------------+------+---------------------+
+|  Ref Name  | Used | Functional Category |
++------------+------+---------------------+
+| FDRE       |  327 |        Flop & Latch |
+| LUT2       |  291 |                 LUT |
+| CARRY4     |  115 |          CarryLogic |
+| LUT1       |   92 |                 LUT |
+| OBUF       |   19 |                  IO |
+| FDSE       |   12 |        Flop & Latch |
+| LUT3       |   10 |                 LUT |
+| LUT5       |    9 |                 LUT |
+| LUT4       |    8 |                 LUT |
+| LUT6       |    6 |                 LUT |
+| SRL16E     |    3 |  Distributed Memory |
+| IBUF       |    2 |                  IO |
+| BUFG       |    2 |               Clock |
+| MMCME2_ADV |    1 |               Clock |
++------------+------+---------------------+
 
 
 8. Black Boxes
