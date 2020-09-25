@@ -1,23 +1,3 @@
-----------------------------------------------------------------------------------
--- Company:
--- Engineer:
---
--- Create Date: 08/05/2020 08:49:32 AM
--- Design Name:
--- Module Name: diff_out_test - Behavioral
--- Project Name:
--- Target Devices:
--- Tool Versions:
--- Description:
---
--- Dependencies:
---
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
---
-----------------------------------------------------------------------------------
-
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -32,23 +12,24 @@ library UNISIM;
 use UNISIM.VComponents.all;
 
 entity QuadDemod is
+    generic (
+        WIDTH_IN   : positive := 4,
+        LENGTH  : positive := 15
+    );
     port (
-        CLK : in STD_LOGIC;
+        CLK     : in STD_LOGIC;
 
-        XA1_P : in STD_LOGIC;
-        XA1_N : out STD_LOGIC;
+        SIG_IN  : in STD_LOGIC_VECTOR(WIDTH_IN-1 downto 0);
+        COEF_IN   : out STD_LOGIC_VECTOR((WIDTH_IN*2)*LENGTH-1 downto 0) := x"020913202C363D403D362C20130902";
 
-        XA4_P : out STD_LOGIC;
-        XA4_N : out STD_LOGIC;
-
-        led : out STD_LOGIC_VECTOR(15 downto 0);
-        sw : in STD_LOGIC_VECTOR(15 downto 0)
+        I_OUT   : out STD_LOGIC_VECTOR((WIDTH_IN*2)-1 downto 0);
+        Q_OUT   : out STD_LOGIC_VECTOR(WIDTH_IN*2)-1 downto 0)
     );
 end QuadDemod;
 
 architecture Behavioral of QuadDemod is
 
-    signal mmcm_clk : std_logic;
+    signal mmcm_clk : STD_LOGIC_VECTOR(WIDTH-1 downto 0);;
     signal mmcm_rst : std_logic;
 
     signal dac_out : std_logic;

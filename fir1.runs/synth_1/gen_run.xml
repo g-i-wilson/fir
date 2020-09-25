@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1600461580">
-  <File Type="VDS-TIMINGSUMMARY" Name="DAC_ADC_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="DAC_ADC.dcp"/>
   <File Type="RDS-UTIL-PB" Name="DAC_ADC_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="DAC_ADC_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="DAC_ADC_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="DAC_ADC.vds"/>
-  <File Type="REPORTS-TCL" Name="DAC_ADC_reports.tcl"/>
-  <File Type="VDS-TIMING-PB" Name="DAC_ADC_timing_summary_synth.pb"/>
   <File Type="PA-TCL" Name="DAC_ADC.tcl"/>
+  <File Type="RDS-UTIL" Name="DAC_ADC_utilization_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="DAC_ADC_reports.tcl"/>
+  <File Type="RDS-RDS" Name="DAC_ADC.vds"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/ADC1Bit.vhd">

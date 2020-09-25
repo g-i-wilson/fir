@@ -41,15 +41,15 @@ architecture Behavioral of SPIHalfDuplex is
 
     -- data busses
     signal valid_buffer_sig     : std_logic_vector(7 downto 0);
-    signal from_data_in_sig     : std_logic;
-    signal to_data_out_sig      : std_logic;
-    signal miso_sync_sig         : std_logic;
+    signal data_in_msb_sig      : std_logic;
+    signal miso_sync_sig        : std_logic;
     signal bit_count_sig        : std_logic_vector(3 downto 0);
 
     -- timer signals
     signal write_len_sig        : std_logic_vector(7 downto 0);
     signal read_len_sig         : std_logic_vector(7 downto 0);
     signal bit_count_rst_sig    : std_logic;
+    signal rw_count_rst_sig     : std_logic;
     
     -- FSM inputs
     signal write_done_sig       : std_logic;
@@ -58,18 +58,18 @@ architecture Behavioral of SPIHalfDuplex is
     signal sck_edge_sig         : std_logic;
     
     -- FSM outputs
-    signal read_en_sig          : std_logic;
-    signal sck_en_sig           : std_logic;
-    signal bit_count_en_sig     : std_logic;
-    signal bit_count_rst_fsm_sig : std_logic;
-    signal write_count_en_sig   : std_logic;
-    signal read_count_en_sig    : std_logic;
-    signal tristate_en_sig      : std_logic;
-    signal load_write_len_sig   : std_logic;
-    signal load_read_len_sig    : std_logic;
-    signal load_data_in_sig     : std_logic;
-    signal load_data_out_sig    : std_logic;
-    signal shift_data_sig       : std_logic;
+    signal sck_en_sig               : std_logic;
+    signal bit_count_en_sig         : std_logic;
+    signal bit_count_rst_fsm_sig    : std_logic;
+    signal write_count_en_sig       : std_logic;
+    signal read_count_en_sig        : std_logic;
+    signal rw_count_rst_fsm_sig     : std_logic;
+    signal tristate_en_sig          : std_logic;
+    signal load_write_len_sig       : std_logic;
+    signal load_read_len_sig        : std_logic;
+    signal load_data_in_sig         : std_logic;
+    signal shift_data_in_sig        : std_logic;
+    signal shift_data_out_sig       : std_logic;
 
 
 begin
@@ -92,18 +92,18 @@ begin
             -- outputs
             READY_OUT           => READY_OUT,
             VALID_OUT           => VALID_OUT,
-            READ_EN             => read_en_sig,
             SCK_EN              => sck_en_sig,
             BIT_COUNT_EN        => bit_count_en_sig,
             BIT_COUNT_RST       => bit_count_rst_fsm_sig,
             WRITE_COUNT_EN      => write_count_en_sig,
             READ_COUNT_EN       => read_count_en_sig,
+            RW_COUNT_RST        => rw_count_rst_fsm_sig,
             TRISTATE_EN         => TRISTATE_EN,
             LOAD_WRITE_LEN      => load_write_len_sig,
             LOAD_READ_LEN       => load_read_len_sig,
             LOAD_DATA_IN        => load_data_in_sig,
-            LOAD_DATA_OUT       => load_data_out_sig,
-            SHIFT_DATA          => shift_data_sig,
+            SHIFT_DATA_IN       => shift_data_in_sig,
+            SHIFT_DATA_OUT      => shift_data_out_sig,
             CS                  => CS,
             SCK                 => SCK
         );
@@ -124,18 +124,11 @@ begin
         SIG_OUT         => miso_sync_sig
     );
 
-    process( from_data_in_sig, read_en_sig, miso_sync_sig )
-    begin
-        if (read_en_sig = '1') then
-            to_data_out_sig <= miso_sync_sig;
-        else
-            to_data_out_sig <= from_data_in_sig;
-        end if;
-    end process;
-    
     bit_count_rst_sig <= RST or bit_count_rst_fsm_sig;
     
-    MOSI <= from_data_in_sig;
+    rw_count_rst_sig <= RST or rw_count_rst_fsm_sig;
+    
+    MOSI <= data_in_msb_sig;
     
 
     ----------------------------------------------------
@@ -166,8 +159,8 @@ begin
             PAR_EN              => load_data_in_sig,
             PAR_IN              => valid_buffer_sig,
             
-            SHIFT_EN            => shift_data_sig,
-            SHIFT_OUT           => from_data_in_sig
+            SHIFT_EN            => shift_data_in_sig,
+            SHIFT_OUT           => data_in_msb_sig
         );
 
     DATA_OUT_reg: entity work.reg1D
@@ -178,12 +171,10 @@ begin
             CLK                 => CLK,
             RST                 => RST,
             
-            PAR_EN              => load_data_out_sig,
-            PAR_IN              => valid_buffer_sig,
             PAR_OUT             => DATA_OUT,
             
-            SHIFT_EN            => shift_data_sig,
-            SHIFT_IN            => to_data_out_sig
+            SHIFT_EN            => shift_data_out_sig,
+            SHIFT_IN            => miso_sync_sig
         );
 
     WRITE_LEN_reg: entity work.reg1D
@@ -192,7 +183,7 @@ begin
         )
         port map (
             CLK                 => CLK,
-            RST                 => RST,
+            RST                 => rw_count_rst_sig,
             
             PAR_EN              => load_write_len_sig,
             PAR_IN              => valid_buffer_sig,
@@ -205,7 +196,7 @@ begin
         )
         port map (
             CLK                 => CLK,
-            RST                 => RST,
+            RST                 => rw_count_rst_sig,
             
             PAR_EN              => load_read_len_sig,
             PAR_IN              => valid_buffer_sig,
@@ -231,13 +222,12 @@ begin
         
     bit_counter : entity work.Timer
         generic map (
-            WIDTH               => 4
+            WIDTH               => 3 -- defaults to "000" through "111", which is 8 combinations
         )
         port map (
             CLK                 => CLK,
-            EN                  => shift_data_sig,
+            EN                  => bit_count_en_sig,
             RST                 => bit_count_rst_sig,
-            CMP                 => x"8",
             DONE                => byte_done_sig
         );
 
@@ -248,8 +238,8 @@ begin
         port map (
             CLK                 => CLK,
             EN                  => write_count_en_sig,
-            RST                 => RST,
-            CMP                 => write_len_sig,
+            RST                 => rw_count_rst_sig,
+            COUNT_END           => write_len_sig,
             DONE                => write_done_sig
         );
         
@@ -260,8 +250,8 @@ begin
         port map (
             CLK                 => CLK,
             EN                  => read_count_en_sig,
-            RST                 => RST,
-            CMP                 => read_len_sig,
+            RST                 => rw_count_rst_sig,
+            COUNT_END           => read_len_sig,
             DONE                => read_done_sig
         );
         

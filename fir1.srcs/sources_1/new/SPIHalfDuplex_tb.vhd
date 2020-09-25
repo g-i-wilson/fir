@@ -65,7 +65,7 @@ begin
     sck_half_period_sig <= x"04";
     valid_in_sig <= '1';
     ready_in_sig <= '1';
-    miso_sig <= '1';
+    miso_sig <= mosi_sig;
 
     test_data: entity work.Reg2D
     generic map (
