@@ -1,24 +1,3 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 09/10/2020 03:13:26 PM
--- Design Name: 
--- Module Name: TxRx_tb - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -45,16 +24,17 @@ begin
 
     Tx: entity work.SerialTx
     generic map (
-        BIT_PERIOD_WIDTH => 8
+        BIT_TIMER_WIDTH => 8,
+        BIT_TIMER_PERIOD => 16
     )
     port map ( 
+        -- inputs
         CLK => test_clk,
         EN => '1',
         RST => test_rst,
         VALID => test_valid_tx_in,
         DATA => test_data_tx_in,
-        BIT_PERIOD => x"10",
-        
+        -- outputs
         READY => test_ready,
         TX => test_tx
     );

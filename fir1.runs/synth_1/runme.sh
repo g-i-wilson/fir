@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log DAC_ADC.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source DAC_ADC.tcl
+EAStep vivado -log UARTSPIBridge.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source UARTSPIBridge.tcl

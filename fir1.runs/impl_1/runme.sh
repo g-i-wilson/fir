@@ -38,6 +38,6 @@ EAStep()
 
 # pre-commands:
 /bin/touch .init_design.begin.rst
-EAStep vivado -log DAC_ADC.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source DAC_ADC.tcl -notrace
+EAStep vivado -log UARTSPIBridge.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source UARTSPIBridge.tcl -notrace
 
 

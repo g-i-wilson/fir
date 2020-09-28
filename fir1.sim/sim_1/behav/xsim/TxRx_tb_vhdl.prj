@@ -1,13 +1,14 @@
 # compile vhdl design source files
 vhdl xil_defaultlib  \
-"../../../../fir1.srcs/sources_1/new/reg1D.vhd" \
 "../../../../fir1.srcs/sources_1/new/clk_div_generic.vhd" \
+"../../../../fir1.srcs/sources_1/new/reg1D.vhd" \
 "../../../../fir1.srcs/sources_1/new/MAFilter1Bit.vhd" \
 "../../../../fir1.srcs/sources_1/new/EdgeDetectorFSM.vhd" \
 "../../../../fir1.srcs/sources_1/new/EdgeDetector.vhd" \
+"../../../../fir1.srcs/sources_1/new/SerialTxFSM.vhd" \
+"../../../../fir1.srcs/sources_1/new/SeralTx-disabled.vhd" \
 "../../../../fir1.srcs/sources_1/new/SerialRxFSM.vhd" \
 "../../../../fir1.srcs/sources_1/new/SerialRx.vhd" \
-"../../../../fir1.srcs/sources_1/new/SerialTxFSM.vhd" \
 "../../../../fir1.srcs/sources_1/new/SerialTx.vhd" \
 "../../../../fir1.srcs/sim_1/new/TxRx_tb.vhd" \
 

@@ -88,7 +88,7 @@ begin
 
 
 
-    test_SPIHalfDuplex: entity work.SPIHalfDuplex
+    test_SPIHalfDuplex: entity work.SPITransaction
     generic map (
         SCK_HALF_PERIOD_WIDTH => 8
     )

@@ -4,9 +4,9 @@ vhdl xil_defaultlib  \
 "../../../../fir1.srcs/sources_1/new/reg1D.vhd" \
 "../../../../fir1.srcs/sources_1/new/reg2D.vhd" \
 "../../../../fir1.srcs/sources_1/new/Synchronizer.vhd" \
-"../../../../fir1.srcs/sources_1/new/SPIHalfDuplexFSM.vhd" \
+"../../../../fir1.srcs/sources_1/new/SPITransactionFSM.vhd" \
 "../../../../fir1.srcs/sources_1/new/Timer.vhd" \
-"../../../../fir1.srcs/sources_1/new/SPIHalfDuplex.vhd" \
+"../../../../fir1.srcs/sources_1/new/SPITransaction.vhd" \
 "../../../../fir1.srcs/sources_1/new/SPIHalfDuplex_tb.vhd" \
 
 # Do not sort compile order

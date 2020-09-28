@@ -6,4 +6,4 @@
 # Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 #
 
-vivado -log DAC_ADC.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source DAC_ADC.tcl -notrace
+vivado -log UARTSPIBridge.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source UARTSPIBridge.tcl -notrace

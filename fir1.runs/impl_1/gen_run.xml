@@ -1,65 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1600461580">
-  <File Type="RBD_FILE" Name="DAC_ADC.rbd"/>
-  <File Type="NPI_FILE" Name="DAC_ADC.npi"/>
-  <File Type="RNPI_FILE" Name="DAC_ADC.rnpi"/>
-  <File Type="CFI_FILE" Name="DAC_ADC.cfi"/>
-  <File Type="RCFI_FILE" Name="DAC_ADC.rcfi"/>
-  <File Type="PDI-FILE" Name="DAC_ADC.pdi"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="DAC_ADC_methodology_drc_routed.rpx"/>
-  <File Type="ROUTE-DRC-RPX" Name="DAC_ADC_drc_routed.rpx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="DAC_ADC_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-METHODOLOGY-DRC" Name="DAC_ADC_methodology_drc_routed.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="DAC_ADC_postroute_physopt_bb.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="DAC_ADC_postroute_physopt.dcp"/>
-  <File Type="PHYSOPT-DCP" Name="DAC_ADC_physopt.dcp"/>
-  <File Type="PLACE-IO" Name="DAC_ADC_io_placed.rpt"/>
-  <File Type="OPT-DRC" Name="DAC_ADC_drc_opted.rpt"/>
-  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
-  <File Type="BITSTR-LTX" Name="DAC_ADC.ltx"/>
-  <File Type="BITSTR-SYSDEF" Name="DAC_ADC.sysdef"/>
-  <File Type="BITSTR-MMI" Name="DAC_ADC.mmi"/>
-  <File Type="BITSTR-BMM" Name="DAC_ADC_bd.bmm"/>
-  <File Type="PLACE-UTIL-PB" Name="DAC_ADC_utilization_placed.pb"/>
-  <File Type="BG-BGN" Name="DAC_ADC.bgn"/>
-  <File Type="PLACE-DCP" Name="DAC_ADC_placed.dcp"/>
-  <File Type="OPT-HWDEF" Name="DAC_ADC.hwdef"/>
-  <File Type="BG-BIT" Name="DAC_ADC.bit"/>
-  <File Type="ROUTE-BUS-SKEW" Name="DAC_ADC_bus_skew_routed.rpt"/>
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1601093429">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
-  <File Type="PA-TCL" Name="DAC_ADC.tcl"/>
-  <File Type="REPORTS-TCL" Name="DAC_ADC_reports.tcl"/>
-  <File Type="PLACE-UTIL" Name="DAC_ADC_utilization_placed.rpt"/>
-  <File Type="BG-DRC" Name="DAC_ADC.drc"/>
-  <File Type="OPT-DCP" Name="DAC_ADC_opt.dcp"/>
-  <File Type="PLACE-CTRL" Name="DAC_ADC_control_sets_placed.rpt"/>
-  <File Type="RDI-RDI" Name="DAC_ADC.vdi"/>
-  <File Type="BG-BIN" Name="DAC_ADC.bin"/>
-  <File Type="PWROPT-DCP" Name="DAC_ADC_pwropt.dcp"/>
-  <File Type="BITSTR-MSK" Name="DAC_ADC.msk"/>
-  <File Type="POSTPLACE-PWROPT-DCP" Name="DAC_ADC_postplace_pwropt.dcp"/>
-  <File Type="BITSTR-RBT" Name="DAC_ADC.rbt"/>
-  <File Type="BITSTR-NKY" Name="DAC_ADC.nky"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="DAC_ADC_incremental_reuse_pre_placed.rpt"/>
-  <File Type="ROUTE-DRC" Name="DAC_ADC_drc_routed.rpt"/>
-  <File Type="ROUTE-DRC-PB" Name="DAC_ADC_drc_routed.pb"/>
-  <File Type="ROUTE-PWR" Name="DAC_ADC_power_routed.rpt"/>
-  <File Type="ROUTE-PWR-SUM" Name="DAC_ADC_power_summary_routed.pb"/>
-  <File Type="ROUTE-PWR-RPX" Name="DAC_ADC_power_routed.rpx"/>
-  <File Type="ROUTE-STATUS" Name="DAC_ADC_route_status.rpt"/>
-  <File Type="ROUTE-STATUS-PB" Name="DAC_ADC_route_status.pb"/>
-  <File Type="ROUTE-DCP" Name="DAC_ADC_routed.dcp"/>
-  <File Type="ROUTE-ERROR-DCP" Name="DAC_ADC_routed_error.dcp"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="DAC_ADC_routed_bb.dcp"/>
-  <File Type="ROUTE-TIMINGSUMMARY" Name="DAC_ADC_timing_summary_routed.rpt"/>
-  <File Type="ROUTE-TIMING-PB" Name="DAC_ADC_timing_summary_routed.pb"/>
-  <File Type="ROUTE-TIMING-RPX" Name="DAC_ADC_timing_summary_routed.rpx"/>
-  <File Type="ROUTE-CLK" Name="DAC_ADC_clock_utilization_routed.rpt"/>
-  <File Type="ROUTE-BUS-SKEW-PB" Name="DAC_ADC_bus_skew_routed.pb"/>
-  <File Type="ROUTE-BUS-SKEW-RPX" Name="DAC_ADC_bus_skew_routed.rpx"/>
+  <File Type="RDI-RDI" Name="UARTSPIBridge.vdi"/>
+  <File Type="BG-DRC" Name="UARTSPIBridge.drc"/>
+  <File Type="BG-BGN" Name="UARTSPIBridge.bgn"/>
+  <File Type="BITSTR-SYSDEF" Name="UARTSPIBridge.sysdef"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="UARTSPIBridge.ltx"/>
+  <File Type="RBD_FILE" Name="UARTSPIBridge.rbd"/>
+  <File Type="NPI_FILE" Name="UARTSPIBridge.npi"/>
+  <File Type="RNPI_FILE" Name="UARTSPIBridge.rnpi"/>
+  <File Type="CFI_FILE" Name="UARTSPIBridge.cfi"/>
+  <File Type="RCFI_FILE" Name="UARTSPIBridge.rcfi"/>
+  <File Type="PDI-FILE" Name="UARTSPIBridge.pdi"/>
+  <File Type="BITSTR-MMI" Name="UARTSPIBridge.mmi"/>
+  <File Type="BITSTR-BMM" Name="UARTSPIBridge_bd.bmm"/>
+  <File Type="BITSTR-NKY" Name="UARTSPIBridge.nky"/>
+  <File Type="BITSTR-RBT" Name="UARTSPIBridge.rbt"/>
+  <File Type="BITSTR-MSK" Name="UARTSPIBridge.msk"/>
+  <File Type="BG-BIN" Name="UARTSPIBridge.bin"/>
+  <File Type="BG-BIT" Name="UARTSPIBridge.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="UARTSPIBridge_bus_skew_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="UARTSPIBridge_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="UARTSPIBridge_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="UARTSPIBridge_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="UARTSPIBridge_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="UARTSPIBridge_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="UARTSPIBridge_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="UARTSPIBridge_postroute_physopt.dcp"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="UARTSPIBridge_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="UARTSPIBridge_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW" Name="UARTSPIBridge_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="UARTSPIBridge_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-SIMILARITY" Name="UARTSPIBridge_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="UARTSPIBridge_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-TIMING-PB" Name="UARTSPIBridge_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="UARTSPIBridge_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="UARTSPIBridge_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="UARTSPIBridge_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="UARTSPIBridge_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="UARTSPIBridge_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="UARTSPIBridge_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="UARTSPIBridge_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="UARTSPIBridge_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="UARTSPIBridge_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="UARTSPIBridge_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC-PB" Name="UARTSPIBridge_drc_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="UARTSPIBridge_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="UARTSPIBridge_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="UARTSPIBridge_routed.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="UARTSPIBridge_routed_error.dcp"/>
+  <File Type="PHYSOPT-TIMING" Name="UARTSPIBridge_timing_summary_physopted.rpt"/>
+  <File Type="PHYSOPT-DRC" Name="UARTSPIBridge_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="UARTSPIBridge_physopt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="UARTSPIBridge_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="UARTSPIBridge_postplace_pwropt.dcp"/>
+  <File Type="PLACE-TIMING" Name="UARTSPIBridge_timing_summary_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="UARTSPIBridge_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="UARTSPIBridge_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-CTRL" Name="UARTSPIBridge_control_sets_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="UARTSPIBridge_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="UARTSPIBridge_utilization_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="UARTSPIBridge_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-IO" Name="UARTSPIBridge_io_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="UARTSPIBridge_placed.dcp"/>
+  <File Type="PWROPT-DRC" Name="UARTSPIBridge_drc_pwropted.rpt"/>
+  <File Type="PWROPT-DCP" Name="UARTSPIBridge_pwropt.dcp"/>
+  <File Type="OPT-HWDEF" Name="UARTSPIBridge.hwdef"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="UARTSPIBridge_methodology_drc_opted.rpt"/>
+  <File Type="OPT-DRC" Name="UARTSPIBridge_drc_opted.rpt"/>
+  <File Type="OPT-DCP" Name="UARTSPIBridge_opt.dcp"/>
+  <File Type="INIT-TIMING" Name="UARTSPIBridge_timing_summary_init.rpt"/>
+  <File Type="PWROPT-TIMING" Name="UARTSPIBridge_timing_summary_pwropted.rpt"/>
+  <File Type="REPORTS-TCL" Name="UARTSPIBridge_reports.tcl"/>
+  <File Type="OPT-TIMING" Name="UARTSPIBridge_timing_summary_opted.rpt"/>
+  <File Type="PA-TCL" Name="UARTSPIBridge.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/new/ADC1Bit.vhd">
+    <File Path="$PSRCDIR/sources_1/new/clk_div_generic.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -77,101 +95,79 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/SimpleMMCM2.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/clk_div_generic.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/square_wave_gen.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/shift_mult_generic.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/pdm_generic.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/diff_accum.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/mult_generic.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/reg_mult_generic.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/register.vhdl">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/shorten.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/DAC_ADC.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/MAFilter1Bit.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/EdgeDetectorFSM.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/EdgeDetector.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/SPITransactionFSM.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Timer.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/SPITransaction.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/SerialTxFSM.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/SeralTx-disabled.vhd">
+      <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/SerialRxFSM.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/SerialRx.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/SerialTx.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/UARTSPIBridge.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/ADC1Bit.vhd">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -185,7 +181,56 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/pdm_generic.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/fun_gen_sr.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/shift_mult_generic.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/SimpleMMCM2.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/square_wave_gen.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/DAC_ADC.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/MAFilter.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/PushButtonToggle.vhd">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -199,16 +244,9 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/SerialTxFSM.vhd">
+    <File Path="$PSRCDIR/sources_1/new/SimpleMMCM.vhd">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/adc_simple.vhd">
-      <FileInfo>
-        <Attr Name="UserDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -220,7 +258,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/fun_gen_sr.vhd">
+    <File Path="$PSRCDIR/sources_1/new/diff_accum.vhd">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -248,6 +286,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/mult_generic.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/pulsing_leds.vhd">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
@@ -256,6 +301,27 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/reg_add_generic.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/reg_mult_generic.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/register.vhdl">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/shorten.vhd">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -286,6 +352,13 @@
     <File Path="$PSRCDIR/sources_1/new/test_synth.vhdl">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/adc_simple.vhd">
+      <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -338,14 +411,26 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/SerialTx.vhd">
+    <File Path="$PSRCDIR/sources_1/new/SPIHalfDuplex_tb.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/BeatFreq.vhd">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/PushButtonToggle.vhd">
+    <File Path="$PSRCDIR/sources_1/new/SPIHalfDuplexFSM_tb.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/QuadDemod.vhd">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -354,7 +439,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="DAC_ADC"/>
+      <Option Name="TopModule" Val="UARTSPIBridge"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -387,6 +472,5 @@
     <Step Id="route_design"/>
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
-    <Step Id="write_device_image"/>
   </Strategy>
 </GenRun>

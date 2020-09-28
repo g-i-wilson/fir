@@ -1,0 +1,105 @@
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+| Date         : Fri Sep 25 23:14:20 2020
+| Host         : blacklaptop running 64-bit Ubuntu 18.04.5 LTS
+| Command      : report_control_sets -verbose -file UARTSPIBridge_control_sets_placed.rpt
+| Design       : UARTSPIBridge
+| Device       : xc7a35t
+------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    27 |
+|    Minimum number of control sets                        |    27 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    82 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    27 |
+| >= 0 to < 4        |     5 |
+| >= 4 to < 6        |     5 |
+| >= 6 to < 8        |     6 |
+| >= 8 to < 10       |     4 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     2 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     4 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              17 |            9 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              36 |           15 |
+| Yes          | No                    | No                     |              40 |           15 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             609 |          148 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------+--------------------------------------------------------+-----------------------------------------------------------------------+------------------+----------------+--------------+
+|  Clock Signal  |                      Enable Signal                     |                            Set/Reset Signal                           | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+--------------------------------------------------------+-----------------------------------------------------------------------+------------------+----------------+--------------+
+|  CLK_IBUF_BUFG | SPI_module/FSM/FSM_sequential_current_state_reg[2]_3   | SPI_module/FSM/FSM_sequential_current_state_reg[2]_2                  |                1 |              1 |         1.00 |
+|  CLK_IBUF_BUFG | SPI_module/FSM/FSM_sequential_current_state_reg[2]_5   | SPI_module/FSM/FSM_sequential_current_state_reg[2]_4                  |                1 |              1 |         1.00 |
+|  CLK_IBUF_BUFG | RX_module/FSM/FSM_sequential_current_state_reg[0]_1    | RST_IBUF                                                              |                1 |              1 |         1.00 |
+|  CLK_IBUF_BUFG | RX_module/FSM/data_bit_invalid_sig                     | RST_IBUF                                                              |                1 |              1 |         1.00 |
+|  CLK_IBUF_BUFG | RX_module/sample_en/en_sig_reg_1                       |                                                                       |                1 |              2 |         2.00 |
+|  CLK_IBUF_BUFG | RX_module/FSM/FSM_sequential_current_state[3]_i_1_n_0  | RST_IBUF                                                              |                2 |              4 |         2.00 |
+|  CLK_IBUF_BUFG |                                                        | TX_module/word_div/en_sig                                             |                1 |              5 |         5.00 |
+|  CLK_IBUF_BUFG | SPI_module/FSM/FSM_sequential_current_state[4]_i_1_n_0 | RST_IBUF                                                              |                4 |              5 |         1.25 |
+|  CLK_IBUF_BUFG | RX_module/FSM/E[0]                                     | RX_module/FSM/FSM_sequential_current_state_reg[3]_1[0]                |                2 |              5 |         2.50 |
+|  CLK_IBUF_BUFG | RX_module/FSM/en_sig_reg                               | RX_module/bit_timer/count_out_sig[11]_i_1_n_0                         |                2 |              5 |         2.50 |
+|  CLK_IBUF_BUFG | SPI_module/FSM/FSM_sequential_current_state_reg[0]_0   | RST_IBUF                                                              |                2 |              7 |         3.50 |
+|  CLK_IBUF_BUFG | SPI_module/FSM/FSM_sequential_current_state_reg[2]_3   |                                                                       |                3 |              7 |         2.33 |
+|  CLK_IBUF_BUFG | SPI_module/FSM/FSM_sequential_current_state_reg[2]_5   |                                                                       |                3 |              7 |         2.33 |
+|  CLK_IBUF_BUFG | RX_module/FSM/en_sig_reg                               |                                                                       |                3 |              7 |         2.33 |
+|  CLK_IBUF_BUFG | RX_module/FSM/FSM_sequential_current_state_reg[3]_0    |                                                                       |                2 |              7 |         3.50 |
+|  CLK_IBUF_BUFG | RX_module/FSM/FSM_sequential_current_state_reg[0]_0    | RX_module/FSM/FSM_sequential_current_state_reg[0]_2                   |                1 |              7 |         7.00 |
+|  CLK_IBUF_BUFG | RX_module/sample_en/en_sig_reg_1                       | RX_module/edge_detect/moving_average/sum_reg/reg_state[11]_i_1_n_0    |                3 |              8 |         2.67 |
+|  CLK_IBUF_BUFG | SPI_module/FSM/FSM_sequential_current_state_reg[3]_1   | RST_IBUF                                                              |                2 |              8 |         4.00 |
+|  CLK_IBUF_BUFG | SPI_module/FSM/FSM_sequential_current_state_reg[2]_0   | SPI_module/FSM/FSM_sequential_current_state_reg[2]_1                  |                1 |              8 |         8.00 |
+|  CLK_IBUF_BUFG | SPI_module/FSM/FSM_sequential_current_state_reg[1]_0   | SPI_module/FSM/FSM_sequential_current_state_reg[2]_1                  |                1 |              8 |         8.00 |
+|  CLK_IBUF_BUFG | TX_module/FSM/E[0]                                     |                                                                       |                3 |             10 |         3.33 |
+|  CLK_IBUF_BUFG | SPI_module/FSM/FSM_sequential_current_state_reg[4]_2   | SPI_module/SCK_EDGE_counter/count_out_sig[26]_i_1_n_0                 |                5 |             12 |         2.40 |
+|  CLK_IBUF_BUFG |                                                        | RST_IBUF                                                              |                5 |             12 |         2.40 |
+|  CLK_IBUF_BUFG | SPI_module/FSM/FSM_sequential_current_state_reg[4]_2   | RST_IBUF                                                              |                6 |             16 |         2.67 |
+|  CLK_IBUF_BUFG |                                                        |                                                                       |                9 |             17 |         1.89 |
+|  CLK_IBUF_BUFG |                                                        | TX_module/FSM/FSM_sequential_current_state_reg[0]_1                   |                9 |             19 |         2.11 |
+|  CLK_IBUF_BUFG | RX_module/sample_en/en_sig_reg_1                       | RX_module/edge_detect/moving_average/shift_reg/reg_state[511]_i_1_n_0 |              113 |            512 |         4.53 |
++----------------+--------------------------------------------------------+-----------------------------------------------------------------------+------------------+----------------+--------------+
+
+

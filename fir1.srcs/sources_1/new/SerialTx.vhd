@@ -12,7 +12,8 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity SerialTx is
     generic (
-        BIT_PERIOD_WIDTH        : positive := 4
+        BIT_TIMER_WIDTH        : positive := 12;
+        BIT_TIMER_PERIOD       : positive := 1042
     );
     port ( 
         -- inputs
@@ -21,7 +22,6 @@ entity SerialTx is
         RST                     : in STD_LOGIC;
         VALID                   : in STD_LOGIC;
         DATA                    : in STD_LOGIC_VECTOR (7 downto 0);
-        BIT_PERIOD              : in STD_LOGIC_VECTOR (BIT_PERIOD_WIDTH-1 downto 0);
         -- outputs
         READY                   : out STD_LOGIC;
         TX                      : out STD_LOGIC
@@ -39,22 +39,21 @@ architecture Behavioral of SerialTx is
   signal reg_shift_en           : std_logic;
   signal reg_bits_in            : std_logic_vector (9 downto 0);
   
-  signal word_period            : std_logic_vector (BIT_PERIOD_WIDTH+4-1 downto 0);
+  signal word_period            : std_logic_vector (BIT_TIMER_WIDTH+4-1 downto 0);
        
 begin
 
 
     count_rst <= ready_sig;
-    word_period <= std_logic_vector(resize(unsigned(BIT_PERIOD)*10,BIT_PERIOD_WIDTH+4));
 
     -- bit counter
-   bit_div : entity work.clk_div_generic
+   bit_timer : entity work.clk_div_generic
         generic map (
-            period_width        => BIT_PERIOD_WIDTH,
+            period_width        => BIT_TIMER_WIDTH,
             phase_lead          => 1 -- load and timing start together, but after that, the shift happens 1 after timing
         )
         port map (
-            period              => BIT_PERIOD,
+            period              => std_logic_vector(to_unsigned(BIT_TIMER_PERIOD,BIT_TIMER_WIDTH)),
             clk                 => clk,
             en                  => en,
             rst                 => count_rst,
@@ -64,11 +63,11 @@ begin
     -- word (byte + start/stop bits) counter
     word_div : entity work.clk_div_generic
         generic map (
-            period_width        => BIT_PERIOD_WIDTH+4,
+            period_width        => BIT_TIMER_WIDTH+4,
             phase_lead          => 1
         )
         port map (
-            period              => word_period,
+            period              => std_logic_vector(to_unsigned(BIT_TIMER_PERIOD*10,BIT_TIMER_WIDTH+4)),
             clk                 => clk,
             en                  => en,
             rst                 => count_rst,
