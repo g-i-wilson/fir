@@ -12,10 +12,10 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity SerialTx is
     generic (
-        BIT_TIMER_WIDTH        : positive := 12;
-        BIT_TIMER_PERIOD       : positive := 1042
+        BIT_TIMER_WIDTH        : positive := 16;
+        BIT_TIMER_PERIOD       : positive := 10417 -- units of clock cycles
     );
-    port ( 
+    port (
         -- inputs
         CLK                     : in STD_LOGIC;
         EN                      : in STD_LOGIC;
@@ -29,7 +29,7 @@ entity SerialTx is
 end SerialTx;
 
 architecture Behavioral of SerialTx is
-       
+
   signal bit_en_sig             : std_logic;
   signal word_en_sig            : std_logic;
   signal ready_sig              : std_logic;
@@ -38,9 +38,9 @@ architecture Behavioral of SerialTx is
   signal reg_par_en             : std_logic;
   signal reg_shift_en           : std_logic;
   signal reg_bits_in            : std_logic_vector (9 downto 0);
-  
+
   signal word_period            : std_logic_vector (BIT_TIMER_WIDTH+4-1 downto 0);
-       
+
 begin
 
 
@@ -73,10 +73,10 @@ begin
             rst                 => count_rst,
             en_out              => word_en_sig
         );
-        
-        
+
+
     reg_bits_in <= '1' & DATA & '0'; -- stop-bit, data, start-bit
-    
+
     -- output load/shift register
     tx_reg: entity work.reg1D
         generic map (
@@ -86,16 +86,16 @@ begin
         port map (
             CLK                 => CLK,
             RST                 => ready_sig,
-            
+
             PAR_EN              => reg_par_en,
             PAR_IN              => reg_bits_in,
-            
+
             SHIFT_EN            => reg_shift_en,
             SHIFT_OUT           => TX,
-            
+
             DEFAULT_STATE       => "1111111111" -- all stop bits
         );
-        
+
     -- FSM to control the load/shift register
     FSM: entity work.SerialTxFSM
         port map (
@@ -105,13 +105,13 @@ begin
             VALID               => VALID,
             BIT_EN              => bit_en_sig,
             BYTE_EN             => word_en_sig,
-            
+
             READY               => ready_sig,
             LOAD                => reg_par_en,
             SHIFT               => reg_shift_en
         );
-    
+
     READY <= ready_sig;
-    
+
 
 end Behavioral;
