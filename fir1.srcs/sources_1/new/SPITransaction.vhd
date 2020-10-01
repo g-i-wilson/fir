@@ -17,7 +17,6 @@ entity SPITransaction is
     port (
         CLK                     : in STD_LOGIC;
         RST                     : in STD_LOGIC;
-        
         -- data path IN
         READY_OUT               : out STD_LOGIC;
         VALID_IN                : in STD_LOGIC;
@@ -26,7 +25,6 @@ entity SPITransaction is
         READY_IN                : in STD_LOGIC;
         VALID_OUT               : out STD_LOGIC;
         DATA_OUT                : out STD_LOGIC_VECTOR (7 downto 0);
-
         -- SPI
         SCK_HALF_PERIOD         : in STD_LOGIC_VECTOR (SCK_HALF_PERIOD_WIDTH-1 downto 0);
         MISO                    : in STD_LOGIC;
@@ -68,6 +66,7 @@ architecture Behavioral of SPITransaction is
     signal load_write_len_sig       : std_logic;
     signal load_read_len_sig        : std_logic;
     signal load_data_in_sig         : std_logic;
+    signal load_data_out_sig        : std_logic;
     signal shift_data_in_sig        : std_logic;
     signal shift_data_out_sig       : std_logic;
 
@@ -102,6 +101,7 @@ begin
             LOAD_WRITE_LEN      => load_write_len_sig,
             LOAD_READ_LEN       => load_read_len_sig,
             LOAD_DATA_IN        => load_data_in_sig,
+            LOAD_DATA_OUT       => load_data_out_sig,
             SHIFT_DATA_IN       => shift_data_in_sig,
             SHIFT_DATA_OUT      => shift_data_out_sig,
             CS                  => CS,
@@ -171,6 +171,8 @@ begin
             CLK                 => CLK,
             RST                 => RST,
             
+            PAR_EN              => load_data_out_sig,
+            PAR_IN              => valid_buffer_sig,
             PAR_OUT             => DATA_OUT,
             
             SHIFT_EN            => shift_data_out_sig,
@@ -255,5 +257,14 @@ begin
             DONE                => read_done_sig
         );
         
+        
+    ila0: entity work.ila_SPITransaction
+    port map (
+        CLK => CLK,
+        probe0 => byte_done_sig & write_done_sig & read_done_sig & shift_data_in_sig & shift_data_out_sig & "000",
+        probe1 => write_len_sig,
+        probe2 => read_len_sig
+    );
+
 
 end Behavioral;

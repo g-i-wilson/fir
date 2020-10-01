@@ -33,6 +33,7 @@ entity SPITransactionFSM is
         LOAD_WRITE_LEN  : out STD_LOGIC;
         LOAD_READ_LEN   : out STD_LOGIC;
         LOAD_DATA_IN    : out STD_LOGIC;
+        LOAD_DATA_OUT   : out STD_LOGIC;
         SHIFT_DATA_IN   : out STD_LOGIC;
         SHIFT_DATA_OUT  : out STD_LOGIC;
         CS              : out STD_LOGIC;
@@ -43,36 +44,45 @@ end SPITransactionFSM;
 architecture Behavioral of SPITransactionFSM is
 
   type state_type is (
-      STDBY_STATE,
+      READY_WRITE_LEN_STATE,
       LOAD_WRITE_LEN_STATE,
+      VALID_WRITE_LEN_STATE,
+      
+      READY_READ_LEN_STATE,
       LOAD_READ_LEN_STATE,
-      FIRST_DATA_STATE,
+      VALID_READ_LEN_STATE,
+      
+      READY_FIRST_DATA_STATE,
+      LOAD_FIRST_DATA_STATE,
+      
       W_CLK_H_STATE,
       W_CLK_L_STATE,
       W_SHIFT_DATA_IN_STATE,
       W_SHIFT_DATA_OUT_STATE,
       W_COUNT_STATE,
-      W_READY_WAIT_STATE,
-      W_VALID_WAIT_STATE,
+      W_VALID_DATA_STATE,
+      W_READY_DATA_STATE,
       W_LOAD_DATA_IN_STATE,
+      
       R_CLK_H_STATE,
       R_CLK_L_STATE,
       R_SHIFT_DATA_OUT_STATE,
-      R_READY_WAIT_STATE,
+      R_VALID_DATA_STATE,
       R_COUNT_STATE,
+      
       FINAL_CLK_L_STATE,
       FINAL_CS_H_STATE
     );
 
-    signal current_state        : state_type := STDBY_STATE;
-    signal next_state           : state_type := STDBY_STATE;
+    signal current_state        : state_type := READY_WRITE_LEN_STATE;
+    signal next_state           : state_type := READY_WRITE_LEN_STATE;
 
 begin
 
     FSM_state_register: process (CLK) begin
         if rising_edge(CLK) then
             if (RST = '1') then
-                current_state <= STDBY_STATE;
+                current_state <= READY_WRITE_LEN_STATE;
             else
                 current_state <= next_state;
             end if;
@@ -86,22 +96,40 @@ begin
         
         -- INIT states
           
-        if current_state = STDBY_STATE then
+        if current_state = READY_WRITE_LEN_STATE then
             if (VALID_IN = '1') then
                 next_state <= LOAD_WRITE_LEN_STATE;
             end if;
     
         elsif current_state = LOAD_WRITE_LEN_STATE then
+            next_state <= VALID_WRITE_LEN_STATE;
+    
+        elsif current_state = VALID_WRITE_LEN_STATE then
+            if (READY_IN = '1') then
+                next_state <= READY_READ_LEN_STATE;
+            end if;
+            
+    
+        elsif current_state = READY_READ_LEN_STATE then
             if (VALID_IN = '1') then
                 next_state <= LOAD_READ_LEN_STATE;
             end if;
     
         elsif current_state = LOAD_READ_LEN_STATE then
-            if (VALID_IN = '1') then
-                next_state <= FIRST_DATA_STATE;
+            next_state <= VALID_READ_LEN_STATE;
+    
+        elsif current_state = VALID_READ_LEN_STATE then
+            if (READY_IN = '1') then
+                next_state <= READY_FIRST_DATA_STATE;
             end if;
-              
-        elsif current_state = FIRST_DATA_STATE then
+            
+    
+        elsif current_state = READY_FIRST_DATA_STATE then
+            if (VALID_IN = '1') then
+                next_state <= LOAD_FIRST_DATA_STATE;
+            end if;
+    
+        elsif current_state = LOAD_FIRST_DATA_STATE then
             next_state <= W_CLK_L_STATE;
               
         
@@ -131,18 +159,18 @@ begin
             next_state <= W_CLK_L_STATE;
             
         elsif current_state = W_COUNT_STATE then
-            next_state <= W_READY_WAIT_STATE;
+            next_state <= W_VALID_DATA_STATE;
         
-        elsif current_state = W_READY_WAIT_STATE then
+        elsif current_state = W_VALID_DATA_STATE then
             if (WRITE_DONE = '1' and READ_DONE = '1') then
                 next_state <= FINAL_CLK_L_STATE;
             elsif (WRITE_DONE = '1') then
                 next_state <= R_CLK_L_STATE;
             elsif (READY_IN = '1') then
-                next_state <= W_VALID_WAIT_STATE;
+                next_state <= W_READY_DATA_STATE;
             end if;
             
-        elsif current_state = W_VALID_WAIT_STATE then
+        elsif current_state = W_READY_DATA_STATE then
             if (VALID_IN = '1') then
                 next_state <= W_LOAD_DATA_IN_STATE;
             end if;
@@ -168,9 +196,9 @@ begin
             end if;
             
         elsif current_state = R_COUNT_STATE then
-            next_state <= R_READY_WAIT_STATE;
+            next_state <= R_VALID_DATA_STATE;
             
-        elsif current_state = R_READY_WAIT_STATE then
+        elsif current_state = R_VALID_DATA_STATE then
             if (READ_DONE = '1') then
                 next_state <= FINAL_CLK_L_STATE;
             elsif (READY_IN = '1') then
@@ -187,7 +215,7 @@ begin
 
         elsif current_state = FINAL_CS_H_STATE then
             if (SCK_EDGE = '1') then
-                next_state <= STDBY_STATE;
+                next_state <= READY_WRITE_LEN_STATE;
             end if;
                     
         end if;
@@ -202,6 +230,7 @@ FSM_output_logic: process (current_state) begin
     LOAD_WRITE_LEN          <= '0';
     LOAD_READ_LEN           <= '0';
     LOAD_DATA_IN            <= '0';
+    LOAD_DATA_OUT           <= '0';
     SHIFT_DATA_IN           <= '0';
     SHIFT_DATA_OUT          <= '0';
     CS                      <= '1';
@@ -215,17 +244,26 @@ FSM_output_logic: process (current_state) begin
     READ_COUNT_EN           <= '0';
     RW_COUNT_RST            <= '0';
 
+
     -- INIT states
-    if current_state = STDBY_STATE then
+    if current_state = READY_WRITE_LEN_STATE then
         RW_COUNT_RST        <= '1';
         READY_OUT           <= '1';
     elsif current_state = LOAD_WRITE_LEN_STATE then
-        READY_OUT           <= '1';
         LOAD_WRITE_LEN      <= '1';
-    elsif current_state = LOAD_READ_LEN_STATE then
+        LOAD_DATA_OUT       <= '1';
+    elsif current_state = VALID_WRITE_LEN_STATE then
+        VALID_OUT           <= '1';
+    elsif current_state = READY_READ_LEN_STATE then
         READY_OUT           <= '1';
+    elsif current_state = LOAD_READ_LEN_STATE then
         LOAD_READ_LEN       <= '1';
-    elsif current_state = FIRST_DATA_STATE then
+        LOAD_DATA_OUT       <= '1';
+    elsif current_state = VALID_READ_LEN_STATE then
+        VALID_OUT           <= '1';
+    elsif current_state = READY_FIRST_DATA_STATE then
+        READY_OUT           <= '1';
+    elsif current_state = LOAD_FIRST_DATA_STATE then
         LOAD_DATA_IN        <= '1';
         CS                  <= '0';
         TRISTATE_EN         <= '0';
@@ -257,12 +295,12 @@ FSM_output_logic: process (current_state) begin
         TRISTATE_EN         <= '0'; -- writing is always done with tristate disabled
         WRITE_COUNT_EN      <= '1';
         BIT_COUNT_RST       <= '1';
-    elsif current_state = W_READY_WAIT_STATE then
+    elsif current_state = W_VALID_DATA_STATE then
         CS                  <= '0';
         SCK                 <= '1'; -- SCK H
         TRISTATE_EN         <= '0'; -- writing is always done with tristate disabled
         VALID_OUT           <= '1'; -- VALID_OUT is asserted; waits in this state until READY_IN is asserted
-    elsif current_state = W_VALID_WAIT_STATE then
+    elsif current_state = W_READY_DATA_STATE then
         CS                  <= '0';
         SCK                 <= '1'; -- SCK H
         TRISTATE_EN         <= '0'; -- writing is always done with tristate disabled
@@ -291,7 +329,7 @@ FSM_output_logic: process (current_state) begin
         SCK                 <= '1'; -- SCK H
         READ_COUNT_EN       <= '1';
         BIT_COUNT_RST       <= '1';
-    elsif current_state = R_READY_WAIT_STATE then
+    elsif current_state = R_VALID_DATA_STATE then
         CS                  <= '0';
         SCK                 <= '1'; -- SCK H
         VALID_OUT           <= '1';
