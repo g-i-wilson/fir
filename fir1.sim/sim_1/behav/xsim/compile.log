@@ -1,15 +1,6 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetectorFSM.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'EdgeDetectorFSM'
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetector.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'EdgeDetector'
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/SeralTx-disabled.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'SerialTx'
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/SerialRxFSM.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'SerialRxFSM'
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/SerialRx.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'SerialRx'
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/SerialTx.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'SerialTx'
-WARNING: [VRFC 10-3607] overwriting existing primary unit 'serialtx' [/home/gwrw/fir1/fir1.srcs/sources_1/new/SerialTx.vhd:13]
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/TxRx_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'TxRx_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/SPITapFSM.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SPITapFSM'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/SPITap.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SPITap'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/SPITap_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SPITap_tb'
