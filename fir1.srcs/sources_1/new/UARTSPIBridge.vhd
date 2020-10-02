@@ -61,7 +61,8 @@ begin
 
     SPI_module: entity work.SPITransaction
     generic map (
-        SCK_HALF_PERIOD_WIDTH => SCK_HALF_PERIOD_WIDTH
+        SCK_HALF_PERIOD_WIDTH   => SCK_HALF_PERIOD_WIDTH,
+        MISO_DETECTOR_SAMPLES   => 16
     )
     port map (
         CLK                     => CLK,
@@ -87,6 +88,10 @@ begin
 
 
     TX_module: entity work.SerialTx
+    generic map (
+        BIT_TIMER_WIDTH         => 16,
+        BIT_TIMER_PERIOD        => 10417 -- units of clock cycles
+    )
     port map ( 
         -- inputs
         CLK                     => CLK,

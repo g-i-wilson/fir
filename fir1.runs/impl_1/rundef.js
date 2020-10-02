@@ -29,7 +29,7 @@ eval( EAInclude(ISEJScriptLib) );
 // pre-commands:
 ISETouchFile( "init_design", "begin" );
 ISEStep( "vivado",
-         "-log UARTSPIBridge.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source UARTSPIBridge.tcl -notrace" );
+         "-log TestUARTSPIBridgeBasys3.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source TestUARTSPIBridgeBasys3.tcl -notrace" );
 
 
 

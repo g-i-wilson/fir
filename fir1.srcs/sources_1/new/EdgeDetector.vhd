@@ -35,23 +35,34 @@ end EdgeDetector;
 
 architecture Behavioral of EdgeDetector is
 
-    signal sum_sig : std_logic_vector(SUM_WIDTH-1 downto 0);
+    signal sum_sig  : std_logic_vector(SUM_WIDTH-1 downto 0);
+    signal sync_sig : std_logic;
 
 begin
 
+  sync_reg : entity work.Synchronizer
+  generic map (
+    SYNC_LENGTH     => 3
+  )
+  port map (
+    RST             => RST,
+    CLK             => CLK,
+    SIG_IN        	=> SIG_IN,
+    SIG_OUT         => sync_sig
+  );
 
   moving_average : entity work.MAFilter1Bit
   generic map (
-    SAMPLE_LENGTH => SAMPLE_LENGTH,
-    SUM_WIDTH => SUM_WIDTH,
-    SUM_START => SUM_START
+    SAMPLE_LENGTH   => SAMPLE_LENGTH,
+    SUM_WIDTH       => SUM_WIDTH,
+    SUM_START       => SUM_START
   )
   port map (
-    CLK => CLK,
-    EN => SAMPLE,
-    RST => RST,
-    SIG_IN => SIG_IN,
-    SUM_OUT => sum_sig
+    CLK             => CLK,
+    EN              => SAMPLE,
+    RST             => RST,
+    SIG_IN          => sync_sig,
+    SUM_OUT         => sum_sig
   );
 
 

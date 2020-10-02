@@ -89,10 +89,10 @@ begin
         elsif current_state = BIT_WAIT_STATE then
             if (BIT_EN = '1' and BYTE_EN = '0') then
                 next_state <= SHIFT_STATE;
-            elsif (BIT_EN = '1' and BYTE_EN = '1' and VALID = '0') then
+            elsif (BIT_EN = '1' and BYTE_EN = '1') then
                 next_state <= READY_STATE;
-            elsif (BIT_EN = '1' and BYTE_EN = '1' and VALID = '1') then
-                next_state <= LOAD_STATE;
+--            elsif (BIT_EN = '1' and BYTE_EN = '1' and VALID = '1') then
+--                next_state <= LOAD_STATE;
             end if;
 --               next_state <= DEBUG_STATE;
             

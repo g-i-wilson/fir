@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log UARTSPIBridge.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source UARTSPIBridge.tcl
+EAStep vivado -log TestUARTSPIBridgeBasys3.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source TestUARTSPIBridgeBasys3.tcl

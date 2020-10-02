@@ -12,7 +12,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity SPITransaction is
     generic (
-        SCK_HALF_PERIOD_WIDTH   : positive := 8
+        SCK_HALF_PERIOD_WIDTH   : positive := 8;
+        MISO_DETECTOR_SAMPLES   : positive := 16
     );
     port (
         CLK                     : in STD_LOGIC;
@@ -70,6 +71,8 @@ architecture Behavioral of SPITransaction is
     signal shift_data_in_sig        : std_logic;
     signal shift_data_out_sig       : std_logic;
 
+    signal state_debug              : std_logic_vector(7 downto 0);
+
 
 begin
 
@@ -105,25 +108,33 @@ begin
             SHIFT_DATA_IN       => shift_data_in_sig,
             SHIFT_DATA_OUT      => shift_data_out_sig,
             CS                  => CS,
-            SCK                 => SCK
+            SCK                 => SCK,
+            -- debug outputs
+            STATE               => state_debug
         );
 
     ----------------------------------------------------
     -- LOGIC
     ----------------------------------------------------
-    
-    SDO_synchronizer : entity work.Synchronizer
-    generic map (
-            SYNC_LENGTH          => 3
-    )
-    port map
-    (
-        RST             => RST,
-        CLK             => CLK,
-        SIG_IN        	=> MISO,
-        SIG_OUT         => miso_sync_sig
-    );
 
+    MISO_detector: entity work.EdgeDetector
+    generic map (
+        SAMPLE_LENGTH             => MISO_DETECTOR_SAMPLES,
+        SUM_WIDTH                 => SCK_HALF_PERIOD_WIDTH,
+        LOGIC_HIGH                => MISO_DETECTOR_SAMPLES*3/4-1,
+        LOGIC_LOW                 => MISO_DETECTOR_SAMPLES/4,
+        SUM_START                 => MISO_DETECTOR_SAMPLES/2
+    )
+    port map (
+        RST                       => RST,
+        CLK                       => CLK,
+        
+        SAMPLE                    => '1',
+        SIG_IN                    => MISO,
+        
+        DATA                      => miso_sync_sig
+    );
+    
     bit_count_rst_sig <= RST or bit_count_rst_fsm_sig;
     
     rw_count_rst_sig <= RST or rw_count_rst_fsm_sig;
@@ -263,7 +274,8 @@ begin
         CLK => CLK,
         probe0 => byte_done_sig & write_done_sig & read_done_sig & shift_data_in_sig & shift_data_out_sig & "000",
         probe1 => write_len_sig,
-        probe2 => read_len_sig
+        probe2 => read_len_sig,
+        probe3 => state_debug
     );
 
 

@@ -23,24 +23,13 @@ end PushButtonToggle;
 
 architecture Behavioral of PushButtonToggle is
 
-    signal sync_sig : std_logic;
     signal edge_sig : std_logic;
     signal data_sig : std_logic;
     signal toggle_sig : std_logic;
 
 begin
 
-  shift_reg : entity work.Synchronizer
-  generic map (
-    SYNC_LENGTH          => 3
-  )
-  port map (
-    RST             => RST,
-    CLK             => CLK,
-    SIG_IN        	=> SIG_IN,
-    SIG_OUT         => sync_sig
-  );
-  
+
   rising_edge_detect: entity work.EdgeDetector
   generic map (
     SAMPLE_LENGTH             => 32,
@@ -54,7 +43,7 @@ begin
     CLK                       => CLK,
 
     SAMPLE                    => '1',
-    SIG_IN                    => sync_sig,
+    SIG_IN                    => SIG_IN,
 
     EDGE_EVENT                => edge_sig,
     DATA                      => data_sig
@@ -72,7 +61,7 @@ begin
       end if;
   end process;
 
-    SIG_OUT <= toggle_sig;
+  SIG_OUT <= toggle_sig;
     
 
 end Behavioral;

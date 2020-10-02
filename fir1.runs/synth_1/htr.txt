@@ -6,4 +6,4 @@
 # Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 #
 
-vivado -log UARTSPIBridge.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source UARTSPIBridge.tcl
+vivado -log TestUARTSPIBridgeBasys3.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source TestUARTSPIBridgeBasys3.tcl

@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -12,6 +12,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity SPITransactionFSM is
     port ( 
+        -- inputs
         CLK             : in STD_LOGIC;
         RST             : in STD_LOGIC;
         VALID_IN        : in STD_LOGIC;
@@ -20,7 +21,7 @@ entity SPITransactionFSM is
         READ_DONE       : in STD_LOGIC;
         BYTE_DONE       : in STD_LOGIC;
         SCK_EDGE        : in STD_LOGIC;
-        
+        -- outputs
         READY_OUT       : out STD_LOGIC;
         VALID_OUT       : out STD_LOGIC;
         SCK_EN          : out STD_LOGIC;
@@ -37,45 +38,80 @@ entity SPITransactionFSM is
         SHIFT_DATA_IN   : out STD_LOGIC;
         SHIFT_DATA_OUT  : out STD_LOGIC;
         CS              : out STD_LOGIC;
-        SCK             : out STD_LOGIC
+        SCK             : out STD_LOGIC;
+        -- debug outputs
+        STATE           : out STD_LOGIC_VECTOR(7 downto 0)
     );
 end SPITransactionFSM;
 
 architecture Behavioral of SPITransactionFSM is
 
-  type state_type is (
-      READY_WRITE_LEN_STATE,
-      LOAD_WRITE_LEN_STATE,
-      VALID_WRITE_LEN_STATE,
+--  type state_type is (
+--      READY_WRITE_LEN_STATE,
+--      LOAD_WRITE_LEN_STATE,
+--      VALID_WRITE_LEN_STATE,
       
-      READY_READ_LEN_STATE,
-      LOAD_READ_LEN_STATE,
-      VALID_READ_LEN_STATE,
+--      READY_READ_LEN_STATE,
+--      LOAD_READ_LEN_STATE,
+--      VALID_READ_LEN_STATE,
       
-      READY_FIRST_DATA_STATE,
-      LOAD_FIRST_DATA_STATE,
+--      READY_FIRST_DATA_STATE,
+--      LOAD_FIRST_DATA_STATE,
       
-      W_CLK_H_STATE,
-      W_CLK_L_STATE,
-      W_SHIFT_DATA_IN_STATE,
-      W_SHIFT_DATA_OUT_STATE,
-      W_COUNT_STATE,
-      W_VALID_DATA_STATE,
-      W_READY_DATA_STATE,
-      W_LOAD_DATA_IN_STATE,
+--      W_CLK_H_STATE,
+--      W_CLK_L_STATE,
+--      W_SHIFT_DATA_IN_STATE,
+--      W_SHIFT_DATA_OUT_STATE,
+--      W_COUNT_STATE,
+--      W_VALID_DATA_STATE,
+--      W_READY_DATA_STATE,
+--      W_LOAD_DATA_IN_STATE,
       
-      R_CLK_H_STATE,
-      R_CLK_L_STATE,
-      R_SHIFT_DATA_OUT_STATE,
-      R_VALID_DATA_STATE,
-      R_COUNT_STATE,
+--      R_CLK_H_STATE,
+--      R_CLK_L_STATE,
+--      R_SHIFT_DATA_OUT_STATE,
+--      R_VALID_DATA_STATE,
+--      R_COUNT_STATE,
       
-      FINAL_CLK_L_STATE,
-      FINAL_CS_H_STATE
-    );
+--      FINAL_CLK_L_STATE,
+--      FINAL_CS_H_STATE
+--    );
 
-    signal current_state        : state_type := READY_WRITE_LEN_STATE;
-    signal next_state           : state_type := READY_WRITE_LEN_STATE;
+--    signal current_state        : state_type := READY_WRITE_LEN_STATE;
+--    signal next_state           : state_type := READY_WRITE_LEN_STATE;
+
+constant READY_WRITE_LEN_STATE      : std_logic_vector(7 downto 0) := x"01";
+constant LOAD_WRITE_LEN_STATE       : std_logic_vector(7 downto 0) := x"02";
+constant VALID_WRITE_LEN_STATE      : std_logic_vector(7 downto 0) := x"03";
+constant READY_READ_LEN_STATE       : std_logic_vector(7 downto 0) := x"04";
+constant LOAD_READ_LEN_STATE        : std_logic_vector(7 downto 0) := x"05";
+constant VALID_READ_LEN_STATE       : std_logic_vector(7 downto 0) := x"06";
+
+constant READY_FIRST_DATA_STATE     : std_logic_vector(7 downto 0) := x"07";
+constant LOAD_FIRST_DATA_STATE      : std_logic_vector(7 downto 0) := x"08";
+
+constant W_CLK_H_STATE              : std_logic_vector(7 downto 0) := x"09";
+constant W_CLK_L_STATE              : std_logic_vector(7 downto 0) := x"10";
+constant W_SHIFT_DATA_IN_STATE      : std_logic_vector(7 downto 0) := x"11";
+constant W_SHIFT_DATA_OUT_STATE     : std_logic_vector(7 downto 0) := x"12";
+constant W_COUNT_STATE              : std_logic_vector(7 downto 0) := x"13";
+constant W_VALID_DATA_STATE         : std_logic_vector(7 downto 0) := x"14";
+constant W_READY_DATA_STATE         : std_logic_vector(7 downto 0) := x"15";
+constant W_LOAD_DATA_IN_STATE       : std_logic_vector(7 downto 0) := x"16";
+
+constant R_CLK_H_STATE              : std_logic_vector(7 downto 0) := x"17";
+constant R_CLK_L_STATE              : std_logic_vector(7 downto 0) := x"18";
+constant R_SHIFT_DATA_OUT_STATE     : std_logic_vector(7 downto 0) := x"19";
+constant R_VALID_DATA_STATE         : std_logic_vector(7 downto 0) := x"20";
+constant R_COUNT_STATE              : std_logic_vector(7 downto 0) := x"21";
+
+constant FINAL_CLK_L_STATE          : std_logic_vector(7 downto 0) := x"22";
+constant FINAL_CS_H_STATE           : std_logic_vector(7 downto 0) := x"23";
+
+
+signal current_state                : std_logic_vector(7 downto 0) := READY_WRITE_LEN_STATE;
+signal next_state                   : std_logic_vector(7 downto 0) := READY_WRITE_LEN_STATE;
+
 
 begin
 
@@ -88,6 +124,9 @@ begin
             end if;
         end if;
     end process;
+    
+    
+    STATE <= current_state;
 
 
     FSM_next_state_logic: process (current_state, VALID_IN, WRITE_DONE, READ_DONE, BYTE_DONE, SCK_EDGE) begin
