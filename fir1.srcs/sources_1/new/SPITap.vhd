@@ -12,7 +12,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity SPITap is
     generic (
-        FILTER_LENGTH       : positive := 16
+        FILTER_LENGTH       : positive := 16;
+        FILTER_SUM_WIDTH    : positive := 8
     );
     port ( 
         CLK                 : in STD_LOGIC;
@@ -82,7 +83,7 @@ begin
     CS_detect: entity work.EdgeDetector
     generic map (
         SAMPLE_LENGTH             => FILTER_LENGTH,
-        SUM_WIDTH                 => FILTER_LENGTH,
+        SUM_WIDTH                 => FILTER_SUM_WIDTH,
         LOGIC_HIGH                => FILTER_LENGTH*3/4-1,
         LOGIC_LOW                 => FILTER_LENGTH/4,
         SUM_START                 => FILTER_LENGTH/2
@@ -100,7 +101,7 @@ begin
     SCK_detect: entity work.EdgeDetector
     generic map (
         SAMPLE_LENGTH             => FILTER_LENGTH,
-        SUM_WIDTH                 => FILTER_LENGTH,
+        SUM_WIDTH                 => FILTER_SUM_WIDTH,
         LOGIC_HIGH                => FILTER_LENGTH*3/4-1,
         LOGIC_LOW                 => FILTER_LENGTH/4,
         SUM_START                 => FILTER_LENGTH/2
@@ -118,7 +119,7 @@ begin
     SDA_detect: entity work.EdgeDetector
     generic map (
         SAMPLE_LENGTH             => FILTER_LENGTH,
-        SUM_WIDTH                 => FILTER_LENGTH,
+        SUM_WIDTH                 => FILTER_SUM_WIDTH,
         LOGIC_HIGH                => FILTER_LENGTH*3/4-1,
         LOGIC_LOW                 => FILTER_LENGTH/4,
         SUM_START                 => FILTER_LENGTH/2

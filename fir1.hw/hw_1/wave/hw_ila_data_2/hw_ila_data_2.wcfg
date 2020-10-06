@@ -10,156 +10,27 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="4096fs"></ZoomEndTime>
+      <ZoomEndTime time="1025fs"></ZoomEndTime>
       <Cursor1Time time="0fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="290"></NameColumnWidth>
-      <ValueColumnWidth column_width="134"></ValueColumnWidth>
+      <ValueColumnWidth column_width="130"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="18" />
+   <WVObjectSize size="2" />
    <wave_markers>
    </wave_markers>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/&lt;const0&gt;_1">
+   <wvobject type="logic" fp_name="tx_sig">
       <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/&lt;const0&gt;_1</obj_property>
-      <obj_property name="ObjectShortName">&lt;const0&gt;_1</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="ElementShortName">tx_sig</obj_property>
+      <obj_property name="ObjectShortName">tx_sig</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/&lt;const0&gt;_2">
+   <wvobject type="array" fp_name="uart_period_sig">
       <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/&lt;const0&gt;_2</obj_property>
-      <obj_property name="ObjectShortName">&lt;const0&gt;_2</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/&lt;const0&gt;_3">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/&lt;const0&gt;_3</obj_property>
-      <obj_property name="ObjectShortName">&lt;const0&gt;_3</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/&lt;const0&gt;_4">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/&lt;const0&gt;_4</obj_property>
-      <obj_property name="ObjectShortName">&lt;const0&gt;_4</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/&lt;const0&gt;_5">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/&lt;const0&gt;_5</obj_property>
-      <obj_property name="ObjectShortName">&lt;const0&gt;_5</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/&lt;const0&gt;_6">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/&lt;const0&gt;_6</obj_property>
-      <obj_property name="ObjectShortName">&lt;const0&gt;_6</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/ready_out_spi_sig">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/ready_out_spi_sig</obj_property>
-      <obj_property name="ObjectShortName">ready_out_spi_sig</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/valid_out_rx_sig">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/valid_out_rx_sig</obj_property>
-      <obj_property name="ObjectShortName">valid_out_rx_sig</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/&lt;const0&gt;_7">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/&lt;const0&gt;_7</obj_property>
-      <obj_property name="ObjectShortName">&lt;const0&gt;_7</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/&lt;const0&gt;_8">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/&lt;const0&gt;_8</obj_property>
-      <obj_property name="ObjectShortName">&lt;const0&gt;_8</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/&lt;const0&gt;_9">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/&lt;const0&gt;_9</obj_property>
-      <obj_property name="ObjectShortName">&lt;const0&gt;_9</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/&lt;const0&gt;_10">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/&lt;const0&gt;_10</obj_property>
-      <obj_property name="ObjectShortName">&lt;const0&gt;_10</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/&lt;const0&gt;_11">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/&lt;const0&gt;_11</obj_property>
-      <obj_property name="ObjectShortName">&lt;const0&gt;_11</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/&lt;const0&gt;">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/&lt;const0&gt;</obj_property>
-      <obj_property name="ObjectShortName">&lt;const0&gt;</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/ready_out_tx_sig">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/ready_out_tx_sig</obj_property>
-      <obj_property name="ObjectShortName">ready_out_tx_sig</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPIBridge_module/valid_out_spi_sig">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/valid_out_spi_sig</obj_property>
-      <obj_property name="ObjectShortName">valid_out_spi_sig</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="UARTSPIBridge_module/data_out_rx_sig">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/data_out_rx_sig[7:0]</obj_property>
-      <obj_property name="ObjectShortName">data_out_rx_sig[7:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="UARTSPIBridge_module/data_out_spi_sig">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPIBridge_module/data_out_spi_sig[7:0]</obj_property>
-      <obj_property name="ObjectShortName">data_out_spi_sig[7:0]</obj_property>
+      <obj_property name="ElementShortName">uart_period_sig[15:0]</obj_property>
+      <obj_property name="ObjectShortName">uart_period_sig[15:0]</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>

@@ -88,15 +88,12 @@ begin
 
 
     TX_module: entity work.SerialTx
-    generic map (
-        BIT_TIMER_WIDTH         => 16,
-        BIT_TIMER_PERIOD        => 10417 -- units of clock cycles
-    )
     port map ( 
         -- inputs
         CLK                     => CLK,
         EN                      => '1',
         RST                     => RST,
+        BIT_TIMER_PERIOD        => x"28B1", -- 100e6/9600 to hex (units of clock cycles)
         VALID                   => valid_out_spi_sig,
         DATA                    => data_out_spi_sig,
 --        DATA                    => x"AB",

@@ -1,8 +1,9 @@
 Vivado Simulator 2020.1
 Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: /home/gwrw/Xilinx/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 1f4367962a4b4441b8e64d3ba15e400e --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot SPITap_tb_behav xil_defaultlib.SPITap_tb -log elaborate.log 
+Running: /home/gwrw/Xilinx/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 1f4367962a4b4441b8e64d3ba15e400e --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot TxRx_tb_behav xil_defaultlib.TxRx_tb xil_defaultlib.glbl -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
+Pass Through NonSizing Optimizer
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -12,20 +13,25 @@ Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
 Compiling package unisim.vcomponents
+Compiling module xil_defaultlib.glbl
+Compiling architecture behavioral of entity xil_defaultlib.Timer [\Timer(width=16)\]
+Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=16)\]
+Compiling architecture behavioral of entity xil_defaultlib.PulseGenerator [\PulseGenerator(width=16)\]
+Compiling architecture behavioral of entity xil_defaultlib.Timer [\Timer(width=4)\]
 Compiling architecture behavioral of entity xil_defaultlib.Reg1D [reg1d_default]
-Compiling architecture behavioral of entity xil_defaultlib.Reg2D [\Reg2D(length=5)\]
-Compiling architecture behavioral of entity xil_defaultlib.SPITransactionFSM [spitransactionfsm_default]
+Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=10,big_endian=fals...]
+Compiling architecture behavioral of entity xil_defaultlib.SerialTxFSM [serialtxfsm_default]
+Compiling architecture behavioral of entity xil_defaultlib.SerialTx [serialtx_default]
+Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=1)...]
 Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=3)\]
 Compiling architecture behavioral of entity xil_defaultlib.Synchronizer [synchronizer_default]
-Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=8)...]
-Compiling architecture behavioral of entity xil_defaultlib.Timer [timer_default]
-Compiling architecture behavioral of entity xil_defaultlib.Timer [\Timer(width=8)\]
-Compiling architecture behavioral of entity xil_defaultlib.SPITransaction [spitransaction_default]
-Compiling architecture behavioral of entity xil_defaultlib.SPITapFSM [spitapfsm_default]
-Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=16)\]
-Compiling architecture behavioral of entity xil_defaultlib.MAFilter1Bit [\MAFilter1Bit(sum_width=16,sum_s...]
-Compiling architecture behavioral of entity xil_defaultlib.EdgeDetectorFSM [\EdgeDetectorFSM(sum_width=16,lo...]
-Compiling architecture behavioral of entity xil_defaultlib.EdgeDetector [\EdgeDetector(sum_width=16,logic...]
-Compiling architecture behavioral of entity xil_defaultlib.SPITap [spitap_default]
-Compiling architecture behavioral of entity xil_defaultlib.spitap_tb
-Built simulation snapshot SPITap_tb_behav
+Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.MAFilter1Bit [\MAFilter1Bit(sample_length=8,su...]
+Compiling architecture behavioral of entity xil_defaultlib.EdgeDetectorFSM [\EdgeDetectorFSM(logic_high=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.EdgeDetector [\EdgeDetector(sample_length=8,lo...]
+Compiling architecture behavioral of entity xil_defaultlib.clk_div_generic [\clk_div_generic(period_width=8,...]
+Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(big_endian=false)\]
+Compiling architecture behavioral of entity xil_defaultlib.SerialRxFSM [serialrxfsm_default]
+Compiling architecture behavioral of entity xil_defaultlib.SerialRx [\SerialRx(sample_period_width=1,...]
+Compiling architecture behavioral of entity xil_defaultlib.txrx_tb
+Built simulation snapshot TxRx_tb_behav

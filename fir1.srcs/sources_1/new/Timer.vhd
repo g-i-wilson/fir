@@ -24,6 +24,7 @@ entity Timer is
         COUNT_END           : in STD_LOGIC_VECTOR (WIDTH-1 downto 0) := (others=>'1');
         -- outputs
         DONE                : out STD_LOGIC;
+        PULSE               : out STD_LOGIC;
         COUNT               : out STD_LOGIC_VECTOR (WIDTH-1 downto 0)
    );
 end Timer;
@@ -38,7 +39,11 @@ architecture Behavioral of Timer is
 
 begin
     
-    done_sig <= '1' when unsigned(count_out_sig) = unsigned(COUNT_END) else '0';
+    almost_done_sig <= '1' when (
+        unsigned(count_in_sig) = unsigned(COUNT_END) or
+        unsigned(COUNT_START) = unsigned(COUNT_END)
+    ) else '0';
+    
     enable_count_sig <= EN and (not done_sig);
     
     COUNT <= count_out_sig;
@@ -61,6 +66,24 @@ begin
             else
                 count_out_sig <= count_out_sig;
             end if;
+        end if;
+    end process;
+    
+    process (CLK) begin
+        if rising_edge(CLK) then
+            if (RST = '1') then
+                done_sig <= almost_done_sig;
+            elsif (enable_count_sig = '1') then
+                done_sig <= almost_done_sig;
+            else
+                done_sig <= done_sig;
+            end if;
+        end if;
+    end process;
+
+    process (CLK) begin
+        if rising_edge(CLK) then
+            PULSE <= almost_done_sig and (not done_sig);
         end if;
     end process;
 

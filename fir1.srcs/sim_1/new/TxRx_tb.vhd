@@ -23,15 +23,12 @@ signal test_alarm : std_logic_vector(1 downto 0);
 begin
 
     Tx: entity work.SerialTx
-    generic map (
-        BIT_TIMER_WIDTH => 8,
-        BIT_TIMER_PERIOD => 16
-    )
     port map ( 
         -- inputs
         CLK => test_clk,
         EN => '1',
         RST => test_rst,
+        BIT_TIMER_PERIOD => x"0010",
         VALID => test_valid_tx_in,
         DATA => test_data_tx_in,
         -- outputs

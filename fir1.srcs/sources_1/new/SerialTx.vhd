@@ -11,15 +11,12 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity SerialTx is
-    generic (
-        BIT_TIMER_WIDTH        : positive := 16;
-        BIT_TIMER_PERIOD       : positive := 10417 -- units of clock cycles
-    );
     port (
         -- inputs
         CLK                     : in STD_LOGIC;
         EN                      : in STD_LOGIC;
         RST                     : in STD_LOGIC;
+        BIT_TIMER_PERIOD        : in STD_LOGIC_VECTOR (15 downto 0) := x"28B1"; -- units of clock cycles (default is 9600bps)
         VALID                   : in STD_LOGIC;
         DATA                    : in STD_LOGIC_VECTOR (7 downto 0);
         -- outputs
@@ -37,9 +34,11 @@ architecture Behavioral of SerialTx is
 
   signal reg_par_en             : std_logic;
   signal reg_shift_en           : std_logic;
+  
+  signal data_sig               : std_logic_vector (7 downto 0);
   signal reg_bits_in            : std_logic_vector (9 downto 0);
 
-  signal word_period            : std_logic_vector (BIT_TIMER_WIDTH+4-1 downto 0);
+  signal word_period            : std_logic_vector (31 downto 0);
 
 begin
 
@@ -47,35 +46,80 @@ begin
     count_rst <= ready_sig;
 
     -- bit counter
-   bit_timer : entity work.clk_div_generic
+--   bit_timer : entity work.clk_div_generic
+--        generic map (
+--            period_width        => 16,
+--            phase_lead          => 1 -- load and timing start together, but after that, the shift happens 1 after timing
+--        )
+--        port map (
+--            period              => BIT_TIMER_PERIOD,
+--            clk                 => clk,
+--            en                  => en,
+--            rst                 => count_rst,
+--            en_out              => bit_en_sig
+--        );
+    bit_pulses : entity work.PulseGenerator
         generic map (
-            period_width        => BIT_TIMER_WIDTH,
-            phase_lead          => 1 -- load and timing start together, but after that, the shift happens 1 after timing
+            WIDTH               => 16 
         )
         port map (
-            period              => std_logic_vector(to_unsigned(BIT_TIMER_PERIOD,BIT_TIMER_WIDTH)),
-            clk                 => clk,
-            en                  => en,
-            rst                 => count_rst,
-            en_out              => bit_en_sig
+            CLK                 => CLK,
+            RST                 => count_rst,
+            EN                  => EN,
+            PERIOD              => BIT_TIMER_PERIOD,
+            PHASE               => x"0001", -- load and timing start together, but after that, the shift happens 1 after timing
+            LAGGING             => '1', -- true
+            PULSE               => bit_en_sig
         );
 
-    -- word (byte + start/stop bits) counter
-    word_div : entity work.clk_div_generic
+        
+--    word_period <= std_logic_vector(unsigned(BIT_TIMER_PERIOD)*to_unsigned(10,16));
+
+--    -- word (byte + start/stop bits) counter
+--    word_div : entity work.clk_div_generic
+--        generic map (
+--            period_width        => 32,
+--            phase_lead          => 1
+--        )
+--        port map (
+--            period              => word_period,
+--            clk                 => clk,
+--            en                  => en,
+--            rst                 => count_rst,
+--            en_out              => word_en_sig
+--        );
+    word_timer : entity work.Timer
         generic map (
-            period_width        => BIT_TIMER_WIDTH+4,
-            phase_lead          => 1
+            WIDTH           => 4
         )
         port map (
-            period              => std_logic_vector(to_unsigned(BIT_TIMER_PERIOD*10,BIT_TIMER_WIDTH+4)),
-            clk                 => clk,
-            en                  => en,
-            rst                 => count_rst,
-            en_out              => word_en_sig
+            -- inputs
+            CLK             => CLK,
+            EN              => bit_en_sig,
+            RST             => count_rst,
+            COUNT_END       => x"9", -- 0 through 9 bits in a word
+            -- outputs
+            DONE            => word_en_sig
         );
 
 
-    reg_bits_in <= '1' & DATA & '0'; -- stop-bit, data, start-bit
+
+    -- valid buffer register
+    valid_buf_reg: entity work.reg1D
+        generic map (
+            LENGTH              => 8
+        )
+        port map (
+            CLK                 => CLK,
+            RST                 => RST,
+
+            PAR_EN              => VALID,
+            PAR_IN              => DATA,
+            PAR_OUT             => data_sig
+        );
+
+
+    reg_bits_in <= '1' & data_sig & '0'; -- stop-bit, data, start-bit
 
     -- output load/shift register
     tx_reg: entity work.reg1D

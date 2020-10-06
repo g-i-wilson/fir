@@ -1,0 +1,2 @@
+ila_uartspitap.vhd,vhdl,xil_defaultlib,../../../../fir1.srcs/sources_1/ip/ila_uartspitap/sim/ila_uartspitap.vhd,incdir="../../../../fir1.srcs/sources_1/ip/ila_uartspitap/hdl/verilog"
+glbl.v,Verilog,xil_defaultlib,glbl.v

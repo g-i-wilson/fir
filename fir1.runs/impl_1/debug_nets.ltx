@@ -1,0 +1,330 @@
+{
+    "ltx_root": {
+        "version": 4,
+        "minor": 0,
+        "ltx_data": [
+            {
+                "name": "EDA_PROBESET",
+                "active": true,
+                "debug_cores": [
+                    {
+                        "type": "XSDB_V3",
+                        "name": "dbg_hub",
+                        "spec": "labtools_xsdbm_v3",
+                        "clk_input_freq_hz": "100000000"
+                    },
+                    {
+                        "type": "ILA_V3",
+                        "name": "UARTSPITap_module/ila0",
+                        "spec": "labtools_ila_v6",
+                        "ipName": "ila",
+                        "core_location": {
+                            "user_chain": 1,
+                            "slave_index": 0,
+                            "bscan_switch_index": 0
+                        },
+                        "uuid": "F830959A48085FA2BA321F4648594D12",
+                        "pins": [
+                            {
+                                "name": "probe0",
+                                "id": 0,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "UARTSPITap_module/<const0>_1",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe0",
+                                "id": 1,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 1,
+                                "rightIndex": 1,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "UARTSPITap_module/<const0>_2",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe0",
+                                "id": 2,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 2,
+                                "rightIndex": 2,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "UARTSPITap_module/<const0>_3",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe0",
+                                "id": 3,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 3,
+                                "rightIndex": 3,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "UARTSPITap_module/<const0>_4",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe0",
+                                "id": 4,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 4,
+                                "rightIndex": 4,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "UARTSPITap_module/<const0>_5",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe0",
+                                "id": 5,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 5,
+                                "rightIndex": 5,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "UARTSPITap_module/<const0>",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe0",
+                                "id": 6,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 6,
+                                "rightIndex": 6,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "UARTSPITap_module/tx_valid_sig",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe0",
+                                "id": 7,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 7,
+                                "rightIndex": 7,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "UARTSPITap_module/tx_ready_sig",
+                                        "isBus": false,
+                                        "parentNetId": 2
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 8,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 7,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "UARTSPITap_module/tx_data_sig",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "UARTSPITap_module/tx_data_sig[7]"
+                                            },
+                                            {
+                                                "name": "UARTSPITap_module/tx_data_sig[6]"
+                                            },
+                                            {
+                                                "name": "UARTSPITap_module/tx_data_sig[5]"
+                                            },
+                                            {
+                                                "name": "UARTSPITap_module/tx_data_sig[4]"
+                                            },
+                                            {
+                                                "name": "UARTSPITap_module/tx_data_sig[3]"
+                                            },
+                                            {
+                                                "name": "UARTSPITap_module/tx_data_sig[2]"
+                                            },
+                                            {
+                                                "name": "UARTSPITap_module/tx_data_sig[1]"
+                                            },
+                                            {
+                                                "name": "UARTSPITap_module/tx_data_sig[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "ILA_V3",
+                        "name": "ila0",
+                        "spec": "labtools_ila_v6",
+                        "ipName": "ila",
+                        "core_location": {
+                            "user_chain": 1,
+                            "slave_index": 1,
+                            "bscan_switch_index": 0
+                        },
+                        "uuid": "C43F7696D0D45F618E82F96D994DF7EF",
+                        "pins": [
+                            {
+                                "name": "probe0",
+                                "id": 9,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 15,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "uart_period_sig",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "uart_period_sig[15]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[14]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[13]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[12]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[11]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[10]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[9]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[8]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[7]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[6]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[5]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[4]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[3]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[2]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[1]"
+                                            },
+                                            {
+                                                "name": "uart_period_sig[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 10,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "tx_sig",
+                                        "isBus": false
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "parent_nets": [
+                    {
+                        "id": 2,
+                        "name": "UARTSPITap_module/TX_module/FSM/Q[0]",
+                        "state_reg": [
+                            {
+                                "name": "UARTSPITap_module/TX_module/FSM/FSM_onehot_current_state_reg[1]",
+                                "states": [
+                                    {
+                                        "name": "iSTATE",
+                                        "val": "0010"
+                                    },
+                                    {
+                                        "name": "iSTATE0",
+                                        "val": "0100"
+                                    },
+                                    {
+                                        "name": "iSTATE1",
+                                        "val": "0001"
+                                    },
+                                    {
+                                        "name": "iSTATE2",
+                                        "val": "1000"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
