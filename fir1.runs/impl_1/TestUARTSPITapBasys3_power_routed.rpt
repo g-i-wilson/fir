@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date             : Tue Oct  6 13:35:27 2020
+| Date             : Wed Oct  7 14:14:43 2020
 | Host             : blacklaptop running 64-bit Ubuntu 18.04.5 LTS
 | Command          : report_power -file TestUARTSPITapBasys3_power_routed.rpt -pb TestUARTSPITapBasys3_power_summary_routed.pb -rpx TestUARTSPITapBasys3_power_routed.rpx
 | Design           : TestUARTSPITapBasys3
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.216        |
+| Total On-Chip Power (W)  | 0.213        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.144        |
+| Dynamic (W)              | 0.140        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 83.9         |
@@ -53,20 +53,20 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.015 |        6 |       --- |             --- |
-| Slice Logic              |     0.004 |     6597 |       --- |             --- |
-|   LUT as Logic           |     0.004 |     1937 |     20800 |            9.31 |
-|   Register               |    <0.001 |     3418 |     41600 |            8.22 |
-|   LUT as Shift Register  |    <0.001 |      171 |      9600 |            1.78 |
-|   CARRY4                 |    <0.001 |       75 |      8150 |            0.92 |
+| Slice Logic              |     0.004 |     6758 |       --- |             --- |
+|   LUT as Logic           |     0.004 |     1978 |     20800 |            9.51 |
+|   Register               |    <0.001 |     3495 |     41600 |            8.40 |
+|   LUT as Shift Register  |    <0.001 |      180 |      9600 |            1.88 |
+|   CARRY4                 |    <0.001 |       77 |      8150 |            0.94 |
 |   LUT as Distributed RAM |    <0.001 |       24 |      9600 |            0.25 |
-|   F7/F8 Muxes            |    <0.001 |        4 |     32600 |            0.01 |
-|   Others                 |     0.000 |      479 |       --- |             --- |
-| Signals                  |     0.005 |     4918 |       --- |             --- |
-| Block RAM                |     0.002 |      4.5 |        50 |            9.00 |
+|   F7/F8 Muxes            |    <0.001 |        5 |     32600 |            0.02 |
+|   Others                 |     0.000 |      495 |       --- |             --- |
+| Signals                  |     0.005 |     5050 |       --- |             --- |
+| Block RAM                |     0.004 |        7 |        50 |           14.00 |
 | MMCM                     |     0.106 |        1 |         5 |           20.00 |
-| I/O                      |     0.012 |       37 |       106 |           34.91 |
+| I/O                      |     0.007 |       37 |       106 |           34.91 |
 | Static Power             |     0.072 |          |           |                 |
-| Total                    |     0.216 |          |           |                 |
+| Total                    |     0.213 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,16 +76,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.037 |       0.027 |      0.010 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.072 |       0.059 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.004 |       0.003 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.038 |       0.028 |      0.010 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.071 |       0.059 |      0.013 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.003 |       0.002 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.001 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -148,11 +148,12 @@ Table of Contents
 +--------------------------+-----------+
 | Name                     | Power (W) |
 +--------------------------+-----------+
-| TestUARTSPITapBasys3     |     0.144 |
-|   UARTSPITap_module      |     0.010 |
+| TestUARTSPITapBasys3     |     0.140 |
+|   UARTSPITap_module      |     0.012 |
+|     FIFO_module          |     0.002 |
 |     SPITap_module        |     0.001 |
-|     ila0                 |     0.008 |
-|       U0                 |     0.008 |
+|     ila0                 |     0.009 |
+|       U0                 |     0.009 |
 |   baud_config            |     0.005 |
 |   clk_100MHz_module      |     0.106 |
 |   dbg_hub                |     0.003 |

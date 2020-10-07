@@ -123,6 +123,8 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
+  set_param tcl.collectionResultDisplayLimit 0
+  set_param xicom.use_bs_reader 1
   set_param chipscope.maxJobs 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a35tcpg236-1
@@ -138,8 +140,6 @@ OPTRACE "set parameters" START { }
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet /home/gwrw/fir1/fir1.runs/synth_1/TestUARTSPITapBasys3.dcp
-  read_ip -quiet /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_spitransaction/ila_spitransaction.xci
-  read_ip -quiet /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_uartspi_testing/ila_uartspi_testing.xci
   read_ip -quiet /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_uartspitaptesting/ila_uartspitaptesting.xci
   read_ip -quiet /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_uartspitap/ila_uartspitap.xci
 OPTRACE "read constraints: implementation" START { }

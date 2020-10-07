@@ -9,22 +9,51 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="4090fs"></ZoomStartTime>
-      <ZoomEndTime time="4106fs"></ZoomEndTime>
-      <Cursor1Time time="4097fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="8193fs"></ZoomEndTime>
+      <Cursor1Time time="3641fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="290"></NameColumnWidth>
-      <ValueColumnWidth column_width="130"></ValueColumnWidth>
+      <ValueColumnWidth column_width="122"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="3" />
+   <WVObjectSize size="6" />
    <wave_markers>
    </wave_markers>
-   <wvobject type="array" fp_name="UARTSPITap_module/tx_data_sig">
+   <wvobject type="array" fp_name="UARTSPITap_module/fifo_data_sig">
       <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPITap_module/tx_data_sig[7:0]</obj_property>
-      <obj_property name="ObjectShortName">tx_data_sig[7:0]</obj_property>
+      <obj_property name="ElementShortName">UARTSPITap_module/fifo_data_sig[7:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo_data_sig[7:0]</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="UARTSPITap_module/fifo_valid_sig">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">UARTSPITap_module/fifo_valid_sig</obj_property>
+      <obj_property name="ObjectShortName">fifo_valid_sig</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="UARTSPITap_module/mux_data_sig">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">UARTSPITap_module/mux_data_sig[7:0]</obj_property>
+      <obj_property name="ObjectShortName">mux_data_sig[7:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="UARTSPITap_module/mux_valid_sig">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">UARTSPITap_module/mux_valid_sig</obj_property>
+      <obj_property name="ObjectShortName">mux_valid_sig</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="UARTSPITap_module/spitap_valid_sig">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">UARTSPITap_module/spitap_valid_sig</obj_property>
+      <obj_property name="ObjectShortName">spitap_valid_sig</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
@@ -32,13 +61,6 @@
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">UARTSPITap_module/tx_ready_sig</obj_property>
       <obj_property name="ObjectShortName">tx_ready_sig</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPITap_module/tx_valid_sig">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPITap_module/tx_valid_sig</obj_property>
-      <obj_property name="ObjectShortName">tx_valid_sig</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>

@@ -24,7 +24,6 @@ entity Timer is
         COUNT_END           : in STD_LOGIC_VECTOR (WIDTH-1 downto 0) := (others=>'1');
         -- outputs
         DONE                : out STD_LOGIC;
-        PULSE               : out STD_LOGIC;
         COUNT               : out STD_LOGIC_VECTOR (WIDTH-1 downto 0)
    );
 end Timer;
@@ -78,12 +77,6 @@ begin
             else
                 done_sig <= done_sig;
             end if;
-        end if;
-    end process;
-
-    process (CLK) begin
-        if rising_edge(CLK) then
-            PULSE <= almost_done_sig and (not done_sig);
         end if;
     end process;
 

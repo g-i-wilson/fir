@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date                      : Tue Oct  6 13:34:39 2020
+| Date                      : Wed Oct  7 14:13:55 2020
 | Host                      : blacklaptop running 64-bit Ubuntu 18.04.5 LTS
 | Command                   : report_io -file TestUARTSPITapBasys3_io_placed.rpt
 | Design                    : TestUARTSPITapBasys3
@@ -253,7 +253,7 @@ Table of Contents
 | V16        | sw[1]       | High Range | IO_L19P_T3_A10_D26_14        | INPUT         | LVCMOS33    |      14 |            |      |                     |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | V17        | sw[0]       | High Range | IO_L19N_T3_A09_D25_VREF_14   | INPUT         | LVCMOS33    |      14 |            |      |                     |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | V18        |             |            | GND                          | GND           |             |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
-| V19        | led[3]      | High Range | IO_L15N_T2_DQS_DOUT_CSO_B_14 | OUTPUT        | LVCMOS33    |      14 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
+| V19        | led[3]      | High Range | IO_L15N_T2_DQS_DOUT_CSO_B_14 | TRISTATE      | LVCMOS33    |      14 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | W1         |             |            | GND                          | GND           |             |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | W2         | sw[12]      | High Range | IO_L5N_T0_34                 | INPUT         | LVCMOS33    |      34 |            |      |                     |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | W3         | led[10]     | High Range | IO_L6N_T0_VREF_34            | TRISTATE      | LVCMOS33    |      34 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |

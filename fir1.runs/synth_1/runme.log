@@ -16,14 +16,11 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 19228
+INFO: [Synth 8-7075] Helper process launched with PID 25887
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 2041.199 ; gain = 0.000 ; free physical = 128 ; free virtual = 5459
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:11 . Memory (MB): peak = 2067.215 ; gain = 0.000 ; free physical = 113 ; free virtual = 3870
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-1565] actual for formal port probe0 is neither a static name nor a globally static expression [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd:114]
-WARNING: [Synth 8-1565] actual for formal port probe0 is neither a static name nor a globally static expression [/home/gwrw/fir1/fir1.srcs/sources_1/new/SPITransaction.vhd:275]
-WARNING: [Synth 8-1565] actual for formal port probe0 is neither a static name nor a globally static expression [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPIBridge.vhd:114]
-WARNING: [Synth 8-1565] actual for formal port probe1 is neither a static name nor a globally static expression [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPIBridge.vhd:115]
+WARNING: [Synth 8-1565] actual for formal port probe0 is neither a static name nor a globally static expression [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd:124]
 INFO: [Synth 8-638] synthesizing module 'TestUARTSPITapBasys3' [/home/gwrw/fir1/fir1.srcs/sources_1/new/TestUARTSPITapBasys3.vhd:27]
 INFO: [Synth 8-638] synthesizing module 'SimpleMMCM2' [/home/gwrw/fir1/fir1.srcs/sources_1/new/SimpleMMCM2.vhd:30]
 	Parameter CLKIN_PERIOD bound to: 10.000000 - type: double 
@@ -80,7 +77,7 @@ INFO: [Synth 8-638] synthesizing module 'clk_div_generic' [/home/gwrw/fir1/fir1.
 	Parameter phase_lead bound to: 0 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'clk_div_generic' (4#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd:53]
 INFO: [Synth 8-256] done synthesizing module 'square_wave_gen' (5#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/square_wave_gen.vhd:49]
-INFO: [Synth 8-638] synthesizing module 'UARTSPITap' [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd:30]
+INFO: [Synth 8-638] synthesizing module 'UARTSPITap' [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd:28]
 INFO: [Synth 8-638] synthesizing module 'SPITap' [/home/gwrw/fir1/fir1.srcs/sources_1/new/SPITap.vhd:31]
 	Parameter FILTER_LENGTH bound to: 16 - type: integer 
 	Parameter FILTER_SUM_WIDTH bound to: 4 - type: integer 
@@ -90,10 +87,10 @@ INFO: [Synth 8-638] synthesizing module 'Reg1D__parameterized0' [/home/gwrw/fir1
 	Parameter LENGTH bound to: 8 - type: integer 
 	Parameter BIG_ENDIAN bound to: 1 - type: bool 
 INFO: [Synth 8-256] done synthesizing module 'Reg1D__parameterized0' (6#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd:57]
-INFO: [Synth 8-638] synthesizing module 'Timer' [/home/gwrw/fir1/fir1.srcs/sources_1/new/Timer.vhd:32]
+INFO: [Synth 8-638] synthesizing module 'Timer' [/home/gwrw/fir1/fir1.srcs/sources_1/new/Timer.vhd:31]
 	Parameter WIDTH bound to: 3 - type: integer 
 	Parameter COUNT_UP bound to: 1 - type: bool 
-INFO: [Synth 8-256] done synthesizing module 'Timer' (7#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/Timer.vhd:32]
+INFO: [Synth 8-256] done synthesizing module 'Timer' (7#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/Timer.vhd:31]
 INFO: [Synth 8-638] synthesizing module 'EdgeDetector' [/home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetector.vhd:36]
 	Parameter SAMPLE_LENGTH bound to: 16 - type: integer 
 	Parameter SUM_WIDTH bound to: 4 - type: integer 
@@ -120,29 +117,60 @@ INFO: [Synth 8-638] synthesizing module 'EdgeDetectorFSM' [/home/gwrw/fir1/fir1.
 INFO: [Synth 8-256] done synthesizing module 'EdgeDetectorFSM' (9#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetectorFSM.vhd:50]
 INFO: [Synth 8-256] done synthesizing module 'EdgeDetector' (10#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetector.vhd:36]
 INFO: [Synth 8-256] done synthesizing module 'SPITap' (11#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/SPITap.vhd:31]
+	Parameter ALMOST_EMPTY_OFFSET bound to: 16'b0000000010000000 
+	Parameter ALMOST_FULL_OFFSET bound to: 16'b0000000010000000 
+	Parameter DATA_WIDTH bound to: 8 - type: integer 
+	Parameter DEVICE bound to: VIRTEX5 - type: string 
+	Parameter DO_REG bound to: 0 - type: integer 
+	Parameter FIFO_SIZE bound to: 18Kb - type: string 
+	Parameter INIT bound to: 72'b000000000000000000000000000000000000000000000000000000000000000000000000 
+	Parameter SIM_MODE bound to: SAFE - type: string 
+	Parameter SRVAL bound to: 72'b000000000000000000000000000000000000000000000000000000000000000000000000 
+INFO: [Synth 8-3491] module 'FIFO_SYNC_MACRO' declared at '/home/gwrw/Xilinx/Vivado/2020.1/data/vhdl/src/unimacro/FIFO_SYNC_MACRO.vhd:36' bound to instance 'FIFO_module' of component 'FIFO_SYNC_MACRO' [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd:85]
+INFO: [Synth 8-638] synthesizing module 'unimacro_FIFO_SYNC_MACRO' [/home/gwrw/Xilinx/Vivado/2020.1/data/vhdl/src/unimacro/FIFO_SYNC_MACRO.vhd:69]
+	Parameter ALMOST_FULL_OFFSET bound to: 16'b0000000010000000 
+	Parameter ALMOST_EMPTY_OFFSET bound to: 16'b0000000010000000 
+	Parameter DATA_WIDTH bound to: 8 - type: integer 
+	Parameter DEVICE bound to: VIRTEX5 - type: string 
+	Parameter DO_REG bound to: 0 - type: integer 
+	Parameter FIFO_SIZE bound to: 18Kb - type: string 
+	Parameter INIT bound to: 72'b000000000000000000000000000000000000000000000000000000000000000000000000 
+	Parameter SRVAL bound to: 72'b000000000000000000000000000000000000000000000000000000000000000000000000 
+	Parameter SIM_MODE bound to: SAFE - type: string 
+	Parameter ALMOST_EMPTY_OFFSET bound to: 16'b0000000010000000 
+	Parameter ALMOST_FULL_OFFSET bound to: 16'b0000000010000000 
+	Parameter DATA_WIDTH bound to: 9 - type: integer 
+	Parameter DO_REG bound to: 0 - type: integer 
+	Parameter EN_SYN bound to: 1 - type: bool 
+	Parameter FIRST_WORD_FALL_THROUGH bound to: 0 - type: bool 
+	Parameter SIM_MODE bound to: SAFE - type: string 
+INFO: [Synth 8-113] binding component instance 'fifo_18_inst' to cell 'FIFO18' [/home/gwrw/Xilinx/Vivado/2020.1/data/vhdl/src/unimacro/FIFO_SYNC_MACRO.vhd:635]
+INFO: [Synth 8-256] done synthesizing module 'unimacro_FIFO_SYNC_MACRO' (12#1) [/home/gwrw/Xilinx/Vivado/2020.1/data/vhdl/src/unimacro/FIFO_SYNC_MACRO.vhd:69]
 INFO: [Synth 8-638] synthesizing module 'SerialTx' [/home/gwrw/fir1/fir1.srcs/sources_1/new/SerialTx.vhd:28]
 INFO: [Synth 8-638] synthesizing module 'PulseGenerator' [/home/gwrw/fir1/fir1.srcs/sources_1/new/PulseGenerator.vhd:29]
 	Parameter WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'Timer__parameterized0' [/home/gwrw/fir1/fir1.srcs/sources_1/new/Timer.vhd:32]
+INFO: [Synth 8-638] synthesizing module 'Timer__parameterized0' [/home/gwrw/fir1/fir1.srcs/sources_1/new/Timer.vhd:31]
 	Parameter WIDTH bound to: 16 - type: integer 
 	Parameter COUNT_UP bound to: 1 - type: bool 
-INFO: [Synth 8-256] done synthesizing module 'Timer__parameterized0' (11#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/Timer.vhd:32]
-INFO: [Synth 8-256] done synthesizing module 'PulseGenerator' (12#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/PulseGenerator.vhd:29]
-INFO: [Synth 8-638] synthesizing module 'Timer__parameterized1' [/home/gwrw/fir1/fir1.srcs/sources_1/new/Timer.vhd:32]
+INFO: [Synth 8-256] done synthesizing module 'Timer__parameterized0' (12#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/Timer.vhd:31]
+INFO: [Synth 8-256] done synthesizing module 'PulseGenerator' (13#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/PulseGenerator.vhd:29]
+INFO: [Synth 8-638] synthesizing module 'Timer__parameterized1' [/home/gwrw/fir1/fir1.srcs/sources_1/new/Timer.vhd:31]
 	Parameter WIDTH bound to: 4 - type: integer 
 	Parameter COUNT_UP bound to: 1 - type: bool 
-INFO: [Synth 8-256] done synthesizing module 'Timer__parameterized1' (12#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/Timer.vhd:32]
+INFO: [Synth 8-256] done synthesizing module 'Timer__parameterized1' (13#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/Timer.vhd:31]
 INFO: [Synth 8-638] synthesizing module 'Reg1D__parameterized3' [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd:57]
 	Parameter LENGTH bound to: 10 - type: integer 
 	Parameter BIG_ENDIAN bound to: 0 - type: bool 
-INFO: [Synth 8-256] done synthesizing module 'Reg1D__parameterized3' (12#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd:57]
+INFO: [Synth 8-256] done synthesizing module 'Reg1D__parameterized3' (13#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd:57]
 INFO: [Synth 8-638] synthesizing module 'SerialTxFSM' [/home/gwrw/fir1/fir1.srcs/sources_1/new/SerialTxFSM.vhd:48]
-INFO: [Synth 8-256] done synthesizing module 'SerialTxFSM' (13#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/SerialTxFSM.vhd:48]
-INFO: [Synth 8-256] done synthesizing module 'SerialTx' (14#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/SerialTx.vhd:28]
-INFO: [Synth 8-638] synthesizing module 'ila_uartspitap' [/home/gwrw/fir1/fir1.runs/synth_1/.Xil/Vivado-19155-blacklaptop/realtime/ila_uartspitap_stub.vhdl:14]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'TX_module'. This will prevent further optimization [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd:61]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ila0'. This will prevent further optimization [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd:111]
-INFO: [Synth 8-256] done synthesizing module 'UARTSPITap' (15#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd:30]
+INFO: [Synth 8-256] done synthesizing module 'SerialTxFSM' (14#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/SerialTxFSM.vhd:48]
+INFO: [Synth 8-256] done synthesizing module 'SerialTx' (15#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/SerialTx.vhd:28]
+INFO: [Synth 8-638] synthesizing module 'ila_uartspitap' [/home/gwrw/fir1/fir1.runs/synth_1/.Xil/Vivado-25788-blacklaptop/realtime/ila_uartspitap_stub.vhdl:15]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'SPITap_module'. This will prevent further optimization [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd:49]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ila0'. This will prevent further optimization [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd:121]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'FIFO_module'. This will prevent further optimization [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd:85]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'TX_module'. This will prevent further optimization [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd:107]
+INFO: [Synth 8-256] done synthesizing module 'UARTSPITap' (16#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd:28]
 INFO: [Synth 8-638] synthesizing module 'ParEdgeDetector' [/home/gwrw/fir1/fir1.srcs/sources_1/new/ParEdgeDetector.vhd:34]
 	Parameter PAR_WIDTH bound to: 16 - type: integer 
 	Parameter SAMPLE_LENGTH bound to: 32 - type: integer 
@@ -163,37 +191,37 @@ INFO: [Synth 8-638] synthesizing module 'MAFilter1Bit__parameterized0' [/home/gw
 INFO: [Synth 8-638] synthesizing module 'Reg1D__parameterized4' [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd:57]
 	Parameter LENGTH bound to: 32 - type: integer 
 	Parameter BIG_ENDIAN bound to: 1 - type: bool 
-INFO: [Synth 8-256] done synthesizing module 'Reg1D__parameterized4' (15#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd:57]
+INFO: [Synth 8-256] done synthesizing module 'Reg1D__parameterized4' (16#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd:57]
 INFO: [Synth 8-638] synthesizing module 'Reg1D__parameterized5' [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd:57]
 	Parameter LENGTH bound to: 5 - type: integer 
 	Parameter BIG_ENDIAN bound to: 1 - type: bool 
-INFO: [Synth 8-256] done synthesizing module 'Reg1D__parameterized5' (15#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd:57]
-INFO: [Synth 8-256] done synthesizing module 'MAFilter1Bit__parameterized0' (15#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/MAFilter1Bit.vhd:31]
+INFO: [Synth 8-256] done synthesizing module 'Reg1D__parameterized5' (16#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd:57]
+INFO: [Synth 8-256] done synthesizing module 'MAFilter1Bit__parameterized0' (16#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/MAFilter1Bit.vhd:31]
 INFO: [Synth 8-638] synthesizing module 'EdgeDetectorFSM__parameterized0' [/home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetectorFSM.vhd:50]
 	Parameter SUM_WIDTH bound to: 5 - type: integer 
 	Parameter LOGIC_HIGH bound to: 24 - type: integer 
 	Parameter LOGIC_LOW bound to: 8 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'EdgeDetectorFSM__parameterized0' (15#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetectorFSM.vhd:50]
-INFO: [Synth 8-256] done synthesizing module 'EdgeDetector__parameterized0' (15#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetector.vhd:36]
-INFO: [Synth 8-256] done synthesizing module 'ParEdgeDetector' (16#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/ParEdgeDetector.vhd:34]
-INFO: [Synth 8-638] synthesizing module 'ila_uartspitaptesting' [/home/gwrw/fir1/fir1.runs/synth_1/.Xil/Vivado-19155-blacklaptop/realtime/ila_uartspitaptesting_stub.vhdl:14]
+INFO: [Synth 8-256] done synthesizing module 'EdgeDetectorFSM__parameterized0' (16#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetectorFSM.vhd:50]
+INFO: [Synth 8-256] done synthesizing module 'EdgeDetector__parameterized0' (16#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetector.vhd:36]
+INFO: [Synth 8-256] done synthesizing module 'ParEdgeDetector' (17#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/ParEdgeDetector.vhd:34]
+INFO: [Synth 8-638] synthesizing module 'ila_uartspitaptesting' [/home/gwrw/fir1/fir1.runs/synth_1/.Xil/Vivado-25788-blacklaptop/realtime/ila_uartspitaptesting_stub.vhdl:14]
 INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ila0'. This will prevent further optimization [/home/gwrw/fir1/fir1.srcs/sources_1/new/TestUARTSPITapBasys3.vhd:127]
 INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'UARTSPITap_module'. This will prevent further optimization [/home/gwrw/fir1/fir1.srcs/sources_1/new/TestUARTSPITapBasys3.vhd:91]
-INFO: [Synth 8-256] done synthesizing module 'TestUARTSPITapBasys3' (17#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/TestUARTSPITapBasys3.vhd:27]
+INFO: [Synth 8-256] done synthesizing module 'TestUARTSPITapBasys3' (18#1) [/home/gwrw/fir1/fir1.srcs/sources_1/new/TestUARTSPITapBasys3.vhd:27]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:17 . Memory (MB): peak = 2048.102 ; gain = 6.902 ; free physical = 171 ; free virtual = 5321
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:16 . Memory (MB): peak = 2067.215 ; gain = 0.000 ; free physical = 220 ; free virtual = 3946
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:19 . Memory (MB): peak = 2062.945 ; gain = 21.746 ; free physical = 127 ; free virtual = 4965
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:18 . Memory (MB): peak = 2081.961 ; gain = 14.746 ; free physical = 108 ; free virtual = 3886
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:19 . Memory (MB): peak = 2062.945 ; gain = 21.746 ; free physical = 127 ; free virtual = 4965
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:18 . Memory (MB): peak = 2081.961 ; gain = 14.746 ; free physical = 108 ; free virtual = 3886
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.05 . Memory (MB): peak = 2072.852 ; gain = 0.000 ; free physical = 666 ; free virtual = 5589
-INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.13 . Memory (MB): peak = 2087.898 ; gain = 0.000 ; free physical = 122 ; free virtual = 3767
+INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
@@ -212,26 +240,25 @@ Finished Parsing XDC File [/home/gwrw/Basys3_Master.xdc]
 WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [/home/gwrw/Basys3_Master.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/TestUARTSPITapBasys3_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/gwrw/Basys3_Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/TestUARTSPITapBasys3_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/TestUARTSPITapBasys3_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [/home/gwrw/fir1/fir1.runs/synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/home/gwrw/fir1/fir1.runs/synth_1/dont_touch.xdc]
 INFO: [Timing 38-2] Deriving generated clocks
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2198.648 ; gain = 0.000 ; free physical = 523 ; free virtual = 5519
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2215.695 ; gain = 0.000 ; free physical = 529 ; free virtual = 4034
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 1 instances were transformed.
+  A total of 2 instances were transformed.
+  FIFO18 => FIFO18E1: 1 instance 
   MMCME2_BASE => MMCME2_ADV: 1 instance 
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.20 . Memory (MB): peak = 2198.648 ; gain = 0.000 ; free physical = 522 ; free virtual = 5519
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:01 . Memory (MB): peak = 2215.695 ; gain = 0.000 ; free physical = 506 ; free virtual = 4023
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:40 . Memory (MB): peak = 2198.648 ; gain = 157.449 ; free physical = 579 ; free virtual = 5587
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:01:03 . Memory (MB): peak = 2215.695 ; gain = 148.480 ; free physical = 447 ; free virtual = 4072
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:40 . Memory (MB): peak = 2198.648 ; gain = 157.449 ; free physical = 578 ; free virtual = 5587
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:01:03 . Memory (MB): peak = 2215.695 ; gain = 148.480 ; free physical = 447 ; free virtual = 4072
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -239,7 +266,7 @@ Start Applying 'set_property' XDC Constraints
 Applied set_property DONT_TOUCH = true for ila0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for UARTSPITap_module/ila0. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:40 . Memory (MB): peak = 2198.648 ; gain = 157.449 ; free physical = 578 ; free virtual = 5587
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:01:03 . Memory (MB): peak = 2215.695 ; gain = 148.480 ; free physical = 447 ; free virtual = 4072
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'SPITapFSM'
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'SerialTxFSM'
@@ -271,7 +298,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using e
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using encoding 'one-hot' in module 'SerialTxFSM'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:42 . Memory (MB): peak = 2198.648 ; gain = 157.449 ; free physical = 566 ; free virtual = 5578
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:01:05 . Memory (MB): peak = 2215.695 ; gain = 148.480 ; free physical = 437 ; free virtual = 4064
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -293,7 +320,7 @@ Detailed RTL Component Info :
 	                5 Bit    Registers := 16    
 	                4 Bit    Registers := 4     
 	                3 Bit    Registers := 40    
-	                1 Bit    Registers := 9     
+	                1 Bit    Registers := 5     
 +---Muxes : 
 	   2 Input   32 Bit        Muxes := 32    
 	   2 Input   28 Bit        Muxes := 1     
@@ -328,25 +355,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:50 . Memory (MB): peak = 2198.648 ; gain = 157.449 ; free physical = 538 ; free virtual = 5559
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:01:13 . Memory (MB): peak = 2215.695 ; gain = 148.480 ; free physical = 407 ; free virtual = 4041
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:34 ; elapsed = 00:00:59 . Memory (MB): peak = 2198.648 ; gain = 157.449 ; free physical = 411 ; free virtual = 5441
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:35 ; elapsed = 00:01:23 . Memory (MB): peak = 2215.695 ; gain = 148.480 ; free physical = 274 ; free virtual = 3918
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:39 ; elapsed = 00:01:05 . Memory (MB): peak = 2214.656 ; gain = 173.457 ; free physical = 396 ; free virtual = 5429
+Finished Timing Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:01:28 . Memory (MB): peak = 2231.703 ; gain = 164.488 ; free physical = 264 ; free virtual = 3908
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:40 ; elapsed = 00:01:06 . Memory (MB): peak = 2222.664 ; gain = 181.465 ; free physical = 395 ; free virtual = 5428
+Finished Technology Mapping : Time (s): cpu = 00:00:41 ; elapsed = 00:01:29 . Memory (MB): peak = 2247.719 ; gain = 180.504 ; free physical = 264 ; free virtual = 3908
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -364,37 +391,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:45 ; elapsed = 00:01:10 . Memory (MB): peak = 2222.664 ; gain = 181.465 ; free physical = 395 ; free virtual = 5428
+Finished IO Insertion : Time (s): cpu = 00:00:45 ; elapsed = 00:01:34 . Memory (MB): peak = 2247.719 ; gain = 180.504 ; free physical = 263 ; free virtual = 3907
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:45 ; elapsed = 00:01:10 . Memory (MB): peak = 2222.664 ; gain = 181.465 ; free physical = 395 ; free virtual = 5428
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:45 ; elapsed = 00:01:34 . Memory (MB): peak = 2247.719 ; gain = 180.504 ; free physical = 263 ; free virtual = 3907
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:45 ; elapsed = 00:01:10 . Memory (MB): peak = 2222.664 ; gain = 181.465 ; free physical = 395 ; free virtual = 5428
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:45 ; elapsed = 00:01:34 . Memory (MB): peak = 2247.719 ; gain = 180.504 ; free physical = 263 ; free virtual = 3907
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:45 ; elapsed = 00:01:10 . Memory (MB): peak = 2222.664 ; gain = 181.465 ; free physical = 395 ; free virtual = 5428
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:45 ; elapsed = 00:01:34 . Memory (MB): peak = 2247.719 ; gain = 180.504 ; free physical = 263 ; free virtual = 3907
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:45 ; elapsed = 00:01:10 . Memory (MB): peak = 2222.664 ; gain = 181.465 ; free physical = 395 ; free virtual = 5428
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:45 ; elapsed = 00:01:34 . Memory (MB): peak = 2247.719 ; gain = 180.504 ; free physical = 263 ; free virtual = 3907
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:45 ; elapsed = 00:01:10 . Memory (MB): peak = 2222.664 ; gain = 181.465 ; free physical = 395 ; free virtual = 5428
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:45 ; elapsed = 00:01:34 . Memory (MB): peak = 2247.719 ; gain = 180.504 ; free physical = 263 ; free virtual = 3907
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -404,9 +431,9 @@ Static Shift Register Report:
 +---------------------+----------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 |Module Name          | RTL Name                                                                         | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
 +---------------------+----------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
-|UARTSPITap           | SPITap_module/CS_detect/moving_average/shift_reg/reg_state_reg[15]               | 16     | 1     | YES          | NO                 | YES               | 1      | 0       | 
-|UARTSPITap           | SPITap_module/SCK_detect/moving_average/shift_reg/reg_state_reg[15]              | 16     | 1     | YES          | NO                 | YES               | 1      | 0       | 
-|UARTSPITap           | SPITap_module/SDA_detect/moving_average/shift_reg/reg_state_reg[15]              | 16     | 1     | YES          | NO                 | YES               | 1      | 0       | 
+|SPITap               | CS_detect/moving_average/shift_reg/reg_state_reg[15]                             | 16     | 1     | YES          | NO                 | YES               | 1      | 0       | 
+|SPITap               | SCK_detect/moving_average/shift_reg/reg_state_reg[15]                            | 16     | 1     | YES          | NO                 | YES               | 1      | 0       | 
+|SPITap               | SDA_detect/moving_average/shift_reg/reg_state_reg[15]                            | 16     | 1     | YES          | NO                 | YES               | 1      | 0       | 
 |TestUARTSPITapBasys3 | clk_100MHz_module/sync_rst/shift_reg/reg_state_reg[2]                            | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
 |TestUARTSPITapBasys3 | baud_config/gen_detectors[0].detector/moving_average/shift_reg/reg_state_reg[31] | 32     | 16    | YES          | NO                 | YES               | 0      | 16      | 
 +---------------------+----------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
@@ -434,42 +461,46 @@ Report Cell Usage:
 |2     |ila_uartspitaptesting |     1|
 |3     |BUFG                  |     2|
 |4     |CARRY4                |    21|
-|5     |LUT1                  |    31|
-|6     |LUT2                  |    59|
-|7     |LUT3                  |    75|
-|8     |LUT4                  |    38|
-|9     |LUT5                  |    85|
-|10    |LUT6                  |   189|
-|11    |MMCME2_BASE           |     1|
-|12    |SRL16E                |     4|
-|13    |SRLC32E               |    16|
-|14    |FDRE                  |   371|
-|15    |FDSE                  |    13|
-|16    |IBUF                  |    20|
-|17    |OBUF                  |     8|
-|18    |OBUFT                 |     9|
+|5     |FIFO18                |     1|
+|6     |LUT1                  |    32|
+|7     |LUT2                  |    59|
+|8     |LUT3                  |    65|
+|9     |LUT4                  |    40|
+|10    |LUT5                  |    86|
+|11    |LUT6                  |   187|
+|12    |MMCME2_BASE           |     1|
+|13    |SRL16E                |     4|
+|14    |SRLC32E               |    16|
+|15    |FDRE                  |   369|
+|16    |FDSE                  |    13|
+|17    |IBUF                  |    20|
+|18    |OBUF                  |     7|
+|19    |OBUFT                 |    10|
 +------+----------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:45 ; elapsed = 00:01:11 . Memory (MB): peak = 2222.664 ; gain = 181.465 ; free physical = 395 ; free virtual = 5428
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:45 ; elapsed = 00:01:34 . Memory (MB): peak = 2247.719 ; gain = 180.504 ; free physical = 263 ; free virtual = 3907
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:42 ; elapsed = 00:00:57 . Memory (MB): peak = 2222.664 ; gain = 45.762 ; free physical = 447 ; free virtual = 5480
-Synthesis Optimization Complete : Time (s): cpu = 00:00:45 ; elapsed = 00:01:11 . Memory (MB): peak = 2222.672 ; gain = 181.465 ; free physical = 447 ; free virtual = 5480
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:42 ; elapsed = 00:00:58 . Memory (MB): peak = 2247.719 ; gain = 46.770 ; free physical = 316 ; free virtual = 3961
+Synthesis Optimization Complete : Time (s): cpu = 00:00:45 ; elapsed = 00:01:34 . Memory (MB): peak = 2247.727 ; gain = 180.504 ; free physical = 317 ; free virtual = 3961
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2222.672 ; gain = 0.000 ; free physical = 438 ; free virtual = 5474
-INFO: [Netlist 29-17] Analyzing 22 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2247.727 ; gain = 0.000 ; free physical = 307 ; free virtual = 3956
+INFO: [Netlist 29-17] Analyzing 23 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2222.672 ; gain = 0.000 ; free physical = 368 ; free virtual = 5421
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2247.727 ; gain = 0.000 ; free physical = 320 ; free virtual = 3979
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 1 instances were transformed.
+  A total of 2 instances were transformed.
+  FIFO18 => FIFO18E1: 1 instance 
   MMCME2_BASE => MMCME2_ADV: 1 instance 
 
 INFO: [Common 17-83] Releasing license: Synthesis
-87 Infos, 9 Warnings, 0 Critical Warnings and 0 Errors encountered.
+93 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:51 ; elapsed = 00:01:26 . Memory (MB): peak = 2222.672 ; gain = 181.570 ; free physical = 510 ; free virtual = 5567
+synth_design: Time (s): cpu = 00:00:59 ; elapsed = 00:01:58 . Memory (MB): peak = 2247.727 ; gain = 180.609 ; free physical = 466 ; free virtual = 4126
+INFO: [Common 17-600] The following parameters have non-default value.
+tcl.collectionResultDisplayLimit
 INFO: [Common 17-1381] The checkpoint '/home/gwrw/fir1/fir1.runs/synth_1/TestUARTSPITapBasys3.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file TestUARTSPITapBasys3_utilization_synth.rpt -pb TestUARTSPITapBasys3_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Oct  6 13:27:07 2020...
+INFO: [Common 17-206] Exiting Vivado at Wed Oct  7 14:08:55 2020...

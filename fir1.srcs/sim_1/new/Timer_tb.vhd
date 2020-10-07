@@ -37,8 +37,8 @@ end Timer_tb;
 
 architecture Behavioral of Timer_tb is
 
-signal test_clk, test_rst, test_done0, test_done1, test_done2, test_done3, test_pulse0, test_pulse1, test_pulse2, test_pulse3 : std_logic;
-signal test_start0, test_start1, test_end0, test_end1, test_count0, test_count1, test_count3 : std_logic_vector(3 downto 0);
+signal test_clk, test_rst, test_done0, test_done1, test_done2, test_done3, test_done4, test_done5 : std_logic;
+signal test_start0, test_start1, test_end0, test_end1, test_count0, test_count1, test_count3, test_count4, test_count5 : std_logic_vector(3 downto 0);
 signal test_count2 : std_logic_vector(2 downto 0);
 
 begin
@@ -56,7 +56,6 @@ begin
             COUNT_END       => test_end0,
             -- outputs
             DONE            => test_done0,
-            PULSE           => test_pulse0,
             COUNT           => test_count0
        );
 
@@ -73,7 +72,6 @@ begin
             COUNT_END       => test_end1,
             -- outputs
             DONE            => test_done1,
-            PULSE           => test_pulse1,
             COUNT           => test_count1
        );
 
@@ -87,7 +85,6 @@ begin
             RST             => test_done2,
             -- outputs
             DONE            => test_done2,
-            PULSE           => test_pulse2,
             COUNT           => test_count2
        );
 
@@ -99,15 +96,45 @@ begin
         port map (
             -- inputs
             CLK             => test_clk,
-            RST             => test_done2,
+            RST             => test_done3,
             COUNT_START     => test_start1,
             COUNT_END       => test_start1,
             -- outputs
             DONE            => test_done3,
-            PULSE           => test_pulse3,
             COUNT           => test_count3
        );
 
+
+    timer4: entity work.Timer
+        generic map (
+            WIDTH => 4
+        )
+        port map (
+            -- inputs
+            CLK             => test_clk,
+            RST             => test_done4,
+            COUNT_START     => test_start0,
+            COUNT_END       => test_end0,
+            -- outputs
+            DONE            => test_done4,
+            COUNT           => test_count4
+       );
+
+
+    timer5: entity work.Timer
+        generic map (
+            WIDTH => 4
+        )
+        port map (
+            -- inputs
+            CLK             => test_clk,
+            RST             => test_done5,
+            COUNT_START     => test_start0,
+            COUNT_END       => test_start0,
+            -- outputs
+            DONE            => test_done5,
+            COUNT           => test_count5
+       );
 
     process
     

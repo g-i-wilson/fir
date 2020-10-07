@@ -55,7 +55,7 @@ begin
             EN                  => EN,
             RST                 => timer_rst_sig,
             COUNT_END           => end_minus_phase_sig,
-            PULSE               => timer_pulse_sig,
+            DONE                => timer_pulse_sig,
             COUNT               => COUNT
         );
 

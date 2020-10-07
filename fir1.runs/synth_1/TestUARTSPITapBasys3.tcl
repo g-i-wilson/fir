@@ -70,6 +70,8 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param tcl.collectionResultDisplayLimit 0
+set_param xicom.use_bs_reader 1
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
@@ -89,68 +91,24 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/reg1D.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/Synchronizer.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/SimpleMMCM2.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/clk_div_generic.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/square_wave_gen.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/MAFilter1Bit.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetectorFSM.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/EdgeDetector.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/ParEdgeDetector.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/SPITapFSM.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/Timer.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/PulseGenerator.vhd
+  /home/gwrw/fir1/fir1.srcs/sources_1/new/SPITapFSM.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/SPITap.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/SerialTxFSM.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/SerialTx.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPITap.vhd
   /home/gwrw/fir1/fir1.srcs/sources_1/new/TestUARTSPITapBasys3.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/PushButtonToggle.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/SPITransactionFSM.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/SPITransaction.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/SerialRxFSM.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/SerialRx.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/UARTSPIBridge.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/TestUARTSPIBridgeBasys3.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/SimpleMMCM.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/ADC1Bit.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/reg2D.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/pdm_generic.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/fun_gen_sr.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/shift_mult_generic.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/DAC_ADC.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/MAFilter.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/SequentialAdder.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/decoder.vhdl
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/diff_accum.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/diff_out_test.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/encoder.vhdl
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/fun_gen.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/pulsing_leds.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/reg_add_generic.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/reg_mult_generic.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/register.vhdl
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/shorten.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/sin_wave_gen.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/test_values.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/test_fun_gen.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/test_synth.vhdl
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/mult_generic_tb.vhd
-  /home/gwrw/fir1/fir1.srcs/sources_1/new/PulseGenerator.vhd
 }
-read_ip -quiet /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_spitransaction/ila_spitransaction.xci
-set_property used_in_synthesis false [get_files -all /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_spitransaction/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_spitransaction/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_spitransaction/ila_v6_2/constraints/ila.xdc]
-set_property used_in_implementation false [get_files -all /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_spitransaction/ila_spitransaction_ooc.xdc]
-
-read_ip -quiet /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_uartspi_testing/ila_uartspi_testing.xci
-set_property used_in_synthesis false [get_files -all /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_uartspi_testing/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_uartspi_testing/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_uartspi_testing/ila_v6_2/constraints/ila.xdc]
-set_property used_in_implementation false [get_files -all /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_uartspi_testing/ila_uartspi_testing_ooc.xdc]
-
 read_ip -quiet /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_uartspitaptesting/ila_uartspitaptesting.xci
 set_property used_in_synthesis false [get_files -all /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_uartspitaptesting/ila_v6_2/constraints/ila_impl.xdc]
 set_property used_in_implementation false [get_files -all /home/gwrw/fir1/fir1.srcs/sources_1/ip/ila_uartspitaptesting/ila_v6_2/constraints/ila_impl.xdc]
@@ -175,8 +133,6 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 read_xdc /home/gwrw/Basys3_Master.xdc
 set_property used_in_implementation false [get_files /home/gwrw/Basys3_Master.xdc]
 
-read_xdc dont_touch.xdc
-set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 

@@ -1,14 +1,12 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+Library UNISIM;
+use UNISIM.vcomponents.all;
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
+Library UNIMACRO;
+use UNIMACRO.vcomponents.all;
+
 
 entity UARTSPITap is
     
@@ -31,13 +29,20 @@ architecture Behavioral of UARTSPITap is
 
     signal start_sig : std_logic;
     signal unexpected_end_sig : std_logic;
+    
     signal spitap_valid_sig : std_logic;
     signal spitap_data_sig : std_logic_vector(7 downto 0);
-    signal tx_valid_sig : std_logic;
+    
+    signal fifo_valid_sig : std_logic;
+    signal fifo_not_valid_sig : std_logic;
+    signal fifo_data_sig : std_logic_vector(7 downto 0);
+
+    signal mux_valid_sig : std_logic;
+    signal mux_data_sig : std_logic_vector(7 downto 0);
+
     signal tx_ready_sig : std_logic;
     signal tx_not_ready_in_sig : std_logic;
     signal tx_not_ready_out_sig : std_logic;
-    signal tx_data_sig : std_logic_vector(7 downto 0);
 
 begin
 
@@ -57,62 +62,68 @@ begin
         VALID               => spitap_valid_sig,
         DATA                => spitap_data_sig
     );
-
-    TX_module: entity work.SerialTx
-    port map ( 
-        -- inputs
-        CLK => CLK,
-        EN => '1',
-        RST => RST,
-        BIT_TIMER_PERIOD => UART_PERIOD,
-        VALID => tx_valid_sig,
-        DATA => tx_data_sig,
---        DATA => x"AB",
-        -- outputs
-        READY => tx_ready_sig,
-        TX => TX
-    );
-
-    process (start_sig, unexpected_end_sig, spitap_valid_sig, spitap_data_sig, TEST_BYTE, TEST_EN)
+    
+    MUX: process (start_sig, unexpected_end_sig, spitap_valid_sig, spitap_data_sig, TEST_BYTE, TEST_EN)
     begin
     
         if (start_sig = '1') then
-            tx_valid_sig <= '1';
-            tx_data_sig <= x"0A"; -- '\n'
+            mux_valid_sig <= '1';
+            mux_data_sig <= x"0A"; -- '\n'
         elsif (unexpected_end_sig = '1') then
-            tx_valid_sig <= '1';
-            tx_data_sig <= x"3F"; -- '?'
+            mux_valid_sig <= '1';
+            mux_data_sig <= x"3F"; -- '?'
         elsif (TEST_EN = '1') then
-            tx_valid_sig <= '1';
-            tx_data_sig <= TEST_BYTE;
+            mux_valid_sig <= '1';
+            mux_data_sig <= TEST_BYTE;
         else
-            tx_valid_sig <= spitap_valid_sig;
-            tx_data_sig <= spitap_data_sig;
+            mux_valid_sig <= spitap_valid_sig;
+            mux_data_sig <= spitap_data_sig;
         end if;
     
     end process;
     
+    FIFO_module : FIFO_SYNC_MACRO
+    generic map (
+--        DEVICE              => "7SERIES",             -- Target Device: "VIRTEX5, "VIRTEX6", "7SERIES" 
+--        ALMOST_FULL_OFFSET  => X"0080",               -- Sets almost full threshold
+--        ALMOST_EMPTY_OFFSET => X"0080",               -- Sets the almost empty threshold
+        DATA_WIDTH          => 8                    -- Valid values are 1-72 (37-72 only valid when FIFO_SIZE="36Kb")
+--        FIFO_SIZE           => "18Kb"               -- Target BRAM, "18Kb" or "36Kb" 
+    )
+    port map (
+        CLK                 => CLK,                 -- 1-bit input clock
+        RST                 => RST,                 -- 1-bit input reset
+        -- input path
+        DI                  => mux_data_sig,        -- Input data, width defined by DATA_WIDTH parameter
+        WREN                => mux_valid_sig,       -- 1-bit input write enable
+        -- output path
+        DO                  => fifo_data_sig,       -- Output data, width defined by DATA_WIDTH parameter
+        RDEN                => tx_ready_sig,        -- 1-bit input read enable
+        EMPTY               => fifo_not_valid_sig   -- 1-bit output empty
+    );
     
-    process (CLK)
-    begin
-        if rising_edge(CLK) then
-            if (RST = '1') then
-                tx_not_ready_out_sig <= '0';
-            else
-                tx_not_ready_out_sig <= tx_not_ready_in_sig;
-            end if;
-        end if;
-    end process;
+    fifo_valid_sig <= not fifo_not_valid_sig;
     
-    tx_not_ready_in_sig <= (tx_valid_sig and not tx_ready_sig) or tx_not_ready_out_sig;
-    
-    TX_NOT_READY <= tx_not_ready_out_sig;
-    
+    TX_module: entity work.SerialTx
+    port map ( 
+        -- inputs
+        CLK                 => CLK,
+        EN                  => '1',
+        RST                 => RST,
+        BIT_TIMER_PERIOD    => UART_PERIOD,
+        VALID               => fifo_valid_sig,
+        DATA                => fifo_data_sig,
+        -- outputs
+        READY               => tx_ready_sig,
+        TX                  => TX
+    );
+
     ila0: entity work.ila_uartspitap
     port map (
         CLK => CLK,
-        probe0 => tx_ready_sig & tx_valid_sig & "000000",
-        probe1 => tx_data_sig
+        probe0 => spitap_valid_sig & mux_valid_sig & fifo_valid_sig & tx_ready_sig & "0000",
+        probe1 => mux_data_sig,
+        probe2 => fifo_data_sig
     );
 
 end Behavioral;
