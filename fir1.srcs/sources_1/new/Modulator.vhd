@@ -32,8 +32,9 @@ end Modulator;
 
 architecture Behavioral of Modulator is
 
-    signal lo_sig : STD_LOGIC;
-    signal lo_vector_sig : STD_LOGIC_VECTOR(LO_HALF_PERIOD_WIDTH-1 downto 0);
+    signal lo_sig           : STD_LOGIC;
+    signal lo_vector_sig    : STD_LOGIC_VECTOR(SIG_WIDTH-1 downto 0);
+    signal mix_sig          : STD_LOGIC_VECTOR(SIG_WIDTH*2-1 downto 0);
 
 begin
 
@@ -52,19 +53,19 @@ begin
         SIG_OUT         => lo_sig
     );
     
-    lo_vector_sig(SIG_WIDTH-1) <= not lo_sig;
-    lo_vector_sig(SIG_WIDTH-2 downto 0) <= (others=>lo_sig); -- +/- maximum
-    
     mix_greater_than_2 : if SIG_WIDTH > 2 generate
-    
-    
+        lo_vector_sig(SIG_WIDTH-1)          <= not lo_sig;
+        lo_vector_sig(SIG_WIDTH-2 downto 1) <= (others=>lo_sig);
+        lo_vector_sig(0)                    <= '1'; -- +/- 2^(n-1): 011111..11 or 100000..01
     end generate mix_greater_than_2;
 
+    mix_2 : if SIG_WIDTH = 2 generate
+        lo_vector_sig(1)                    <= not lo_sig;
+        lo_vector_sig(0)                    <= '1'; -- +/- 2^(n-1): 01 or 11 is +1 or -1
+    end generate mix_2;
 
-    mix_2_or_1 : if SIG_WIDTH <= 2 generate
-    
-        
-    
-    end generate mix_2_or_1;
+    mix_1 : if SIG_WIDTH = 1 generate
+        lo_vector_sig(0)                    <= lo_sig;
+    end generate mix_1;
 
 end Behavioral;
