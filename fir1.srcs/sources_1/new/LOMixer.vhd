@@ -11,9 +11,9 @@ use IEEE.NUMERIC_STD.ALL;
 library UNISIM;
 use UNISIM.VComponents.all;
 
-entity Modulator is
+entity LOMixer is
     generic (
-        SIG_WIDTH               : positive := 4; -- signal path width
+        SIG_WIDTH               : positive := 1; -- signal path width
         LO_HALF_PERIOD_WIDTH    : positive := 16 -- width of timer register for LO
     );
     port (
@@ -23,21 +23,24 @@ entity Modulator is
         LO_HALF_PERIOD          : in STD_LOGIC_VECTOR (LO_HALF_PERIOD_WIDTH-1 downto 0) := (others=>'0');
         PHASE                   : in STD_LOGIC_VECTOR (LO_HALF_PERIOD_WIDTH-1 downto 0) := (others=>'0');
         LAGGING                 : in STD_LOGIC := '1';
+        POLARITY                : in STD_LOGIC := '1';
         DEFAULT_STATE           : in STD_LOGIC := '0';
         SIG_IN                  : in STD_LOGIC_VECTOR (SIG_WIDTH-1 downto 0) := (others=>'0');
-        
+
         SIG_OUT                 : out STD_LOGIC_VECTOR (SIG_WIDTH-1 downto 0) := (others=>'0')
     );
-end Modulator;
+end LOMixer;
 
-architecture Behavioral of Modulator is
+architecture Behavioral of LOMixer is
 
-    signal lo_sig           : STD_LOGIC;
-    signal lo_vector_sig    : STD_LOGIC_VECTOR(SIG_WIDTH-1 downto 0);
-    signal mix_sig          : STD_LOGIC_VECTOR(SIG_WIDTH*2-1 downto 0);
+    signal lo_sig               : STD_LOGIC;
+    signal mod_sig              : STD_LOGIC_VECTOR(SIG_WIDTH-1 downto 0);
 
 begin
 
+    ----------------------------------------
+    -- Square wave "LO"
+    ----------------------------------------
     SqWave_module: entity work.SquareWaveGenerator
     generic map (
         WIDTH           => LO_HALF_PERIOD_WIDTH
@@ -52,20 +55,43 @@ begin
         DEFAULT_STATE   => DEFAULT_STATE,
         SIG_OUT         => lo_sig
     );
-    
-    mix_greater_than_2 : if SIG_WIDTH > 2 generate
-        lo_vector_sig(SIG_WIDTH-1)          <= not lo_sig;
-        lo_vector_sig(SIG_WIDTH-2 downto 1) <= (others=>lo_sig);
-        lo_vector_sig(0)                    <= '1'; -- +/- 2^(n-1): 011111..11 or 100000..01
-    end generate mix_greater_than_2;
 
-    mix_2 : if SIG_WIDTH = 2 generate
-        lo_vector_sig(1)                    <= not lo_sig;
-        lo_vector_sig(0)                    <= '1'; -- +/- 2^(n-1): 01 or 11 is +1 or -1
-    end generate mix_2;
+
+    ----------------------------------------
+    -- Mixer (multiplication, not addition!)
+    ----------------------------------------
+    mix_greater_than_1 : if SIG_WIDTH > 1 generate
+        process (SIG_IN, lo_sig, POLARITY)
+        begin
+            if (lo_sig = POLARITY) then
+                mod_sig <= SIG_IN;
+            else
+                -- 2's compliment; negating a signed value
+                mod_sig <= std_logic_vector(unsigned(not(SIG_IN)) + 1);
+                -- SIG_OUT should be treated as signed
+            end if;
+        end process;
+    end generate mix_greater_than_1;
 
     mix_1 : if SIG_WIDTH = 1 generate
-        lo_vector_sig(0)                    <= lo_sig;
+        SIG_OUT(0) <= not (SIG_IN(0) xor lo_sig);
     end generate mix_1;
+
+
+    ----------------------------------------
+    -- Registered output
+    ----------------------------------------
+    Reg1D_module: entity work.Reg1D
+        generic map (
+            LENGTH              => SIG_WIDTH
+        )
+        port map (
+            CLK                 => CLK,
+            RST                 => RST,
+
+            PAR_EN              => EN,
+            PAR_IN              => mod_sig,
+            PAR_OUT             => SIG_OUT
+        );
 
 end Behavioral;

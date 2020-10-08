@@ -17,6 +17,7 @@ entity TestUARTSPITapBasys3 is
         CS              : in STD_LOGIC;
         SCK             : in STD_LOGIC;
         MISO            : in STD_LOGIC;
+        MOSI            : in STD_LOGIC;
         sw              : in STD_LOGIC_VECTOR (15 downto 0);
         -- outputs
         TX              : out STD_LOGIC;
@@ -36,7 +37,7 @@ architecture Behavioral of TestUARTSPITapBasys3 is
     signal sw_data_sig : std_logic_vector(15 downto 0);
     signal uart_period_sig : std_logic_vector(15 downto 0);
 
-    signal miso_sig : std_logic;
+    signal sda_sig : std_logic;
     signal sck_sig : std_logic;
     signal cs_sig : std_logic;
 
@@ -46,13 +47,13 @@ architecture Behavioral of TestUARTSPITapBasys3 is
 
 begin
 
-    miso_sig <= MISO;
     sck_sig <= SCK;
     cs_sig <= CS;
+    sda_sig <= MOSI when sw_data_sig(13) = '1' else MISO;
     
     TX <= tx_sig;
 
-    led(13) <= miso_sig;
+    led(13) <= sda_sig;
     led(14) <= sck_sig;
     led(15) <= cs_sig;
 
@@ -85,8 +86,9 @@ begin
 
     combined_rst_sig <= rst_sig or sw_data_sig(15);
     led(1) <= combined_rst_sig;
+    
 
-    uart_period_sig <= "00" & sw_data_sig(13 downto 0);
+    uart_period_sig <= "000" & sw_data_sig(12 downto 0);
 
     UARTSPITap_module: entity work.UARTSPITap
     port map (
@@ -95,7 +97,7 @@ begin
         RST                     => combined_rst_sig,
         CS                      => cs_sig,
         SCK                     => sck_sig,
-        SDA                     => miso_sig,
+        SDA                     => sda_sig,
         UART_PERIOD             => uart_period_sig,
         TEST_BYTE               => x"41",
         TEST_EN                 => sw_event_sig(14),

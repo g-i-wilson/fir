@@ -113,7 +113,7 @@ begin
             if (SCK = '0') then
                 next_state <= BYTE_DONE_L_STATE;
             elsif (CS = '1') then
-                next_state <= SPI_UNEXPECTED_END_STATE;
+                next_state <= CS_H_STATE;
             end if;
             
         elsif current_state = BYTE_DONE_L_STATE then

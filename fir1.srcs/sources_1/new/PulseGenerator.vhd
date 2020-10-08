@@ -63,7 +63,7 @@ begin
     
     phase_diff_sig <= std_logic_vector(unsigned(PHASE) - unsigned(prev_phase_sig));
 
-    Reg1d_module: entity work.Reg1D
+    Reg1D_module: entity work.Reg1D
         generic map (
             LENGTH              => WIDTH
         )
