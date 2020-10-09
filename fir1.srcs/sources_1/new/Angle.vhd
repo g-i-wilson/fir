@@ -31,7 +31,7 @@ architecture Behavioral of Angle is
 
 begin
 
-    width_greater_than_1 : if SIG_WIDTH > 1 generate
+    width_greater_than_1 : if SIG_IN_WIDTH > 1 generate
         process ()
         begin
 
