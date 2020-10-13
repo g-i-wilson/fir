@@ -14,7 +14,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity Reg2D is
   generic (
-    LENGTH          : integer := 0; -- for LENGTH <= 0: generates a zero-LENGTH "pass-through"
+    LENGTH          : positive := 2;
     WIDTH           : positive := 8;
     BIG_ENDIAN      : boolean := true
   );
@@ -45,108 +45,77 @@ architecture Behavioral of Reg2D is
   -- provides bit signals "between" each register, so WIDTH*(LENGTH-1)
 
   begin
-
-    -- special case where LENGTH = 0
-    gen_zero: if (LENGTH <= 0) generate
-      SHIFT_OUT  <= SHIFT_IN;
-      PAR_OUT    <= PAR_IN;
-      ALL_LOWER_OUT <= (others=>'0');
-    end generate gen_zero;
-
-    -- special case where LENGTH = 1
-    gen_fiRST_unity: if (LENGTH = 1) generate
-    fiRST_reg : entity work.reg1D
-    generic map (
-      LENGTH => WIDTH,
-      BIG_ENDIAN => BIG_ENDIAN
-    )
-    port map (
-      CLK      => CLK,
-      RST      => RST,
-
-      SHIFT_EN => SHIFT_EN,
-      PAR_EN   => PAR_EN,
-
-      DEFAULT_STATE => DEFAULT_STATE   (WIDTH-1 downto 0),
-
-      SHIFT_IN   => SHIFT_IN,
-      SHIFT_OUT  => SHIFT_OUT,
-
-      PAR_IN     => PAR_IN,
-      PAR_OUT    => PAR_OUT
-    );
-    end generate gen_fiRST_unity;
-
+        
     gen_fiRST: if (LENGTH > 1) generate
-      fiRST_reg : entity work.reg1D
-        generic map (
-          LENGTH => WIDTH,
-          BIG_ENDIAN => BIG_ENDIAN
-        )
-        port map (
-          CLK      => CLK,
-          RST      => RST,
-
-          SHIFT_EN => SHIFT_EN,
-          PAR_EN   => PAR_EN,
-
-          DEFAULT_STATE => DEFAULT_STATE   (WIDTH-1 downto 0),
-
-          SHIFT_IN   => SHIFT_IN,
-          SHIFT_OUT  => shift_connect_sig  (0),
-
-          PAR_IN     => PAR_IN,
-          PAR_OUT    => par_connect_sig    (WIDTH-1 downto 0)
-        );
-      end generate gen_fiRST;
-
-      gen_middle : for i in 0 to (LENGTH-3) generate -- LENGTH 5 regs is: in,0,1,2,out
-          middle_reg : entity work.reg1D
+        fiRST_reg : entity work.reg1D
             generic map (
-              LENGTH => WIDTH,
-              BIG_ENDIAN => BIG_ENDIAN
+            LENGTH => WIDTH,
+            BIG_ENDIAN => BIG_ENDIAN
             )
             port map (
-              CLK      => CLK,
-              RST      => RST,
-
-              SHIFT_EN => SHIFT_EN,
-              PAR_EN   => PAR_EN,
-
-              DEFAULT_STATE => DEFAULT_STATE ( (i+1)*WIDTH  +(WIDTH-1)            downto  (i+1)   *WIDTH ),
-
-              SHIFT_IN  => shift_connect_sig (  i   ),
-              SHIFT_OUT => shift_connect_sig (  i+1 ),
-
-              PAR_IN    => par_connect_sig (    i   *WIDTH   +(WIDTH-1)           downto  i       *WIDTH ),
-              PAR_OUT   => par_connect_sig (   (i+1)*WIDTH   +(WIDTH-1)           downto  (i+1)   *WIDTH )
-
+            CLK      => CLK,
+            RST      => RST,
+            
+            SHIFT_EN              => SHIFT_EN,
+            PAR_EN                => PAR_EN,
+            
+            DEFAULT_STATE         => DEFAULT_STATE   (WIDTH-1 downto 0),
+            
+            SHIFT_IN              => SHIFT_IN,
+            SHIFT_OUT             => shift_connect_sig  (0),
+            
+            PAR_IN                => PAR_IN,
+            PAR_OUT               => par_connect_sig    (WIDTH-1 downto 0)
             );
-      end generate gen_middle;
+    end generate gen_fiRST;
 
-      gen_last: if (LENGTH >= 2) generate
-          last_reg : entity work.reg1D
+    gen_middle : for i in 0 to (LENGTH-3) generate -- LENGTH 5 regs is: in,0,1,2,out
+        middle_reg : entity work.reg1D
             generic map (
-              LENGTH => WIDTH,
-              BIG_ENDIAN => BIG_ENDIAN
+                LENGTH          => WIDTH,
+                BIG_ENDIAN      => BIG_ENDIAN
             )
             port map (
-              CLK      => CLK,
-              RST      => RST,
-
-              SHIFT_EN => SHIFT_EN,
-              PAR_EN   => PAR_EN,
-
-              DEFAULT_STATE => DEFAULT_STATE   ( DEFAULT_STATE'high   downto   DEFAULT_STATE'high-(WIDTH-1) ),
-
-              SHIFT_IN   => shift_connect_sig  ( shift_connect_sig'high ),
-              SHIFT_OUT  => SHIFT_OUT,
-
-              PAR_IN     => par_connect_sig    ( par_connect_sig'high   downto   par_connect_sig'high-(WIDTH-1) ),
-              PAR_OUT    => PAR_OUT
+                CLK             => CLK,
+                RST             => RST,
+                
+                SHIFT_EN        => SHIFT_EN,
+                PAR_EN          => PAR_EN,
+                
+                DEFAULT_STATE   => DEFAULT_STATE ( (i+1)*WIDTH  +(WIDTH-1)            downto  (i+1)   *WIDTH ),
+                
+                SHIFT_IN        => shift_connect_sig (  i   ),
+                SHIFT_OUT       => shift_connect_sig (  i+1 ),
+                
+                PAR_IN          => par_connect_sig (    i   *WIDTH   +(WIDTH-1)           downto  i       *WIDTH ),
+                PAR_OUT         => par_connect_sig (   (i+1)*WIDTH   +(WIDTH-1)           downto  (i+1)   *WIDTH )
+                
             );
+    end generate gen_middle;
 
-          ALL_LOWER_OUT <= par_connect_sig;
-      end generate gen_last;
+    gen_last: if (LENGTH >= 2) generate
+        last_reg : entity work.reg1D
+            generic map (
+                LENGTH          => WIDTH,
+                BIG_ENDIAN      => BIG_ENDIAN
+            )
+            port map (
+                CLK             => CLK,
+                RST             => RST,
+                
+                SHIFT_EN        => SHIFT_EN,
+                PAR_EN          => PAR_EN,
+                
+                DEFAULT_STATE   => DEFAULT_STATE   ( DEFAULT_STATE'high   downto   DEFAULT_STATE'high-(WIDTH-1) ),
+                
+                SHIFT_IN        => shift_connect_sig  ( shift_connect_sig'high ),
+                SHIFT_OUT       => SHIFT_OUT,
+                
+                PAR_IN          => par_connect_sig    ( par_connect_sig'high   downto   par_connect_sig'high-(WIDTH-1) ),
+                PAR_OUT         => PAR_OUT
+            );
+    end generate gen_last;
+
+    ALL_LOWER_OUT <= par_connect_sig;
 
 end Behavioral;

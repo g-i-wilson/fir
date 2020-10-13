@@ -12,7 +12,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity Multiplier is
   generic (
-      WIDTH         : positive := 8,
+      WIDTH         : positive := 8;
       SIGNED_MATH   : boolean := TRUE
   );
   port (
@@ -26,11 +26,11 @@ architecture Behavioral of Multiplier is
 
   begin
 
-      signed_gen: if SIGNED generate
+      signed_gen: if SIGNED_MATH generate
         P <= std_logic_vector(signed(A) * signed(B));
       end generate signed_gen;
 
-      unsigned_gen: if not SIGNED generate
+      unsigned_gen: if not SIGNED_MATH generate
         P <= std_logic_vector(unsigned(A) * unsigned(B));
       end generate unsigned_gen;
 

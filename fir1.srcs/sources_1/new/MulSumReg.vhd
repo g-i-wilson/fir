@@ -14,7 +14,8 @@ entity MulSumReg is
     generic (
         WIDTH       : positive := 8; -- width of coef and signal path (x2 for mult)
         PADDING     : positive := 4; -- extra bits incase of adder overflow
-        PHASE_LAG   : integer := 0   -- additional registers to phase shift signal
+        PHASE_LAG   : integer := 1;   -- additional registers to phase shift signal
+        SIGNED_MATH : boolean := TRUE
     );
     port (
         -- clk, en, rst
@@ -40,18 +41,46 @@ end MulSumReg;
 
 architecture Behavioral of MulSumReg is
 
-    signal mult_out_sig     : std_logic_vector(width*2-1 downto 0);
-    signal sum_out_sig      : std_logic_vector(width*2+padding-1 downto 0);
+    signal mult_in_sig      : std_logic_vector(WIDTH*2-1 downto 0);
+    signal mult_out_sig     : std_logic_vector(WIDTH*2-1 downto 0);
+    signal sum_out_sig      : std_logic_vector(WIDTH*2+PADDING-1 downto 0);
+    signal this_reg_sig     : std_logic_vector(WIDTH-1 downto 0);
 
 begin
 
     -- add the product (padded) to the previous incoming sum
-    sum_out_sig <= std_logic_vector(
-        resize( signed(mult_out_sig) , mult_out_sig'LENGTH  +padding ) +
-        signed(sum_in)
-    );
+    gen_signed : if SIGNED_MATH generate
+        sum_out_sig <= std_logic_vector(
+            resize( signed(mult_out_sig) , mult_out_sig'LENGTH  +padding ) +
+            signed(sum_in)
+        );
+    end generate gen_signed;
+    gen_unsigned : if not SIGNED_MATH generate
+        sum_out_sig <= std_logic_vector(
+            resize( unsigned(mult_out_sig) , mult_out_sig'LENGTH  +padding ) +
+            unsigned(sum_in)
+        );
+    end generate gen_unsigned;
+
 
     -- pass-through register plus additional phase shift registers
+    gen_zero_phase : if PHASE_LAG = 0 generate
+    signal_path : entity work.Reg1D
+        generic map (
+            LENGTH      => WIDTH
+        )
+        port map (
+            CLK         => CLK,
+            RST         => RST,
+            PAR_EN      => EN, -- sample enable
+            PAR_IN      => REG_IN,
+            PAR_OUT     => this_reg_sig
+        );
+        REG_OUT <= this_reg_sig; -- pass-through reg is same as this reg
+    end generate gen_zero_phase;
+
+    -- pass-through register plus additional phase shift registers
+    gen_positive_phase : if PHASE_LAG > 0 generate
     signal_path : entity work.Reg2D
         generic map (
             WIDTH       => WIDTH,
@@ -61,46 +90,51 @@ begin
             CLK         => CLK,
             RST         => RST,
             PAR_EN      => EN, -- sample enable
-            PAR_IN      => reg_in,
-            PAR_OUT     => reg_out
+            PAR_IN      => REG_IN,
+            PAR_OUT     => this_reg_sig, -- this reg is last reg in the 2D reg
+            ALL_LOWER_OUT(WIDTH-1 downto 0) => REG_OUT -- pass-through reg is first reg in the 2D reg
         );
+    end generate gen_positive_phase;
 
     -- multiplication register
-    reg1 : reg_generic
+    mult_reg : entity work.Reg1D
         generic map (
-            reg_len => width*2
+            LENGTH => WIDTH*2
         )
         port map (
-            clk => clk,
-            en => '1', -- essentially part of the "sum pipeline" (see below)
-            rst => rst,
-            reg_in => mult_out_sig,
-            reg_out => mult_out
+            CLK         => CLK,
+            RST         => RST,
+            PAR_EN      => EN,
+            PAR_IN      => mult_in_sig,
+            PAR_OUT     => mult_out_sig
         );
+        
+    MULT_OUT <= mult_out_sig;
 
     -- sum register
-    reg2 : reg_generic
+    sum_reg : entity work.Reg1D
         generic map (
-            reg_len => width*2+padding
+            LENGTH      => WIDTH*2+PADDING
         )
         port map (
-            clk => clk,
-            en => '1', -- "sum pipeline" is always clocking (approximates a pass-thru)
-            rst => rst,
-            reg_in => sum_out_sig,
-            reg_out => sum_out
+            CLK         => CLK,
+            RST         => RST,
+            PAR_EN      => EN,
+            PAR_IN      => sum_out_sig,
+            PAR_OUT     => SUM_OUT
         );
 
 
     -- multiplier
-    mult1 : mult_generic
+    mult1 : entity work.Multiplier
         generic map (
-            in_len => width
+            WIDTH       => WIDTH,
+            SIGNED_MATH => SIGNED_MATH
         )
         port map (
-            in_a => reg_in,
-            in_b => coef_in,
-            mult_out => mult_out_sig
+            A           => this_reg_sig,
+            B           => COEF_IN,
+            P           => mult_in_sig
         );
 
 end Behavioral;

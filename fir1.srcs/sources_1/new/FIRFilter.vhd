@@ -12,9 +12,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity FIRFilter is
     generic (
-        LENGTH      : integer := 15; -- number of taps
+        LENGTH      : integer := 5; -- number of taps
         WIDTH       : integer := 8; -- width of coef and signal path (x2 after multiplication)
-        PADDING     : integer := 4  -- extra bits may be required if sum of taps causes overflow
+        PADDING     : integer := 4;  -- extra bits may be required if sum of taps causes overflow
+        SIGNED_MATH : boolean := TRUE
     );
     port (
         CLK         : in STD_LOGIC;
@@ -43,62 +44,65 @@ signal all_sum_sig : std_logic_vector(((WIDTH*2+PADDING)*(LENGTH-1))-1 downto 0)
 
 begin
 
-    first_reg : reg_mult_generic
-        generic map (width, padding)
+    first_reg : entity work.MulSumReg
+        generic map (
+            WIDTH       => WIDTH,
+            PADDING     => PADDING,
+            PHASE_LAG   => 0,
+            SIGNED_MATH => SIGNED_MATH
+        )
         port map (
-            clk      => clk,
-            en       => en,
-            rst      => rst,
-            reg_in   => shift_in,
-            reg_out  => all_reg_sig  ( width-1           downto 0 ),
-            coef_in  => coef_in      ( width-1           downto 0 ),
-            mult_out => mult_out     ( width*2-1         downto 0 ),
-            sum_in   => (others=>'0'), -- constant 0
-            sum_out  => all_sum_sig  ( width*2+padding-1 downto 0 )
+            CLK         => CLK,
+            EN          => EN,
+            RST         => RST,
+            REG_IN      => SHIFT_IN,
+            REG_OUT     => ALL_REG_SIG  ( WIDTH-1           downto 0 ),
+            COEF_IN     => COEF_IN      ( WIDTH-1           downto 0 ),
+            MULT_OUT    => MULT_OUT     ( WIDTH*2-1         downto 0 ),
+            SUM_IN      => (others=>'0'), -- constant 0
+            SUM_OUT     => ALL_SUM_SIG  ( WIDTH*2+PADDING-1 downto 0 )
         );
 
-    gen_middle : for i in 0 to (length-3) generate -- length 5 regs is: in,0,1,2,out
-        middle_reg : reg_mult_generic
-            generic map (width, padding)
-            port map (
-                clk      => clk,
-                en       => en,
-                rst      => rst,
-                reg_in   => all_reg_sig (  i    *width             +(width-1)           downto  i    *width             ),
-                reg_out  => all_reg_sig ( (i+1) *width             +(width-1)           downto (i+1) *width             ),
-                coef_in  => coef_in     ( (i+1) *width             +(width-1)           downto (i+1) *width             ),
-                mult_out => mult_out    ( (i+1) *width*2           +(width*2-1)         downto (i+1) *width*2           ),
-                sum_in   => all_sum_sig (  i    *(width*2+padding) +(width*2+padding-1) downto  i    *(width*2+padding) ),
-                sum_out  => all_sum_sig ( (i+1) *(width*2+padding) +(width*2+padding-1) downto (i+1) *(width*2+padding) )
-            );
+    gen_middle : for i in 0 to (LENGTH-3) generate -- length 5 regs is: in,0,1,2,out
+    middle_reg : entity work.MulSumReg
+        generic map (
+            WIDTH       => WIDTH,
+            PADDING     => PADDING,
+            PHASE_LAG   => i+1,
+            SIGNED_MATH => SIGNED_MATH
+        )
+        port map (
+            CLK         => CLK,
+            EN          => EN,
+            RST         => RST,
+            REG_IN      => all_reg_sig (  i    *WIDTH             +(WIDTH-1)           downto  i    *WIDTH             ),
+            REG_OUT     => all_reg_sig ( (i+1) *WIDTH             +(WIDTH-1)           downto (i+1) *WIDTH             ),
+            COEF_IN     => COEF_IN     ( (i+1) *WIDTH             +(WIDTH-1)           downto (i+1) *WIDTH             ),
+            MULT_OUT    => MULT_OUT    ( (i+1) *WIDTH*2           +(WIDTH*2-1)         downto (i+1) *WIDTH*2           ),
+            SUM_IN      => all_sum_sig (  i    *(WIDTH*2+PADDING) +(WIDTH*2+PADDING-1) downto  i    *(WIDTH*2+PADDING) ),
+            SUM_OUT     => all_sum_sig ( (i+1) *(WIDTH*2+PADDING) +(WIDTH*2+PADDING-1) downto (i+1) *(WIDTH*2+PADDING) )
+        );
     end generate gen_middle;
 
-    last_reg : reg_mult_generic
-        generic map (width, padding)
+    last_reg : entity work.MulSumReg
+        generic map (
+            width       => WIDTH,
+            padding     => PADDING,
+            PHASE_LAG   => LENGTH-1,
+            SIGNED_MATH => SIGNED_MATH
+        )
         port map (
-            clk      => clk,
-            en       => en,
-            rst      => rst,
-            reg_in   => all_reg_sig  ( all_reg_sig'high  downto all_reg_sig'high -(width-1)           ),
-            reg_out  => shift_out,
-            coef_in  => coef_in      ( coef_in'high      downto coef_in'high     -(width-1)           ),
-            mult_out => mult_out     ( mult_out'high     downto mult_out'high    -(width*2-1)         ),
-            sum_in   => all_sum_sig  ( all_sum_sig'high  downto all_sum_sig'high -(width*2+padding-1) ),
-            sum_out  => sum_out
+            CLK         => CLK,
+            EN          => EN,
+            RST         => RST,
+            REG_IN      => all_reg_sig  ( all_reg_sig'high  downto all_reg_sig'high -(WIDTH-1)           ),
+            REG_OUT     => SHIFT_OUT,
+            COEF_IN     => COEF_IN      ( COEF_IN'high      downto COEF_IN'high     -(WIDTH-1)           ),
+            MULT_OUT    => MULT_OUT     ( MULT_OUT'high     downto MULT_OUT'high    -(WIDTH*2-1)         ),
+            SUM_IN      => all_sum_sig  ( all_sum_sig'high  downto all_sum_sig'high -(WIDTH*2+PADDING-1) ),
+            SUM_OUT     => SUM_OUT
         );
 
-    par_out <= all_reg_sig;
-
---    sum_reg : reg_generic
---        generic map (
---            reg_len => width*2+padding
---        )
---        port map (
---            clk => clk,
---            en => en,
---            rst => rst,
---            reg_in => sum_out_comb,
---            reg_out => sum_out
---        );
+    PAR_OUT <= all_reg_sig;
 
 end Behavioral;
