@@ -1,10 +1,15 @@
 # compile vhdl design source files
 vhdl xil_defaultlib  \
 "../../../../fir1.srcs/sources_1/new/reg1D.vhd" \
+"../../../../fir1.srcs/sources_1/new/DifferenceAccumulator.vhd" \
 "../../../../fir1.srcs/sources_1/new/reg2D.vhd" \
 "../../../../fir1.srcs/sources_1/new/Multiplier.vhd" \
 "../../../../fir1.srcs/sources_1/new/MulSumReg.vhd" \
 "../../../../fir1.srcs/sources_1/new/FIRFilter.vhd" \
+"../../../../fir1.srcs/sources_1/new/Timer.vhd" \
+"../../../../fir1.srcs/sources_1/new/PulseGenerator.vhd" \
+"../../../../fir1.srcs/sources_1/new/ShiftRightReg.vhd" \
+"../../../../fir1.srcs/sources_1/new/IntegerDensityModulator.vhd" \
 "../../../../fir1.srcs/sim_1/new/FIRFilter_tb.vhd" \
 
 # Do not sort compile order

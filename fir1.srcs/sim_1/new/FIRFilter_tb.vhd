@@ -37,11 +37,24 @@ end FIRFilter_tb;
 
 architecture Behavioral of FIRFilter_tb is
 
-    signal test_clk, test_rst : std_logic;
-    signal test_sig_in, test_shift_out : std_logic_vector(7 downto 0);
-    signal test_sig_out : std_logic_vector(19 downto 0);
+    signal test_clk, test_rst, test_pulse : std_logic;
+    signal test_sig_in, test_shift_out, test_idm_out : std_logic_vector(7 downto 0);
+    signal test_fir_out : std_logic_vector(19 downto 0);
 
 begin
+
+    sample_rate : entity work.PulseGenerator
+    generic map (
+        WIDTH       => 4
+    )
+    port map (
+        CLK         => test_clk,
+        EN          => '1',
+        RST         => test_rst,
+        PERIOD      => x"4",
+        PULSE       => test_pulse
+    );
+
 
     test_filter: entity work.FIRFilter
     generic map (
@@ -52,7 +65,7 @@ begin
     )
     port map (
         CLK         => test_clk,
-        EN          => '1',
+        EN          => test_pulse,
         RST         => test_rst,
         COEF_IN     =>  x"02" &
                         x"09" &
@@ -75,7 +88,25 @@ begin
         SHIFT_OUT   => test_shift_out,
         PAR_OUT     => open,
         MULT_OUT    => open,
-        SUM_OUT     => test_sig_out
+        SUM_OUT     => test_fir_out
+    );
+
+
+    test_idm: entity work.IntegerDensityModulator
+    -- When the output width is 1, the output becomes Pulse Density Modulation (PDM)
+    generic map (
+        INPUT_WIDTH         => 20,
+        OUTPUT_WIDTH        => 8,
+        PULSE_COUNT_WIDTH   => 4
+    )
+    port map (
+        CLK                 => test_clk,
+        EN                  => '1',
+        RST                 => test_rst,
+        PULSE_LENGTH        => x"1",
+        INPUT               => test_fir_out,
+
+        OUTPUT              => test_idm_out
     );
 
 
