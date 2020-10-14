@@ -92,7 +92,7 @@ begin
             PAR_EN      => EN, -- sample enable
             PAR_IN      => REG_IN,
             PAR_OUT     => this_reg_sig, -- this reg is last reg in the 2D reg
-            ALL_LOWER_OUT(WIDTH-1 downto 0) => REG_OUT -- pass-through reg is first reg in the 2D reg
+            FIRST_OUT   => REG_OUT -- pass-through reg is first reg in the 2D reg
         );
     end generate gen_positive_phase;
 

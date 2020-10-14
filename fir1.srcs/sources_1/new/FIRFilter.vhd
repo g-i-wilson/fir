@@ -12,7 +12,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity FIRFilter is
     generic (
-        LENGTH      : integer := 5; -- number of taps
+        LENGTH      : integer := 3; -- number of taps
         WIDTH       : integer := 8; -- width of coef and signal path (x2 after multiplication)
         PADDING     : integer := 4;  -- extra bits may be required if sum of taps causes overflow
         SIGNED_MATH : boolean := TRUE

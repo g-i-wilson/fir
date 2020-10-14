@@ -31,7 +31,9 @@ entity Reg2D is
     DEFAULT_STATE   : in std_logic_vector((WIDTH*LENGTH)-1 downto 0) := (others=>'0');
     SHIFT_OUT       : out std_logic;
     PAR_OUT         : out std_logic_vector(WIDTH-1 downto 0);
-    ALL_LOWER_OUT   : out std_logic_vector((WIDTH*(LENGTH-1))-1 downto 0)
+    
+    ALL_LOWER_OUT   : out std_logic_vector((WIDTH*(LENGTH-1))-1 downto 0);
+    FIRST_OUT       : out std_logic_vector(WIDTH-1 downto 0)
   );
 end;
 
@@ -117,5 +119,6 @@ architecture Behavioral of Reg2D is
     end generate gen_last;
 
     ALL_LOWER_OUT <= par_connect_sig;
+    FIRST_OUT <= par_connect_sig(WIDTH-1 downto 0);
 
 end Behavioral;
