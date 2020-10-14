@@ -38,7 +38,7 @@ end FIRFilter_tb;
 architecture Behavioral of FIRFilter_tb is
 
     signal test_clk, test_rst, test_pulse : std_logic;
-    signal test_sig_in, test_shift_out, test_idm_out : std_logic_vector(7 downto 0);
+    signal test_sig_in, test_shift_out, test_idm_out_0, test_idm_out_1, test_idm_out_2, test_idm_out_3  : std_logic_vector(7 downto 0);
     signal test_fir_out : std_logic_vector(19 downto 0);
 
 begin
@@ -51,7 +51,7 @@ begin
         CLK         => test_clk,
         EN          => '1',
         RST         => test_rst,
-        PERIOD      => x"4",
+        PERIOD      => x"8",
         PULSE       => test_pulse
     );
 
@@ -92,7 +92,41 @@ begin
     );
 
 
-    test_idm: entity work.IntegerDensityModulator
+    test_idm_0: entity work.IntegerDensityModulator
+    -- When the output width is 1, the output becomes Pulse Density Modulation (PDM)
+    generic map (
+        INPUT_WIDTH         => 20,
+        OUTPUT_WIDTH        => 8,
+        PULSE_COUNT_WIDTH   => 1
+    )
+    port map (
+        CLK                 => test_clk,
+        EN                  => '1',
+        RST                 => test_rst,
+        PULSE_LENGTH(0)        => '0',
+        INPUT               => test_fir_out,
+
+        OUTPUT              => test_idm_out_0
+    );
+
+    test_idm_1: entity work.IntegerDensityModulator
+    -- When the output width is 1, the output becomes Pulse Density Modulation (PDM)
+    generic map (
+        INPUT_WIDTH         => 20,
+        OUTPUT_WIDTH        => 8,
+        PULSE_COUNT_WIDTH   => 1
+    )
+    port map (
+        CLK                 => test_clk,
+        EN                  => '1',
+        RST                 => test_rst,
+        PULSE_LENGTH(0)        => '1',
+        INPUT               => test_fir_out,
+
+        OUTPUT              => test_idm_out_1
+    );
+
+    test_idm_2: entity work.IntegerDensityModulator
     -- When the output width is 1, the output becomes Pulse Density Modulation (PDM)
     generic map (
         INPUT_WIDTH         => 20,
@@ -103,10 +137,27 @@ begin
         CLK                 => test_clk,
         EN                  => '1',
         RST                 => test_rst,
-        PULSE_LENGTH        => x"1",
+        PULSE_LENGTH        => x"2",
         INPUT               => test_fir_out,
 
-        OUTPUT              => test_idm_out
+        OUTPUT              => test_idm_out_2
+    );
+
+    test_idm_3: entity work.IntegerDensityModulator
+    -- When the output width is 1, the output becomes Pulse Density Modulation (PDM)
+    generic map (
+        INPUT_WIDTH         => 20,
+        OUTPUT_WIDTH        => 8,
+        PULSE_COUNT_WIDTH   => 4
+    )
+    port map (
+        CLK                 => test_clk,
+        EN                  => '1',
+        RST                 => test_rst,
+        PULSE_LENGTH        => x"4",
+        INPUT               => test_fir_out,
+
+        OUTPUT              => test_idm_out_3
     );
 
 

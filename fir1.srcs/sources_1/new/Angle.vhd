@@ -32,14 +32,14 @@ architecture Behavioral of Angle is
 begin
 
     width_greater_than_1 : if SIG_IN_WIDTH > 1 generate
-        process ()
+        process (CLK)
         begin
-
+            
 
         end process;
     end generate width_greater_than_1;
 
-    width_1 : if SIG_WIDTH = 1 generate
+    width_1 : if SIG_IN_WIDTH = 1 generate
 
     end generate width_1;
 

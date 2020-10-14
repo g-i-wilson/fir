@@ -48,9 +48,15 @@ Compiling architecture behavioral of entity xil_defaultlib.MulSumReg [\MulSumReg
 Compiling architecture behavioral of entity xil_defaultlib.Reg2D [\Reg2D(length=15)\]
 Compiling architecture behavioral of entity xil_defaultlib.MulSumReg [\MulSumReg(phase_lag=14)\]
 Compiling architecture behavioral of entity xil_defaultlib.FIRFilter [\FIRFilter(length=15)\]
-Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=17)\]
+Compiling architecture behavioral of entity xil_defaultlib.Timer [\Timer(width=1)\]
+Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=1)\]
+Compiling architecture behavioral of entity xil_defaultlib.PulseGenerator [\PulseGenerator(width=1)\]
+Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=14)\]
 Compiling architecture behavioral of entity xil_defaultlib.DifferenceAccumulator [\DifferenceAccumulator(in_width=...]
 Compiling architecture behavioral of entity xil_defaultlib.ShiftRightReg [\ShiftRightReg(width=20,places=1...]
+Compiling architecture behavioral of entity xil_defaultlib.IntegerDensityModulator [\IntegerDensityModulator(input_w...]
+Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=17)\]
+Compiling architecture behavioral of entity xil_defaultlib.DifferenceAccumulator [\DifferenceAccumulator(in_width=...]
 Compiling architecture behavioral of entity xil_defaultlib.IntegerDensityModulator [\IntegerDensityModulator(input_w...]
 Compiling architecture behavioral of entity xil_defaultlib.firfilter_tb
 Built simulation snapshot FIRFilter_tb_behav
