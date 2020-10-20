@@ -29,10 +29,9 @@ end LOMixerBaseband;
 
 architecture Behavioral of LOMixerBaseband is
 
-    signal mixer_out_sig            : STD_LOGIC_VECTOR(SIG_IN_WIDTH-1 downto 0);
-    signal mixer_out_upshifted_sig  : STD_LOGIC_VECTOR(11 downto 0);
-    signal filter_out_sig           : STD_LOGIC_VECTOR(26 downto 0);
-    signal idm_out_sig              : STD_LOGIC_VECTOR(SIG_OUT_WIDTH-1 downto 0);
+    signal mixer_out_sig        : std_logic_vector(SIG_IN_WIDTH-1 downto 0);
+    signal filter_in_sig        : std_logic_vector(11 downto 0);
+    signal filter_out_sig       : std_logic_vector(26 downto 0);
 
 begin
 
@@ -43,13 +42,13 @@ begin
         LO: entity work.LOMixer
         generic map (
             SIG_WIDTH               => SIG_IN_WIDTH,
-            LO_HALF_PERIOD_WIDTH    => 4
+            LO_HALF_PERIOD_WIDTH    => 2
         )
         port map (
             CLK                     => CLK,
             RST                     => RST,
             EN                      => EN,
-            LO_HALF_PERIOD          => x"4",
+            LO_HALF_PERIOD          => "11",
             SIG_IN                  => SIG_IN,
     
             SIG_OUT                 => mixer_out_sig
@@ -60,15 +59,15 @@ begin
         LO: entity work.LOMixer
         generic map (
             SIG_WIDTH               => SIG_IN_WIDTH,
-            LO_HALF_PERIOD_WIDTH    => 4
+            LO_HALF_PERIOD_WIDTH    => 2
         )
         port map (
             CLK                     => CLK,
             RST                     => RST,
             EN                      => EN,
-            PHASE                   => x"2",
+            PHASE                   => "10",
             LAGGING                 => '1',
-            LO_HALF_PERIOD          => x"4",
+            LO_HALF_PERIOD          => "11",
             SIG_IN                  => SIG_IN,
     
             SIG_OUT                 => mixer_out_sig
@@ -76,10 +75,32 @@ begin
     end generate gen_Q;
     
     
+    gen_less_than_12 : if SIG_IN_WIDTH < 12 generate
+        filter_in_sig <= std_logic_vector( shift_left(signed(mixer_out_sig), 12-SIG_IN_WIDTH ) );
+    end generate gen_less_than_12;
     
-    -- TODO: mixer_out_upshifted_sig <= ????? <= mixer_out_sig
+    gen_equal_to_12 : if SIG_IN_WIDTH = 12 generate
+        filter_in_sig <= mixer_out_sig;
+    end generate gen_equal_to_12;
+
+    gen_greater_than_12 : if SIG_IN_WIDTH > 12 generate
+        IDM_input: entity work.IntegerDensityModulator
+        -- When the output width is 1, the output becomes Pulse Density Modulation (PDM)
+        generic map (
+            INPUT_WIDTH         => SIG_IN_WIDTH,
+            OUTPUT_WIDTH        => 12,
+            PULSE_COUNT_WIDTH   => 1
+        )
+        port map (
+            CLK                 => CLK,
+            EN                  => EN,
+            RST                 => RST,
+            PULSE_LENGTH(0)     => '1',
+            INPUT               => mixer_out_sig,
     
-    
+            OUTPUT              => filter_in_sig
+        );
+    end generate gen_greater_than_12;
 
     ----------------------------------------
     -- FIRFilter
@@ -159,7 +180,7 @@ begin
 			x"FFC" &
 			x"FFE" &
 			x"FFF" ,
-        SHIFT_IN    => mixer_out_upshifted_sig,
+        SHIFT_IN    => filter_in_sig,
 
         SUM_OUT     => filter_out_sig
     );
@@ -167,22 +188,31 @@ begin
     ----------------------------------------
     -- IDM signal width reduction
     ----------------------------------------
-    IDM: entity work.IntegerDensityModulator
-    -- When the output width is 1, the output becomes Pulse Density Modulation (PDM)
-    generic map (
-        INPUT_WIDTH         => 27,
-        OUTPUT_WIDTH        => SIG_OUT_WIDTH,
-        PULSE_COUNT_WIDTH   => 1
-    )
-    port map (
-        CLK                 => CLK,
-        EN                  => EN,
-        RST                 => RST,
-        PULSE_LENGTH(0)     => '1',
-        INPUT               => filter_out_sig,
-
-        OUTPUT              => SIG_OUT
-    );
-
+    gen_out_less_than_27 : if SIG_OUT_WIDTH < 27 generate
+        IDM_output: entity work.IntegerDensityModulator
+        -- When the output width is 1, the output becomes Pulse Density Modulation (PDM)
+        generic map (
+            INPUT_WIDTH         => 27,
+            OUTPUT_WIDTH        => SIG_OUT_WIDTH,
+            PULSE_COUNT_WIDTH   => 1
+        )
+        port map (
+            CLK                 => CLK,
+            EN                  => EN,
+            RST                 => RST,
+            PULSE_LENGTH(0)     => '1',
+            INPUT               => filter_out_sig,
+    
+            OUTPUT              => SIG_OUT
+        );
+    end generate gen_out_less_than_27;
+    
+    gen_out_equals_27 : if SIG_OUT_WIDTH = 27 generate
+        SIG_OUT <= filter_out_sig;
+    end generate gen_out_equals_27;
+    
+    gen_out_greater_than_27 : if SIG_OUT_WIDTH > 27 generate
+        SIG_OUT <= std_logic_vector( shift_left(signed(filter_out_sig), SIG_OUT_WIDTH-27) );
+    end generate gen_out_greater_than_27;
 
 end Behavioral;
