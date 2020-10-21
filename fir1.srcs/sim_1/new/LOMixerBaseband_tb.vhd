@@ -37,11 +37,13 @@ end LOMixerBaseband_tb;
 
 architecture Behavioral of LOMixerBaseband_tb is
 
-    signal test_clk, test_rst, test_lagging_or_leading, test_sq_wave : std_logic;
+    signal test_clk, test_rst, test_PM_event, test_PM_sq, test_sq_wave : std_logic;
     signal test_PM_sig : std_logic_vector(7 downto 0);
     signal test_I_out, test_Q_out  : std_logic_vector(11 downto 0);
     signal test_angle, test_angle_slope  : std_logic_vector(7 downto 0);
     signal test_fir_out, test_angle_filtered, test_angle_slope_filtered : std_logic_vector(16 downto 0);
+    signal test_PM_phase_event : std_logic_vector(1 downto 0);
+    signal test_PM_period : std_logic_vector(3 downto 0);
 
 begin
 
@@ -53,9 +55,22 @@ begin
         CLK             => test_clk,
         EN              => '1',
         RST             => test_rst,
-        HALF_PERIOD     => x"03F", -- period-1
-        SIG_OUT         => test_lagging_or_leading
+        ON_PERIOD       => x"03F", -- period-1
+        OFF_PERIOD      => x"03F", -- period-1
+        INIT_ON_PERIOD  => x"03F", -- period-1
+        INIT_OFF_PERIOD => x"03F", -- period-1
+        EDGE_EVENT      => test_PM_phase_event(0),
+        SQUARE_WAVE     => test_PM_phase_event(1)
     );
+    
+    process(test_PM_phase_event)
+    begin
+        case test_PM_phase_event is
+            when "10" => test_PM_period <= x"5";
+            when "11" => test_PM_period <= x"1";
+            when others => test_PM_period <= x"3";
+        end case;
+    end process;
 
     PM_carrier_freq : entity work.SquareWaveGenerator
     generic map (
@@ -65,10 +80,11 @@ begin
         CLK             => test_clk,
         EN              => '1',
         RST             => test_rst,
-        PHASE           => x"1",
-        LAGGING         => test_lagging_or_leading,
-        HALF_PERIOD     => x"3", -- period-1
-        SIG_OUT         => test_sq_wave
+        ON_PERIOD       => test_PM_period,
+        OFF_PERIOD      => test_PM_period,
+        INIT_ON_PERIOD  => test_PM_period,
+        INIT_OFF_PERIOD => test_PM_period,
+        SQUARE_WAVE     => test_sq_wave
     );
 
     test_PM_sig <= (not test_sq_wave) & test_sq_wave & test_sq_wave & test_sq_wave & test_sq_wave & test_sq_wave & test_sq_wave & test_sq_wave;

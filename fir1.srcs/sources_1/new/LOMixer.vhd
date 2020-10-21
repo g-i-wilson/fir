@@ -22,7 +22,6 @@ entity LOMixer is
         EN                      : in STD_LOGIC;
         LO_HALF_PERIOD          : in STD_LOGIC_VECTOR (LO_HALF_PERIOD_WIDTH-1 downto 0) := (others=>'0');
         PHASE                   : in STD_LOGIC_VECTOR (LO_HALF_PERIOD_WIDTH-1 downto 0) := (others=>'0');
-        LAGGING                 : in STD_LOGIC := '1';
         POLARITY                : in STD_LOGIC := '1';
         DEFAULT_STATE           : in STD_LOGIC := '0';
         SIG_IN                  : in STD_LOGIC_VECTOR (SIG_WIDTH-1 downto 0) := (others=>'0');
@@ -35,13 +34,16 @@ architecture Behavioral of LOMixer is
 
     signal lo_sig               : STD_LOGIC;
     signal mod_sig              : STD_LOGIC_VECTOR(SIG_WIDTH-1 downto 0);
+    signal init_period_sig      : STD_LOGIC_VECTOR (LO_HALF_PERIOD_WIDTH-1 downto 0);
 
 begin
 
     ----------------------------------------
     -- Square wave "LO"
     ----------------------------------------
-    SqWave_module: entity work.SquareWaveGenerator
+    init_period_sig <= std_logic_vector(unsigned(LO_HALF_PERIOD) + unsigned(PHASE));
+    
+    LO: entity work.SquareWaveGenerator
     generic map (
         WIDTH           => LO_HALF_PERIOD_WIDTH
     )
@@ -49,11 +51,13 @@ begin
         CLK             => CLK,
         RST             => RST,
         EN              => EN,
-        HALF_PERIOD     => LO_HALF_PERIOD,
-        PHASE           => PHASE,
-        LAGGING         => LAGGING,
+        ON_PERIOD       => LO_HALF_PERIOD,
+        OFF_PERIOD      => LO_HALF_PERIOD,
+        INIT_ON_PERIOD  => init_period_sig,
+        INIT_OFF_PERIOD => init_period_sig,
         DEFAULT_STATE   => DEFAULT_STATE,
-        SIG_OUT         => lo_sig
+        
+        SQUARE_WAVE     => lo_sig
     );
 
 

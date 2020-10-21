@@ -42,13 +42,13 @@ begin
         LO: entity work.LOMixer
         generic map (
             SIG_WIDTH               => SIG_IN_WIDTH,
-            LO_HALF_PERIOD_WIDTH    => 2
+            LO_HALF_PERIOD_WIDTH    => 4
         )
         port map (
             CLK                     => CLK,
             RST                     => RST,
             EN                      => EN,
-            LO_HALF_PERIOD          => "11",
+            LO_HALF_PERIOD          => x"3", -- period/2-1
             SIG_IN                  => SIG_IN,
     
             SIG_OUT                 => mixer_out_sig
@@ -59,15 +59,14 @@ begin
         LO: entity work.LOMixer
         generic map (
             SIG_WIDTH               => SIG_IN_WIDTH,
-            LO_HALF_PERIOD_WIDTH    => 2
+            LO_HALF_PERIOD_WIDTH    => 4
         )
         port map (
             CLK                     => CLK,
             RST                     => RST,
             EN                      => EN,
-            PHASE                   => "10",
-            LAGGING                 => '1',
-            LO_HALF_PERIOD          => "11",
+            PHASE                   => x"2", -- offset added to period at init (period/4)
+            LO_HALF_PERIOD          => x"3", -- period/2-1
             SIG_IN                  => SIG_IN,
     
             SIG_OUT                 => mixer_out_sig

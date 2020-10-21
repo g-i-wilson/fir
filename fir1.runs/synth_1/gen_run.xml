@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1602785535">
   <File Type="RDS-DCP" Name="TestUARTSPITapBasys3.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="TestUARTSPITapBasys3_utilization_synth.pb"/>
   <File Type="PA-TCL" Name="TestUARTSPITapBasys3.tcl"/>
-  <File Type="RDS-UTIL" Name="TestUARTSPITapBasys3_utilization_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="TestUARTSPITapBasys3_reports.tcl"/>
   <File Type="RDS-RDS" Name="TestUARTSPITapBasys3.vds"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
@@ -535,6 +533,6 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="ila_uartspitaptesting"/>
   <BlockFileSet Type="BlockSrcs" Name="ila_uartspitap"/>
+  <BlockFileSet Type="BlockSrcs" Name="ila_uartspitaptesting"/>
 </GenRun>

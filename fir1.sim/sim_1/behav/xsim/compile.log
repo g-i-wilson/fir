@@ -1,2 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/LOMixerBaseband_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'LOMixerBaseband_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/PulseGen_SqWave_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'PulseGen_SqWave_tb'

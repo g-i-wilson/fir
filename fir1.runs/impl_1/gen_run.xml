@@ -6,57 +6,35 @@
   <File Type="CFI_FILE" Name="TestUARTSPITapBasys3.cfi"/>
   <File Type="RCFI_FILE" Name="TestUARTSPITapBasys3.rcfi"/>
   <File Type="PDI-FILE" Name="TestUARTSPITapBasys3.pdi"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="TestUARTSPITapBasys3_methodology_drc_routed.rpx"/>
-  <File Type="ROUTE-DRC-RPX" Name="TestUARTSPITapBasys3_drc_routed.rpx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="TestUARTSPITapBasys3_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-METHODOLOGY-DRC" Name="TestUARTSPITapBasys3_methodology_drc_routed.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="TestUARTSPITapBasys3_postroute_physopt_bb.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="TestUARTSPITapBasys3_postroute_physopt.dcp"/>
-  <File Type="PHYSOPT-DCP" Name="TestUARTSPITapBasys3_physopt.dcp"/>
-  <File Type="PLACE-IO" Name="TestUARTSPITapBasys3_io_placed.rpt"/>
-  <File Type="OPT-DRC" Name="TestUARTSPITapBasys3_drc_opted.rpt"/>
   <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
   <File Type="BITSTR-LTX" Name="TestUARTSPITapBasys3.ltx"/>
   <File Type="BITSTR-SYSDEF" Name="TestUARTSPITapBasys3.sysdef"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="TestUARTSPITapBasys3_postroute_physopt_bb.dcp"/>
   <File Type="BITSTR-MMI" Name="TestUARTSPITapBasys3.mmi"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="TestUARTSPITapBasys3_postroute_physopt.dcp"/>
   <File Type="BITSTR-BMM" Name="TestUARTSPITapBasys3_bd.bmm"/>
-  <File Type="PLACE-UTIL-PB" Name="TestUARTSPITapBasys3_utilization_placed.pb"/>
   <File Type="BG-BGN" Name="TestUARTSPITapBasys3.bgn"/>
   <File Type="PLACE-DCP" Name="TestUARTSPITapBasys3_placed.dcp"/>
   <File Type="OPT-HWDEF" Name="TestUARTSPITapBasys3.hwdef"/>
   <File Type="BG-BIT" Name="TestUARTSPITapBasys3.bit"/>
-  <File Type="ROUTE-BUS-SKEW" Name="TestUARTSPITapBasys3_bus_skew_routed.rpt"/>
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="PA-TCL" Name="TestUARTSPITapBasys3.tcl"/>
   <File Type="REPORTS-TCL" Name="TestUARTSPITapBasys3_reports.tcl"/>
-  <File Type="PLACE-UTIL" Name="TestUARTSPITapBasys3_utilization_placed.rpt"/>
   <File Type="BG-DRC" Name="TestUARTSPITapBasys3.drc"/>
   <File Type="OPT-DCP" Name="TestUARTSPITapBasys3_opt.dcp"/>
-  <File Type="PLACE-CTRL" Name="TestUARTSPITapBasys3_control_sets_placed.rpt"/>
   <File Type="RDI-RDI" Name="TestUARTSPITapBasys3.vdi"/>
   <File Type="BG-BIN" Name="TestUARTSPITapBasys3.bin"/>
   <File Type="PWROPT-DCP" Name="TestUARTSPITapBasys3_pwropt.dcp"/>
   <File Type="BITSTR-MSK" Name="TestUARTSPITapBasys3.msk"/>
   <File Type="POSTPLACE-PWROPT-DCP" Name="TestUARTSPITapBasys3_postplace_pwropt.dcp"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="TestUARTSPITapBasys3_incremental_reuse_pre_placed.rpt"/>
   <File Type="BITSTR-RBT" Name="TestUARTSPITapBasys3.rbt"/>
   <File Type="BITSTR-NKY" Name="TestUARTSPITapBasys3.nky"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="TestUARTSPITapBasys3_incremental_reuse_pre_placed.rpt"/>
-  <File Type="ROUTE-DRC" Name="TestUARTSPITapBasys3_drc_routed.rpt"/>
-  <File Type="ROUTE-DRC-PB" Name="TestUARTSPITapBasys3_drc_routed.pb"/>
-  <File Type="ROUTE-PWR" Name="TestUARTSPITapBasys3_power_routed.rpt"/>
-  <File Type="ROUTE-PWR-SUM" Name="TestUARTSPITapBasys3_power_summary_routed.pb"/>
-  <File Type="ROUTE-PWR-RPX" Name="TestUARTSPITapBasys3_power_routed.rpx"/>
-  <File Type="ROUTE-STATUS" Name="TestUARTSPITapBasys3_route_status.rpt"/>
-  <File Type="ROUTE-STATUS-PB" Name="TestUARTSPITapBasys3_route_status.pb"/>
+  <File Type="PHYSOPT-DCP" Name="TestUARTSPITapBasys3_physopt.dcp"/>
   <File Type="ROUTE-DCP" Name="TestUARTSPITapBasys3_routed.dcp"/>
   <File Type="ROUTE-ERROR-DCP" Name="TestUARTSPITapBasys3_routed_error.dcp"/>
   <File Type="ROUTE-BLACKBOX-DCP" Name="TestUARTSPITapBasys3_routed_bb.dcp"/>
-  <File Type="ROUTE-TIMINGSUMMARY" Name="TestUARTSPITapBasys3_timing_summary_routed.rpt"/>
   <File Type="ROUTE-TIMING-PB" Name="TestUARTSPITapBasys3_timing_summary_routed.pb"/>
-  <File Type="ROUTE-TIMING-RPX" Name="TestUARTSPITapBasys3_timing_summary_routed.rpx"/>
-  <File Type="ROUTE-CLK" Name="TestUARTSPITapBasys3_clock_utilization_routed.rpt"/>
-  <File Type="ROUTE-BUS-SKEW-PB" Name="TestUARTSPITapBasys3_bus_skew_routed.pb"/>
-  <File Type="ROUTE-BUS-SKEW-RPX" Name="TestUARTSPITapBasys3_bus_skew_routed.rpx"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/reg1D.vhd">
@@ -597,6 +575,6 @@
     </Step>
     <Step Id="write_device_image"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="ila_uartspitaptesting"/>
   <BlockFileSet Type="BlockSrcs" Name="ila_uartspitap"/>
+  <BlockFileSet Type="BlockSrcs" Name="ila_uartspitaptesting"/>
 </GenRun>

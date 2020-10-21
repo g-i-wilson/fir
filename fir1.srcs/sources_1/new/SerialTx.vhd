@@ -38,56 +38,33 @@ architecture Behavioral of SerialTx is
   signal data_sig               : std_logic_vector (7 downto 0);
   signal reg_bits_in            : std_logic_vector (9 downto 0);
 
-  signal word_period            : std_logic_vector (31 downto 0);
+  signal bit_timer_period_init  : std_logic_vector (15 downto 0);
 
 begin
 
+    ----------------------------------------
+    -- Timers
+    ----------------------------------------
 
     count_rst <= ready_sig;
 
-    -- bit counter
---   bit_timer : entity work.clk_div_generic
---        generic map (
---            period_width        => 16,
---            phase_lead          => 1 -- load and timing start together, but after that, the shift happens 1 after timing
---        )
---        port map (
---            period              => BIT_TIMER_PERIOD,
---            clk                 => clk,
---            en                  => en,
---            rst                 => count_rst,
---            en_out              => bit_en_sig
---        );
+    bit_timer_period_init <= std_logic_vector(unsigned(BIT_TIMER_PERIOD)+1);
+
     bit_pulses : entity work.PulseGenerator
         generic map (
             WIDTH               => 16 
         )
         port map (
+            -- inputs
             CLK                 => CLK,
             RST                 => count_rst,
             EN                  => EN,
             PERIOD              => BIT_TIMER_PERIOD,
-            PHASE               => x"0001", -- load and timing start together, but after that, the shift happens 1 after timing
-            LAGGING             => '1', -- true
+            INIT_PERIOD         => bit_timer_period_init, -- load and timing start together, but after that, the shift happens 1 after timing
+            -- outputs
             PULSE               => bit_en_sig
         );
 
-        
---    word_period <= std_logic_vector(unsigned(BIT_TIMER_PERIOD)*to_unsigned(10,16));
-
---    -- word (byte + start/stop bits) counter
---    word_div : entity work.clk_div_generic
---        generic map (
---            period_width        => 32,
---            phase_lead          => 1
---        )
---        port map (
---            period              => word_period,
---            clk                 => clk,
---            en                  => en,
---            rst                 => count_rst,
---            en_out              => word_en_sig
---        );
     word_timer : entity work.Timer
         generic map (
             WIDTH           => 4
@@ -103,8 +80,10 @@ begin
         );
 
 
+    ----------------------------------------
+    -- Registers
+    ----------------------------------------
 
-    -- valid buffer register
     valid_buf_reg: entity work.reg1D
         generic map (
             LENGTH              => 8
@@ -121,7 +100,6 @@ begin
 
     reg_bits_in <= '1' & data_sig & '0'; -- stop-bit, data, start-bit
 
-    -- output load/shift register
     tx_reg: entity work.reg1D
         generic map (
             LENGTH              => 10,
@@ -140,7 +118,11 @@ begin
             DEFAULT_STATE       => "1111111111" -- all stop bits
         );
 
-    -- FSM to control the load/shift register
+
+    ----------------------------------------
+    -- FSM (controls/loads tx_reg)
+    ----------------------------------------
+
     FSM: entity work.SerialTxFSM
         port map (
             CLK                 => CLK,

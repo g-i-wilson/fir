@@ -50,6 +50,7 @@ begin
             RST         => RST,
             EN          => EN,
             PERIOD      => PULSE_LENGTH,
+            INIT_PERIOD => PULSE_LENGTH,
             PULSE       => en_pulse_sig
         );
 
