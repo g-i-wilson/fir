@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1602785535">
-  <File Type="RBD_FILE" Name="TestUARTSPITapBasys3.rbd"/>
-  <File Type="NPI_FILE" Name="TestUARTSPITapBasys3.npi"/>
-  <File Type="RNPI_FILE" Name="TestUARTSPITapBasys3.rnpi"/>
-  <File Type="CFI_FILE" Name="TestUARTSPITapBasys3.cfi"/>
-  <File Type="RCFI_FILE" Name="TestUARTSPITapBasys3.rcfi"/>
-  <File Type="PDI-FILE" Name="TestUARTSPITapBasys3.pdi"/>
+  <File Type="ROUTE-TIMING-PB" Name="TestUARTSPITapBasys3_timing_summary_routed.pb"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="TestUARTSPITapBasys3_routed_bb.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="TestUARTSPITapBasys3_routed_error.dcp"/>
   <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
   <File Type="BITSTR-LTX" Name="TestUARTSPITapBasys3.ltx"/>
   <File Type="BITSTR-SYSDEF" Name="TestUARTSPITapBasys3.sysdef"/>
@@ -13,15 +10,14 @@
   <File Type="BITSTR-MMI" Name="TestUARTSPITapBasys3.mmi"/>
   <File Type="POSTROUTE-PHYSOPT-DCP" Name="TestUARTSPITapBasys3_postroute_physopt.dcp"/>
   <File Type="BITSTR-BMM" Name="TestUARTSPITapBasys3_bd.bmm"/>
+  <File Type="OPT-DCP" Name="TestUARTSPITapBasys3_opt.dcp"/>
+  <File Type="BG-DRC" Name="TestUARTSPITapBasys3.drc"/>
   <File Type="BG-BGN" Name="TestUARTSPITapBasys3.bgn"/>
   <File Type="PLACE-DCP" Name="TestUARTSPITapBasys3_placed.dcp"/>
   <File Type="OPT-HWDEF" Name="TestUARTSPITapBasys3.hwdef"/>
   <File Type="BG-BIT" Name="TestUARTSPITapBasys3.bit"/>
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
-  <File Type="PA-TCL" Name="TestUARTSPITapBasys3.tcl"/>
-  <File Type="REPORTS-TCL" Name="TestUARTSPITapBasys3_reports.tcl"/>
-  <File Type="BG-DRC" Name="TestUARTSPITapBasys3.drc"/>
-  <File Type="OPT-DCP" Name="TestUARTSPITapBasys3_opt.dcp"/>
+  <File Type="ROUTE-DCP" Name="TestUARTSPITapBasys3_routed.dcp"/>
   <File Type="RDI-RDI" Name="TestUARTSPITapBasys3.vdi"/>
   <File Type="BG-BIN" Name="TestUARTSPITapBasys3.bin"/>
   <File Type="PWROPT-DCP" Name="TestUARTSPITapBasys3_pwropt.dcp"/>
@@ -31,10 +27,14 @@
   <File Type="BITSTR-RBT" Name="TestUARTSPITapBasys3.rbt"/>
   <File Type="BITSTR-NKY" Name="TestUARTSPITapBasys3.nky"/>
   <File Type="PHYSOPT-DCP" Name="TestUARTSPITapBasys3_physopt.dcp"/>
-  <File Type="ROUTE-DCP" Name="TestUARTSPITapBasys3_routed.dcp"/>
-  <File Type="ROUTE-ERROR-DCP" Name="TestUARTSPITapBasys3_routed_error.dcp"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="TestUARTSPITapBasys3_routed_bb.dcp"/>
-  <File Type="ROUTE-TIMING-PB" Name="TestUARTSPITapBasys3_timing_summary_routed.pb"/>
+  <File Type="PDI-FILE" Name="TestUARTSPITapBasys3.pdi"/>
+  <File Type="RCFI_FILE" Name="TestUARTSPITapBasys3.rcfi"/>
+  <File Type="CFI_FILE" Name="TestUARTSPITapBasys3.cfi"/>
+  <File Type="RNPI_FILE" Name="TestUARTSPITapBasys3.rnpi"/>
+  <File Type="NPI_FILE" Name="TestUARTSPITapBasys3.npi"/>
+  <File Type="RBD_FILE" Name="TestUARTSPITapBasys3.rbd"/>
+  <File Type="PA-TCL" Name="TestUARTSPITapBasys3.tcl"/>
+  <File Type="REPORTS-TCL" Name="TestUARTSPITapBasys3_reports.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/reg1D.vhd">
@@ -575,6 +575,6 @@
     </Step>
     <Step Id="write_device_image"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="ila_uartspitap"/>
   <BlockFileSet Type="BlockSrcs" Name="ila_uartspitaptesting"/>
+  <BlockFileSet Type="BlockSrcs" Name="ila_uartspitap"/>
 </GenRun>

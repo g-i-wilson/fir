@@ -1,4 +1,7 @@
-Running: xsim.dir/PulseGen_SqWave_tb_behav/xsimk -simmode gui -wdb PulseGen_SqWave_tb_behav.wdb -simrunnum 0 -socket 57855
+Running: xsim.dir/PulseGen_SqWave_tb_behav/xsimk -simmode gui -wdb PulseGen_SqWave_tb_behav.wdb -simrunnum 0 -socket 48609
 Design successfully loaded
 Design Loading Memory Usage: 46160 KB (Peak: 46280 KB)
-Design Loading CPU Usage: 30 ms
+Design Loading CPU Usage: 40 ms
+Simulation completed
+Simulation Memory Usage: 127896 KB (Peak: 185428 KB)
+Simulation CPU Usage: 80 ms

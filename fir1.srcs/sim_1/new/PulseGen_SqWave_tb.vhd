@@ -37,7 +37,7 @@ end PulseGen_SqWave_tb;
 
 architecture Behavioral of PulseGen_SqWave_tb is
 
-signal test_clk, test_rst, test_out_0, test_out_1, test_default_0 : std_logic;
+signal test_clk, test_rst, test_out_0, test_out_1, test_default_0, test_edge_0 : std_logic;
 signal test_period_0, test_period_0_init, test_period_1, test_period_1_init : std_logic_vector(3 downto 0);
 
 begin
@@ -56,6 +56,7 @@ begin
         INIT_OFF_PERIOD => test_period_0_init,
         DEFAULT_STATE   => test_default_0,
 
+        EDGE_EVENT      => test_edge_0,
         SQUARE_WAVE     => test_out_0
     );
 

@@ -75,7 +75,8 @@ begin
     
     
     gen_less_than_12 : if SIG_IN_WIDTH < 12 generate
-        filter_in_sig <= std_logic_vector( shift_left(signed(mixer_out_sig), 12-SIG_IN_WIDTH ) );
+--        filter_in_sig <= std_logic_vector( shift_left(signed(mixer_out_sig), 12-SIG_IN_WIDTH ) );
+        filter_in_sig <= mixer_out_sig & std_logic_vector(to_unsigned(0, 12-SIG_IN_WIDTH)); -- simple shift left
     end generate gen_less_than_12;
     
     gen_equal_to_12 : if SIG_IN_WIDTH = 12 generate
