@@ -15,6 +15,7 @@ entity MAFilter is
     SAMPLE_LENGTH             : positive := 10;
     SAMPLE_WIDTH              : positive := 1;
     SUM_WIDTH                 : positive := 3;
+    SUM_START                 : integer := 0;
     SIGNED_ARITHMETIC         : boolean := false
   );
   port (
@@ -76,7 +77,8 @@ begin
     CLK             => CLK,
     PAR_EN          => EN,
     PAR_IN          => sum_in_sig,
-    PAR_OUT         => sum_out_sig
+    PAR_OUT         => sum_out_sig,
+    DEFAULT_STATE   => std_logic_vector(to_unsigned(SUM_START, SUM_WIDTH))
   );
 
 
