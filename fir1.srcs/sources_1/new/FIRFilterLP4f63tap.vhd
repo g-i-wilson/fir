@@ -78,69 +78,69 @@ begin
         EN          => EN_IN,
         RST         => RST,
         COEF_IN     =>
-			x"FFF" &
-			x"FFE" &
-			x"FFC" &
-			x"FF8" &
-			x"FF5" &
-			x"FF4" &
-			x"FF6" &
-			x"000" &
-			x"00F" &
-			x"025" &
-			x"03C" &
-			x"050" &
-			x"059" &
-			x"052" &
-			x"034" &
-			x"FFF" &
-			x"FB6" &
-			x"F62" &
-			x"F10" &
-			x"ED3" &
-			x"EBD" &
-			x"EE1" &
-			x"F4A" &
-			x"000" &
-			x"0FC" &
-			x"232" &
-			x"38A" &
-			x"4E6" &
-			x"623" &
-			x"722" &
-			x"7C6" &
-			x"7FF" &
-			x"7C6" &
-			x"722" &
-			x"623" &
-			x"4E6" &
-			x"38A" &
-			x"232" &
-			x"0FC" &
-			x"000" &
-			x"F4A" &
-			x"EE1" &
-			x"EBD" &
-			x"ED3" &
-			x"F10" &
-			x"F62" &
-			x"FB6" &
-			x"FFF" &
-			x"034" &
-			x"052" &
-			x"059" &
-			x"050" &
-			x"03C" &
-			x"025" &
-			x"00F" &
-			x"000" &
-			x"FF6" &
-			x"FF4" &
-			x"FF5" &
-			x"FF8" &
-			x"FFC" &
-			x"FFE" &
-			x"FFF" ,
+		x"FFF" &
+		x"FFE" &
+		x"FFB" &
+		x"FF5" &
+		x"FED" &
+		x"FE0" &
+		x"FD1" &
+		x"FC0" &
+		x"FAE" &
+		x"F9E" &
+		x"F92" &
+		x"F8E" &
+		x"F93" &
+		x"FA6" &
+		x"FCA" &
+		x"000" &
+		x"04A" &
+		x"0AA" &
+		x"11F" &
+		x"1A8" &
+		x"244" &
+		x"2ED" &
+		x"3A0" &
+		x"458" &
+		x"50F" &
+		x"5BE" &
+		x"660" &
+		x"6ED" &
+		x"761" &
+		x"7B8" &
+		x"7ED" &
+		x"7FF" &
+		x"7ED" &
+		x"7B8" &
+		x"761" &
+		x"6ED" &
+		x"660" &
+		x"5BE" &
+		x"50F" &
+		x"458" &
+		x"3A0" &
+		x"2ED" &
+		x"244" &
+		x"1A8" &
+		x"11F" &
+		x"0AA" &
+		x"04A" &
+		x"000" &
+		x"FCA" &
+		x"FA6" &
+		x"F93" &
+		x"F8E" &
+		x"F92" &
+		x"F9E" &
+		x"FAE" &
+		x"FC0" &
+		x"FD1" &
+		x"FE0" &
+		x"FED" &
+		x"FF5" &
+		x"FFB" &
+		x"FFE" &
+		x"FFF" ,
         SHIFT_IN    => filter_in_sig,
 
         SUM_OUT     => filter_out_sig
@@ -149,11 +149,11 @@ begin
     ----------------------------------------
     -- IDM signal width reduction
     ----------------------------------------
-    gen_out_less_than_27 : if SIG_OUT_WIDTH < 27 generate
+    gen_out_less_than_28 : if SIG_OUT_WIDTH < 28 generate
         IDM_output: entity work.IntegerDensityModulator
         -- When the output width is 1, the output becomes Pulse Density Modulation (PDM)
         generic map (
-            INPUT_WIDTH         => 27,
+            INPUT_WIDTH         => 28,
             OUTPUT_WIDTH        => SIG_OUT_WIDTH,
             PULSE_COUNT_WIDTH   => 1
         )
@@ -166,15 +166,15 @@ begin
 
             OUTPUT              => SIG_OUT
         );
-    end generate gen_out_less_than_27;
+    end generate gen_out_less_than_28;
 
-    gen_out_equals_27 : if SIG_OUT_WIDTH = 27 generate
+    gen_out_equals_28 : if SIG_OUT_WIDTH = 28 generate
         SIG_OUT <= filter_out_sig;
-    end generate gen_out_equals_27;
+    end generate gen_out_equals_28;
 
-    gen_out_greater_than_27 : if SIG_OUT_WIDTH > 27 generate
+    gen_out_greater_than_28 : if SIG_OUT_WIDTH > 28 generate
         -- SIG_OUT <= std_logic_vector( shift_left(signed(filter_out_sig), SIG_OUT_WIDTH-27) );
-        SIG_OUT <= filter_out_sig & std_logic_vector(to_unsigned(0, SIG_OUT_WIDTH-27)); -- simple shift left (having bugs simulating with shift_left function)
-    end generate gen_out_greater_than_27;
+        SIG_OUT <= filter_out_sig & std_logic_vector(to_unsigned(0, SIG_OUT_WIDTH-28)); -- simple shift left (having bugs simulating with shift_left function)
+    end generate gen_out_greater_than_28;
 
 end Behavioral;

@@ -193,13 +193,15 @@ Compiling architecture behavioral of entity xil_defaultlib.MulSumReg [\MulSumReg
 Compiling architecture behavioral of entity xil_defaultlib.Reg2D [\Reg2D(length=63,width=12)\]
 Compiling architecture behavioral of entity xil_defaultlib.MulSumReg [\MulSumReg(width=12,padding=3,ph...]
 Compiling architecture behavioral of entity xil_defaultlib.FIRFilter [\FIRFilter(length=63,width=12,pa...]
-Compiling architecture behavioral of entity xil_defaultlib.FIRFilterLP4f63tap [\FIRFilterLP4f63tap(sig_in_width...]
+Compiling architecture behavioral of entity xil_defaultlib.FIRFilterLP8f63tap [\FIRFilterLP8f63tap(sig_in_width...]
 Compiling architecture behavioral of entity xil_defaultlib.LOMixerBaseband [\LOMixerBaseband(sig_in_width=17...]
 Compiling architecture behavioral of entity xil_defaultlib.LOMixerBaseband [\LOMixerBaseband(sig_in_width=17...]
 Compiling architecture behavioral of entity xil_defaultlib.Angle4Bit [angle4bit_default]
 Compiling architecture behavioral of entity xil_defaultlib.Reg2D [\Reg2D(length=32)\]
 Compiling architecture behavioral of entity xil_defaultlib.MAFilter [\MAFilter(sample_length=32,sampl...]
-Compiling architecture behavioral of entity xil_defaultlib.Reg2D [\Reg2D(length=128)\]
-Compiling architecture behavioral of entity xil_defaultlib.MAFilter [\MAFilter(sample_length=128,samp...]
+Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=11)\]
+Compiling architecture behavioral of entity xil_defaultlib.DifferenceAccumulator [\DifferenceAccumulator(in_width=...]
+Compiling architecture behavioral of entity xil_defaultlib.ShiftRightReg [\ShiftRightReg(width=17,places=9...]
+Compiling architecture behavioral of entity xil_defaultlib.IntegerDensityModulator [\IntegerDensityModulator(input_w...]
 Compiling architecture behavioral of entity xil_defaultlib.lomixerbaseband_tb
 Built simulation snapshot LOMixerBaseband_tb_behav
