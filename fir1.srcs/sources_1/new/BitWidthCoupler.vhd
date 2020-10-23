@@ -28,6 +28,8 @@ end BitWidthCoupler;
 
 architecture Behavioral of BitWidthCoupler is
 
+--    signal padding : std_logic_vector(SIG_OUT_WIDTH-SIG_IN_WIDTH-1 downto 0) := (others=>'0');
+
 begin
 
     ----------------------------------------
@@ -57,8 +59,9 @@ begin
     end generate gen_out_equals;
 
     gen_out_greater_than : if SIG_OUT_WIDTH > SIG_IN_WIDTH generate
-        -- SIG_OUT <= std_logic_vector( shift_left(signed(filter_out_sig), SIG_OUT_WIDTH-SIG_IN_WIDTH) );
+--         SIG_OUT <= std_logic_vector( shift_left(signed(SIG_IN), SIG_OUT_WIDTH-SIG_IN_WIDTH) );
         SIG_OUT <= SIG_IN & std_logic_vector(to_unsigned(0, SIG_OUT_WIDTH-SIG_IN_WIDTH)); -- simple shift left (having bugs simulating with shift_left function)
+--        SIG_OUT <= SIG_IN & padding;
     end generate gen_out_greater_than;
 
 end Behavioral;

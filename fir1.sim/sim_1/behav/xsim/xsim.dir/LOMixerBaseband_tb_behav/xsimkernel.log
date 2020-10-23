@@ -1,4 +1,7 @@
-Running: xsim.dir/LOMixerBaseband_tb_behav/xsimk -simmode gui -wdb LOMixerBaseband_tb_behav.wdb -simrunnum 0 -socket 58149
+Running: xsim.dir/LOMixerBaseband_tb_behav/xsimk -simmode gui -wdb LOMixerBaseband_tb_behav.wdb -simrunnum 0 -socket 45007
 Design successfully loaded
-Design Loading Memory Usage: 62592 KB (Peak: 62592 KB)
-Design Loading CPU Usage: 130 ms
+Design Loading Memory Usage: 62952 KB (Peak: 62952 KB)
+Design Loading CPU Usage: 160 ms
+Simulation completed
+Simulation Memory Usage: 135552 KB (Peak: 202220 KB)
+Simulation CPU Usage: 24890 ms

@@ -20,8 +20,8 @@ entity LOMixerBaseband is
     port (
         CLK                     : in STD_LOGIC;
         RST                     : in STD_LOGIC;
-        EN_IN                   : in STD_LOGIC;
-        EN_OUT                  : in STD_LOGIC;
+        EN_IN                   : in STD_LOGIC; -- sample rate must be 8x frequency of interest
+        EN_OUT                  : in STD_LOGIC; -- output sample could be higher (for example, to maintain precision when bit-width is reduced to small value)
         SIG_IN                  : in STD_LOGIC_VECTOR (SIG_IN_WIDTH-1 downto 0) := (others=>'0');
 
         SIG_OUT                 : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0) := (others=>'0')
@@ -49,7 +49,7 @@ begin
             CLK                     => CLK,
             RST                     => RST,
             EN                      => EN_IN,
-            LO_HALF_PERIOD          => x"4",
+            LO_HALF_PERIOD          => x"4", -- period/2
             SIG_IN                  => SIG_IN,
     
             SIG_OUT                 => mixer_out_sig
@@ -67,7 +67,7 @@ begin
             RST                     => RST,
             EN                      => EN_IN,
             PHASE                   => x"2", -- offset added to period at init (period/4)
-            LO_HALF_PERIOD          => x"4",
+            LO_HALF_PERIOD          => x"4", -- period/2
             SIG_IN                  => SIG_IN,
     
             SIG_OUT                 => mixer_out_sig
