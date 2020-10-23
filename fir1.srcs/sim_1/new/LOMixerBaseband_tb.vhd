@@ -40,8 +40,8 @@ architecture Behavioral of LOMixerBaseband_tb is
     signal test_clk, test_rst, test_sq_wave, test_PM_event, test_PM_out, test_sample_rate : std_logic;
     signal test_PM_sig : std_logic_vector(7 downto 0);
     signal test_I_out, test_Q_out  : std_logic_vector(4 downto 0);
-    signal test_angle, test_angle_slope, test_angle_slope_filtered_2  : std_logic_vector(7 downto 0);
-    signal test_fir_out, test_angle_filtered, test_angle_slope_filtered, test_angle_slope_filtered_3 : std_logic_vector(16 downto 0);
+    signal test_angle, test_angle_slope  : std_logic_vector(7 downto 0);
+    signal test_fir_out, test_angle_filtered, test_angle_slope_filtered, test_angle_slope_filtered_2 : std_logic_vector(16 downto 0);
     signal test_PM_period : std_logic_vector(3 downto 0);
 
 begin
@@ -270,106 +270,35 @@ begin
 
 
 
-    phase_angle_slope_filter: entity work.FIRFilter
-    generic map (
-        LENGTH      => 15, -- number of taps
-        WIDTH       => 8, -- width of coef and signal path (x2 after multiplication)
-        PADDING     => 1,  -- extra bits may be required if sum of taps causes overflow
-        SIGNED_MATH => TRUE
-    )
-    port map (
-        CLK         => test_clk,
-        EN          => '1',
-        RST         => test_rst,
-        COEF_IN     =>  x"02" &
-                        x"09" &
-                        x"13" &
-                        x"20" &
-                        x"2C" &
-                        x"36" &
-                        x"3D" &
-                        x"40" &
-                        x"3D" &
-                        x"36" &
-                        x"2C" &
-                        x"20" &
-                        x"13" &
-                        x"09" &
-                        x"02" ,
+    phase_angle_slope_filter: entity work.FIRFilterLP63tap
+        generic map (
+            SIG_IN_WIDTH        => 8,
+            SIG_OUT_WIDTH       => 17
+        )
+        port map (
+            CLK                 => test_clk,
+            RST                 => test_rst,
+            EN_IN               => '1',
+            EN_OUT              => test_sample_rate,
+            SIG_IN              => test_angle_slope,
 
-        SHIFT_IN    => test_angle_slope,
-
-        SHIFT_OUT   => open,
-        PAR_OUT     => open,
-        MULT_OUT    => open,
-        SUM_OUT     => test_angle_slope_filtered
-    );
+            SIG_OUT             => test_angle_slope_filtered
+        );
     
-    IDM_output: entity work.IntegerDensityModulator
-    -- When the output width is 1, the output becomes Pulse Density Modulation (PDM)
-    generic map (
-        INPUT_WIDTH         => 17,
-        OUTPUT_WIDTH        => 8,
-        PULSE_COUNT_WIDTH   => 1
-    )
-    port map (
-        CLK                 => test_clk,
-        EN                  => test_sample_rate,
-        RST                 => test_rst,
-        PULSE_LENGTH(0)     => '1',
-        INPUT               => test_angle_slope_filtered,
+    phase_angle_slope_filter_2: entity work.FIRFilterLP63tap
+        generic map (
+            SIG_IN_WIDTH        => 17,
+            SIG_OUT_WIDTH       => 17
+        )
+        port map (
+            CLK                 => test_clk,
+            RST                 => test_rst,
+            EN_IN               => test_sample_rate,
+            EN_OUT              => test_sample_rate,
+            SIG_IN              => test_angle_slope_filtered,
 
-        OUTPUT              => test_angle_slope_filtered_2
-    );
-    
-    phase_angle_slope_filter_2: entity work.FIRFilter
-    generic map (
-        LENGTH      => 15, -- number of taps
-        WIDTH       => 8, -- width of coef and signal path (x2 after multiplication)
-        PADDING     => 1,  -- extra bits may be required if sum of taps causes overflow
-        SIGNED_MATH => TRUE
-    )
-    port map (
-        CLK         => test_clk,
-        EN          => '1',
-        RST         => test_rst,
-        COEF_IN     =>  x"02" &
-                        x"09" &
-                        x"13" &
-                        x"20" &
-                        x"2C" &
-                        x"36" &
-                        x"3D" &
-                        x"40" &
-                        x"3D" &
-                        x"36" &
-                        x"2C" &
-                        x"20" &
-                        x"13" &
-                        x"09" &
-                        x"02" ,
-
-        SHIFT_IN    => test_angle_slope_filtered_2,
-
-        SHIFT_OUT   => open,
-        PAR_OUT     => open,
-        MULT_OUT    => open,
-        SUM_OUT     => test_angle_slope_filtered_3
-    );
---    phase_angle_slope_filter: entity work.FIRFilterLP4f63tap
---        generic map (
---            SIG_IN_WIDTH        => 8,
---            SIG_OUT_WIDTH       => 17
---        )
---        port map (
---            CLK                 => test_clk,
---            RST                 => test_rst,
---            EN_IN               => '1',
---            EN_OUT              => '1',
---            SIG_IN              => test_angle_slope,
-
---            SIG_OUT             => test_angle_slope_filtered
---        );
+            SIG_OUT             => test_angle_slope_filtered_2
+        );
 --      phase_angle_slope_filter : entity work.MAFilter
 --      generic map (
 --        SAMPLE_LENGTH             => 128,

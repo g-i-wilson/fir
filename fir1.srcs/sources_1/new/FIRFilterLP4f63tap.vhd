@@ -30,7 +30,7 @@ end FIRFilterLP4f63tap;
 architecture Behavioral of FIRFilterLP4f63tap is
 
     signal filter_in_sig        : std_logic_vector(11 downto 0);
-    signal filter_out_sig       : std_logic_vector(26 downto 0);
+    signal filter_out_sig       : std_logic_vector(27 downto 0);
 
 begin
 
@@ -70,7 +70,7 @@ begin
     generic map (
         LENGTH      => 63, -- number of taps
         WIDTH       => 12, -- width of coef and signal path (x2 after multiplication)
-        PADDING     => 3,  -- extra bits needed to pad overflow in situation of continuous DC at max level: 2^11-1 0x7FF (pos max) or 2^11 0x800 (neg max)
+        PADDING     => 4,  -- extra bits needed to pad overflow in situation of continuous DC at max level: 2^11-1 0x7FF (pos max) or 2^11 0x800 (neg max)
         SIGNED_MATH => TRUE
     )
     port map (
