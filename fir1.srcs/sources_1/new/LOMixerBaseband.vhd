@@ -49,7 +49,7 @@ begin
             CLK                     => CLK,
             RST                     => RST,
             EN                      => EN_IN,
-            LO_HALF_PERIOD          => x"3", -- period/2-1
+            LO_HALF_PERIOD          => x"4",
             SIG_IN                  => SIG_IN,
     
             SIG_OUT                 => mixer_out_sig
@@ -67,7 +67,7 @@ begin
             RST                     => RST,
             EN                      => EN_IN,
             PHASE                   => x"2", -- offset added to period at init (period/4)
-            LO_HALF_PERIOD          => x"3", -- period/2-1
+            LO_HALF_PERIOD          => x"4",
             SIG_IN                  => SIG_IN,
     
             SIG_OUT                 => mixer_out_sig

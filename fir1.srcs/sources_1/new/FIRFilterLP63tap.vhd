@@ -35,33 +35,19 @@ architecture Behavioral of FIRFilterLP63tap is
 begin
 
 
-    gen_less_than_12 : if SIG_IN_WIDTH < 12 generate
---        filter_in_sig <= std_logic_vector( shift_left(signed(mixer_out_sig), 12-SIG_IN_WIDTH ) );
-        filter_in_sig <= SIG_IN & std_logic_vector(to_unsigned(0, 12-SIG_IN_WIDTH)); -- simple shift left (having bugs simulating with shift_left function)
-    end generate gen_less_than_12;
-
-    gen_equal_to_12 : if SIG_IN_WIDTH = 12 generate
-        filter_in_sig <= SIG_IN;
-    end generate gen_equal_to_12;
-
-    gen_greater_than_12 : if SIG_IN_WIDTH > 12 generate
-        IDM_input: entity work.IntegerDensityModulator
-        -- When the output width is 1, the output becomes Pulse Density Modulation (PDM)
+    sig_in_coupler: entity work.BitWidthCoupler
         generic map (
-            INPUT_WIDTH         => SIG_IN_WIDTH,
-            OUTPUT_WIDTH        => 12,
-            PULSE_COUNT_WIDTH   => 1
+            SIG_IN_WIDTH            => SIG_IN_WIDTH,
+            SIG_OUT_WIDTH           => 12
         )
         port map (
-            CLK                 => CLK,
-            EN                  => EN_IN,
-            RST                 => RST,
-            PULSE_LENGTH(0)     => '1',
-            INPUT               => SIG_IN,
-
-            OUTPUT              => filter_in_sig
+            CLK                     => CLK,
+            RST                     => RST,
+            EN                      => EN_IN,
+            SIG_IN                  => SIG_IN,
+    
+            SIG_OUT                 => filter_in_sig
         );
-    end generate gen_greater_than_12;
 
     ----------------------------------------
     -- FIRFilter
@@ -146,35 +132,18 @@ begin
         SUM_OUT     => filter_out_sig
     );
 
-    ----------------------------------------
-    -- IDM signal width reduction
-    ----------------------------------------
-    gen_out_less_than_28 : if SIG_OUT_WIDTH < 28 generate
-        IDM_output: entity work.IntegerDensityModulator
-        -- When the output width is 1, the output becomes Pulse Density Modulation (PDM)
+    sig_out_coupler: entity work.BitWidthCoupler
         generic map (
-            INPUT_WIDTH         => 28,
-            OUTPUT_WIDTH        => SIG_OUT_WIDTH,
-            PULSE_COUNT_WIDTH   => 1
+            SIG_IN_WIDTH            => 28,
+            SIG_OUT_WIDTH           => SIG_OUT_WIDTH
         )
         port map (
-            CLK                 => CLK,
-            EN                  => EN_OUT,
-            RST                 => RST,
-            PULSE_LENGTH(0)     => '1',
-            INPUT               => filter_out_sig,
-
-            OUTPUT              => SIG_OUT
+            CLK                     => CLK,
+            RST                     => RST,
+            EN                      => EN_OUT,
+            SIG_IN                  => filter_out_sig,
+    
+            SIG_OUT                 => SIG_OUT
         );
-    end generate gen_out_less_than_28;
-
-    gen_out_equals_28 : if SIG_OUT_WIDTH = 28 generate
-        SIG_OUT <= filter_out_sig;
-    end generate gen_out_equals_28;
-
-    gen_out_greater_than_28 : if SIG_OUT_WIDTH > 28 generate
-        -- SIG_OUT <= std_logic_vector( shift_left(signed(filter_out_sig), SIG_OUT_WIDTH-27) );
-        SIG_OUT <= filter_out_sig & std_logic_vector(to_unsigned(0, SIG_OUT_WIDTH-28)); -- simple shift left (having bugs simulating with shift_left function)
-    end generate gen_out_greater_than_28;
-
+    
 end Behavioral;
