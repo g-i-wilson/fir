@@ -40,9 +40,10 @@ architecture Behavioral of QuadratureDemodulator_tb is
     signal test_clk, test_rst, test_sq_wave, test_PM_event, test_PM_out, test_sample_rate, test_angle_reduced_rate : std_logic;
     signal test_PM_sig : std_logic_vector(7 downto 0);
     signal test_I_out, test_Q_out  : std_logic_vector(4 downto 0);
-    signal test_angle, test_angle_slope, test_angle_filtered_ma1, test_angle_filtered_fir1, test_angle_filtered_fir2, test_angle_slope_filtered_ma1, test_angle_slope_filtered_fir1, test_angle_slope_filtered_fir2 : std_logic_vector(15 downto 0);
+    signal test_angle, test_angle_b, test_angle_slope  : std_logic_vector(7 downto 0);
+    signal test_fir_out, test_angle_filtered_ma1, test_angle_filtered_fir1, test_angle_filtered_fir2, test_angle_slope_filtered_ma1, test_angle_slope_filtered_fir1, test_angle_slope_filtered_fir2 : std_logic_vector(16 downto 0);
     signal test_PM_period : std_logic_vector(3 downto 0);
-    signal test_fir_out : std_logic_vector(16 downto 0);
+    signal test_PA_angle, test_PA_angle_filtered, test_PA_diff, test_PA_diff_filtered : std_logic_vector(15 downto 0);
 
 begin
 
@@ -100,6 +101,21 @@ begin
     );
 
     test_PM_sig <= (not test_sq_wave) & test_sq_wave & test_sq_wave & test_sq_wave & test_sq_wave & test_sq_wave & test_sq_wave & test_sq_wave;
+
+--    PM_filter: entity work.FIRFilterLP4f63tap
+--        generic map (
+--            SIG_IN_WIDTH        => 8,
+--            SIG_OUT_WIDTH       => 17
+--        )
+--        port map (
+--            CLK                 => test_clk,
+--            RST                 => test_rst,
+--            EN_IN               => test_sample_rate,
+--            EN_OUT              => test_sample_rate,
+--            SIG_IN              => test_PM_sig,
+
+--            SIG_OUT             => test_fir_out
+--        );
 
     PM_filter: entity work.FIRFilter
     generic map (
@@ -184,11 +200,12 @@ begin
                 EN_IN               => test_sample_rate, -- sample rate must be 8x frequency of interest
                 EN_OUT              => '1', -- output sample rate could be higher (for example, to maintain precision when bit-width is reduced to small value)
                 SIG_IN              => test_fir_out,
-        
+
                 I_OUT               => test_I_out,
                 Q_OUT               => test_Q_out
             );
-        
+
+
 
 
 --    phase_angle: entity work.Angle4Bit
@@ -239,36 +256,107 @@ begin
 --            FIR1_OUT                => test_angle_slope_filtered_fir2,
 --            EN_REDUCED              => open
 --        );
+        
+    test_PA: entity work.PhasorAnalyzer
+    generic map (
+        SIG_IN_WIDTH            => 4,
+        SIG_OUT_WIDTH           => 16
+    )
+    port map (
+        CLK                     => test_clk,
+        RST                     => test_rst,
+        EN_IN                   => '1',
+        EN_OUT                  => '1',
+        X_IN                    => test_I_out(3 downto 0),
+        Y_IN                    => test_Q_out(3 downto 0),
 
-    test_phasor_analyzer: entity work.PhasorAnalyzer
-        generic map (
-            SIG_IN_WIDTH            => 4,
-            SIG_OUT_WIDTH           => 16
---            REDUCED_RATE_WIDTH      => 4
-        )
-        port map (
-            CLK                     => test_clk,
-            EN                      => '1',
-            RST                     => test_rst,
-            X_IN                    => test_I_out(3 downto 0),
-            Y_IN                    => test_Q_out(3 downto 0),
---            ANGLE_PERIOD            => x"3", -- period-1
---            ANGLE_DIFF_PERIOD       => x"3", -- period-1
-    
-            ANGLE                   => test_angle,
---            ANGLE_MA0               => test_angle_slope_filtered_ma1,
-            ANGLE_FIR0              => test_angle_slope_filtered_fir1,
---            ANGLE_FIR1              => test_angle_slope_filtered_fir2,
---            ANGLE_EN                => open,
-    
-            ANGLE_DIFF              => test_angle_slope,
---            ANGLE_DIFF_MA0          => test_angle_slope_filtered_ma1
-            ANGLE_DIFF_FIR0         => test_angle_slope_filtered_fir1
---            ANGLE_DIFF_FIR1         => test_angle_slope_filtered_fir2,
---            ANGLE_DIFF_EN           => open
-        );
+        ANGLE                   => test_PA_angle,
+        ANGLE_FILTERED          => test_PA_angle_filtered,
+        ANGLE_DIFF              => test_PA_diff,
+        ANGLE_DIFF_FILTERED     => test_PA_diff_filtered
+    );
+
+--      phase_angle_filter_ma1 : entity work.MAFilter
+--      generic map (
+--        SAMPLE_LENGTH             => 32,
+--        SAMPLE_WIDTH              => 8,
+--        SUM_WIDTH                 => 17,
+--        SUM_START                 => 0,
+--        SIGNED_ARITHMETIC         => TRUE
+--      )
+--      port map (
+--        RST                       => test_rst,
+--        CLK                       => test_clk,
+--        EN                        => '1',
+--        SIG_IN                    => test_angle,
+
+--        SUM_OUT                   => test_angle_filtered_ma1
+--      );
+--        phase_angle_filter_fir1: entity work.FIRFilterLP15tap
+--        generic map (
+--            SIG_IN_WIDTH        => 8,
+--            SIG_OUT_WIDTH       => 17
+--        )
+--        port map (
+--            CLK                 => test_clk,
+--            RST                 => test_rst,
+--            EN_IN               => '1',
+--            EN_OUT              => '1',
+--            SIG_IN              => test_angle,
+
+--            SIG_OUT             => test_angle_filtered_fir1
+--        );
 
 
+
+
+--      phase_angle_slope_filter_ma1 : entity work.MAFilter
+--      generic map (
+--        SAMPLE_LENGTH             => 128,
+--        SAMPLE_WIDTH              => 8,
+--        SUM_WIDTH                 => 17,
+--        SUM_START                 => 0,
+--        SIGNED_ARITHMETIC         => TRUE
+--      )
+--      port map (
+--        RST                       => test_rst,
+--        CLK                       => test_clk,
+--        EN                        => '1',
+--        SIG_IN                    => test_angle_slope,
+
+--        SUM_OUT                   => test_angle_slope_filtered_ma1
+--      );
+
+
+--    phase_angle_slope_filter_fir1: entity work.FIRFilterLP63tap
+--        generic map (
+--            SIG_IN_WIDTH        => 8,
+--            SIG_OUT_WIDTH       => 17
+--        )
+--        port map (
+--            CLK                 => test_clk,
+--            RST                 => test_rst,
+--            EN_IN               => '1',
+--            EN_OUT              => test_sample_rate,
+--            SIG_IN              => test_angle_slope,
+
+--            SIG_OUT             => test_angle_slope_filtered_fir1
+--        );
+
+--    phase_angle_slope_filter_fir2: entity work.FIRFilterLP63tap
+--        generic map (
+--            SIG_IN_WIDTH        => 17,
+--            SIG_OUT_WIDTH       => 17
+--        )
+--        port map (
+--            CLK                 => test_clk,
+--            RST                 => test_rst,
+--            EN_IN               => test_sample_rate,
+--            EN_OUT              => test_sample_rate,
+--            SIG_IN              => test_angle_slope_filtered_fir1,
+
+--            SIG_OUT             => test_angle_slope_filtered_fir2
+--        );
 
 
 

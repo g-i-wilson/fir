@@ -15,28 +15,19 @@ entity PhasorAnalyzer is
     generic (
         SIG_IN_WIDTH            : positive; -- signal input path width
         SIG_OUT_WIDTH           : positive -- signal output path width
---        REDUCED_RATE_WIDTH      : positive
     );
     port (
         CLK                     : in STD_LOGIC;
         RST                     : in STD_LOGIC;
-        EN                      : in STD_LOGIC;
+        EN_IN                   : in STD_LOGIC;
+        EN_OUT                  : in STD_LOGIC;
         X_IN                    : in STD_LOGIC_VECTOR (SIG_IN_WIDTH-1 downto 0);
         Y_IN                    : in STD_LOGIC_VECTOR (SIG_IN_WIDTH-1 downto 0);
---        ANGLE_PERIOD            : in STD_LOGIC_VECTOR (REDUCED_RATE_WIDTH-1 downto 0); -- pulses: period-1
---        ANGLE_DIFF_PERIOD       : in STD_LOGIC_VECTOR (REDUCED_RATE_WIDTH-1 downto 0); -- pulses: period-1
 
         ANGLE                   : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
---        ANGLE_MA0               : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
-        ANGLE_FIR0              : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
---        ANGLE_FIR1              : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
---        ANGLE_EN                : out STD_LOGIC;
-
+        ANGLE_FILTERED          : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
         ANGLE_DIFF              : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
---        ANGLE_DIFF_MA0          : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
-        ANGLE_DIFF_FIR0         : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0)
---        ANGLE_DIFF_FIR1         : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
---        ANGLE_DIFF_EN           : out STD_LOGIC
+        ANGLE_DIFF_FILTERED     : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0)
     );
 end PhasorAnalyzer;
 
@@ -61,7 +52,7 @@ begin
     port map (
         CLK                     => CLK,
         RST                     => RST,
-        EN                      => EN,
+        EN                      => EN_IN,
         SIG_IN                  => X_IN,
 
         SIG_OUT                 => x_sig
@@ -75,7 +66,7 @@ begin
     port map (
         CLK                     => CLK,
         RST                     => RST,
-        EN                      => EN,
+        EN                      => EN_IN,
         SIG_IN                  => Y_IN,
 
         SIG_OUT                 => y_sig
@@ -84,11 +75,13 @@ begin
     phase_angle: entity work.Angle4Bit
         port map (
             CLK         => CLK,
-            EN          => EN,
+            EN          => EN_IN,
             RST         => RST,
 
             X_IN        => x_sig,
             Y_IN        => y_sig,
+--            X_IN        => X_IN,
+--            Y_IN        => Y_IN,
 
             A_OUT       => angle_sig,
             DIFF_OUT    => angle_diff_sig
@@ -102,7 +95,7 @@ begin
     port map (
         CLK                     => CLK,
         RST                     => RST,
-        EN                      => EN,
+        EN                      => EN_IN,
         SIG_IN                  => angle_sig,
 
         SIG_OUT                 => angle_resized_sig
@@ -116,7 +109,7 @@ begin
     port map (
         CLK                     => CLK,
         RST                     => RST,
-        EN                      => EN,
+        EN                      => EN_IN,
         SIG_IN                  => angle_diff_sig,
 
         SIG_OUT                 => angle_diff_resized_sig
@@ -124,10 +117,10 @@ begin
 
 
     ANGLE <= angle_resized_sig;
-    
+
     ANGLE_DIFF <= angle_diff_resized_sig;
-        
-        
+
+
     angle_filter: entity work.FIRFilterLP15tap
     generic map (
         SIG_IN_WIDTH        => 8,
@@ -136,13 +129,13 @@ begin
     port map (
         CLK                 => CLK,
         RST                 => RST,
-        EN_IN               => EN,
-        EN_OUT              => EN,
+        EN_IN               => EN_IN,
+        EN_OUT              => EN_OUT,
         SIG_IN              => angle_sig,
 
-        SIG_OUT             => ANGLE_FIR0
+        SIG_OUT             => ANGLE_FILTERED
     );
-    
+
     angle_diff_filter: entity work.FIRFilterLP63tap
     generic map (
         SIG_IN_WIDTH        => 8,
@@ -151,49 +144,11 @@ begin
     port map (
         CLK                 => CLK,
         RST                 => RST,
-        EN_IN               => EN,
-        EN_OUT              => EN,
+        EN_IN               => EN_IN,
+        EN_OUT              => EN_OUT,
         SIG_IN              => angle_diff_sig,
 
-        SIG_OUT             => ANGLE_DIFF_FIR0
+        SIG_OUT             => ANGLE_DIFF_FILTERED
     );
-    
---    phase_angle_multifilter: entity work.MultiFilterFIR15MA31
---        generic map (
---            SIG_IN_WIDTH            => 8,
---            SIG_OUT_WIDTH           => SIG_OUT_WIDTH,
---            REDUCED_RATE_WIDTH      => REDUCED_RATE_WIDTH
---        )
---        port map (
---            CLK                     => CLK,
---            EN                      => EN,
---            RST                     => RST,
---            SIG_IN                  => angle_sig,
---            REDUCED_RATE_PERIOD     => ANGLE_PERIOD, -- period-1
-
---            MA_OUT                  => ANGLE_MA0,
---            FIR0_OUT                => ANGLE_FIR0,
---            FIR1_OUT                => ANGLE_FIR1,
---            EN_REDUCED              => ANGLE_EN
---        );
-        
---    phase_angle_slope_multifilter: entity work.MultiFilterFIR63MA127
---        generic map (
---            SIG_IN_WIDTH            => 8,
---            SIG_OUT_WIDTH           => SIG_OUT_WIDTH,
---            REDUCED_RATE_WIDTH      => REDUCED_RATE_WIDTH
---        )
---        port map (
---            CLK                     => CLK,
---            EN                      => EN,
---            RST                     => RST,
---            SIG_IN                  => angle_diff_sig,
---            REDUCED_RATE_PERIOD     => ANGLE_DIFF_PERIOD, -- period-1
-
---            MA_OUT                  => ANGLE_DIFF_MA0,
---            FIR0_OUT                => ANGLE_DIFF_FIR0,
---            FIR1_OUT                => ANGLE_DIFF_FIR1,
---            EN_REDUCED              => ANGLE_DIFF_EN
---        );
 
 end Behavioral;
