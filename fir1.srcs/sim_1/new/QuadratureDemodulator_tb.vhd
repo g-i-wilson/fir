@@ -21,7 +21,7 @@ architecture Behavioral of QuadratureDemodulator_tb is
     signal test_fir_out : std_logic_vector(16 downto 0);
     signal test_I_out, test_Q_out  : std_logic_vector(4 downto 0);
     signal test_PM_period : std_logic_vector(3 downto 0);
-    signal test_PA_angle, test_PA_angle_filtered, test_PA_diff, test_PA_diff_filtered : std_logic_vector(15 downto 0);
+    signal test_PA_angle, test_PA_angle_filtered, test_PA_diff, test_PA_diff_filtered, test_PA_2dir : std_logic_vector(15 downto 0);
 
 begin
 
@@ -133,8 +133,9 @@ begin
 
         ANGLE                   => test_PA_angle,
         ANGLE_FILTERED          => test_PA_angle_filtered,
-        ANGLE_DIFF              => test_PA_diff,
-        ANGLE_DIFF_FILTERED     => test_PA_diff_filtered
+        ANGLE_DIR               => test_PA_diff,
+        ANGLE_DIR_FILTERED      => test_PA_diff_filtered,
+        ANGLE_2DIR              => test_PA_2dir
     );
 
 

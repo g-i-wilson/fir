@@ -286,6 +286,6 @@ Compiling architecture behavioral of entity xil_defaultlib.ShiftRightReg [\Shift
 Compiling architecture behavioral of entity xil_defaultlib.IntegerDensityModulator [\IntegerDensityModulator(input_w...]
 Compiling architecture behavioral of entity xil_defaultlib.BitWidthCoupler [\BitWidthCoupler(sig_in_width=28...]
 Compiling architecture behavioral of entity xil_defaultlib.FIRFilterLP63tap [\FIRFilterLP63tap(sig_out_width=...]
-Compiling architecture behavioral of entity xil_defaultlib.PhasorAnalyzer [\PhasorAnalyzer(sig_in_width=4,s...]
+Compiling architecture behavioral of entity xil_defaultlib.PhasorAnalyzer [phasoranalyzer_default]
 Compiling architecture behavioral of entity xil_defaultlib.quadraturedemodulator_tb
 Built simulation snapshot QuadratureDemodulator_tb_behav
