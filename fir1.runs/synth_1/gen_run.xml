@@ -533,6 +533,6 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="ila_uartspitap"/>
   <BlockFileSet Type="BlockSrcs" Name="ila_uartspitaptesting"/>
+  <BlockFileSet Type="BlockSrcs" Name="ila_uartspitap"/>
 </GenRun>

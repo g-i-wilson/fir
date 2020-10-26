@@ -26,9 +26,9 @@ entity QuadratureDemodulator is
 
         PHASE                   : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
         PHASE_FILTERED          : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
-        PHASE_DIR               : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
-        PHASE_DIR_FILTERED      : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
-        PHASE_2DIR              : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0)
+        PHASE_DER               : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
+        PHASE_DER_FILTERED      : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
+        PHASE_2DER              : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0)
     );
 end QuadratureDemodulator;
 
@@ -86,9 +86,9 @@ begin
 
         ANGLE                   => PHASE,
         ANGLE_FILTERED          => PHASE_FILTERED,
-        ANGLE_DIR               => PHASE_DIR,
-        ANGLE_DIR_FILTERED      => PHASE_DIR_FILTERED,
-        ANGLE_2DIR              => PHASE_2DIR
+        ANGLE_DER               => PHASE_DER,
+        ANGLE_DER_FILTERED      => PHASE_DER_FILTERED,
+        ANGLE_2DER              => PHASE_2DER
     );
     
 

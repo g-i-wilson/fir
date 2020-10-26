@@ -1,2 +1,6 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/PhasorAnalyzer.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'PhasorAnalyzer'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/QuadratureDemodulator.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'QuadratureDemodulator'
 INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/QuadratureDemodulator_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'QuadratureDemodulator_tb'
