@@ -141,14 +141,14 @@ begin
 
     sig_out_coupler: entity work.BitWidthCoupler
         generic map (
-            SIG_IN_WIDTH            => 16,
+            SIG_IN_WIDTH            => 25,
             SIG_OUT_WIDTH           => SIG_OUT_WIDTH
         )
         port map (
             CLK                     => CLK,
             RST                     => RST,
             EN                      => EN_IN,
-            SIG_IN                  => filter_out_sig(15 downto 0),
+            SIG_IN                  => filter_out_sig,
 
             SIG_OUT                 => SIG_OUT
         );

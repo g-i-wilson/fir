@@ -31,8 +31,6 @@ end LOMixerPassband;
 architecture Behavioral of LOMixerPassband is
 
     signal mixer_out_sig        : std_logic_vector(SIG_IN_WIDTH-1 downto 0);
-    signal filter_in_sig        : std_logic_vector(11 downto 0);
-    signal filter_out_sig       : std_logic_vector(26 downto 0);
 
 begin
 
