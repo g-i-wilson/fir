@@ -203,7 +203,6 @@ Compiling architecture behavioral of entity xil_defaultlib.BitWidthCoupler [\Bit
 Compiling architecture behavioral of entity xil_defaultlib.FIRFilterLP8f63tap [\FIRFilterLP8f63tap(sig_in_width...]
 Compiling architecture behavioral of entity xil_defaultlib.LOMixerBaseband [\LOMixerBaseband(sig_in_width=17...]
 Compiling architecture behavioral of entity xil_defaultlib.LOMixerBaseband [\LOMixerBaseband(sig_in_width=17...]
-Compiling architecture behavioral of entity xil_defaultlib.QuadratureDemodulator [\QuadratureDemodulator(sig_in_wi...]
 Compiling architecture behavioral of entity xil_defaultlib.BitWidthCoupler [\BitWidthCoupler(sig_in_width=4,...]
 Compiling architecture behavioral of entity xil_defaultlib.Angle4Bit [angle4bit_default]
 Compiling architecture behavioral of entity xil_defaultlib.BitWidthCoupler [\BitWidthCoupler(sig_in_width=8,...]
@@ -287,5 +286,6 @@ Compiling architecture behavioral of entity xil_defaultlib.IntegerDensityModulat
 Compiling architecture behavioral of entity xil_defaultlib.BitWidthCoupler [\BitWidthCoupler(sig_in_width=28...]
 Compiling architecture behavioral of entity xil_defaultlib.FIRFilterLP63tap [\FIRFilterLP63tap(sig_out_width=...]
 Compiling architecture behavioral of entity xil_defaultlib.PhasorAnalyzer [phasoranalyzer_default]
+Compiling architecture behavioral of entity xil_defaultlib.QuadratureDemodulator [\QuadratureDemodulator(sig_in_wi...]
 Compiling architecture behavioral of entity xil_defaultlib.quadraturedemodulator_tb
 Built simulation snapshot QuadratureDemodulator_tb_behav

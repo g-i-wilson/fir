@@ -19,7 +19,7 @@ architecture Behavioral of QuadratureDemodulator_tb is
     signal test_clk, test_rst, test_sq_wave, test_PM_event, test_PM_out, test_sample_rate : std_logic;
     signal test_PM_sig : std_logic_vector(1 downto 0);
     signal test_fir_out : std_logic_vector(16 downto 0);
-    signal test_I_out, test_Q_out  : std_logic_vector(4 downto 0);
+--    signal test_I_out, test_Q_out  : std_logic_vector(4 downto 0);
     signal test_PM_period : std_logic_vector(3 downto 0);
     signal test_PA_angle, test_PA_angle_filtered, test_PA_diff, test_PA_diff_filtered, test_PA_2dir : std_logic_vector(15 downto 0);
 
@@ -82,7 +82,7 @@ begin
     test_PM_sig <= (not test_sq_wave) & test_sq_wave;
 
 
-    angle_filter: entity work.FIRFilterLP15tap
+    PM_signal_filter: entity work.FIRFilterLP15tap
     generic map (
         SIG_IN_WIDTH        => 2,
         SIG_OUT_WIDTH       => 17
@@ -99,48 +99,29 @@ begin
 
 
 
-        test_quad_demod: entity work.QuadratureDemodulator
-            generic map (
-                SIG_IN_WIDTH            => 17,
-                SIG_OUT_WIDTH           => 5
-            )
-            port map (
-                CLK                 => test_clk,
-                RST                 => test_rst,
-                EN_IN               => test_sample_rate, -- sample rate must be 8x frequency of interest
-                EN_OUT              => '1', -- output sample rate could be higher (for example, to maintain precision when bit-width is reduced to small value)
-                SIG_IN              => test_fir_out,
+    test_quad_demod: entity work.QuadratureDemodulator
+        generic map (
+            SIG_IN_WIDTH            => 17,
+            SIG_OUT_WIDTH           => 16,
+            IQ_AMP                  => 1
+        )
+        port map (
+            CLK                     => test_clk,
+            RST                     => test_rst,
+            EN_IN                   => test_sample_rate, -- sample rate must be 8x frequency of interest
+            EN_OUT                  => '1',
+            SIG_IN                  => test_fir_out,
 
-                I_OUT               => test_I_out,
-                Q_OUT               => test_Q_out
-            );
+            PHASE                   => test_PA_angle,
+            PHASE_FILTERED          => test_PA_angle_filtered,
+            PHASE_DIR               => test_PA_diff,
+            PHASE_DIR_FILTERED      => test_PA_diff_filtered,
+            PHASE_2DIR              => test_PA_2dir
+        );
 
 
 
         
-    test_PA: entity work.PhasorAnalyzer
-    generic map (
-        SIG_IN_WIDTH            => 4,
-        SIG_OUT_WIDTH           => 16
-    )
-    port map (
-        CLK                     => test_clk,
-        RST                     => test_rst,
-        EN_IN                   => '1',
-        EN_OUT                  => '1',
-        X_IN                    => test_I_out(3 downto 0),
-        Y_IN                    => test_Q_out(3 downto 0),
-
-        ANGLE                   => test_PA_angle,
-        ANGLE_FILTERED          => test_PA_angle_filtered,
-        ANGLE_DIR               => test_PA_diff,
-        ANGLE_DIR_FILTERED      => test_PA_diff_filtered,
-        ANGLE_2DIR              => test_PA_2dir
-    );
-
-
-
-
 
 
     process
