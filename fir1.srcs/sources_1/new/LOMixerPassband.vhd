@@ -73,9 +73,9 @@ begin
     end generate gen_Q;
 
     ----------------------------------------
-    -- LP Filter
+    -- Filter
     ----------------------------------------
-    BP_filter: entity work.FIRFilterBP8f63tap
+    filter: entity work.FIRFilterLP8f63tap
         generic map (
             SIG_IN_WIDTH        => SIG_IN_WIDTH, -- signal input path width
             SIG_OUT_WIDTH       => SIG_OUT_WIDTH -- signal output path width

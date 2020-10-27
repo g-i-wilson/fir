@@ -1,7 +1,9 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/FIRFilterBP8f63tap.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'FIRFilterBP8f63tap'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/LOMixerBaseband.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'LOMixerBaseband'
 INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/LOMixerPassband.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'LOMixerPassband'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/QuadratureDemodulator.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'QuadratureDemodulator'
 INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/QuadratureModulator.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'QuadratureModulator'
 INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/QuadratureModulator_tb.vhd" into library xil_defaultlib

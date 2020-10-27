@@ -147,7 +147,7 @@ begin
         port map (
             CLK                     => CLK,
             RST                     => RST,
-            EN                      => EN_IN,
+            EN                      => EN_OUT,
             SIG_IN                  => filter_out_sig,
 
             SIG_OUT                 => SIG_OUT

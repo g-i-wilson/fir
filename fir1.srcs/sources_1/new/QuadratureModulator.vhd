@@ -159,4 +159,20 @@ begin
             SIG_OUT                 => SIG_OUT
         );
 
+--    filter: entity work.FIRFilterLP8f63tap
+--        generic map (
+--            SIG_IN_WIDTH        => 16, -- signal input path width
+--            SIG_OUT_WIDTH       => SIG_OUT_WIDTH -- signal output path width
+--        )
+--        port map (
+--            CLK                 => CLK,
+--            RST                 => RST,
+--            EN_IN               => EN_IN,
+--            EN_OUT              => EN_OUT,
+--            SIG_IN              => sum_sig,
+
+--            SIG_OUT             => SIG_OUT
+--        );
+
+
 end Behavioral;

@@ -30,7 +30,7 @@ end FIRFilterLP8f63tap;
 architecture Behavioral of FIRFilterLP8f63tap is
 
     signal filter_in_sig        : std_logic_vector(11 downto 0);
-    signal filter_out_sig       : std_logic_vector(26 downto 0);
+    signal filter_out_sig       : std_logic_vector(25 downto 0);
 
 begin
 
@@ -45,7 +45,7 @@ begin
             RST                     => RST,
             EN                      => EN_IN,
             SIG_IN                  => SIG_IN,
-    
+
             SIG_OUT                 => filter_in_sig
         );
 
@@ -56,7 +56,7 @@ begin
     generic map (
         LENGTH      => 63, -- number of taps
         WIDTH       => 12, -- width of coef and signal path (x2 after multiplication)
-        PADDING     => 3,  -- extra bits needed to pad overflow in situation of continuous DC at max level: 2^11-1 0x7FF (pos max) or 2^11 0x800 (neg max)
+        PADDING     => 2,  -- extra bits needed to pad overflow in situation of continuous DC at max level: 2^11-1 0x7FF (pos max) or 2^11 0x800 (neg max)
         SIGNED_MATH => TRUE
     )
     port map (
@@ -64,69 +64,69 @@ begin
         EN          => EN_IN,
         RST         => RST,
         COEF_IN     =>
-			x"FFF" &
-			x"FFE" &
-			x"FFC" &
-			x"FF8" &
-			x"FF5" &
-			x"FF4" &
-			x"FF6" &
-			x"000" &
-			x"00F" &
-			x"025" &
-			x"03C" &
-			x"050" &
-			x"059" &
-			x"052" &
-			x"034" &
-			x"FFF" &
-			x"FB6" &
-			x"F62" &
-			x"F10" &
-			x"ED3" &
-			x"EBD" &
-			x"EE1" &
-			x"F4A" &
-			x"000" &
-			x"0FC" &
-			x"232" &
-			x"38A" &
-			x"4E6" &
-			x"623" &
-			x"722" &
-			x"7C6" &
-			x"7FF" &
-			x"7C6" &
-			x"722" &
-			x"623" &
-			x"4E6" &
-			x"38A" &
-			x"232" &
-			x"0FC" &
-			x"000" &
-			x"F4A" &
-			x"EE1" &
-			x"EBD" &
-			x"ED3" &
-			x"F10" &
-			x"F62" &
-			x"FB6" &
-			x"FFF" &
-			x"034" &
-			x"052" &
-			x"059" &
-			x"050" &
-			x"03C" &
-			x"025" &
-			x"00F" &
-			x"000" &
-			x"FF6" &
-			x"FF4" &
-			x"FF5" &
-			x"FF8" &
-			x"FFC" &
-			x"FFE" &
-			x"FFF" ,
+    		x"FFF" &
+    		x"FFF" &
+    		x"FFE" &
+    		x"000" &
+    		x"004" &
+    		x"008" &
+    		x"008" &
+    		x"FFF" &
+    		x"FF1" &
+    		x"FE5" &
+    		x"FE8" &
+    		x"000" &
+    		x"022" &
+    		x"03A" &
+    		x"030" &
+    		x"FFF" &
+    		x"FBC" &
+    		x"F90" &
+    		x"FA4" &
+    		x"000" &
+    		x"07B" &
+    		x"0CA" &
+    		x"0A7" &
+    		x"FFF" &
+    		x"F16" &
+    		x"E72" &
+    		x"EA5" &
+    		x"000" &
+    		x"259" &
+    		x"50B" &
+    		x"72F" &
+    		x"7FF" &
+    		x"72F" &
+    		x"50B" &
+    		x"259" &
+    		x"000" &
+    		x"EA5" &
+    		x"E72" &
+    		x"F16" &
+    		x"FFF" &
+    		x"0A7" &
+    		x"0CA" &
+    		x"07B" &
+    		x"000" &
+    		x"FA4" &
+    		x"F90" &
+    		x"FBC" &
+    		x"FFF" &
+    		x"030" &
+    		x"03A" &
+    		x"022" &
+    		x"000" &
+    		x"FE8" &
+    		x"FE5" &
+    		x"FF1" &
+    		x"FFF" &
+    		x"008" &
+    		x"008" &
+    		x"004" &
+    		x"000" &
+    		x"FFE" &
+    		x"FFF" &
+    		x"FFF" ,
         SHIFT_IN    => filter_in_sig,
 
         SUM_OUT     => filter_out_sig
@@ -134,15 +134,15 @@ begin
 
     sig_out_coupler: entity work.BitWidthCoupler
         generic map (
-            SIG_IN_WIDTH            => 27,
+            SIG_IN_WIDTH            => 26,
             SIG_OUT_WIDTH           => SIG_OUT_WIDTH
         )
         port map (
             CLK                     => CLK,
             RST                     => RST,
-            EN                      => EN_IN,
+            EN                      => EN_OUT,
             SIG_IN                  => filter_out_sig,
-    
+
             SIG_OUT                 => SIG_OUT
         );
 
