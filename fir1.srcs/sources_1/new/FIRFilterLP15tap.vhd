@@ -29,8 +29,8 @@ end FIRFilterLP15tap;
 
 architecture Behavioral of FIRFilterLP15tap is
 
-    signal filter_in_sig        : std_logic_vector(7 downto 0);
-    signal filter_out_sig       : std_logic_vector(16 downto 0);
+    signal filter_in_sig        : std_logic_vector(11 downto 0);
+    signal filter_out_sig       : std_logic_vector(25 downto 0);
 
 begin
 
@@ -38,14 +38,14 @@ begin
     sig_in_coupler: entity work.BitWidthCoupler
         generic map (
             SIG_IN_WIDTH            => SIG_IN_WIDTH,
-            SIG_OUT_WIDTH           => 8
+            SIG_OUT_WIDTH           => 12
         )
         port map (
             CLK                     => CLK,
             RST                     => RST,
             EN                      => EN_IN,
             SIG_IN                  => SIG_IN,
-    
+
             SIG_OUT                 => filter_in_sig
         );
 
@@ -55,29 +55,30 @@ begin
     FIR: entity work.FIRFilter
     generic map (
         LENGTH      => 15, -- number of taps
-        WIDTH       => 8, -- width of coef and signal path (x2 after multiplication)
-        PADDING     => 1,  -- extra bits needed to pad overflow in situation of continuous DC at max level: 2^11-1 0x7FF (pos max) or 2^11 0x800 (neg max)
+        WIDTH       => 12, -- width of coef and signal path (x2 after multiplication)
+        PADDING     => 2,  -- extra bits needed to pad overflow in situation of continuous DC at max level: 2^11-1 0x7FF (pos max) or 2^11 0x800 (neg max)
         SIGNED_MATH => TRUE
     )
     port map (
         CLK         => CLK,
         EN          => EN_IN,
         RST         => RST,
-        COEF_IN     =>  x"02" &
-                        x"09" &
-                        x"13" &
-                        x"20" &
-                        x"2C" &
-                        x"36" &
-                        x"3D" &
-                        x"40" &
-                        x"3D" &
-                        x"36" &
-                        x"2C" &
-                        x"20" &
-                        x"13" &
-                        x"09" &
-                        x"02" ,
+        COEF_IN     =>
+    		x"04D" &
+    		x"12B" &
+    		x"278" &
+    		x"3FF" &
+    		x"587" &
+    		x"6D3" &
+    		x"7B1" &
+    		x"7FF" &
+    		x"7B1" &
+    		x"6D3" &
+    		x"587" &
+    		x"3FF" &
+    		x"278" &
+    		x"12B" &
+    		x"04D" ,
         SHIFT_IN    => filter_in_sig,
 
         SUM_OUT     => filter_out_sig
@@ -85,7 +86,7 @@ begin
 
     sig_out_coupler: entity work.BitWidthCoupler
         generic map (
-            SIG_IN_WIDTH            => 17,
+            SIG_IN_WIDTH            => 26,
             SIG_OUT_WIDTH           => SIG_OUT_WIDTH
         )
         port map (
@@ -93,7 +94,7 @@ begin
             RST                     => RST,
             EN                      => EN_OUT,
             SIG_IN                  => filter_out_sig,
-    
+
             SIG_OUT                 => SIG_OUT
         );
 

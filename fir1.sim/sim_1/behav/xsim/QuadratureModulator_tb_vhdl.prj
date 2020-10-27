@@ -14,8 +14,9 @@ vhdl xil_defaultlib  \
 "../../../../fir1.srcs/sources_1/new/FIRFilter.vhd" \
 "../../../../fir1.srcs/sources_1/new/FIRFilterLP15tap.vhd" \
 "../../../../fir1.srcs/sources_1/new/FIRFilterLP2f63tap.vhd" \
+"../../../../fir1.srcs/sources_1/new/FIRFilterLP4f15tap.vhd" \
+"../../../../fir1.srcs/sources_1/new/FIRFilterLP4f63tap.vhd" \
 "../../../../fir1.srcs/sources_1/new/FIRFilterLP63tap.vhd" \
-"../../../../fir1.srcs/sources_1/new/FIRFilterLP8f63tap.vhd" \
 "../../../../fir1.srcs/sources_1/new/SquareWaveGenerator.vhd" \
 "../../../../fir1.srcs/sources_1/new/LOMixer.vhd" \
 "../../../../fir1.srcs/sources_1/new/LOMixerBaseband.vhd" \

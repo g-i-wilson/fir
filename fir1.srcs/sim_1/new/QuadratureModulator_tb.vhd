@@ -18,6 +18,7 @@ architecture Behavioral of QuadratureModulator_tb is
 
     signal test_clk, test_rst, test_sample_rate, test_phase_change_rate : std_logic;
     signal test_mod_out             : std_logic_vector(15 downto 0);
+    signal test_mod_filtered_out    : std_logic_vector(15 downto 0);
     signal test_PA_angle            : std_logic_vector(15 downto 0);
     signal test_PA_angle_filtered   : std_logic_vector(15 downto 0);
     signal test_PA_diff             : std_logic_vector(15 downto 0);
@@ -30,14 +31,14 @@ begin
 
     sample_rate : entity work.PulseGenerator
     generic map (
-        WIDTH           => 4
+        WIDTH           => 8
     )
     port map (
         CLK             => test_clk,
         EN              => '1',
         RST             => test_rst,
-        PERIOD          => x"3",
-        INIT_PERIOD     => x"3",
+        PERIOD          => x"07",
+        INIT_PERIOD     => x"07",
         PULSE           => test_sample_rate
     );
 
@@ -49,8 +50,8 @@ begin
         CLK             => test_clk,
         EN              => '1',
         RST             => test_rst,
-        PERIOD          => x"20",
-        INIT_PERIOD     => x"20",
+        PERIOD          => x"40",
+        INIT_PERIOD     => x"40",
         PULSE           => test_phase_change_rate
     );
 
@@ -77,7 +78,7 @@ begin
             CLK                     => test_clk,
             RST                     => test_rst,
             EN_IN                   => test_sample_rate, -- sample rate must be 8x frequency of interest
-            EN_OUT                  => test_sample_rate, -- output sample rate could be higher (for example, to maintain precision when bit-width is reduced to small value)
+            EN_OUT                  => '1', -- output sample rate could be higher (for example, to maintain precision when bit-width is reduced to small value)
             EN_PHASE                => '1', -- enable the PHASE input (overrides PHASE_CHANGE)
             PHASE                   => cos_sig,
             EN_PHASE_CHANGE         => '0', -- enable the PHASE_CHANGE input
@@ -85,19 +86,35 @@ begin
 
             SIG_OUT                 => test_mod_out
         );
+        
+        
+    filter_mod_signal: entity work.FIRFilterLP4f63tap
+        generic map (
+            SIG_IN_WIDTH        => 16, -- signal input path width
+            SIG_OUT_WIDTH       => 16 -- signal output path width
+        )
+        port map (
+            CLK                 => test_clk,
+            RST                 => test_rst,
+            EN_IN               => '1',
+            EN_OUT              => '1',
+            SIG_IN              => test_mod_out,
+
+            SIG_OUT             => test_mod_filtered_out
+        );        
 
     test_quad_demod: entity work.QuadratureDemodulator
         generic map (
             SIG_IN_WIDTH            => 16,
             SIG_OUT_WIDTH           => 16,
-            IQ_AMP                  => 1
+            IQ_AMP                  => 2
         )
         port map (
             CLK                     => test_clk,
             RST                     => test_rst,
             EN_IN                   => test_sample_rate, -- sample rate must be 8x frequency of interest
             EN_OUT                  => '1',
-            SIG_IN                  => test_mod_out,
+            SIG_IN                  => test_mod_filtered_out,
 
             PHASE                   => test_PA_angle,
             PHASE_FILTERED          => test_PA_angle_filtered,
@@ -132,7 +149,7 @@ begin
         test_clk <= '0';
         wait for 2ns;
 
-        for a in 0 to 4095 loop
+        for a in 1 to 20000 loop
 
           -- clock edge
           wait for 2ns;
