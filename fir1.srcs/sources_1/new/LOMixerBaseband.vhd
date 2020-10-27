@@ -20,7 +20,7 @@ entity LOMixerBaseband is
     port (
         CLK                     : in STD_LOGIC;
         RST                     : in STD_LOGIC;
-        EN_IN                   : in STD_LOGIC; -- sample rate must be 8x frequency of interest
+        EN_IN                   : in STD_LOGIC; -- sample rate must be 8x frequency of interest (i.e. carrier frequency)
         EN_OUT                  : in STD_LOGIC; -- output sample could be higher (for example, to maintain precision when bit-width is reduced to small value)
         SIG_IN                  : in STD_LOGIC_VECTOR (SIG_IN_WIDTH-1 downto 0) := (others=>'0');
 
@@ -77,7 +77,7 @@ begin
     ----------------------------------------
     -- LP Filter
     ----------------------------------------
-    LP_filter: entity work.FIRFilterLP8f63tap
+    LP_filter: entity work.FIRFilterLP2f63tap -- filter down to 1/32 (2/63), which is 1/4 carrier frequency, to reveal baseband.
         generic map (
             SIG_IN_WIDTH        => SIG_IN_WIDTH, -- signal input path width
             SIG_OUT_WIDTH       => SIG_OUT_WIDTH -- signal output path width

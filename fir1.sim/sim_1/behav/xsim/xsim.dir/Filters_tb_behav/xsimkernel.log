@@ -2,3 +2,6 @@ Running: xsim.dir/Filters_tb_behav/xsimk -simmode gui -wdb Filters_tb_behav.wdb 
 Design successfully loaded
 Design Loading Memory Usage: 62000 KB (Peak: 62000 KB)
 Design Loading CPU Usage: 190 ms
+Simulation completed
+Simulation Memory Usage: 158488 KB (Peak: 201268 KB)
+Simulation CPU Usage: 70130 ms

@@ -35,8 +35,8 @@ architecture Behavioral of QuadratureModulator is
     signal a_in_sig         : std_logic_vector (7 downto 0);
     signal a_out_sig        : std_logic_vector (7 downto 0);
 
-    signal phase_sig        : std_logic_vector (SIG_IN_WIDTH-1 downto 0);
-    signal phase_change_sig : std_logic_vector (SIG_IN_WIDTH-1 downto 0);
+    signal phase_sig        : std_logic_vector (7 downto 0);
+    signal phase_change_sig : std_logic_vector (7 downto 0);
 
     signal x_out_sig        : std_logic_vector (11 downto 0);
     signal y_out_sig        : std_logic_vector (11 downto 0);

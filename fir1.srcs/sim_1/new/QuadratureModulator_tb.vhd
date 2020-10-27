@@ -16,9 +16,15 @@ end QuadratureModulator_tb;
 
 architecture Behavioral of QuadratureModulator_tb is
 
-    signal test_clk, test_rst, test_sample_rate : std_logic;
-    signal test_mod_out : std_logic_vector(15 downto 0);
-    signal test_PA_angle, test_PA_angle_filtered, test_PA_diff, test_PA_diff_filtered, test_PA_2DER : std_logic_vector(15 downto 0);
+    signal test_clk, test_rst, test_sample_rate, test_phase_change_rate : std_logic;
+    signal test_mod_out             : std_logic_vector(15 downto 0);
+    signal test_PA_angle            : std_logic_vector(15 downto 0);
+    signal test_PA_angle_filtered   : std_logic_vector(15 downto 0);
+    signal test_PA_diff             : std_logic_vector(15 downto 0);
+    signal test_PA_diff_filtered    : std_logic_vector(15 downto 0);
+    signal sin_sig                  : std_logic_vector(15 downto 0);
+    signal cos_sig                  : std_logic_vector(15 downto 0);
+    signal test_PA_2DER             : std_logic_vector(15 downto 0);
 
 begin
 
@@ -35,11 +41,36 @@ begin
         PULSE           => test_sample_rate
     );
 
+    phase_change_rate : entity work.PulseGenerator
+    generic map (
+        WIDTH           => 8
+    )
+    port map (
+        CLK             => test_clk,
+        EN              => '1',
+        RST             => test_rst,
+        PERIOD          => x"20",
+        INIT_PERIOD     => x"20",
+        PULSE           => test_phase_change_rate
+    );
+
+    sin_gen: entity work.SinusoidGenerator64
+        generic map (
+            WIDTH           => 16
+        )
+        port map (
+            CLK             => test_clk,
+            EN              => test_phase_change_rate,
+            RST             => test_rst,
+    
+            COS_OUT         => cos_sig,
+            SIN_OUT         => sin_sig
+        );
 
 
     test_quad_mod: entity work.QuadratureModulator
         generic map (
-            SIG_IN_WIDTH            => 8,
+            SIG_IN_WIDTH            => 16,
             SIG_OUT_WIDTH           => 16
         )
         port map (
@@ -48,9 +79,9 @@ begin
             EN_IN                   => test_sample_rate, -- sample rate must be 8x frequency of interest
             EN_OUT                  => test_sample_rate, -- output sample rate could be higher (for example, to maintain precision when bit-width is reduced to small value)
             EN_PHASE                => '1', -- enable the PHASE input (overrides PHASE_CHANGE)
-            PHASE                   => x"88",
+            PHASE                   => cos_sig,
             EN_PHASE_CHANGE         => '0', -- enable the PHASE_CHANGE input
-            PHASE_CHANGE            => x"00",
+            PHASE_CHANGE            => x"0000",
 
             SIG_OUT                 => test_mod_out
         );
