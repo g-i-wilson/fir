@@ -2,3 +2,6 @@ Running: xsim.dir/QuadratureModulator_tb_behav/xsimk -simmode gui -wdb Quadratur
 Design successfully loaded
 Design Loading Memory Usage: 62972 KB (Peak: 62972 KB)
 Design Loading CPU Usage: 170 ms
+Simulation completed
+Simulation Memory Usage: 159704 KB (Peak: 202240 KB)
+Simulation CPU Usage: 56660 ms

@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log TestUARTSPITapBasys3.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source TestUARTSPITapBasys3.tcl
+EAStep vivado -log TestADCQuadDemodSerial.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source TestADCQuadDemodSerial.tcl
