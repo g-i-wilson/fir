@@ -10,58 +10,73 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="8193fs"></ZoomEndTime>
-      <Cursor1Time time="3641fs"></Cursor1Time>
+      <ZoomEndTime time="6901fs"></ZoomEndTime>
+      <Cursor1Time time="342fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="290"></NameColumnWidth>
-      <ValueColumnWidth column_width="122"></ValueColumnWidth>
+      <NameColumnWidth column_width="342"></NameColumnWidth>
+      <ValueColumnWidth column_width="114"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="6" />
+   <WVObjectSize size="4" />
    <wave_markers>
    </wave_markers>
-   <wvobject type="array" fp_name="UARTSPITap_module/fifo_data_sig">
+   <wvobject type="array" fp_name="ADCQuadDemodSerial_module/filter_out_sig">
       <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPITap_module/fifo_data_sig[7:0]</obj_property>
-      <obj_property name="ObjectShortName">fifo_data_sig[7:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="ElementShortName">ADCQuadDemodSerial_module/filter_out_sig[15:0]</obj_property>
+      <obj_property name="ObjectShortName">filter_out_sig[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_FIXED</obj_property>
+      <obj_property name="AnalogYRangeMin">-20000.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">20000.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_LINEAR</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="UARTSPITap_module/fifo_valid_sig">
+   <wvobject type="array" fp_name="ADCQuadDemodSerial_module/phase_2der_sig">
       <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPITap_module/fifo_valid_sig</obj_property>
-      <obj_property name="ObjectShortName">fifo_valid_sig</obj_property>
+      <obj_property name="ElementShortName">ADCQuadDemodSerial_module/phase_2der_sig[7:0]</obj_property>
+      <obj_property name="ObjectShortName">phase_2der_sig[7:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_FIXED</obj_property>
+      <obj_property name="AnalogYRangeMin">-2.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">2.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="UARTSPITap_module/mux_data_sig">
+   <wvobject type="array" fp_name="ADCQuadDemodSerial_module/phase_der_sig">
       <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPITap_module/mux_data_sig[7:0]</obj_property>
-      <obj_property name="ObjectShortName">mux_data_sig[7:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="ElementShortName">ADCQuadDemodSerial_module/phase_der_sig[7:0]</obj_property>
+      <obj_property name="ObjectShortName">phase_der_sig[7:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_FIXED</obj_property>
+      <obj_property name="AnalogYRangeMin">-2.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">2.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="UARTSPITap_module/mux_valid_sig">
+   <wvobject type="array" fp_name="ADCQuadDemodSerial_module/phase_sig">
       <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPITap_module/mux_valid_sig</obj_property>
-      <obj_property name="ObjectShortName">mux_valid_sig</obj_property>
+      <obj_property name="ElementShortName">ADCQuadDemodSerial_module/phase_sig[7:0]</obj_property>
+      <obj_property name="ObjectShortName">phase_sig[7:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPITap_module/spitap_valid_sig">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPITap_module/spitap_valid_sig</obj_property>
-      <obj_property name="ObjectShortName">spitap_valid_sig</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="UARTSPITap_module/tx_ready_sig">
-      <obj_property name="DisplayName">FullPathName</obj_property>
-      <obj_property name="ElementShortName">UARTSPITap_module/tx_ready_sig</obj_property>
-      <obj_property name="ObjectShortName">tx_ready_sig</obj_property>
-      <obj_property name="LABELRADIX">true</obj_property>
-      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_FIXED</obj_property>
+      <obj_property name="AnalogYRangeMin">-128.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">127.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
    </wvobject>
 </wave_config>

@@ -38,7 +38,7 @@ architecture Behavioral of ADCQuadDemodSerial is
   signal qd_in_sample_sig   : std_logic;
   signal qd_out_sample_sig  : std_logic;
   signal filter_in_sig      : std_logic_vector(1 downto 0);
-  signal filter_out_sig     : std_logic_vector(15 downto 0);
+  signal filter_out_sig     : std_logic_vector(11 downto 0);
   signal phase_sig          : std_logic_vector(7 downto 0);
   signal phase_der_sig      : std_logic_vector(7 downto 0);
   signal phase_2der_sig     : std_logic_vector(7 downto 0);
@@ -96,11 +96,10 @@ begin
 
     filter_in_sig <= (not adc_out_sig) & adc_out_sig; -- +1 for high, -1 for low
 
-    -- cutoff freq is aprox 1/63 of sample rate
     LP_filter: entity work.FIRFilterLP63tap
         generic map (
             SIG_IN_WIDTH        => 2, -- signal input path width
-            SIG_OUT_WIDTH       => 16 -- signal output path width
+            SIG_OUT_WIDTH       => 12 -- signal output path width
         )
         port map (
             CLK                 => CLK,
@@ -114,7 +113,7 @@ begin
 
     QuadDemod: entity work.QuadratureDemodulator
         generic map (
-            SIG_IN_WIDTH            => 16,
+            SIG_IN_WIDTH            => 12,
             SIG_OUT_WIDTH           => 8,
             IQ_AMP                  => 2
         )
@@ -138,7 +137,7 @@ begin
             RST                 => RST,
             BIT_TIMER_PERIOD    => UART_PERIOD,
             VALID               => qd_out_sample_sig,
-            DATA                => phase_der_sig,
+            DATA                => phase_sig,
             -- outputs
             READY               => open,
             TX                  => TX

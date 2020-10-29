@@ -137,7 +137,7 @@ begin
         SIG_OUT             => ANGLE_FILTERED
     );
 
-    angle_DER_filter: entity work.FIRFilterLP63tap
+    angle_DER_filter: entity work.FIRFilterLP15tap
     generic map (
         SIG_IN_WIDTH        => 8,
         SIG_OUT_WIDTH       => SIG_OUT_WIDTH
