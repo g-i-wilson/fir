@@ -124,8 +124,8 @@ begin
             EN_OUT                  => qd_out_sample_sig,
             SIG_IN                  => filter_out_sig,
 
-            PHASE_FILTERED          => phase_sig,
-            PHASE_DER_FILTERED      => phase_der_sig,
+            PHASE                   => phase_sig,
+            PHASE_DER               => phase_der_sig,
             PHASE_2DER              => phase_2der_sig
         );
 
@@ -137,7 +137,7 @@ begin
             RST                 => RST,
             BIT_TIMER_PERIOD    => UART_PERIOD,
             VALID               => qd_out_sample_sig,
-            DATA                => phase_sig,
+            DATA                => phase_der_sig,
             -- outputs
             READY               => open,
             TX                  => TX

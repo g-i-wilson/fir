@@ -20,9 +20,7 @@ architecture Behavioral of QuadratureModulator_tb is
     signal test_mod_out             : std_logic_vector(15 downto 0);
     signal test_mod_filtered_out    : std_logic_vector(15 downto 0);
     signal test_PA_angle            : std_logic_vector(15 downto 0);
-    signal test_PA_angle_filtered   : std_logic_vector(15 downto 0);
     signal test_PA_diff             : std_logic_vector(15 downto 0);
-    signal test_PA_diff_filtered    : std_logic_vector(15 downto 0);
     signal sin_sig                  : std_logic_vector(15 downto 0);
     signal cos_sig                  : std_logic_vector(15 downto 0);
     signal test_PA_2DER             : std_logic_vector(15 downto 0);
@@ -117,9 +115,7 @@ begin
             SIG_IN                  => test_mod_filtered_out,
 
             PHASE                   => test_PA_angle,
-            PHASE_FILTERED          => test_PA_angle_filtered,
             PHASE_DER               => test_PA_diff,
-            PHASE_DER_FILTERED      => test_PA_diff_filtered,
             PHASE_2DER              => test_PA_2DER
         );
 
