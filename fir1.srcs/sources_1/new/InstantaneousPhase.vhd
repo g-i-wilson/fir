@@ -19,7 +19,7 @@ entity InstantaneousPhase is
     port (
         CLK                     : in STD_LOGIC;
         RST                     : in STD_LOGIC;
-        EN_IN                   : in STD_LOGIC;
+        EN_ANGLE                : in STD_LOGIC;
         EN_OUT                  : in STD_LOGIC;
 
         RE_IN                   : in STD_LOGIC_VECTOR (SIG_IN_WIDTH-1 downto 0);
@@ -48,7 +48,7 @@ begin
     port map (
         CLK                     => CLK,
         RST                     => RST,
-        EN                      => EN_IN,
+        EN                      => EN_ANGLE,
         SIG_IN                  => RE_IN,
 
         SIG_OUT                 => re_resized_sig
@@ -62,7 +62,7 @@ begin
     port map (
         CLK                     => CLK,
         RST                     => RST,
-        EN                      => EN_IN,
+        EN                      => EN_ANGLE,
         SIG_IN                  => IM_IN,
 
         SIG_OUT                 => im_resized_sig
@@ -71,7 +71,7 @@ begin
     phase_arg_function: entity work.Angle4Bit
         port map (
             CLK                 => CLK,
-            EN                  => EN_IN,
+            EN                  => EN_ANGLE,
             RST                 => RST,
 
             X_IN                => re_resized_sig,
@@ -89,7 +89,7 @@ begin
     port map (
         CLK                 => CLK,
         RST                 => RST,
-        EN_IN               => EN_IN,
+        EN_IN               => EN_ANGLE,
         EN_OUT              => EN_OUT,
         SIG_IN              => angle_sig,
 
@@ -104,7 +104,7 @@ begin
     port map (
         CLK                 => CLK,
         RST                 => RST,
-        EN_IN               => EN_IN,
+        EN_IN               => EN_ANGLE,
         EN_OUT              => EN_OUT,
         SIG_IN              => angle_diff_sig,
 

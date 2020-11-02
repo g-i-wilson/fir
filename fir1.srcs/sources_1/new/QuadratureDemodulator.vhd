@@ -77,7 +77,7 @@ begin
     port map (
         CLK                     => CLK,
         RST                     => RST,
-        EN_IN                   => '1',
+        EN_ANGLE                => '1',
         EN_OUT                  => EN_OUT,
         RE_IN                   => i_out_sig(27 downto 0),
         IM_IN                   => q_out_sig(27 downto 0),
@@ -94,7 +94,8 @@ begin
     port map (
         CLK                     => CLK,
         RST                     => RST,
-        EN_IN                   => '1',
+        EN_CONJ                 => EN_IN,
+        EN_ANGLE                => '1',
         EN_OUT                  => EN_OUT,
         RE_IN                   => i_out_sig(27 downto 0),
         IM_IN                   => q_out_sig(27 downto 0),

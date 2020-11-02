@@ -77,7 +77,8 @@ begin
     ----------------------------------------
     -- LP Filter
     ----------------------------------------
-    LP_filter: entity work.FIRFilterLP2f63tap -- filter down to 1/32 (2/63), which is 1/4 carrier frequency, to reveal baseband.
+--    LP_filter: entity work.FIRFilterLP2f63tap -- filter down to 1/32 (2/63), which is 1/4 carrier frequency, to reveal baseband.
+    LP_filter: entity work.FIRFilterLP63tap -- filter down to 1/63, which is 1/8 carrier frequency, to reveal baseband.
         generic map (
             SIG_IN_WIDTH        => SIG_IN_WIDTH, -- signal input path width
             SIG_OUT_WIDTH       => SIG_OUT_WIDTH -- signal output path width

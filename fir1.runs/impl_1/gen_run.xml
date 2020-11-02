@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1603999479">
-  <File Type="RBD_FILE" Name="TestADCQuadDemodSerial.rbd"/>
-  <File Type="NPI_FILE" Name="TestADCQuadDemodSerial.npi"/>
-  <File Type="RNPI_FILE" Name="TestADCQuadDemodSerial.rnpi"/>
-  <File Type="CFI_FILE" Name="TestADCQuadDemodSerial.cfi"/>
-  <File Type="RCFI_FILE" Name="TestADCQuadDemodSerial.rcfi"/>
-  <File Type="PDI-FILE" Name="TestADCQuadDemodSerial.pdi"/>
+  <File Type="ROUTE-TIMING-PB" Name="TestADCQuadDemodSerial_timing_summary_routed.pb"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="TestADCQuadDemodSerial_routed_bb.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="TestADCQuadDemodSerial_routed_error.dcp"/>
   <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
   <File Type="BITSTR-LTX" Name="TestADCQuadDemodSerial.ltx"/>
   <File Type="BITSTR-SYSDEF" Name="TestADCQuadDemodSerial.sysdef"/>
@@ -13,15 +10,14 @@
   <File Type="BITSTR-MMI" Name="TestADCQuadDemodSerial.mmi"/>
   <File Type="POSTROUTE-PHYSOPT-DCP" Name="TestADCQuadDemodSerial_postroute_physopt.dcp"/>
   <File Type="BITSTR-BMM" Name="TestADCQuadDemodSerial_bd.bmm"/>
+  <File Type="OPT-DCP" Name="TestADCQuadDemodSerial_opt.dcp"/>
+  <File Type="BG-DRC" Name="TestADCQuadDemodSerial.drc"/>
   <File Type="BG-BGN" Name="TestADCQuadDemodSerial.bgn"/>
   <File Type="PLACE-DCP" Name="TestADCQuadDemodSerial_placed.dcp"/>
   <File Type="OPT-HWDEF" Name="TestADCQuadDemodSerial.hwdef"/>
   <File Type="BG-BIT" Name="TestADCQuadDemodSerial.bit"/>
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
-  <File Type="PA-TCL" Name="TestADCQuadDemodSerial.tcl"/>
-  <File Type="REPORTS-TCL" Name="TestADCQuadDemodSerial_reports.tcl"/>
-  <File Type="BG-DRC" Name="TestADCQuadDemodSerial.drc"/>
-  <File Type="OPT-DCP" Name="TestADCQuadDemodSerial_opt.dcp"/>
+  <File Type="ROUTE-DCP" Name="TestADCQuadDemodSerial_routed.dcp"/>
   <File Type="RDI-RDI" Name="TestADCQuadDemodSerial.vdi"/>
   <File Type="BG-BIN" Name="TestADCQuadDemodSerial.bin"/>
   <File Type="PWROPT-DCP" Name="TestADCQuadDemodSerial_pwropt.dcp"/>
@@ -31,10 +27,14 @@
   <File Type="BITSTR-RBT" Name="TestADCQuadDemodSerial.rbt"/>
   <File Type="BITSTR-NKY" Name="TestADCQuadDemodSerial.nky"/>
   <File Type="PHYSOPT-DCP" Name="TestADCQuadDemodSerial_physopt.dcp"/>
-  <File Type="ROUTE-DCP" Name="TestADCQuadDemodSerial_routed.dcp"/>
-  <File Type="ROUTE-ERROR-DCP" Name="TestADCQuadDemodSerial_routed_error.dcp"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="TestADCQuadDemodSerial_routed_bb.dcp"/>
-  <File Type="ROUTE-TIMING-PB" Name="TestADCQuadDemodSerial_timing_summary_routed.pb"/>
+  <File Type="PDI-FILE" Name="TestADCQuadDemodSerial.pdi"/>
+  <File Type="RCFI_FILE" Name="TestADCQuadDemodSerial.rcfi"/>
+  <File Type="CFI_FILE" Name="TestADCQuadDemodSerial.cfi"/>
+  <File Type="RNPI_FILE" Name="TestADCQuadDemodSerial.rnpi"/>
+  <File Type="NPI_FILE" Name="TestADCQuadDemodSerial.npi"/>
+  <File Type="RBD_FILE" Name="TestADCQuadDemodSerial.rbd"/>
+  <File Type="PA-TCL" Name="TestADCQuadDemodSerial.tcl"/>
+  <File Type="REPORTS-TCL" Name="TestADCQuadDemodSerial_reports.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/ADC1Bit.vhd">
