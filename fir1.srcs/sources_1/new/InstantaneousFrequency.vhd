@@ -29,7 +29,7 @@ entity InstantaneousFrequency is
         IM_IN                   : in STD_LOGIC_VECTOR (SIG_IN_WIDTH-1 downto 0);
 
         PHASE_DER               : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
-        PHASE_2DER_APROX        : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0)
+        PHASE_2DER              : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0)
     );
 end InstantaneousFrequency;
 
@@ -46,9 +46,10 @@ architecture Behavioral of InstantaneousFrequency is
     signal freq_im_resized_sig      : STD_LOGIC_VECTOR (3+IM_AMP downto 0);
 
     signal angle_sig                : STD_LOGIC_VECTOR (7 downto 0);
+    signal angle_ma_sig             : STD_LOGIC_VECTOR (11 downto 0);
     signal angle_diff_sig           : STD_LOGIC_VECTOR (7 downto 0);
 
-    signal ma_out              : STD_LOGIC_VECTOR (SIG_IN_WIDTH*2+1-10-1 downto 0); -- padded 1 bit to prevent overflow
+--    signal ma_out                   : STD_LOGIC_VECTOR (SIG_IN_WIDTH*2+1-10-1 downto 0); -- padded 1 bit to prevent overflow
 
 begin
 
@@ -139,50 +140,48 @@ begin
         );
 
 
---    ma_filter: entity work.MAFilter
---      generic map (
---        SAMPLE_LENGTH             => 16,
---        SAMPLE_WIDTH              => SIG_IN_WIDTH*2+1-10,
---        SUM_WIDTH                 => SIG_IN_WIDTH*2+1-10,
---        SUM_START                 => 0,
---        SIGNED_ARITHMETIC         => TRUE
---      )
---      port map (
---        CLK                 => CLK,
---        RST                 => RST,
---        EN                  => EN_IN,
---        SIG_IN              => freq_im_sig(SIG_IN_WIDTH*2+1-10-1 downto 0),
+    ma_filter: entity work.MAFilter
+      generic map (
+        SAMPLE_LENGTH             => 8,
+        SAMPLE_WIDTH              => 8,
+        SUM_WIDTH                 => 12,
+        SUM_START                 => 0,
+        SIGNED_ARITHMETIC         => TRUE
+      )
+      port map (
+        CLK                 => CLK,
+        RST                 => RST,
+        EN                  => EN_ANGLE,
+        SIG_IN              => angle_sig,
     
---        SUM_OUT             => ma_out
---      );
+        SUM_OUT             => angle_ma_sig
+      );
 
 --    ma_out_coupler: entity work.BitWidthCoupler
 --        generic map (
---            SIG_IN_WIDTH            => SIG_IN_WIDTH*2+1-10,
+--            SIG_IN_WIDTH            => 16,
 --            SIG_OUT_WIDTH           => SIG_OUT_WIDTH
 --        )
 --        port map (
 --            CLK                     => CLK,
 --            RST                     => RST,
---            EN                      => EN_IN,
---            SIG_IN                  => ma_out,
+--            EN                      => EN_ANGLE,
+--            SIG_IN                  => angle_ma_sig,
 
 --            SIG_OUT                 => PHASE_DER
 --        );
 
-
     angle_filter: entity work.FIRFilterLP15tap
     generic map (
-        SIG_IN_WIDTH        => 8,
+        SIG_IN_WIDTH        => 12,
         SIG_OUT_WIDTH       => SIG_OUT_WIDTH
     )
     port map (
         CLK                 => CLK,
         RST                 => RST,
-        EN_IN               => EN_ANGLE,
+        EN_IN               => EN_OUT,
         EN_OUT              => EN_OUT,
-        SIG_IN              => angle_sig,
---        SIG_IN              => freq_im_sig(SIG_IN_WIDTH*2+1-9-1 downto 0),
+        SIG_IN              => angle_ma_sig,
 
         SIG_OUT             => PHASE_DER
     );
@@ -200,7 +199,7 @@ begin
         SIG_IN              => angle_diff_sig,
 --        SIG_IN              => freq_im_sig(SIG_IN_WIDTH*2+1-9-1 downto 0), -- just for testing this filter... this isn't actually the second derivative
 
-        SIG_OUT             => PHASE_2DER_APROX
+        SIG_OUT             => PHASE_2DER
     );
 
 end Behavioral;

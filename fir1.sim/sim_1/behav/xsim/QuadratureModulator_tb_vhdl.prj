@@ -15,7 +15,9 @@ vhdl xil_defaultlib  \
 "../../../../fir1.srcs/sources_1/new/SquareWaveGenerator.vhd" \
 "../../../../fir1.srcs/sources_1/new/LOMixer.vhd" \
 "../../../../fir1.srcs/sources_1/new/LOMixerBaseband.vhd" \
+"../../../../fir1.srcs/sources_1/new/Derivative.vhd" \
 "../../../../fir1.srcs/sources_1/new/Angle4Bit.vhd" \
+"../../../../fir1.srcs/sources_1/new/MAFilter.vhd" \
 "../../../../fir1.srcs/sources_1/new/FIRFilterLP15tap.vhd" \
 "../../../../fir1.srcs/sources_1/new/InstantaneousPhase.vhd" \
 "../../../../fir1.srcs/sources_1/new/MulReg.vhd" \

@@ -32,8 +32,10 @@ end QuadratureDemodulator;
 
 architecture Behavioral of QuadratureDemodulator is
 
-    signal i_out_sig : std_logic_vector (28+IQ_AMP-1 downto 0); -- adding extra bit to account for 
-    signal q_out_sig : std_logic_vector (28+IQ_AMP-1 downto 0); -- adding extra bit to account for 
+    signal i_out_sig        : std_logic_vector (28+IQ_AMP-1 downto 0);
+    signal q_out_sig        : std_logic_vector (28+IQ_AMP-1 downto 0);
+
+    signal phase_der_sig    : std_logic_vector (SIG_OUT_WIDTH-1 downto 0);
 
 begin
 
@@ -83,8 +85,23 @@ begin
         IM_IN                   => q_out_sig(27 downto 0),
 
         PHASE                   => PHASE,
-        PHASE_DER_APROX         => open
+        PHASE_DER               => phase_der_sig
     );
+    
+    PHASE_DER <= phase_der_sig;
+    
+    inst_phase_2der : entity work.Derivative
+    generic map (
+        WIDTH       => SIG_OUT_WIDTH
+    )
+    port map (
+        CLK         => CLK,
+        RST         => RST,
+        EN          => EN_OUT,
+        SIG_IN      => phase_der_sig,
+        DIFF_OUT    => PHASE_2DER
+    );
+
     
     inst_frequency: entity work.InstantaneousFrequency
     generic map (
@@ -100,8 +117,8 @@ begin
         RE_IN                   => i_out_sig(27 downto 0),
         IM_IN                   => q_out_sig(27 downto 0),
 
-        PHASE_DER               => PHASE_DER,
-        PHASE_2DER_APROX        => PHASE_2DER
+        PHASE_DER               => open,
+        PHASE_2DER              => open
     );
     
 

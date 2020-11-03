@@ -1,3 +1,5 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/InstantaneousPhase.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'InstantaneousPhase'
 INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/InstantaneousFrequency.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'InstantaneousFrequency'
 INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/QuadratureDemodulator.vhd" into library xil_defaultlib
