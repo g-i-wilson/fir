@@ -25,7 +25,7 @@ entity IntegerDensityModulator is
         INPUT               : in STD_LOGIC_VECTOR (INPUT_WIDTH-1 downto 0);
 
         ERROR               : out STD_LOGIC_VECTOR (1+PULSE_COUNT_WIDTH+(INPUT_WIDTH-OUTPUT_WIDTH)-1 downto 0);
-        ERROR_SIGN          : out std_logic;
+--        ERROR_SIGN          : out std_logic;
         OUTPUT              : out STD_LOGIC_VECTOR (OUTPUT_WIDTH-1 downto 0)
     );
 end IntegerDensityModulator;
@@ -36,6 +36,7 @@ architecture Behavioral of IntegerDensityModulator is
     signal en_pulse_sig             : std_logic;
     signal pos_err                  : std_logic;
     signal out_sig                  : std_logic_vector (INPUT_WIDTH-1 downto 0);
+    signal out_short_sig            : std_logic_vector (OUTPUT_WIDTH-1 downto 0);
     signal out_sig_left_shifted     : std_logic_vector (INPUT_WIDTH-1 downto 0);
 
 
@@ -91,6 +92,8 @@ begin
         )
     );
 
-    OUTPUT <= out_sig(OUTPUT_WIDTH-1 downto 0);
+    out_short_sig <= out_sig(OUTPUT_WIDTH-1 downto 0);
+    
+    OUTPUT <= out_short_sig;
 
 end Behavioral;

@@ -26,7 +26,10 @@ entity QuadratureDemodulator is
 
         PHASE                   : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
         PHASE_DER               : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
-        PHASE_2DER              : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0)
+        PHASE_2DER              : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
+
+        FREQ_RE                 : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
+        FREQ_IM                 : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0)
     );
 end QuadratureDemodulator;
 
@@ -49,7 +52,8 @@ begin
             CLK                 => CLK,
             RST                 => RST,
             EN_IN               => EN_IN, -- sample rate must be 8x frequency of interest
-            EN_OUT              => '1',
+--            EN_OUT              => '1',
+            EN_OUT              => EN_IN,
             SIG_IN              => SIG_IN,
 
             SIG_OUT             => i_out_sig
@@ -65,7 +69,8 @@ begin
             CLK                 => CLK,
             RST                 => RST,
             EN_IN               => EN_IN, -- sample rate must be 8x frequency of interest
-            EN_OUT              => '1',
+--            EN_OUT              => '1',
+            EN_OUT              => EN_IN,
             SIG_IN              => SIG_IN,
 
             SIG_OUT             => q_out_sig
@@ -111,14 +116,13 @@ begin
     port map (
         CLK                     => CLK,
         RST                     => RST,
-        EN_CONJ                 => EN_IN,
-        EN_ANGLE                => '1',
+        EN_IN                   => EN_IN,
         EN_OUT                  => EN_OUT,
         RE_IN                   => i_out_sig(27 downto 0),
         IM_IN                   => q_out_sig(27 downto 0),
 
-        PHASE_DER               => open,
-        PHASE_2DER              => open
+        FREQ_RE                 => FREQ_RE,
+        FREQ_IM                 => FREQ_IM
     );
     
 

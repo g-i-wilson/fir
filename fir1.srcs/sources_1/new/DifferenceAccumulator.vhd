@@ -51,8 +51,10 @@ begin
 
 
     diff_sig <= std_logic_vector( signed(IN_A) - signed(IN_B) );
+    
+    diff_resized_sig <= std_logic_vector( resize(signed(diff_sig), SUM_WIDTH) );
 
-    sum_sig <= std_logic_vector( resize(signed(diff_sig),SUM_WIDTH) + signed(sum_reg_sig) );
+    sum_sig <= std_logic_vector( signed(diff_resized_sig) + signed(sum_reg_sig) );
 
     DIFF_SUM <= sum_reg_sig;
 
