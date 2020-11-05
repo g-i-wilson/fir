@@ -13,8 +13,9 @@ use UNISIM.VComponents.all;
 
 entity InstantaneousFrequency is
     generic (
-        SIG_IN_WIDTH            : positive := 4; -- signal input path width
-        SIG_OUT_WIDTH           : positive := 16 -- signal output path width
+        SIG_IN_WIDTH            : positive := 16; -- signal input path width
+        RE_WIDTH                : positive; -- RE signal output path width
+        IM_WIDTH                : positive  -- IM signal output path width
     );
     port (
         CLK                     : in STD_LOGIC;
@@ -26,8 +27,8 @@ entity InstantaneousFrequency is
         RE_IN                   : in STD_LOGIC_VECTOR (SIG_IN_WIDTH-1 downto 0);
         IM_IN                   : in STD_LOGIC_VECTOR (SIG_IN_WIDTH-1 downto 0);
 
-        FREQ_RE                 : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0);
-        FREQ_IM                 : out STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1 downto 0)
+        FREQ_RE                 : out STD_LOGIC_VECTOR (RE_WIDTH-1 downto 0);
+        FREQ_IM                 : out STD_LOGIC_VECTOR (IM_WIDTH-1 downto 0)
     );
 end InstantaneousFrequency;
 
@@ -39,6 +40,8 @@ architecture Behavioral of InstantaneousFrequency is
 
     signal freq_re_sig              : STD_LOGIC_VECTOR (SIG_IN_WIDTH*2-1+1 downto 0); -- padded 1 bit to prevent overflow
     signal freq_im_sig              : STD_LOGIC_VECTOR (SIG_IN_WIDTH*2-1+1 downto 0); -- padded 1 bit to prevent overflow
+--    signal freq_re_out_sig          : STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1+RE_AMP downto 0);
+--    signal freq_im_out_sig          : STD_LOGIC_VECTOR (SIG_OUT_WIDTH-1+IM_AMP downto 0);
 
 begin
 
@@ -90,7 +93,7 @@ begin
     RE_coupler: entity work.BitWidthCoupler
     generic map (
         SIG_IN_WIDTH            => SIG_IN_WIDTH*2+1,
-        SIG_OUT_WIDTH           => SIG_OUT_WIDTH
+        SIG_OUT_WIDTH           => RE_WIDTH
     )
     port map (
         CLK                     => CLK,
@@ -98,13 +101,16 @@ begin
         EN                      => EN_OUT,
         SIG_IN                  => freq_re_sig,
 
+--        SIG_OUT                 => freq_re_out_sig
         SIG_OUT                 => FREQ_RE
     );
+    
+--    FREQ_RE <= freq_re_out_sig(SIG_OUT_WIDTH-1 downto 0);
 
     IM_coupler: entity work.BitWidthCoupler
     generic map (
         SIG_IN_WIDTH            => SIG_IN_WIDTH*2+1,
-        SIG_OUT_WIDTH           => SIG_OUT_WIDTH
+        SIG_OUT_WIDTH           => IM_WIDTH
     )
     port map (
         CLK                     => CLK,
@@ -112,7 +118,11 @@ begin
         EN                      => EN_OUT,
         SIG_IN                  => freq_im_sig,
 
+--        SIG_OUT                 => freq_im_out_sig
         SIG_OUT                 => FREQ_IM
     );
+    
+--    FREQ_IM <= freq_im_out_sig(SIG_OUT_WIDTH-1 downto 0);
+
 
 end Behavioral;

@@ -42,6 +42,8 @@ architecture Behavioral of ADCQuadDemodSerial is
   signal phase_sig          : std_logic_vector(7 downto 0);
   signal phase_der_sig      : std_logic_vector(7 downto 0);
   signal phase_2der_sig     : std_logic_vector(7 downto 0);
+  signal i_out_sig          : std_logic_vector(27 downto 0);
+  signal q_out_sig          : std_logic_vector(27 downto 0);
 
 begin
 
@@ -114,8 +116,7 @@ begin
     QuadDemod: entity work.QuadratureDemodulator
         generic map (
             SIG_IN_WIDTH            => 12,
-            SIG_OUT_WIDTH           => 8,
-            IQ_AMP                  => 2
+            SIG_OUT_WIDTH           => 28
         )
         port map (
             CLK                     => CLK,
@@ -124,11 +125,27 @@ begin
             EN_OUT                  => qd_out_sample_sig,
             SIG_IN                  => filter_out_sig,
 
-            PHASE                   => phase_sig,
-            PHASE_DER               => phase_der_sig,
-            PHASE_2DER              => phase_2der_sig
+            I_OUT                   => i_out_sig,
+            Q_OUT                   => q_out_sig
         );
-
+        
+    inst_phase: entity work.InstantaneousPhase
+        generic map (
+            SIG_IN_WIDTH            => 24,
+            SIG_OUT_WIDTH           => 16
+        )
+        port map (
+            CLK                     => CLK,
+            RST                     => RST,
+            EN_ANGLE                => '1',
+            EN_OUT                  => qd_out_sample_sig,
+            RE_IN                   => i_out_sig(23 downto 0),
+            IM_IN                   => q_out_sig(23 downto 0),
+    
+            PHASE                   => phase_sig,
+            PHASE_DER               => phase_der_sig
+        );
+    
     TX_module: entity work.SerialTx
         port map (
             -- inputs
@@ -148,8 +165,7 @@ begin
             CLK => CLK,
             probe0 => phase_sig,
             probe1 => phase_der_sig,
-            probe2 => phase_2der_sig,
-            probe3 => filter_out_sig
+            probe2 => filter_out_sig
         );
 
 end Behavioral;

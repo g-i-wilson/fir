@@ -15,6 +15,8 @@ entity QuadratureModulator_tb is
 end QuadratureModulator_tb;
 
 architecture Behavioral of QuadratureModulator_tb is
+    constant IQ_AMP  : integer := 2;
+
 
     signal test_clk, test_rst, test_sample_rate, test_phase_change_rate : std_logic;
     signal test_mod_out             : std_logic_vector(15 downto 0);
@@ -23,10 +25,15 @@ architecture Behavioral of QuadratureModulator_tb is
     signal test_PA_diff             : std_logic_vector(15 downto 0);
     signal sin_sig                  : std_logic_vector(15 downto 0);
     signal cos_sig                  : std_logic_vector(15 downto 0);
-    signal test_PA_2DER             : std_logic_vector(15 downto 0);
-    signal test_freq_re             : std_logic_vector(15 downto 0);
-    signal test_freq_im             : std_logic_vector(15 downto 0);
-
+    signal test_i_out_sig           : std_logic_vector(27 downto 0);
+    signal test_q_out_sig           : std_logic_vector(27 downto 0);
+    signal test_i_out_reduced_sig   : std_logic_vector(27-IQ_AMP downto 0);
+    signal test_q_out_reduced_sig   : std_logic_vector(27-IQ_AMP downto 0);
+    signal test_freq_re             : std_logic_vector(17 downto 0);
+    signal test_freq_im             : std_logic_vector(21 downto 0);
+    signal test_phase               : std_logic_vector(15 downto 0);
+    signal test_phase_der           : std_logic_vector(15 downto 0);
+    
 begin
 
     sample_rate : entity work.PulseGenerator
@@ -106,26 +113,70 @@ begin
     test_quad_demod: entity work.QuadratureDemodulator
         generic map (
             SIG_IN_WIDTH            => 16,
-            SIG_OUT_WIDTH           => 16,
-            IQ_AMP                  => 2
+            SIG_OUT_WIDTH           => 28
         )
         port map (
             CLK                     => test_clk,
             RST                     => test_rst,
-            EN_IN                   => test_sample_rate, -- sample rate must be 8x frequency of interest
-            EN_OUT                  => '1',
+            EN_IN                   => test_sample_rate, -- sample rate must be 8x carrier frequency
+            EN_OUT                  => test_sample_rate,
             SIG_IN                  => test_mod_filtered_out,
 
-            PHASE                   => test_PA_angle,
-            PHASE_DER               => test_PA_diff,
-            PHASE_2DER              => test_PA_2DER,
-            
-            FREQ_RE                 => test_freq_re,
-            FREQ_IM                 => test_freq_im
+            I_OUT                   => test_i_out_sig,
+            Q_OUT                   => test_q_out_sig
         );
 
+    test_i_out_reduced_sig <= test_i_out_sig(27-IQ_AMP downto 0);
+    test_q_out_reduced_sig <= test_q_out_sig(27-IQ_AMP downto 0);
 
 
+    inst_phase: entity work.InstantaneousPhase
+    generic map (
+        SIG_IN_WIDTH            => 28-IQ_AMP,
+        SIG_OUT_WIDTH           => 16
+    )
+    port map (
+        CLK                     => test_clk,
+        RST                     => test_rst,
+        EN_ANGLE                => '1',
+        EN_OUT                  => test_sample_rate,
+        RE_IN                   => test_i_out_reduced_sig,
+        IM_IN                   => test_q_out_reduced_sig,
+
+        PHASE                   => test_phase,
+        PHASE_DER               => test_phase_der
+    );
+    
+--    inst_phase_2der : entity work.Derivative
+--    generic map (
+--        WIDTH       => SIG_OUT_WIDTH
+--    )
+--    port map (
+--        CLK         => CLK,
+--        RST         => RST,
+--        EN          => EN_OUT,
+--        SIG_IN      => phase_der_sig,
+--        DIFF_OUT    => PHASE_2DER
+--    );
+
+    
+    inst_frequency: entity work.InstantaneousFrequency
+    generic map (
+        SIG_IN_WIDTH            => 28-IQ_AMP,
+        RE_WIDTH                => 18,
+        IM_WIDTH                => 22
+    )
+    port map (
+        CLK                     => test_clk,
+        RST                     => test_rst,
+        EN_IN                   => test_sample_rate,
+        EN_OUT                  => '1',
+        RE_IN                   => test_i_out_reduced_sig,
+        IM_IN                   => test_q_out_reduced_sig,
+
+        FREQ_RE                 => test_freq_re,
+        FREQ_IM                 => test_freq_im
+    );
 
 
 

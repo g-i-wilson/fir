@@ -1,4 +1,4 @@
-Running: xsim.dir/QuadratureModulator_tb_behav/xsimk -simmode gui -wdb QuadratureModulator_tb_behav.wdb -simrunnum 0 -socket 35697
+Running: xsim.dir/QuadratureModulator_tb_behav/xsimk -simmode gui -wdb QuadratureModulator_tb_behav.wdb -simrunnum 0 -socket 52727
 Design successfully loaded
-Design Loading Memory Usage: 62820 KB (Peak: 62820 KB)
-Design Loading CPU Usage: 170 ms
+Design Loading Memory Usage: 62816 KB (Peak: 62816 KB)
+Design Loading CPU Usage: 200 ms

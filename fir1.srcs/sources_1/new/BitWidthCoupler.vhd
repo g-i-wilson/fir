@@ -13,8 +13,8 @@ use UNISIM.VComponents.all;
 
 entity BitWidthCoupler is
     generic (
-        SIG_IN_WIDTH            : positive; -- signal input path width
-        SIG_OUT_WIDTH           : positive; -- signal output path width
+        SIG_IN_WIDTH            : positive := 16; -- signal input path width
+        SIG_OUT_WIDTH           : positive := 16; -- signal output path width
         USE_IDM                 : boolean := TRUE -- choose whether to use IDM when reducing precision
     );
     port (
