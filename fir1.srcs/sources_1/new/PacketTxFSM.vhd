@@ -22,6 +22,7 @@ entity PacketTxFSM is
         OUT_REG_SHIFT       : out STD_LOGIC;
         
         CHECKSUM_EN         : out STD_LOGIC;
+        CHECKSUM_SEL        : out STD_LOGIC;
         CHECKSUM_RST        : out STD_LOGIC
     );
 end PacketTxFSM;
@@ -33,6 +34,7 @@ architecture Behavioral of PacketTxFSM is
         LOAD_REG_STATE,
         VALID_SYMBOL_STATE,
         SHIFT_REG_STATE,
+        LAST_SUM_STATE,
         VALID_CHECKSUM_STATE
     );
     
@@ -69,7 +71,7 @@ begin
             when VALID_SYMBOL_STATE =>
                 if (READY_IN = '1') then
                     if (TIMER_DONE = '1') then
-                        next_state <= VALID_CHECKSUM_STATE;
+                        next_state <= LAST_SUM_STATE;
                     else
                         next_state <= SHIFT_REG_STATE;
                     end if;
@@ -77,6 +79,9 @@ begin
                 
             when SHIFT_REG_STATE =>
                 next_state <= VALID_SYMBOL_STATE;
+                
+            when LAST_SUM_STATE =>
+                next_state <= VALID_CHECKSUM_STATE;
                 
             when VALID_CHECKSUM_STATE =>
                 if (READY_IN = '1') then
@@ -94,22 +99,37 @@ begin
   FSM_output_logic: process (current_state) begin
   
     -- defaults
-    READY_OUT           : out STD_LOGIC;
-    VALID_OUT           : out STD_LOGIC;
-    TIMER_EN            : out STD_LOGIC;
-    TIMER_RST           : out STD_LOGIC;
-    OUT_REG_LOAD        : out STD_LOGIC;
-    OUT_REG_SHIFT       : out STD_LOGIC;
-    CHECKSUM_EN         : out STD_LOGIC;
-    CHECKSUM_RST        : out STD_LOGIC
+    READY_OUT           <= '0';
+    VALID_OUT           <= '0';
+    TIMER_EN            <= '0';
+    TIMER_RST           <= '0';
+    OUT_REG_LOAD        <= '0';
+    OUT_REG_SHIFT       <= '0';
+    CHECKSUM_EN         <= '0';
+    CHECKSUM_SEL        <= '0';
+    CHECKSUM_RST        <= '0';
     
-    if (current_state = READY_STATE) then
-        READY <= '1';
-    elsif (current_state = LOAD_STATE) then
-        LOAD <= '1';
-    elsif (current_state = SHIFT_STATE) then
-        SHIFT <= '1';
-    end if;
+    case current_state is
+        when READY_OUT_STATE        =>
+            READY_OUT           <= '1';
+            TIMER_RST           <= '1';
+            CHECKSUM_RST        <= '1';
+        when LOAD_REG_STATE         =>
+            OUT_REG_LOAD        <= '1';
+        when VALID_SYMBOL_STATE     =>
+            VALID_OUT           <= '1';
+        when SHIFT_REG_STATE        =>
+            OUT_REG_SHIFT       <= '1';
+            TIMER_EN            <= '1';
+            CHECKSUM_EN         <= '1';
+        when LAST_SUM_STATE         =>
+            CHECKSUM_EN         <= '1';
+        when VALID_CHECKSUM_STATE   =>
+            CHECKSUM_SEL        <= '1';
+            VALID_OUT           <= '1';
+        when others =>
+            -- nothing
+    end case;
 
   end process;
 

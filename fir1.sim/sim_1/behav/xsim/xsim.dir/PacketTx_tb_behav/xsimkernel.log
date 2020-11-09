@@ -1,0 +1,7 @@
+Running: xsim.dir/PacketTx_tb_behav/xsimk -simmode gui -wdb PacketTx_tb_behav.wdb -simrunnum 0 -socket 40753
+Design successfully loaded
+Design Loading Memory Usage: 46196 KB (Peak: 46316 KB)
+Design Loading CPU Usage: 110 ms
+Simulation completed
+Simulation Memory Usage: 127932 KB (Peak: 185464 KB)
+Simulation CPU Usage: 330 ms

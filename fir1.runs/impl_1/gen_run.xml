@@ -1,55 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1603999479">
-  <File Type="ROUTE-TIMING-PB" Name="TestADCQuadDemodSerial_timing_summary_routed.pb"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="TestADCQuadDemodSerial_routed_bb.dcp"/>
-  <File Type="ROUTE-ERROR-DCP" Name="TestADCQuadDemodSerial_routed_error.dcp"/>
-  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
-  <File Type="BITSTR-LTX" Name="TestADCQuadDemodSerial.ltx"/>
-  <File Type="BITSTR-SYSDEF" Name="TestADCQuadDemodSerial.sysdef"/>
-  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="TestADCQuadDemodSerial_postroute_physopt_bb.dcp"/>
-  <File Type="BITSTR-MMI" Name="TestADCQuadDemodSerial.mmi"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="TestADCQuadDemodSerial_postroute_physopt.dcp"/>
-  <File Type="BITSTR-BMM" Name="TestADCQuadDemodSerial_bd.bmm"/>
-  <File Type="OPT-DCP" Name="TestADCQuadDemodSerial_opt.dcp"/>
-  <File Type="BG-DRC" Name="TestADCQuadDemodSerial.drc"/>
-  <File Type="BG-BGN" Name="TestADCQuadDemodSerial.bgn"/>
-  <File Type="PLACE-DCP" Name="TestADCQuadDemodSerial_placed.dcp"/>
-  <File Type="OPT-HWDEF" Name="TestADCQuadDemodSerial.hwdef"/>
-  <File Type="BG-BIT" Name="TestADCQuadDemodSerial.bit"/>
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1604962897">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
-  <File Type="ROUTE-DCP" Name="TestADCQuadDemodSerial_routed.dcp"/>
-  <File Type="RDI-RDI" Name="TestADCQuadDemodSerial.vdi"/>
-  <File Type="BG-BIN" Name="TestADCQuadDemodSerial.bin"/>
-  <File Type="PWROPT-DCP" Name="TestADCQuadDemodSerial_pwropt.dcp"/>
-  <File Type="BITSTR-MSK" Name="TestADCQuadDemodSerial.msk"/>
-  <File Type="POSTPLACE-PWROPT-DCP" Name="TestADCQuadDemodSerial_postplace_pwropt.dcp"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="TestADCQuadDemodSerial_incremental_reuse_pre_placed.rpt"/>
-  <File Type="BITSTR-RBT" Name="TestADCQuadDemodSerial.rbt"/>
-  <File Type="BITSTR-NKY" Name="TestADCQuadDemodSerial.nky"/>
-  <File Type="PHYSOPT-DCP" Name="TestADCQuadDemodSerial_physopt.dcp"/>
-  <File Type="PDI-FILE" Name="TestADCQuadDemodSerial.pdi"/>
-  <File Type="RCFI_FILE" Name="TestADCQuadDemodSerial.rcfi"/>
-  <File Type="CFI_FILE" Name="TestADCQuadDemodSerial.cfi"/>
-  <File Type="RNPI_FILE" Name="TestADCQuadDemodSerial.rnpi"/>
-  <File Type="NPI_FILE" Name="TestADCQuadDemodSerial.npi"/>
-  <File Type="RBD_FILE" Name="TestADCQuadDemodSerial.rbd"/>
-  <File Type="PA-TCL" Name="TestADCQuadDemodSerial.tcl"/>
-  <File Type="REPORTS-TCL" Name="TestADCQuadDemodSerial_reports.tcl"/>
+  <File Type="RDI-RDI" Name="TestPacketTx.vdi"/>
+  <File Type="BG-DRC" Name="TestPacketTx.drc"/>
+  <File Type="BG-BGN" Name="TestPacketTx.bgn"/>
+  <File Type="BITSTR-SYSDEF" Name="TestPacketTx.sysdef"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="TestPacketTx.ltx"/>
+  <File Type="RBD_FILE" Name="TestPacketTx.rbd"/>
+  <File Type="NPI_FILE" Name="TestPacketTx.npi"/>
+  <File Type="RNPI_FILE" Name="TestPacketTx.rnpi"/>
+  <File Type="CFI_FILE" Name="TestPacketTx.cfi"/>
+  <File Type="RCFI_FILE" Name="TestPacketTx.rcfi"/>
+  <File Type="PDI-FILE" Name="TestPacketTx.pdi"/>
+  <File Type="BITSTR-MMI" Name="TestPacketTx.mmi"/>
+  <File Type="BITSTR-BMM" Name="TestPacketTx_bd.bmm"/>
+  <File Type="BITSTR-NKY" Name="TestPacketTx.nky"/>
+  <File Type="BITSTR-RBT" Name="TestPacketTx.rbt"/>
+  <File Type="BITSTR-MSK" Name="TestPacketTx.msk"/>
+  <File Type="BG-BIN" Name="TestPacketTx.bin"/>
+  <File Type="BG-BIT" Name="TestPacketTx.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="TestPacketTx_bus_skew_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="TestPacketTx_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="TestPacketTx_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="TestPacketTx_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="TestPacketTx_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="TestPacketTx_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="TestPacketTx_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="TestPacketTx_postroute_physopt.dcp"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="TestPacketTx_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="TestPacketTx_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW" Name="TestPacketTx_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="TestPacketTx_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-SIMILARITY" Name="TestPacketTx_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="TestPacketTx_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-TIMING-PB" Name="TestPacketTx_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="TestPacketTx_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="TestPacketTx_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="TestPacketTx_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="TestPacketTx_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="TestPacketTx_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="TestPacketTx_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="TestPacketTx_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="TestPacketTx_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="TestPacketTx_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="TestPacketTx_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC-PB" Name="TestPacketTx_drc_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="TestPacketTx_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="TestPacketTx_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="TestPacketTx_routed.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="TestPacketTx_routed_error.dcp"/>
+  <File Type="PHYSOPT-TIMING" Name="TestPacketTx_timing_summary_physopted.rpt"/>
+  <File Type="PHYSOPT-DRC" Name="TestPacketTx_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="TestPacketTx_physopt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="TestPacketTx_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="TestPacketTx_postplace_pwropt.dcp"/>
+  <File Type="PLACE-TIMING" Name="TestPacketTx_timing_summary_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="TestPacketTx_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="TestPacketTx_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-CTRL" Name="TestPacketTx_control_sets_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="TestPacketTx_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="TestPacketTx_utilization_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="TestPacketTx_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-IO" Name="TestPacketTx_io_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="TestPacketTx_placed.dcp"/>
+  <File Type="PWROPT-DRC" Name="TestPacketTx_drc_pwropted.rpt"/>
+  <File Type="PWROPT-DCP" Name="TestPacketTx_pwropt.dcp"/>
+  <File Type="OPT-HWDEF" Name="TestPacketTx.hwdef"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="TestPacketTx_methodology_drc_opted.rpt"/>
+  <File Type="OPT-DRC" Name="TestPacketTx_drc_opted.rpt"/>
+  <File Type="OPT-DCP" Name="TestPacketTx_opt.dcp"/>
+  <File Type="INIT-TIMING" Name="TestPacketTx_timing_summary_init.rpt"/>
+  <File Type="PWROPT-TIMING" Name="TestPacketTx_timing_summary_pwropted.rpt"/>
+  <File Type="REPORTS-TCL" Name="TestPacketTx_reports.tcl"/>
+  <File Type="OPT-TIMING" Name="TestPacketTx_timing_summary_opted.rpt"/>
+  <File Type="PA-TCL" Name="TestPacketTx.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/new/ADC1Bit.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/Timer.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/reg1D.vhd">
+    <File Path="$PSRCDIR/sources_1/new/Reg1D.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -61,103 +95,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/DifferenceAccumulator.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/ShiftRightReg.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/IntegerDensityModulator.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/BitWidthCoupler.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/reg2D.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/Multiplier.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/MulSumReg.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/FIRFilter.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/FIRFilterLP63tap.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/SquareWaveGenerator.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/LOMixer.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/FIRFilterLP2f63tap.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/LOMixerBaseband.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/Angle4Bit.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/FIRFilterLP15tap.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/PhasorAnalyzer.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/QuadratureDemodulator.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -175,12 +113,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/ADCQuadDemodSerial.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/Synchronizer.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -193,8 +125,218 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/MAFilter1Bit.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/EdgeDetectorFSM.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/EdgeDetector.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Reg1DSymbols.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/PacketTxFSM.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/PacketTx.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/ParEdgeDetector.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/TestPacketTx.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Reg2D.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/DifferenceAccumulator.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/ShiftRightReg.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/IntegerDensityModulator.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/BitWidthCoupler.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Multiplier.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/MulSumReg.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/FIRFilter.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/FIRFilterLP63tap.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/LOMixer.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/LOMixerBaseband.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/QuadratureDemodulator.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Derivative.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Angle4Bit.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/MAFilter.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/FIRFilterLP15tap.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/InstantaneousPhase.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/MulReg.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/MulComplex.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/InstantaneousFrequency.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/FIRFilterLP2f63tap.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/ADC1Bit.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/ADCQuadDemodSerial.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/TestADCQuadDemodSerial.vhd">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -249,34 +391,6 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/square_wave_gen.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/MAFilter1Bit.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/EdgeDetectorFSM.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/EdgeDetector.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/ParEdgeDetector.vhd">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -341,13 +455,6 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/DAC_ADC.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/MAFilter.vhd">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -640,7 +747,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="TestADCQuadDemodSerial"/>
+      <Option Name="TopModule" Val="TestPacketTx"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -675,7 +782,5 @@
     <Step Id="write_bitstream">
       <Option Id="BinFile">1</Option>
     </Step>
-    <Step Id="write_device_image"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="ila_qd"/>
 </GenRun>
