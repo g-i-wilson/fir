@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Tue Nov 10 14:48:52 2020
+| Date         : Tue Nov 10 16:51:30 2020
 | Host         : blacklaptop running 64-bit Ubuntu 18.04.5 LTS
 | Command      : report_methodology -file TestADCQuadDemodSerial_methodology_drc_routed.rpt -pb TestADCQuadDemodSerial_methodology_drc_routed.pb -rpx TestADCQuadDemodSerial_methodology_drc_routed.rpx
 | Design       : TestADCQuadDemodSerial
@@ -23,58 +23,15 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 11
+             Violations found: 3
 +-----------+----------+-------------------------------+------------+
 | Rule      | Severity | Description                   | Violations |
 +-----------+----------+-------------------------------+------------+
-| SYNTH-11  | Warning  | DSP output not registered     | 4          |
-| SYNTH-12  | Warning  | DSP input not registered      | 2          |
-| SYNTH-13  | Warning  | combinational multiplier      | 2          |
 | TIMING-18 | Warning  | Missing input or output delay | 3          |
 +-----------+----------+-------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
-SYNTH-11#1 Warning
-DSP output not registered  
-DSP instance ADCQuadDemodSerial_module/inst_frequency/complex_conjugate/AI_BI/MUL/P__0 is not fully pipelined on the output side. MREG/PREG are not used.
-Related violations: <none>
-
-SYNTH-11#2 Warning
-DSP output not registered  
-DSP instance ADCQuadDemodSerial_module/inst_frequency/complex_conjugate/AI_BR/MUL/P__0 is not fully pipelined on the output side. MREG/PREG are not used.
-Related violations: <none>
-
-SYNTH-11#3 Warning
-DSP output not registered  
-DSP instance ADCQuadDemodSerial_module/inst_frequency/complex_conjugate/AR_BI/MUL/P__0 is not fully pipelined on the output side. MREG/PREG are not used.
-Related violations: <none>
-
-SYNTH-11#4 Warning
-DSP output not registered  
-DSP instance ADCQuadDemodSerial_module/inst_frequency/complex_conjugate/AR_BR/MUL/P__0 is not fully pipelined on the output side. MREG/PREG are not used.
-Related violations: <none>
-
-SYNTH-12#1 Warning
-DSP input not registered  
-DSP instance ADCQuadDemodSerial_module/inst_frequency/complex_conjugate/AI_BI/MUL/P__0__0 is not fully pipelined on the input side. AREG/BREG/CREG/DREG are not used.
-Related violations: <none>
-
-SYNTH-12#2 Warning
-DSP input not registered  
-DSP instance ADCQuadDemodSerial_module/inst_frequency/complex_conjugate/AR_BI/MUL/P__0__0 is not fully pipelined on the input side. AREG/BREG/CREG/DREG are not used.
-Related violations: <none>
-
-SYNTH-13#1 Warning
-combinational multiplier  
-Detected combinational multiplier in DSP instance ADCQuadDemodSerial_module/inst_frequency/complex_conjugate/AI_BI/MUL/P__0.
-Related violations: <none>
-
-SYNTH-13#2 Warning
-combinational multiplier  
-Detected combinational multiplier in DSP instance ADCQuadDemodSerial_module/inst_frequency/complex_conjugate/AR_BI/MUL/P__0.
-Related violations: <none>
-
 TIMING-18#1 Warning
 Missing input or output delay  
 An input delay is missing on XA1_P relative to clock(s) sys_clk_pin

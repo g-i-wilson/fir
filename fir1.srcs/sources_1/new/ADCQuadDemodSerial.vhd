@@ -33,23 +33,24 @@ end ADCQuadDemodSerial;
 
 architecture Behavioral of ADCQuadDemodSerial is
 
-  signal adc_out_sig        : std_logic;
-  signal adc_sample_sig     : std_logic;
-  signal qd_in_sample_sig   : std_logic;
-  signal qd_out_sample_sig  : std_logic;
-  signal tx_ready_out       : std_logic;
-  signal packet_valid_out   : std_logic;
-  signal filter_in_sig      : std_logic_vector(1 downto 0);
-  signal filter_out_sig     : std_logic_vector(11 downto 0);
-  signal freq_re_sig        : std_logic_vector(17 downto 0);
-  signal freq_im_sig        : std_logic_vector(21 downto 0);
+  signal adc_out_sig            : std_logic;
+  signal adc_sample_sig         : std_logic;
+  signal qd_in_sample_sig       : std_logic;
+  signal qd_out_sample_sig      : std_logic;
+  signal qd_out_x2_sample_sig   : std_logic;
+  signal tx_ready_out           : std_logic;
+  signal packet_valid_out       : std_logic;
+  signal filter_in_sig          : std_logic_vector(1 downto 0);
+  signal filter_out_sig         : std_logic_vector(11 downto 0);
+  signal freq_re_sig            : std_logic_vector(15 downto 0);
+  signal freq_im_sig            : std_logic_vector(15 downto 0);
 --  signal phase_sig          : std_logic_vector(7 downto 0);
 --  signal phase_der_sig      : std_logic_vector(7 downto 0);
 --  signal phase_2der_sig     : std_logic_vector(7 downto 0);
-  signal packet_symbol_out  : std_logic_vector(7 downto 0);
-  signal i_out_sig          : std_logic_vector(27 downto 0);
-  signal q_out_sig          : std_logic_vector(27 downto 0);
-  signal packet_in_sig      : std_logic_vector(79 downto 0);
+  signal packet_symbol_out      : std_logic_vector(7 downto 0);
+  signal i_out_sig              : std_logic_vector(15 downto 0);
+  signal q_out_sig              : std_logic_vector(15 downto 0);
+  signal packet_in_sig          : std_logic_vector(95 downto 0);
 
 begin
 
@@ -77,6 +78,19 @@ begin
         PERIOD          => CARRIER_PERIOD, -- x"1312CF" is 100MHz/80Hz-1 to hex
         INIT_PERIOD     => CARRIER_PERIOD,
         PULSE           => qd_in_sample_sig
+    );
+
+    qd_output_x2_sample_rate : entity work.PulseGenerator
+    generic map (
+        WIDTH           => 4
+    )
+    port map (
+        CLK             => CLK,
+        EN              => qd_in_sample_sig,
+        RST             => RST,
+        PERIOD          => x"3",
+        INIT_PERIOD     => x"3",
+        PULSE           => qd_out_x2_sample_sig
     );
 
     qd_output_sample_rate : entity work.PulseGenerator
@@ -122,13 +136,13 @@ begin
     QuadDemod: entity work.QuadratureDemodulator
         generic map (
             SIG_IN_WIDTH            => 12,
-            SIG_OUT_WIDTH           => 28
+            SIG_OUT_WIDTH           => 16
         )
         port map (
             CLK                     => CLK,
             RST                     => RST,
             EN_IN                   => qd_in_sample_sig, -- sample rate must be 8x frequency of interest
-            EN_OUT                  => qd_out_sample_sig,
+            EN_OUT                  => qd_out_x2_sample_sig, -- IDM runs at 1/2 sample rate
             SIG_IN                  => filter_out_sig,
 
             I_OUT                   => i_out_sig,
@@ -154,29 +168,29 @@ begin
     
     inst_frequency: entity work.InstantaneousFrequency
         generic map (
-            SIG_IN_WIDTH            => 24,
-            RE_WIDTH                => 18,
-            IM_WIDTH                => 22
+            SIG_IN_WIDTH            => 16,
+            RE_WIDTH                => 16,
+            IM_WIDTH                => 16
         )
         port map (
             CLK                     => CLK,
             RST                     => RST,
             EN_IN                   => qd_out_sample_sig,
-            EN_OUT                  => qd_out_sample_sig,
-            RE_IN                   => i_out_sig(23 downto 0),
-            IM_IN                   => q_out_sig(23 downto 0),
+            EN_OUT                  => qd_out_x2_sample_sig, -- IDM runs at 1/2 sample rate
+            RE_IN                   => i_out_sig,
+            IM_IN                   => q_out_sig,
     
             FREQ_RE                 => freq_re_sig,
             FREQ_IM                 => freq_im_sig
         );
 
 
-    packet_in_sig <= x"0102" & i_out_sig(23 downto 8) & q_out_sig(23 downto 8) & freq_re_sig(15 downto 0) & freq_im_sig(15 downto 0);
+    packet_in_sig <= x"0102" & i_out_sig & q_out_sig & freq_re_sig & freq_im_sig & std_logic_vector( resize( signed(filter_out_sig), 16 ) );
 
     PacketTx_module: entity work.PacketTx
         generic map (
             SYMBOL_WIDTH        => 8,
-            PACKET_SYMBOLS      => 10
+            PACKET_SYMBOLS      => 12
         )
         port map (
             CLK                 => CLK,
