@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log TestPacketTx.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source TestPacketTx.tcl
+EAStep vivado -log TestADCQuadDemodSerial.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source TestADCQuadDemodSerial.tcl

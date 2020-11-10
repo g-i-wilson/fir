@@ -1,2 +1,0 @@
-ila_qd.vhd,vhdl,xil_defaultlib,../../../../fir1.srcs/sources_1/ip/ila_qd/sim/ila_qd.vhd,incdir="../../../../fir1.srcs/sources_1/ip/ila_qd/hdl/verilog"
-glbl.v,Verilog,xil_defaultlib,glbl.v

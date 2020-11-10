@@ -1,0 +1,276 @@
+xilinx rtfpga
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_zero_phase.signal_path/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP mult1/P, operation Mode is: A2*B.
+DSP Report: register gen_positive_phase.signal_path/gen_last.last_reg/reg_state_reg is absorbed into DSP mult1/P.
+DSP Report: operator mult1/P is absorbed into DSP mult1/P.
+DSP Report: Generating DSP complex_conjugate/AI_BI/MUL/P, operation Mode is: A*B.
+DSP Report: operator complex_conjugate/AI_BI/MUL/P is absorbed into DSP complex_conjugate/AI_BI/MUL/P.
+DSP Report: operator complex_conjugate/AI_BI/MUL/P is absorbed into DSP complex_conjugate/AI_BI/MUL/P.
+DSP Report: Generating DSP complex_conjugate/AI_BI/MUL/P, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator complex_conjugate/AI_BI/MUL/P is absorbed into DSP complex_conjugate/AI_BI/MUL/P.
+DSP Report: operator complex_conjugate/AI_BI/MUL/P is absorbed into DSP complex_conjugate/AI_BI/MUL/P.
+DSP Report: Generating DSP complex_conjugate/AR_BR/MUL/P, operation Mode is: A2*B.
+DSP Report: register RE1_reg/reg_state_reg is absorbed into DSP complex_conjugate/AR_BR/MUL/P.
+DSP Report: operator complex_conjugate/AR_BR/MUL/P is absorbed into DSP complex_conjugate/AR_BR/MUL/P.
+DSP Report: operator complex_conjugate/AR_BR/MUL/P is absorbed into DSP complex_conjugate/AR_BR/MUL/P.
+DSP Report: Generating DSP complex_conjugate/AR_BR/MUL/P, operation Mode is: (PCIN>>17)+A2*B.
+DSP Report: register RE1_reg/reg_state_reg is absorbed into DSP complex_conjugate/AR_BR/MUL/P.
+DSP Report: operator complex_conjugate/AR_BR/MUL/P is absorbed into DSP complex_conjugate/AR_BR/MUL/P.
+DSP Report: operator complex_conjugate/AR_BR/MUL/P is absorbed into DSP complex_conjugate/AR_BR/MUL/P.
+DSP Report: Generating DSP complex_conjugate/AI_BR/MUL/P, operation Mode is: A2*B.
+DSP Report: register RE1_reg/reg_state_reg is absorbed into DSP complex_conjugate/AI_BR/MUL/P.
+DSP Report: operator complex_conjugate/AI_BR/MUL/P is absorbed into DSP complex_conjugate/AI_BR/MUL/P.
+DSP Report: operator complex_conjugate/AI_BR/MUL/P is absorbed into DSP complex_conjugate/AI_BR/MUL/P.
+DSP Report: Generating DSP complex_conjugate/AI_BR/MUL/P, operation Mode is: (PCIN>>17)+A2*B.
+DSP Report: register RE1_reg/reg_state_reg is absorbed into DSP complex_conjugate/AI_BR/MUL/P.
+DSP Report: operator complex_conjugate/AI_BR/MUL/P is absorbed into DSP complex_conjugate/AI_BR/MUL/P.
+DSP Report: operator complex_conjugate/AI_BR/MUL/P is absorbed into DSP complex_conjugate/AI_BR/MUL/P.
+DSP Report: Generating DSP complex_conjugate/AR_BI/MUL/P, operation Mode is: A*B.
+DSP Report: operator complex_conjugate/AR_BI/MUL/P is absorbed into DSP complex_conjugate/AR_BI/MUL/P.
+DSP Report: operator complex_conjugate/AR_BI/MUL/P is absorbed into DSP complex_conjugate/AR_BI/MUL/P.
+DSP Report: Generating DSP complex_conjugate/AR_BI/MUL/P, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator complex_conjugate/AR_BI/MUL/P is absorbed into DSP complex_conjugate/AR_BI/MUL/P.
+DSP Report: operator complex_conjugate/AR_BI/MUL/P is absorbed into DSP complex_conjugate/AR_BI/MUL/P.
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[0]' (FDE) to 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[1]' (FDE) to 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[2]' (FDE) to 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[3]' (FDE) to 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[4]' (FDE) to 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[5]' (FDE) to 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[6]' (FDE) to 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[7]' (FDE) to 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[8]' (FDE) to 'LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[9]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/first_reg/gen_zero_phase.signal_path/reg_state_reg[9] )
+INFO: [Synth 8-3886] merging instance 'inst_frequency/complex_conjugate/AR_BI/REG/reg_state_reg[47]' (FDE) to 'inst_frequency/complex_conjugate/AR_BI/REG/reg_state_reg[48]'
+INFO: [Synth 8-3886] merging instance 'inst_frequency/complex_conjugate/AI_BR/REG/reg_state_reg[47]' (FDE) to 'inst_frequency/complex_conjugate/AI_BR/REG/reg_state_reg[48]'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\inst_frequency/IM_coupler/gen_out_less_than_IDM.IDM_output/sample_rate/PERIOD_reg/reg_state_reg[0] )
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/first_reg/sum_reg/reg_state_reg[23]' (FDE) to 'LP_filter/FIR/first_reg/sum_reg/reg_state_reg[25]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/first_reg/sum_reg/reg_state_reg[24]' (FDE) to 'LP_filter/FIR/first_reg/sum_reg/reg_state_reg[25]'
+INFO: [Synth 8-3886] merging instance 'inst_frequency/complex_conjugate/AR_BR/REG/reg_state_reg[47]' (FDE) to 'inst_frequency/complex_conjugate/AR_BR/REG/reg_state_reg[48]'
+INFO: [Synth 8-3886] merging instance 'inst_frequency/complex_conjugate/AI_BI/REG/reg_state_reg[47]' (FDE) to 'inst_frequency/complex_conjugate/AI_BI/REG/reg_state_reg[48]'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\inst_frequency/RE_coupler/gen_out_less_than_IDM.IDM_output/sample_rate/PERIOD_reg/reg_state_reg[0] )
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[71]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[79]'
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[79]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[78]'
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[70]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[78]'
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[78]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[77]'
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[69]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[77]'
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[77]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[76]'
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[68]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[76]'
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[76]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[75]'
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[67]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[75]'
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[75]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[74]'
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[66]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[74]'
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[74]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[73]'
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[65]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[72]'
+INFO: [Synth 8-3886] merging instance 'PacketTx_module/valid_in_reg/reg_state_reg[73]' (FDE) to 'PacketTx_module/valid_in_reg/reg_state_reg[64]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\PacketTx_module/valid_in_reg/reg_state_reg[64] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\LP_filter/sig_out_coupler/gen_out_less_than_IDM.IDM_output/sample_rate/PERIOD_reg/reg_state_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\qd_output_sample_rate/PERIOD_reg/reg_state_reg[3] )
+INFO: [Synth 8-3886] merging instance 'qd_output_sample_rate/PERIOD_reg/reg_state_reg[2]' (FDE) to 'qd_output_sample_rate/PERIOD_reg/reg_state_reg[1]'
+INFO: [Synth 8-3886] merging instance 'qd_output_sample_rate/PERIOD_reg/reg_state_reg[0]' (FDE) to 'qd_output_sample_rate/PERIOD_reg/reg_state_reg[1]'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\qd_output_sample_rate/PERIOD_reg/reg_state_reg[1] )
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[0]' (FDE) to 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[1]' (FDE) to 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[2]' (FDE) to 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[3]' (FDE) to 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[4]' (FDE) to 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[5]' (FDE) to 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[6]' (FDE) to 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[7]' (FDE) to 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[8]' (FDE) to 'LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[0].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[0].middle_reg/sum_reg/reg_state_reg[24]' (FDE) to 'LP_filter/FIR/gen_middle[0].middle_reg/sum_reg/reg_state_reg[25]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[0]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[1]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[2]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[3]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[4]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[5]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[6]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[7]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[8]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[0]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[1]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[2]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[3]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[4]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[5]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[6]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[7]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[8]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[0]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[1]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[2]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[3]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[4]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[5]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[6]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[7]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[8]' (FDE) to 'LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[1].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[0]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[1]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[2]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[3]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[4]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[5]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[6]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[7]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[8]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[0]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[1]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[2]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[3]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[4]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[5]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[6]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[7]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[8]' (FDE) to 'LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[0]' (FDE) to 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[1]' (FDE) to 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[2]' (FDE) to 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[3]' (FDE) to 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[4]' (FDE) to 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[5]' (FDE) to 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[6]' (FDE) to 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[7]' (FDE) to 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[8]' (FDE) to 'LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[0]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[1]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[2]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[3]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Synth 8-3886] merging instance 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[4]' (FDE) to 'LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[2].middle_reg/gen_positive_phase.signal_path/gen_middle[1].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[5].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_middle[1].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[6].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[5].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_middle[1].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[3].middle_reg/gen_positive_phase.signal_path/gen_middle[2].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[7].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[6].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[5].middle_reg/gen_positive_phase.signal_path/gen_middle[1].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_middle[2].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[8].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[7].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[6].middle_reg/gen_positive_phase.signal_path/gen_middle[1].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[5].middle_reg/gen_positive_phase.signal_path/gen_middle[2].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[4].middle_reg/gen_positive_phase.signal_path/gen_middle[3].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[9].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[8].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[7].middle_reg/gen_positive_phase.signal_path/gen_middle[1].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[6].middle_reg/gen_positive_phase.signal_path/gen_middle[2].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[5].middle_reg/gen_positive_phase.signal_path/gen_middle[3].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[10].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[9].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[8].middle_reg/gen_positive_phase.signal_path/gen_middle[1].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[7].middle_reg/gen_positive_phase.signal_path/gen_middle[2].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[6].middle_reg/gen_positive_phase.signal_path/gen_middle[3].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[5].middle_reg/gen_positive_phase.signal_path/gen_middle[4].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[11].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[10].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[9].middle_reg/gen_positive_phase.signal_path/gen_middle[1].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[8].middle_reg/gen_positive_phase.signal_path/gen_middle[2].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[7].middle_reg/gen_positive_phase.signal_path/gen_middle[3].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[6].middle_reg/gen_positive_phase.signal_path/gen_middle[4].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[12].middle_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[11].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[10].middle_reg/gen_positive_phase.signal_path/gen_middle[1].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[9].middle_reg/gen_positive_phase.signal_path/gen_middle[2].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[8].middle_reg/gen_positive_phase.signal_path/gen_middle[3].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[7].middle_reg/gen_positive_phase.signal_path/gen_middle[4].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[6].middle_reg/gen_positive_phase.signal_path/gen_middle[5].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/last_reg/gen_positive_phase.signal_path/gen_fiRST.fiRST_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[12].middle_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[11].middle_reg/gen_positive_phase.signal_path/gen_middle[1].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[10].middle_reg/gen_positive_phase.signal_path/gen_middle[2].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[9].middle_reg/gen_positive_phase.signal_path/gen_middle[3].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[8].middle_reg/gen_positive_phase.signal_path/gen_middle[4].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[7].middle_reg/gen_positive_phase.signal_path/gen_middle[5].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/last_reg/gen_positive_phase.signal_path/gen_middle[0].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[12].middle_reg/gen_positive_phase.signal_path/gen_middle[1].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[11].middle_reg/gen_positive_phase.signal_path/gen_middle[2].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[10].middle_reg/gen_positive_phase.signal_path/gen_middle[3].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[9].middle_reg/gen_positive_phase.signal_path/gen_middle[4].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[8].middle_reg/gen_positive_phase.signal_path/gen_middle[5].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[7].middle_reg/gen_positive_phase.signal_path/gen_middle[6].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/last_reg/gen_positive_phase.signal_path/gen_middle[1].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[12].middle_reg/gen_positive_phase.signal_path/gen_middle[2].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[11].middle_reg/gen_positive_phase.signal_path/gen_middle[3].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[10].middle_reg/gen_positive_phase.signal_path/gen_middle[4].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[9].middle_reg/gen_positive_phase.signal_path/gen_middle[5].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[8].middle_reg/gen_positive_phase.signal_path/gen_middle[6].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/last_reg/gen_positive_phase.signal_path/gen_middle[2].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[12].middle_reg/gen_positive_phase.signal_path/gen_middle[3].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[11].middle_reg/gen_positive_phase.signal_path/gen_middle[4].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[10].middle_reg/gen_positive_phase.signal_path/gen_middle[5].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[9].middle_reg/gen_positive_phase.signal_path/gen_middle[6].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[8].middle_reg/gen_positive_phase.signal_path/gen_middle[7].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/last_reg/gen_positive_phase.signal_path/gen_middle[3].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[12].middle_reg/gen_positive_phase.signal_path/gen_middle[4].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[11].middle_reg/gen_positive_phase.signal_path/gen_middle[5].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[10].middle_reg/gen_positive_phase.signal_path/gen_middle[6].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[9].middle_reg/gen_positive_phase.signal_path/gen_middle[7].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/last_reg/gen_positive_phase.signal_path/gen_middle[4].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[12].middle_reg/gen_positive_phase.signal_path/gen_middle[5].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[11].middle_reg/gen_positive_phase.signal_path/gen_middle[6].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[10].middle_reg/gen_positive_phase.signal_path/gen_middle[7].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[9].middle_reg/gen_positive_phase.signal_path/gen_middle[8].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/last_reg/gen_positive_phase.signal_path/gen_middle[5].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[12].middle_reg/gen_positive_phase.signal_path/gen_middle[6].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[11].middle_reg/gen_positive_phase.signal_path/gen_middle[7].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[10].middle_reg/gen_positive_phase.signal_path/gen_middle[8].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/last_reg/gen_positive_phase.signal_path/gen_middle[6].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[12].middle_reg/gen_positive_phase.signal_path/gen_middle[7].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[11].middle_reg/gen_positive_phase.signal_path/gen_middle[8].middle_reg/reg_state_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\LP_filter/FIR/gen_middle[10].middle_reg/gen_positive_phase.signal_path/gen_middle[9].middle_reg/reg_state_reg[9] )
+INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.

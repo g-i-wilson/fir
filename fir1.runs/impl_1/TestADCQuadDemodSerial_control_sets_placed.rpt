@@ -1,0 +1,102 @@
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+| Date         : Tue Nov 10 14:47:26 2020
+| Host         : blacklaptop running 64-bit Ubuntu 18.04.5 LTS
+| Command      : report_control_sets -verbose -file TestADCQuadDemodSerial_control_sets_placed.rpt
+| Design       : TestADCQuadDemodSerial
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    24 |
+|    Minimum number of control sets                        |    24 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    88 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    24 |
+| >= 0 to < 4        |     2 |
+| >= 4 to < 6        |     6 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |     4 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     1 |
+| >= 14 to < 16      |     1 |
+| >= 16              |     9 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              68 |           24 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |             124 |           47 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |            8048 |         2225 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++-----------------+----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|   Clock Signal  |                                                        Enable Signal                                                       |                                      Set/Reset Signal                                      | Slice Load Count | Bel Load Count | Bels / Slice |
++-----------------+----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/TX_module/bit_pulses/Timer_module/done_sig_reg_1                                                 | ADCQuadDemodSerial_module/TX_module/bit_pulses/Timer_module/done_sig_reg_3                 |                1 |              1 |         1.00 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/ADC_sample_rate/Timer_module/done_sig_reg_0                                                      |                                                                                            |                1 |              2 |         2.00 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/QuadDemod/I/gen_I.LO/count_out_sig[3]_i_2_n_0                                                    | ADCQuadDemodSerial_module/QuadDemod/I/gen_I.LO/LO/Timer_module/count_out_sig[3]_i_1_n_0    |                1 |              4 |         4.00 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/TX_module/FSM/FSM_onehot_current_state[3]_i_1_n_0                                                | mmcm0/sync_rst/shift_reg/reg_state_reg[2]_0                                                |                1 |              4 |         4.00 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/TX_module/bit_pulses/Timer_module/done_sig_reg_1                                                 |                                                                                            |                3 |              4 |         1.33 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/carrier_x8_sample_rate/Timer_module/done_sig_reg_0                                               | ADCQuadDemodSerial_module/QuadDemod/Q/gen_Q.LO/LO/Timer_module/count_out_sig[3]_i_1__0_n_0 |                1 |              4 |         4.00 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/carrier_x8_sample_rate/Timer_module/E[0]                                                         |                                                                                            |                1 |              5 |         5.00 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/TX_module/FSM/E[0]                                                                               |                                                                                            |                1 |              5 |         5.00 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/PacketTx_module/FSM/FSM_sequential_current_state_reg[1]_1                                        | ADCQuadDemodSerial_module/PacketTx_module/output_reg/reg_state[7]_i_1_n_0                  |                3 |              8 |         2.67 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/PacketTx_module/FSM/E[0]                                                                         |                                                                                            |                3 |              8 |         2.67 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/PacketTx_module/FSM/FSM_sequential_current_state_reg[0]_1                                        | ADCQuadDemodSerial_module/PacketTx_module/checksum_reg/reg_state[7]_i_1_n_0                |                2 |              8 |         4.00 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/PacketTx_module/FSM/done_sig_reg[0]                                                              |                                                                                            |                5 |              9 |         1.80 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/TX_module/FSM/FSM_onehot_current_state_reg[3]_0[0]                                               |                                                                                            |                3 |             10 |         3.33 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/LP_filter/sig_out_coupler/gen_out_less_than_IDM.IDM_output/sample_rate/Timer_module/en_pulse_sig | mmcm0/sync_rst/shift_reg/reg_state_reg[2]_0                                                |                3 |             12 |         4.00 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/PacketTx_module/FSM/FSM_sequential_current_state_reg[1]_1                                        | ADCQuadDemodSerial_module/PacketTx_module/FSM/reg_state_reg[2]_0                           |                6 |             14 |         2.33 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/inst_frequency/RE_coupler/gen_out_less_than_IDM.IDM_output/sample_rate/Timer_module/en_pulse_sig | mmcm0/sync_rst/shift_reg/reg_state_reg[2]_0                                                |                5 |             18 |         3.60 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/inst_frequency/IM_coupler/gen_out_less_than_IDM.IDM_output/sample_rate/Timer_module/en_pulse_sig | mmcm0/sync_rst/shift_reg/reg_state_reg[2]_0                                                |                6 |             22 |         3.67 |
+|  mmcm0/mmcm_clk | mmcm0/sync_rst/shift_reg/reg_state_reg[2]_1                                                                                |                                                                                            |                8 |             46 |         5.75 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/PacketTx_module/FSM/FSM_sequential_current_state_reg[1]_1                                        |                                                                                            |               22 |             58 |         2.64 |
+|  mmcm0/mmcm_clk |                                                                                                                            |                                                                                            |               24 |             69 |         2.88 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/qd_output_sample_rate/Timer_module/done_sig_reg_1                                                | mmcm0/sync_rst/shift_reg/reg_state_reg[2]_0                                                |               88 |            300 |         3.41 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/ADC_sample_rate/Timer_module/done_sig_reg_0                                                      | mmcm0/sync_rst/shift_reg/reg_state_reg[2]_5                                                |              165 |            575 |         3.48 |
+|  mmcm0/mmcm_clk | ADCQuadDemodSerial_module/carrier_x8_sample_rate/Timer_module/done_sig_reg_0                                               | mmcm0/sync_rst/shift_reg/reg_state_reg[2]_0                                                |              158 |            651 |         4.12 |
+|  mmcm0/mmcm_clk | mmcm0/sync_rst/shift_reg/reg_state_reg[2]_1                                                                                | mmcm0/sync_rst/shift_reg/reg_state_reg[2]_0                                                |             1785 |           6427 |         3.60 |
++-----------------+----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+
+

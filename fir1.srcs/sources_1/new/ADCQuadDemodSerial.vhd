@@ -37,13 +37,19 @@ architecture Behavioral of ADCQuadDemodSerial is
   signal adc_sample_sig     : std_logic;
   signal qd_in_sample_sig   : std_logic;
   signal qd_out_sample_sig  : std_logic;
+  signal tx_ready_out       : std_logic;
+  signal packet_valid_out   : std_logic;
   signal filter_in_sig      : std_logic_vector(1 downto 0);
   signal filter_out_sig     : std_logic_vector(11 downto 0);
-  signal phase_sig          : std_logic_vector(7 downto 0);
-  signal phase_der_sig      : std_logic_vector(7 downto 0);
-  signal phase_2der_sig     : std_logic_vector(7 downto 0);
+  signal freq_re_sig        : std_logic_vector(17 downto 0);
+  signal freq_im_sig        : std_logic_vector(21 downto 0);
+--  signal phase_sig          : std_logic_vector(7 downto 0);
+--  signal phase_der_sig      : std_logic_vector(7 downto 0);
+--  signal phase_2der_sig     : std_logic_vector(7 downto 0);
+  signal packet_symbol_out  : std_logic_vector(7 downto 0);
   signal i_out_sig          : std_logic_vector(27 downto 0);
   signal q_out_sig          : std_logic_vector(27 downto 0);
+  signal packet_in_sig      : std_logic_vector(79 downto 0);
 
 begin
 
@@ -98,7 +104,7 @@ begin
 
     filter_in_sig <= (not adc_out_sig) & adc_out_sig; -- +1 for high, -1 for low
 
-    LP_filter: entity work.FIRFilterLP63tap
+    LP_filter: entity work.FIRFilterLP15tap
         generic map (
             SIG_IN_WIDTH        => 2, -- signal input path width
             SIG_OUT_WIDTH       => 12 -- signal output path width
@@ -129,22 +135,63 @@ begin
             Q_OUT                   => q_out_sig
         );
         
-    inst_phase: entity work.InstantaneousPhase
+--    inst_phase: entity work.InstantaneousPhase
+--        generic map (
+--            SIG_IN_WIDTH            => 24,
+--            SIG_OUT_WIDTH           => 16
+--        )
+--        port map (
+--            CLK                     => CLK,
+--            RST                     => RST,
+--            EN_ANGLE                => '1',
+--            EN_OUT                  => qd_out_sample_sig,
+--            RE_IN                   => i_out_sig(23 downto 0),
+--            IM_IN                   => q_out_sig(23 downto 0),
+    
+--            PHASE                   => phase_sig,
+--            PHASE_DER               => phase_der_sig
+--        );
+    
+    inst_frequency: entity work.InstantaneousFrequency
         generic map (
             SIG_IN_WIDTH            => 24,
-            SIG_OUT_WIDTH           => 16
+            RE_WIDTH                => 18,
+            IM_WIDTH                => 22
         )
         port map (
             CLK                     => CLK,
             RST                     => RST,
-            EN_ANGLE                => '1',
+            EN_IN                   => qd_out_sample_sig,
             EN_OUT                  => qd_out_sample_sig,
             RE_IN                   => i_out_sig(23 downto 0),
             IM_IN                   => q_out_sig(23 downto 0),
     
-            PHASE                   => phase_sig,
-            PHASE_DER               => phase_der_sig
+            FREQ_RE                 => freq_re_sig,
+            FREQ_IM                 => freq_im_sig
         );
+
+
+    packet_in_sig <= x"0102" & i_out_sig(23 downto 8) & q_out_sig(23 downto 8) & freq_re_sig(15 downto 0) & freq_im_sig(15 downto 0);
+
+    PacketTx_module: entity work.PacketTx
+        generic map (
+            SYMBOL_WIDTH        => 8,
+            PACKET_SYMBOLS      => 10
+        )
+        port map (
+            CLK                 => CLK,
+            RST                 => RST,
+            
+            READY_OUT           => open,
+            VALID_IN            => qd_out_sample_sig,
+            
+            READY_IN            => tx_ready_out,
+            VALID_OUT           => packet_valid_out,
+            
+            PACKET_IN           => packet_in_sig,
+            SYMBOL_OUT          => packet_symbol_out
+        );
+
     
     TX_module: entity work.SerialTx
         port map (
@@ -153,19 +200,19 @@ begin
             EN                  => '1',
             RST                 => RST,
             BIT_TIMER_PERIOD    => UART_PERIOD,
-            VALID               => qd_out_sample_sig,
-            DATA                => phase_der_sig,
+            VALID               => packet_valid_out,
+            DATA                => packet_symbol_out,
             -- outputs
-            READY               => open,
+            READY               => tx_ready_out,
             TX                  => TX
         );
 
-    ila0: entity work.ila_qd
-        port map (
-            CLK => CLK,
-            probe0 => phase_sig,
-            probe1 => phase_der_sig,
-            probe2 => filter_out_sig
-        );
+--    ila0: entity work.ila_qd
+--        port map (
+--            CLK => CLK,
+--            probe0 => i_out_sig,
+--            probe1 => q_out_sig,
+--            probe2 => filter_out_sig
+--        );
 
 end Behavioral;
