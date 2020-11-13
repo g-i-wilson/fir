@@ -13,7 +13,7 @@ entity PacketTx is
     generic (
         SYMBOL_WIDTH        : positive := 8; -- typically a BYTE
         PACKET_SYMBOLS      : positive := 4;
-        TIMER_WIDTH         : positive := 8;
+        COUNTER_WIDTH       : positive := 8;
         BIG_ENDIAN          : boolean := TRUE
     );
     port (
@@ -86,15 +86,15 @@ begin
     SYMBOL_OUT <= checksum_sig when checksum_sel_sig = '1' else symbol_sig;
     
 
-    word_timer : entity work.Timer
+    word_counter : entity work.Timer
         generic map (
-            WIDTH           => TIMER_WIDTH
+            WIDTH           => COUNTER_WIDTH
         )
         port map (
             CLK             => CLK,
             EN              => timer_en_sig,
             RST             => timer_rst_sig,
-            COUNT_END       => std_logic_vector(to_unsigned(PACKET_SYMBOLS-1, TIMER_WIDTH)),
+            COUNT_END       => std_logic_vector(to_unsigned(PACKET_SYMBOLS-1, COUNTER_WIDTH)),
     
             DONE            => timer_done_sig
         );

@@ -1,0 +1,13 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../fir1.srcs/sources_1/new/Timer.vhd" \
+"../../../../fir1.srcs/sources_1/new/Reg1D.vhd" \
+"../../../../fir1.srcs/sources_1/new/Reg1DSymbols.vhd" \
+"../../../../fir1.srcs/sources_1/new/PacketTxFSM.vhd" \
+"../../../../fir1.srcs/sources_1/new/PacketTx.vhd" \
+"../../../../fir1.srcs/sources_1/new/PacketRxFSM.vhd" \
+"../../../../fir1.srcs/sources_1/new/PacketRx.vhd" \
+"../../../../fir1.srcs/sim_1/new/PacketRx_tb.vhd" \
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,4 @@
+Running: xsim.dir/PacketRx_tb_behav/xsimk -simmode gui -wdb PacketRx_tb_behav.wdb -simrunnum 0 -socket 35551
+Design successfully loaded
+Design Loading Memory Usage: 46184 KB (Peak: 46304 KB)
+Design Loading CPU Usage: 120 ms
