@@ -23,9 +23,9 @@ architecture Behavioral of PacketRx_tb is
 	signal tx_valid_out : std_logic;
 	signal rx_ready_out : std_logic;
 	signal rx_valid_out : std_logic;
-	signal test_tx : std_logic;
+	
+	signal test_packet : std_logic_vector(31 downto 0);
 
-    signal test_header_in : std_logic_vector(15 downto 0);
     signal test_data_out : std_logic_vector(15 downto 0);
     signal test_symbol_out : std_logic_vector(7 downto 0);
 
@@ -50,7 +50,7 @@ begin
             READY_IN            => rx_ready_out,
             VALID_OUT           => tx_valid_out,
             
-            PACKET_IN           => x"01020304",
+            PACKET_IN           => test_packet,
             SYMBOL_OUT          => test_symbol_out
         );
 
@@ -87,6 +87,7 @@ begin
     begin
 
         -- initial
+        test_packet <= x"01020304";
         test_rst <= '1';
         test_valid <= '0';
 
@@ -107,7 +108,27 @@ begin
         wait for 2ns;
         test_valid <= '0';
 
-        for a in 0 to 255 loop
+        for a in 0 to 63 loop
+
+          -- clock edge
+          wait for 2ns;
+          test_clk <= '1';
+          wait for 2ns;
+          test_clk <= '0';
+
+        end loop;
+        
+        test_packet <= x"0102eeff";
+        test_valid <= '1';
+
+        wait for 2ns;
+        test_clk <= '1';
+        wait for 2ns;
+        test_clk <= '0';
+        wait for 2ns;
+        test_valid <= '0';
+
+        for a in 0 to 63 loop
 
           -- clock edge
           wait for 2ns;

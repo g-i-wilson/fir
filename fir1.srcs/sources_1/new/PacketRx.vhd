@@ -36,32 +36,31 @@ architecture Behavioral of PacketRx is
 
     -- total symbols = PACKET_SYMBOLS + 1 checksum symbol
     signal packet_sig               : std_logic_vector((1+PACKET_SYMBOLS)*SYMBOL_WIDTH-1 downto 0);
-    signal symbol_in_sig            : std_logic_vector(SYMBOL_WIDTH-1 downto 0);
     signal header_sig               : std_logic_vector(HEADER_SYMBOLS*SYMBOL_WIDTH-1 downto 0);
+
+    signal symbol_newest_sig        : std_logic_vector(SYMBOL_WIDTH-1 downto 0);
+    signal symbol_oldest_sig        : std_logic_vector(SYMBOL_WIDTH-1 downto 0);
 
     signal shift_en_sig             : std_logic;
     signal ready_out_sig            : std_logic;
+    signal packet_complete_sig      : std_logic;
     signal checksum_sig             : std_logic_vector(SYMBOL_WIDTH-1 downto 0);
-    signal checksum_verified_sig    : std_logic;
-    signal header_verified_sig      : std_logic;
-    signal checksum_rst_sig         : std_logic;
-    signal checksum_rst_fsm_sig     : std_logic;
     signal checksum_next_sig        : std_logic_vector(SYMBOL_WIDTH-1 downto 0);
 
 begin
 
     header_sig          <= packet_sig((1+PACKET_SYMBOLS               )*SYMBOL_WIDTH-1 downto (1+PACKET_SYMBOLS-HEADER_SYMBOLS)*SYMBOL_WIDTH);
     DATA_OUT            <= packet_sig((1+PACKET_SYMBOLS-HEADER_SYMBOLS)*SYMBOL_WIDTH-1 downto                                   SYMBOL_WIDTH);
-    symbol_in_sig       <= packet_sig(                                  SYMBOL_WIDTH-1 downto                                   0           );
+    
+    symbol_newest_sig   <= packet_sig(                                  SYMBOL_WIDTH-1 downto                                   0           );
+    symbol_oldest_sig   <= packet_sig((1+PACKET_SYMBOLS               )*SYMBOL_WIDTH-1 downto (  PACKET_SYMBOLS               )*SYMBOL_WIDTH);
 
-    checksum_rst_sig    <= RST          or      checksum_rst_fsm_sig;
     shift_en_sig        <= VALID_IN     and     ready_out_sig;
     READY_OUT           <=                      ready_out_sig;
 
-    checksum_next_sig   <= std_logic_vector(unsigned(checksum_sig) + unsigned(symbol_in_sig));
+    checksum_next_sig   <= std_logic_vector(unsigned(checksum_sig) + unsigned(symbol_newest_sig) - unsigned(symbol_oldest_sig));
 
-    checksum_verified_sig   <= '1' when (checksum_sig   = symbol_in_sig) else '0';
-    header_verified_sig     <= '1' when (HEADER_IN      = header_sig   ) else '0';
+    packet_complete_sig <= '1' when (header_sig = HEADER_IN and symbol_newest_sig = checksum_sig) else '0';
 
     
 
@@ -86,7 +85,7 @@ begin
         )
         port map (
             CLK                 => CLK,
-            RST                 => checksum_rst_sig,
+            RST                 => RST,
     
             PAR_EN              => shift_en_sig,
             PAR_IN              => checksum_next_sig,
@@ -104,9 +103,7 @@ begin
             READY_IN            => READY_IN,
             VALID_OUT           => VALID_OUT,
             
-            HEADER_VERIFIED     => header_verified_sig,
-            CHECKSUM_VERIFIED   => checksum_verified_sig,
-            SUM_RST             => checksum_rst_fsm_sig
+            PACKET_COMPLETE     => packet_complete_sig
         );
 
 

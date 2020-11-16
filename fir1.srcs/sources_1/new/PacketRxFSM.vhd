@@ -14,29 +14,27 @@ entity PacketRxFSM is
         READY_IN            : in STD_LOGIC;
         VALID_OUT           : out STD_LOGIC;
         
-        HEADER_VERIFIED     : in STD_LOGIC;
-        CHECKSUM_VERIFIED   : in STD_LOGIC;
-        SUM_RST             : out STD_LOGIC
+        PACKET_COMPLETE     : in STD_LOGIC
     );
 end PacketRxFSM;
 
 architecture Behavioral of PacketRxFSM is
 
     type state_type is (
-        SHIFT_EN_STATE,
-        HEADER_ONLY_STATE,
+        READY_OUT_STATE,
+        CHECK_PACKET_STATE,
         VALID_OUT_STATE
     );
     
-    signal current_state        : state_type := SHIFT_EN_STATE;
-    signal next_state           : state_type := SHIFT_EN_STATE;
+    signal current_state        : state_type := READY_OUT_STATE;
+    signal next_state           : state_type := READY_OUT_STATE;
   
 begin
 
     FSM_state_register: process (CLK) begin
         if rising_edge(CLK) then
             if (RST = '1') then
-                current_state <= SHIFT_EN_STATE;
+                current_state <= READY_OUT_STATE;
             else
                 current_state <= next_state;
             end if;
@@ -44,31 +42,31 @@ begin
     end process;
 
 
-    FSM_next_state_logic: process (current_state, VALID_IN, READY_IN, HEADER_VERIFIED, CHECKSUM_VERIFIED) begin
+    FSM_next_state_logic: process (current_state, VALID_IN, READY_IN, PACKET_COMPLETE) begin
     
         next_state <= current_state;
         
         case current_state is
         
-            when SHIFT_EN_STATE =>
-                if (HEADER_VERIFIED = '1') then
-                    if (CHECKSUM_VERIFIED = '1') then
-                        next_state <= VALID_OUT_STATE;
-                    else
-                        next_state <= HEADER_ONLY_STATE;
-                    end if;
+            when READY_OUT_STATE =>
+                if (VALID_IN = '1') then
+                    next_state <= CHECK_PACKET_STATE;
                 end if;
                 
-            when HEADER_ONLY_STATE =>
-                next_state <= SHIFT_EN_STATE;
+            when CHECK_PACKET_STATE =>
+                if (PACKET_COMPLETE = '1') then
+                    next_state <= VALID_OUT_STATE;
+                else
+                    next_state <= READY_OUT_STATE;
+                end if;
                 
             when VALID_OUT_STATE =>
                 if (READY_IN = '1') then
-                    next_state <= SHIFT_EN_STATE;
+                    next_state <= READY_OUT_STATE;
                 end if;
                                 
             when others =>
-                next_state <= SHIFT_EN_STATE;
+                next_state <= READY_OUT_STATE;
                 
         end case;
         
@@ -80,16 +78,12 @@ begin
     -- defaults
     READY_OUT           <= '0';
     VALID_OUT           <= '0';
-    SUM_RST             <= '0';
     
     case current_state is
-        when SHIFT_EN_STATE         =>
+        when READY_OUT_STATE         =>
             READY_OUT           <= '1';
-        when HEADER_ONLY_STATE      =>
-            SUM_RST             <= '1';
         when VALID_OUT_STATE        =>
             VALID_OUT           <= '1';
-            SUM_RST             <= '1';
         when others =>
             -- nothing
     end case;
