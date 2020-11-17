@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -14,8 +14,9 @@ entity SPITransaction is
     generic (
         SCK_HALF_PERIOD_WIDTH   : positive := 8;
         MISO_DETECTOR_SAMPLES   : positive := 16;
-        ADDR_WIDTH              : positive := 8;
-        DATA_WIDTH              : positive := 8
+        ADDR_WIDTH              : positive := 16;
+        DATA_WIDTH              : positive := 8;
+        COUNTER_WIDTH           : positive := 8
     );
     port (
         CLK                     : in STD_LOGIC;
@@ -58,14 +59,20 @@ architecture Behavioral of SPITransaction is
     signal sck_edge_sig         : std_logic;
     
     -- FSM outputs
-    signal sck_rst_sig          : std_logic;
+    signal sck_rst_fsm_sig      : std_logic;
+    signal ready_out_sig        : std_logic;
     signal counter_en_sig       : std_logic;
-    signal counter_rst_sig      : std_logic;
     signal counter_rst_fsm_sig  : std_logic;
-    signal shift_in_reg_sig     : std_logic;
-    signal shift_out_reg_sig    : std_logic;
+    signal data_in_shift_en_sig : std_logic;
+    signal data_out_shift_en_sig : std_logic;
 
-    signal state_debug          : std_logic_vector(7 downto 0);
+    signal sck_rst_sig          : std_logic;
+    signal counter_rst_sig      : std_logic;
+    signal data_in_par_en_sig   : std_logic;
+    signal data_in_sig          : std_logic_vector(ADDR_WIDTH+DATA_WIDTH-1 downto 0);
+    signal counter_sig          : std_logic_vector(COUNTER_WIDTH-1 downto 0);
+
+    signal state_debug          : std_logic_vector(3 downto 0);
 
 
 begin
@@ -85,14 +92,14 @@ begin
             DATA_DONE           => data_done_sig,
             SCK_EDGE            => sck_edge_sig,
             -- outputs
-            READY_OUT           => READY_OUT,
+            READY_OUT           => ready_out_sig,
             VALID_OUT           => VALID_OUT,
-            SCK_RST             => sck_rst_sig,
+            SCK_RST             => sck_rst_fsm_sig,
             TRISTATE_EN         => TRISTATE_EN,
             COUNTER_EN          => counter_en_sig,
-            COUNTER_RST         => counter_rst_sig,
-            SHIFT_IN_REG        => shift_in_reg_sig,
-            SHIFT_OUT_REG       => shift_out_reg_sig,
+            COUNTER_RST         => counter_rst_fsm_sig,
+            SHIFT_IN_REG        => data_in_shift_en_sig,
+            SHIFT_OUT_REG       => data_out_shift_en_sig,
             CS                  => CS,
             SCK                 => SCK,
             -- debug outputs
@@ -121,28 +128,20 @@ begin
         DATA                      => miso_sync_sig
     );
     
-    counter_rst_sig <= RST or counter_rst_fsm_sig;
+    counter_rst_sig         <= RST or counter_rst_fsm_sig;
+    sck_rst_sig             <= RST or sck_rst_fsm_sig;
     
-    MOSI <= mosi_sig;
+    MOSI                    <= mosi_sig;
     
+    READY_OUT               <= ready_out_sig;
+    data_in_par_en_sig      <= VALID_IN and ready_out_sig;
+    
+    data_in_sig             <= ADDR & DATA_IN;
 
     ----------------------------------------------------
     -- REGISTERS
     ----------------------------------------------------
     
-    valid_buffer: entity work.reg1D
-        generic map (
-            LENGTH              => 8
-        )
-        port map (
-            CLK                 => CLK,
-            RST                 => RST,
-            
-            PAR_EN              => VALID_IN,
-            PAR_IN              => DATA_IN,
-            PAR_OUT             => valid_buffer_sig
-        );
-
     DATA_IN_reg: entity work.reg1D
         generic map (
             LENGTH              => ADDR_WIDTH + DATA_WIDTH
@@ -151,10 +150,10 @@ begin
             CLK                 => CLK,
             RST                 => RST,
             
-            PAR_EN              => load_data_in_sig,
-            PAR_IN              => valid_buffer_sig,
+            PAR_EN              => data_in_par_en_sig,
+            PAR_IN              => data_in_sig,
             
-            SHIFT_EN            => shift_data_in_sig,
+            SHIFT_EN            => data_in_shift_en_sig,
             SHIFT_OUT           => mosi_sig
         );
 
@@ -166,11 +165,9 @@ begin
             CLK                 => CLK,
             RST                 => RST,
             
-            PAR_EN              => load_data_out_sig,
-            PAR_IN              => valid_buffer_sig,
             PAR_OUT             => DATA_OUT,
             
-            SHIFT_EN            => shift_data_out_sig,
+            SHIFT_EN            => data_out_shift_en_sig,
             SHIFT_IN            => miso_sync_sig
         );
 
@@ -180,38 +177,41 @@ begin
     
     SCK_EDGE_pules : entity work.PulseGenerator
     generic map (
-        WIDTH       => SCK_HALF_PERIOD_WIDTH
+        WIDTH                   => SCK_HALF_PERIOD_WIDTH
     )
     port map ( 
-        CLK         => CLK,
-        RST         => RST,
-        EN          => '1',
-        PERIOD      => SCK_HALF_PERIOD,
-        INIT_PERIOD => SCK_HALF_PERIOD,
-        PULSE       => sck_edge_sig,
-        COUNT       => count_sig
+        CLK                     => CLK,
+        RST                     => sck_rst_sig,
+        EN                      => '1',
+        PERIOD                  => SCK_HALF_PERIOD,
+        INIT_PERIOD             => SCK_HALF_PERIOD,
+        PULSE                   => sck_edge_sig
     );
         
     counter : entity work.Timer
         generic map (
-            WIDTH               => 3 -- defaults to "000" through "111", which is 8 combinations
+            WIDTH               => COUNTER_WIDTH
         )
         port map (
             CLK                 => CLK,
-            EN                  => bit_count_en_sig,
-            RST                 => bit_count_rst_sig,
-            DONE                => byte_done_sig
+            EN                  => counter_en_sig,
+            RST                 => counter_rst_fsm_sig,
+            COUNT               => counter_sig
         );
+        
+     addr_done_sig <= '1' when (counter_sig = std_logic_vector(to_unsigned(ADDR_WIDTH-1, COUNTER_WIDTH))) else '0';
+     
+     data_done_sig <= '1' when (counter_sig = std_logic_vector(to_unsigned(DATA_WIDTH-1, COUNTER_WIDTH))) else '0';
                 
         
-    ila0: entity work.ila_SPITransaction
-    port map (
-        CLK => CLK,
-        probe0 => byte_done_sig & write_done_sig & read_done_sig & shift_data_in_sig & shift_data_out_sig & "000",
-        probe1 => write_len_sig,
-        probe2 => read_len_sig,
-        probe3 => state_debug
-    );
+--    ila0: entity work.ila_SPITransaction
+--    port map (
+--        CLK => CLK,
+--        probe0 => byte_done_sig & write_done_sig & read_done_sig & shift_data_in_sig & shift_data_out_sig & "000",
+--        probe1 => write_len_sig,
+--        probe2 => read_len_sig,
+--        probe3 => state_debug
+--    );
 
 
 end Behavioral;
