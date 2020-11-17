@@ -22,6 +22,9 @@ entity SPITransaction is
         CLK                     : in STD_LOGIC;
         RST                     : in STD_LOGIC;
         
+        -- R/W
+        WRITE                   : in STD_LOGIC;
+        
         -- upstream
         READY_OUT               : out STD_LOGIC;
         VALID_IN                : in STD_LOGIC;
@@ -88,6 +91,7 @@ begin
             RST                 => RST,
             VALID_IN            => VALID_IN,
             READY_IN            => READY_IN,
+            WRITE               => WRITE,
             ADDR_DONE           => addr_done_sig,
             DATA_DONE           => data_done_sig,
             SCK_EDGE            => sck_edge_sig,
@@ -201,7 +205,7 @@ begin
         
      addr_done_sig <= '1' when (counter_sig = std_logic_vector(to_unsigned(ADDR_WIDTH-1, COUNTER_WIDTH))) else '0';
      
-     data_done_sig <= '1' when (counter_sig = std_logic_vector(to_unsigned(DATA_WIDTH-1, COUNTER_WIDTH))) else '0';
+     data_done_sig <= '1' when (counter_sig = std_logic_vector(to_unsigned(ADDR_WIDTH+DATA_WIDTH-1, COUNTER_WIDTH))) else '0';
                 
         
 --    ila0: entity work.ila_SPITransaction

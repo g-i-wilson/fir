@@ -1,6 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/PacketRxFSM.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'PacketRxFSM'
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sources_1/new/PacketRx.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'PacketRx'
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/PacketRx_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'PacketRx_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gwrw/fir1/fir1.srcs/sim_1/new/SPITransaction_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SPITransaction_tb'

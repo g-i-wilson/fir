@@ -150,7 +150,7 @@ begin
                               
             when R_L_WAIT_STATE =>
                 if (SCK_EDGE = '1') then
-                    next_state <= W_H_WAIT_STATE;
+                    next_state <= R_H_WAIT_STATE;
                 end if;
                   
             when R_H_WAIT_STATE =>
