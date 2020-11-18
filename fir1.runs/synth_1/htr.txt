@@ -6,4 +6,4 @@
 # Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 #
 
-vivado -log TestADCQuadDemodSerial.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source TestADCQuadDemodSerial.tcl
+vivado -log TestUARTSPITransactionBasys3.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source TestUARTSPITransactionBasys3.tcl

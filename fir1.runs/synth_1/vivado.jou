@@ -2,11 +2,11 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Tue Nov 10 16:23:49 2020
-# Process ID: 1940
+# Start of session at: Wed Nov 18 14:10:27 2020
+# Process ID: 31930
 # Current directory: /home/gwrw/fir1/fir1.runs/synth_1
-# Command line: vivado -log TestADCQuadDemodSerial.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source TestADCQuadDemodSerial.tcl
-# Log file: /home/gwrw/fir1/fir1.runs/synth_1/TestADCQuadDemodSerial.vds
+# Command line: vivado -log TestUARTSPITransactionBasys3.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source TestUARTSPITransactionBasys3.tcl
+# Log file: /home/gwrw/fir1/fir1.runs/synth_1/TestUARTSPITransactionBasys3.vds
 # Journal file: /home/gwrw/fir1/fir1.runs/synth_1/vivado.jou
 #-----------------------------------------------------------
-source TestADCQuadDemodSerial.tcl -notrace
+source TestUARTSPITransactionBasys3.tcl -notrace

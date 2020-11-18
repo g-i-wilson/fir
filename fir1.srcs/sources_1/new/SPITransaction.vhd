@@ -30,7 +30,7 @@ entity SPITransaction is
         VALID_IN                : in STD_LOGIC;
         
         -- downstream
-        READY_IN                : in STD_LOGIC;
+        READY_IN                : in STD_LOGIC := '1';
         VALID_OUT               : out STD_LOGIC;
 
         -- ADDR & DATA
@@ -40,7 +40,7 @@ entity SPITransaction is
         
         -- SPI
         SCK_HALF_PERIOD         : in STD_LOGIC_VECTOR (SCK_HALF_PERIOD_WIDTH-1 downto 0);
-        MISO                    : in STD_LOGIC;
+        MISO                    : in STD_LOGIC := '1';
         MOSI                    : out STD_LOGIC;
         SCK                     : out STD_LOGIC;
         CS                      : out STD_LOGIC;
