@@ -36,7 +36,7 @@ begin
 
 
 
-    SPITransaction_module: entity work.SPITransaction
+    SPIMaster_module: entity work.SPIMaster
     generic map (
         SCK_HALF_PERIOD_WIDTH   =>  8,
         MISO_DETECTOR_SAMPLES   =>  16,

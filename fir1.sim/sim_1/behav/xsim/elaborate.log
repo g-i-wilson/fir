@@ -1,6 +1,6 @@
 Vivado Simulator 2020.1
 Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: /home/gwrw/Xilinx/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 1f4367962a4b4441b8e64d3ba15e400e --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip -L xpm --snapshot SPITransaction_tb_behav xil_defaultlib.SPITransaction_tb -log elaborate.log 
+Running: /home/gwrw/Xilinx/Vivado/2020.1/bin/unwrapped/lnx64.o/xelab -wto 1f4367962a4b4441b8e64d3ba15e400e --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip -L xpm --snapshot SPIConfigure_tb_behav xil_defaultlib.SPIConfigure_tb -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
 Completed static elaboration
@@ -12,7 +12,12 @@ Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
 Compiling package unisim.vcomponents
-Compiling architecture behavioral of entity xil_defaultlib.SPITransactionFSM [spitransactionfsm_default]
+Compiling architecture behavioral of entity xil_defaultlib.SPIConfigureFSM [spiconfigurefsm_default]
+Compiling architecture behavioral of entity xil_defaultlib.Timer [\Timer(width=8)\]
+Compiling architecture behavioral of entity xil_defaultlib.Timer [\Timer(width=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.Reg1DSymbols [\Reg1DSymbols(symbol_width=24,bi...]
+Compiling architecture behavioral of entity xil_defaultlib.Reg1DSymbols [\Reg1DSymbols(length=2,symbol_wi...]
+Compiling architecture behavioral of entity xil_defaultlib.SPIMasterFSM [spimasterfsm_default]
 Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=3)\]
 Compiling architecture behavioral of entity xil_defaultlib.Synchronizer [synchronizer_default]
 Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=16)\]
@@ -21,8 +26,8 @@ Compiling architecture behavioral of entity xil_defaultlib.MAFilter1Bit [\MAFilt
 Compiling architecture behavioral of entity xil_defaultlib.EdgeDetectorFSM [\EdgeDetectorFSM(sum_width=8,log...]
 Compiling architecture behavioral of entity xil_defaultlib.EdgeDetector [\EdgeDetector(sum_width=8,logic_...]
 Compiling architecture behavioral of entity xil_defaultlib.Reg1D [\Reg1D(length=24)\]
-Compiling architecture behavioral of entity xil_defaultlib.Timer [\Timer(width=8)\]
 Compiling architecture behavioral of entity xil_defaultlib.PulseGenerator [pulsegenerator_default]
-Compiling architecture behavioral of entity xil_defaultlib.SPITransaction [spitransaction_default]
-Compiling architecture behavioral of entity xil_defaultlib.spitransaction_tb
-Built simulation snapshot SPITransaction_tb_behav
+Compiling architecture behavioral of entity xil_defaultlib.SPIMaster [spimaster_default]
+Compiling architecture behavioral of entity xil_defaultlib.SPIConfigure [spiconfigure_default]
+Compiling architecture behavioral of entity xil_defaultlib.spiconfigure_tb
+Built simulation snapshot SPIConfigure_tb_behav
