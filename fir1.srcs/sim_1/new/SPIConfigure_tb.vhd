@@ -29,6 +29,10 @@ architecture Behavioral of SPIConfigure_tb is
 	signal test_config : std_logic_vector(95 downto 0);
 	signal test_verify : std_logic_vector(47 downto 0);
 
+	signal test_verify_addr : std_logic_vector(15 downto 0);
+	signal test_verify_data : std_logic_vector(7 downto 0);
+	signal test_actual_data : std_logic_vector(7 downto 0);
+
 
 begin
 
@@ -58,7 +62,11 @@ begin
         
         VERIFY_PASS             => test_pass,
         VERIFY_FAIL             => test_fail,
-        VERIFY_RETRY_PERIOD     => x"0000040"
+        VERIFY_RETRY_PERIOD     => x"0000040",
+        
+        VERIFY_ADDR             => test_verify_addr,
+        VERIFY_DATA             => test_verify_data,
+        ACTUAL_DATA             => test_actual_data
     );
 
     

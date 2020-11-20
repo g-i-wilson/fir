@@ -37,7 +37,12 @@ entity SPIConfigure is
         
         VERIFY_PASS                 : out STD_LOGIC;
         VERIFY_FAIL                 : out STD_LOGIC;
-        VERIFY_RETRY_PERIOD         : in STD_LOGIC_VECTOR (VERIFY_RETRY_PERIOD_WIDTH-1 downto 0) := x"5F5E0FF" -- 100MHz/1Hz-1 to hex
+        VERIFY_RETRY                : in STD_LOGIC := '1';
+        VERIFY_RETRY_PERIOD         : in STD_LOGIC_VECTOR (VERIFY_RETRY_PERIOD_WIDTH-1 downto 0) := x"5F5E0FF"; -- 100MHz/1Hz-1 to hex
+        
+        VERIFY_ADDR                 : out STD_LOGIC_VECTOR (ADDR_WIDTH-1 downto 0);
+        VERIFY_DATA                 : out STD_LOGIC_VECTOR (DATA_WIDTH-1 downto 0);
+        ACTUAL_DATA                 : out STD_LOGIC_VECTOR (DATA_WIDTH-1 downto 0)
     );
 end SPIConfigure;
 
@@ -59,6 +64,7 @@ architecture Behavioral of SPIConfigure is
     signal config_done_sig      : std_logic;
     signal verify_done_sig      : std_logic;
     signal retry_sig            : std_logic;
+    signal retry_timer_sig      : std_logic;
     signal write_sig            : std_logic;
     
     signal count_sig            : std_logic_vector(COUNTER_WIDTH-1 downto 0);
@@ -123,8 +129,10 @@ begin
             EN                  => retry_en_sig,
             RST                 => retry_rst_sig,
             COUNT_END           => VERIFY_RETRY_PERIOD,
-            DONE                => retry_sig
+            DONE                => retry_timer_sig
         );
+    
+    retry_sig           <= retry_timer_sig and VERIFY_RETRY;
 
     verify_done_sig     <= '1' when (count_sig = std_logic_vector(to_unsigned(VERIFY_LENGTH-1, COUNTER_WIDTH))) else '0';
         
@@ -199,5 +207,9 @@ begin
             CS                      => CS,
             TRISTATE_EN             => TRISTATE_EN
         );
+        
+    VERIFY_ADDR     <= verify_out_sig(ADDR_WIDTH+DATA_WIDTH-1 downto DATA_WIDTH);
+    VERIFY_DATA     <= reg_out_sig(DATA_WIDTH-1 downto 0);
+    ACTUAL_DATA     <= spi_out_sig;
 
 end Behavioral;

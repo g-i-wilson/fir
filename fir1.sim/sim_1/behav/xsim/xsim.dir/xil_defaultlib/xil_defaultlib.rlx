@@ -86,7 +86,7 @@ May 27 2020
 /home/gwrw/fir1/fir1.srcs/sources_1/new/QuadratureModulator.vhd,1603833091,vhdl,/home/gwrw/fir1/fir1.srcs/sim_1/new/QuadratureModulator_tb.vhd,,,quadraturemodulator,,,,,,,,
 /home/gwrw/fir1/fir1.srcs/sources_1/new/Reg1D.vhd,1597765052,vhdl,/home/gwrw/fir1/fir1.srcs/sources_1/new/MAFilter1Bit.vhd;/home/gwrw/fir1/fir1.srcs/sources_1/new/PulseGenerator.vhd;/home/gwrw/fir1/fir1.srcs/sources_1/new/SPIMaster.vhd;/home/gwrw/fir1/fir1.srcs/sources_1/new/Synchronizer.vhd,,,reg1d,,,,,,,,
 /home/gwrw/fir1/fir1.srcs/sources_1/new/Reg1DSymbols.vhd,1604696796,vhdl,/home/gwrw/fir1/fir1.srcs/sources_1/new/SPIConfigure.vhd,,,reg1dsymbols,,,,,,,,
-/home/gwrw/fir1/fir1.srcs/sources_1/new/SPIConfigure.vhd,1605824776,vhdl,/home/gwrw/fir1/fir1.srcs/sim_1/new/SPIConfigure_tb.vhd,,,spiconfigure,,,,,,,,
+/home/gwrw/fir1/fir1.srcs/sources_1/new/SPIConfigure.vhd,1605898199,vhdl,/home/gwrw/fir1/fir1.srcs/sim_1/new/SPIConfigure_tb.vhd,,,spiconfigure,,,,,,,,
 /home/gwrw/fir1/fir1.srcs/sources_1/new/SPIConfigureFSM.vhd,1605824578,vhdl,/home/gwrw/fir1/fir1.srcs/sources_1/new/SPIConfigure.vhd,,,spiconfigurefsm,,,,,,,,
 /home/gwrw/fir1/fir1.srcs/sources_1/new/SPIHalfDuplex.vhd,1601059158,vhdl,/home/gwrw/fir1/fir1.srcs/sources_1/new/SPIHalfDuplex_tb.vhd,,,spihalfduplex,,,,,,,,
 /home/gwrw/fir1/fir1.srcs/sources_1/new/SPIHalfDuplexFSM.vhd,1601060158,vhdl,/home/gwrw/fir1/fir1.srcs/sources_1/new/SPIHalfDuplex.vhd,,,spihalfduplexfsm,,,,,,,,

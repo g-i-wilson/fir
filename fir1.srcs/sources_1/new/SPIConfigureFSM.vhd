@@ -49,7 +49,8 @@ constant VERIFY_VALID_STATE     : std_logic_vector(3 downto 0) := x"3";
 constant VERIFY_READY_STATE     : std_logic_vector(3 downto 0) := x"4";
 constant EN_VERIFY_STATE        : std_logic_vector(3 downto 0) := x"5";
 constant VERIFY_FAIL_STATE      : std_logic_vector(3 downto 0) := x"6";
-constant VERIFY_PASS_STATE      : std_logic_vector(3 downto 0) := x"7";
+constant RETRY_STATE            : std_logic_vector(3 downto 0) := x"7";
+constant VERIFY_PASS_STATE      : std_logic_vector(3 downto 0) := x"8";
 
 
 
@@ -187,6 +188,8 @@ FSM_output_logic: process (current_state) begin
                     
         when VERIFY_FAIL_STATE      =>
         VERIFY_FAIL         <= '1';
+                    
+        when RETRY_STATE            =>
         RETRY_EN            <= '1';
         COUNTER_RST         <= '1';
             
