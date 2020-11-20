@@ -26,6 +26,11 @@ architecture Behavioral of SPIConfigure_tb is
 	signal test_cs : std_logic;
 	signal test_tristate_en : std_logic;
 	signal test_retry : std_logic;
+
+	signal test_slave_cs : std_logic;
+	signal test_slave_sck : std_logic;
+	signal test_slave_sda : std_logic;
+
 	
 	signal test_config : std_logic_vector(95 downto 0);
 	signal test_verify : std_logic_vector(47 downto 0);
@@ -71,14 +76,30 @@ begin
         ACTUAL_DATA             => test_actual_data
     );
 
-    
+    convert_3wire_to_4wire: entity work.SPI3WireConverter
+        port map (
+            MASTER_CS           => test_cs,
+            MASTER_SCK          => test_sck,
+            MASTER_MOSI         => test_mosi,
+            MASTER_MISO         => test_miso,
+            MASTER_TRISTATE_EN  => test_tristate_en,
+            
+            SLAVE_CS            => test_slave_cs,
+            SLAVE_SCK           => test_slave_sck,
+            SLAVE_SDA           => test_slave_sda
+        );
+
+
+
+        test_slave_sda <= '1' when (test_tristate_en = '1') else 'Z';
+
 
     process
     begin
     
 
         
-        test_miso <= '1';
+--        test_miso <= '1';
         test_retry <= '1';
         test_config <=  x"AAAA55" &
         				x"BBBB55" &
@@ -127,7 +148,7 @@ begin
         end loop;
 
 
-        test_miso <= '1';
+--        test_miso <= '1';
         test_config <=  x"AAAA55" &
         				x"BBBB55" &
         				x"CCCC55" &
