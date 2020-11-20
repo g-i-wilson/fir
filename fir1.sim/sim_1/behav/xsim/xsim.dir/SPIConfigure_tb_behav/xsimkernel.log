@@ -1,4 +1,4 @@
-Running: xsim.dir/SPIConfigure_tb_behav/xsimk -simmode gui -wdb SPIConfigure_tb_behav.wdb -simrunnum 0 -socket 39569
+Running: xsim.dir/SPIConfigure_tb_behav/xsimk -simmode gui -wdb SPIConfigure_tb_behav.wdb -simrunnum 0 -socket 56795
 Design successfully loaded
 Design Loading Memory Usage: 46236 KB (Peak: 46288 KB)
-Design Loading CPU Usage: 120 ms
+Design Loading CPU Usage: 130 ms

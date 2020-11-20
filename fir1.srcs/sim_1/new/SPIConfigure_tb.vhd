@@ -25,6 +25,7 @@ architecture Behavioral of SPIConfigure_tb is
 	signal test_sck : std_logic;
 	signal test_cs : std_logic;
 	signal test_tristate_en : std_logic;
+	signal test_retry : std_logic;
 	
 	signal test_config : std_logic_vector(95 downto 0);
 	signal test_verify : std_logic_vector(47 downto 0);
@@ -62,6 +63,7 @@ begin
         
         VERIFY_PASS             => test_pass,
         VERIFY_FAIL             => test_fail,
+        VERIFY_RETRY            => test_retry,
         VERIFY_RETRY_PERIOD     => x"0000040",
         
         VERIFY_ADDR             => test_verify_addr,
@@ -77,6 +79,7 @@ begin
 
         
         test_miso <= '1';
+        test_retry <= '1';
         test_config <=  x"AAAA55" &
         				x"BBBB55" &
         				x"CCCC55" &
@@ -102,7 +105,7 @@ begin
         test_clk <= '0';
         wait for 2ns;
 
-        for a in 0 to 4095 loop
+        for a in 0 to 2047 loop
 
           -- clock edge
           wait for 2ns;
@@ -111,7 +114,19 @@ begin
           test_clk <= '0';
 
         end loop;
+        test_retry <= '0';
         
+        for a in 0 to 2047 loop
+
+          -- clock edge
+          wait for 2ns;
+          test_clk <= '1';
+          wait for 2ns;
+          test_clk <= '0';
+
+        end loop;
+
+
         test_miso <= '1';
         test_config <=  x"AAAA55" &
         				x"BBBB55" &

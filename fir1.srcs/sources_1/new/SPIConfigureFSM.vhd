@@ -20,6 +20,7 @@ entity SPIConfigureFSM is
         VERIFIED_DATA   : in STD_LOGIC;
         CONFIG_DONE     : in STD_LOGIC;
         VERIFY_DONE     : in STD_LOGIC;
+        ALLOW_RETRY		: in STD_LOGIC;
         RETRY		    : in STD_LOGIC;
         
         EN_CONFIG       : out STD_LOGIC;
@@ -126,6 +127,11 @@ begin
                 -- do nothing; requires a RST to leave this state
                                                       
             when VERIFY_FAIL_STATE =>
+                if (ALLOW_RETRY = '1') then
+                    next_state <= RETRY_STATE;
+                end if;
+                                                      
+            when RETRY_STATE =>
                 if (RETRY = '1') then
                     next_state <= CONFIG_VALID_STATE;
                 end if;

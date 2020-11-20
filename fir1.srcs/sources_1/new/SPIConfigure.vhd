@@ -64,7 +64,6 @@ architecture Behavioral of SPIConfigure is
     signal config_done_sig      : std_logic;
     signal verify_done_sig      : std_logic;
     signal retry_sig            : std_logic;
-    signal retry_timer_sig      : std_logic;
     signal write_sig            : std_logic;
     
     signal count_sig            : std_logic_vector(COUNTER_WIDTH-1 downto 0);
@@ -88,6 +87,7 @@ begin
             VERIFIED_DATA   => verified_data_sig,
             CONFIG_DONE     => config_done_sig,
             VERIFY_DONE     => verify_done_sig,
+            ALLOW_RETRY     => VERIFY_RETRY,
             RETRY			=> retry_sig,
             
             EN_CONFIG       => en_config_sig,
@@ -129,11 +129,9 @@ begin
             EN                  => retry_en_sig,
             RST                 => retry_rst_sig,
             COUNT_END           => VERIFY_RETRY_PERIOD,
-            DONE                => retry_timer_sig
+            DONE                => retry_sig
         );
     
-    retry_sig           <= retry_timer_sig and VERIFY_RETRY;
-
     verify_done_sig     <= '1' when (count_sig = std_logic_vector(to_unsigned(VERIFY_LENGTH-1, COUNTER_WIDTH))) else '0';
         
     CONFIG_reg: entity work.Reg1DSymbols
