@@ -211,7 +211,7 @@ begin
             TRISTATE_EN             => TRISTATE_EN
         );
         
-    VERIFY_ADDR     <= verify_out_sig(ADDR_WIDTH+DATA_WIDTH-1 downto DATA_WIDTH);
+    VERIFY_ADDR     <= reg_out_sig(ADDR_WIDTH+DATA_WIDTH-1 downto DATA_WIDTH);
     VERIFY_DATA     <= reg_out_sig(DATA_WIDTH-1 downto 0);
     ACTUAL_DATA     <= spi_out_sig;
 
