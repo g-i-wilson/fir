@@ -52,14 +52,15 @@ begin
         VERIFY_LENGTH               => 2,
         SCK_HALF_PERIOD_WIDTH       => 8,
         VERIFY_RETRY_PERIOD_WIDTH   => 28,
-        COUNTER_WIDTH               => 8
+        COUNTER_WIDTH               => 8,
+        MISO_DETECTOR_SAMPLES       => 4
     )
     port map (
         CLK                     => test_clk,
         RST                     => test_rst,
         CONFIG                  => test_config,
         VERIFY                  => test_verify,
-        SCK_HALF_PERIOD         => x"03",
+        SCK_HALF_PERIOD         => x"05",
         MISO                    => test_miso,
         MOSI                    => test_mosi,
         SCK                     => test_sck,
@@ -106,8 +107,8 @@ begin
         				x"CCCC55" &
         				x"DDDD55" ;   
         				   				
-        test_verify <=  x"AAAA55" &
-        				x"BBBB55" ;      
+        test_verify <=  x"111155" &
+        				x"222255" ;      
         								
         test_rst <= '1';
         
@@ -126,7 +127,7 @@ begin
         test_clk <= '0';
         wait for 2ns;
 
-        for a in 0 to 2047 loop
+        for a in 0 to 4095 loop
 
           -- clock edge
           wait for 2ns;
@@ -137,7 +138,7 @@ begin
         end loop;
         test_retry <= '0';
         
-        for a in 0 to 2047 loop
+        for a in 0 to 4095 loop
 
           -- clock edge
           wait for 2ns;
@@ -154,8 +155,8 @@ begin
         				x"CCCC55" &
         				x"DDDD55" ;      
         								
-        test_verify <=  x"AAAAFF" &
-        				x"BBBBFF" ;      				
+        test_verify <=  x"1111FF" &
+        				x"2222FF" ;      				
 
         test_rst <= '1';
         

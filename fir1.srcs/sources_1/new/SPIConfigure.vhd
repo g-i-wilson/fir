@@ -19,7 +19,8 @@ entity SPIConfigure is
         SCK_HALF_PERIOD_WIDTH       : positive := 8;
         VERIFY_RETRY_PERIOD_WIDTH   : positive := 28;
         COUNTER_WIDTH               : positive := 8;
-        BIG_ENDIAN                  : boolean := TRUE
+        BIG_ENDIAN                  : boolean := TRUE;
+        MISO_DETECTOR_SAMPLES       : positive := 16
     );
     port (
         CLK                         : in STD_LOGIC;
@@ -180,7 +181,8 @@ begin
             SCK_HALF_PERIOD_WIDTH   =>  SCK_HALF_PERIOD_WIDTH,
             ADDR_WIDTH              =>  ADDR_WIDTH,
             DATA_WIDTH              =>  DATA_WIDTH,
-            COUNTER_WIDTH           =>  COUNTER_WIDTH
+            COUNTER_WIDTH           =>  COUNTER_WIDTH,
+            MISO_DETECTOR_SAMPLES   => MISO_DETECTOR_SAMPLES
         )
         port map (
             CLK                     => CLK,
@@ -211,7 +213,7 @@ begin
             TRISTATE_EN             => TRISTATE_EN
         );
         
-    VERIFY_ADDR     <= reg_out_sig(ADDR_WIDTH+DATA_WIDTH-1 downto DATA_WIDTH);
+    VERIFY_ADDR     <= verify_out_sig(ADDR_WIDTH+DATA_WIDTH-1 downto DATA_WIDTH);
     VERIFY_DATA     <= reg_out_sig(DATA_WIDTH-1 downto 0);
     ACTUAL_DATA     <= spi_out_sig;
 
