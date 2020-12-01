@@ -42,7 +42,10 @@ entity SPIConfigure is
         
         VERIFY_ADDR                 : out STD_LOGIC_VECTOR (ADDR_WIDTH-1 downto 0);
         VERIFY_DATA                 : out STD_LOGIC_VECTOR (DATA_WIDTH-1 downto 0);
-        ACTUAL_DATA                 : out STD_LOGIC_VECTOR (DATA_WIDTH-1 downto 0)
+        ACTUAL_DATA                 : out STD_LOGIC_VECTOR (DATA_WIDTH-1 downto 0);
+        
+        -- debug
+        STATE                       : out STD_LOGIC_VECTOR (3 downto 0)
     );
 end SPIConfigure;
 
@@ -101,7 +104,9 @@ begin
             RETRY_RST       => retry_rst_fsm_sig,
             VERIFY_PASS     => VERIFY_PASS,
             VERIFY_FAIL     => VERIFY_FAIL,
-            WRITE           => write_sig
+            WRITE           => write_sig,
+            
+            STATE           => STATE
         );
 
     counter_rst_sig     <= RST or counter_rst_fsm_sig;
