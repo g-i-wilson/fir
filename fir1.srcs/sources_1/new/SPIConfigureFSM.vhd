@@ -43,20 +43,20 @@ end SPIConfigureFSM;
 
 architecture Behavioral of SPIConfigureFSM is
 
-constant CONFIG_VALID_STATE     : std_logic_vector(3 downto 0) := x"0";
-constant EN_CONFIG_STATE        : std_logic_vector(3 downto 0) := x"1";
-constant CONFIG_DONE_STATE      : std_logic_vector(3 downto 0) := x"2";
-constant VERIFY_VALID_STATE     : std_logic_vector(3 downto 0) := x"3";
-constant VERIFY_READY_STATE     : std_logic_vector(3 downto 0) := x"4";
-constant EN_VERIFY_STATE        : std_logic_vector(3 downto 0) := x"5";
-constant VERIFY_FAIL_STATE      : std_logic_vector(3 downto 0) := x"6";
-constant RETRY_STATE            : std_logic_vector(3 downto 0) := x"7";
-constant VERIFY_PASS_STATE      : std_logic_vector(3 downto 0) := x"8";
+constant CONFIG_VALID_STATE         : std_logic_vector(3 downto 0) := x"0";
+constant EN_CONFIG_STATE            : std_logic_vector(3 downto 0) := x"1";
+constant CONFIG_DONE_VALID_STATE    : std_logic_vector(3 downto 0) := x"2";
+constant VERIFY_VALID_STATE         : std_logic_vector(3 downto 0) := x"3";
+constant VERIFY_READY_STATE         : std_logic_vector(3 downto 0) := x"4";
+constant EN_VERIFY_STATE            : std_logic_vector(3 downto 0) := x"5";
+constant VERIFY_FAIL_STATE          : std_logic_vector(3 downto 0) := x"6";
+constant RETRY_STATE                : std_logic_vector(3 downto 0) := x"7";
+constant VERIFY_PASS_STATE          : std_logic_vector(3 downto 0) := x"8";
 
 
 
-signal current_state            : std_logic_vector(3 downto 0) := CONFIG_VALID_STATE;
-signal next_state               : std_logic_vector(3 downto 0) := CONFIG_VALID_STATE;
+signal current_state                : std_logic_vector(3 downto 0) := CONFIG_VALID_STATE;
+signal next_state                   : std_logic_vector(3 downto 0) := CONFIG_VALID_STATE;
 
 
 begin
@@ -96,13 +96,15 @@ begin
                   
             when EN_CONFIG_STATE =>
                 if (CONFIG_DONE = '1') then
-                    next_state <= CONFIG_DONE_STATE;
+                    next_state <= CONFIG_DONE_VALID_STATE;
                 else
                     next_state <= CONFIG_VALID_STATE;
                 end if;
         
-            when CONFIG_DONE_STATE =>
-                next_state <= VERIFY_VALID_STATE;
+            when CONFIG_DONE_VALID_STATE =>
+                if (SPI_READY = '1') then
+                    next_state <= VERIFY_VALID_STATE;
+                end if;
                   
             when VERIFY_VALID_STATE =>
                 if (SPI_VALID = '1') then
@@ -173,11 +175,12 @@ FSM_output_logic: process (current_state) begin
         EN_CONFIG           <= '1';
         COUNTER_EN          <= '1';
             
-        when CONFIG_DONE_STATE      =>
+        when CONFIG_DONE_VALID_STATE =>
         CONFIG_SELECT       <= '1';
         WRITE               <= '1';
         COUNTER_RST         <= '1';
         RETRY_RST           <= '1';
+        REG_VALID           <= '1';
             
         when VERIFY_VALID_STATE     =>
         REG_VALID           <= '1';

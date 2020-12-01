@@ -123,7 +123,7 @@ begin
             COUNT               => count_sig
         );
 
-    config_done_sig     <= '1' when (count_sig = std_logic_vector(to_unsigned(CONFIG_LENGTH, COUNTER_WIDTH))) else '0';
+    config_done_sig     <= '1' when (count_sig = std_logic_vector(to_unsigned(CONFIG_LENGTH-1, COUNTER_WIDTH))) else '0';
         
     Retry_timer : entity work.Timer
         generic map (
