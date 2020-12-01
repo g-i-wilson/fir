@@ -6,4 +6,4 @@
 # Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 #
 
-vivado -log TestUARTSPITransactionBasys3.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source TestUARTSPITransactionBasys3.tcl -notrace
+vivado -log TestUARTSPITapBasys3.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source TestUARTSPITapBasys3.tcl -notrace

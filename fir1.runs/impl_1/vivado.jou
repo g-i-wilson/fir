@@ -2,11 +2,11 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Wed Nov 18 14:17:22 2020
-# Process ID: 32215
+# Start of session at: Mon Nov 30 08:55:05 2020
+# Process ID: 2907
 # Current directory: /home/gwrw/fir1/fir1.runs/impl_1
-# Command line: vivado -log TestUARTSPITransactionBasys3.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source TestUARTSPITransactionBasys3.tcl -notrace
-# Log file: /home/gwrw/fir1/fir1.runs/impl_1/TestUARTSPITransactionBasys3.vdi
+# Command line: vivado -log TestUARTSPITapBasys3.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source TestUARTSPITapBasys3.tcl -notrace
+# Log file: /home/gwrw/fir1/fir1.runs/impl_1/TestUARTSPITapBasys3.vdi
 # Journal file: /home/gwrw/fir1/fir1.runs/impl_1/vivado.jou
 #-----------------------------------------------------------
-source TestUARTSPITransactionBasys3.tcl -notrace
+source TestUARTSPITapBasys3.tcl -notrace
