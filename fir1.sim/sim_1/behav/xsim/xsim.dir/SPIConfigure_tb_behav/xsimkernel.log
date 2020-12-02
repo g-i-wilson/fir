@@ -2,3 +2,6 @@ Running: xsim.dir/SPIConfigure_tb_behav/xsimk -simmode gui -wdb SPIConfigure_tb_
 Design successfully loaded
 Design Loading Memory Usage: 46260 KB (Peak: 46312 KB)
 Design Loading CPU Usage: 70 ms
+Simulation completed
+Simulation Memory Usage: 136196 KB (Peak: 185528 KB)
+Simulation CPU Usage: 170 ms
