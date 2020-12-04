@@ -1,0 +1,3 @@
+[submodule "h-vhdl-lib"]
+	path = h-vhdl-lib
+	url = git@github.com:g-i-wilson/h-vhdl-lib.git
